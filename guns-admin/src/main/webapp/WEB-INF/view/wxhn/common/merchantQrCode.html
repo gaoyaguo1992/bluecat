@@ -1,0 +1,140 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>添加商户</title>	
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+    <script type="text/javascript"  src="${ctxPath}/static/js/jquery.qrcode.min.js"></script>
+    
+    <link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantQrCode.css?v=11">
+    <style rel="stylesheet" type="text/css" >
+    /*tab*/
+    .tab-box{
+        height: 90px;
+	    display: flex;
+	    line-height: 90px;
+	    background: #fff;
+	    padding: 0 .32rem;
+	    font-size: 12px;
+    }
+    .tab-box span{
+        flex: 1;
+        text-align: center;
+    }
+    .active{
+    color:#1ab394;
+    border-bottom:1px solid #1ab394;
+    }
+    .main-con{
+        background: #e2ecef;
+	    font-size: 13px;
+	    margin-top:10px;
+	    padding-top:40px;
+	    padding-left:60px;
+	    padding-right:40px;
+	    padding-bottom:40px;
+	    height: 350px;
+	    width:350px;
+    }
+    .main-con .list{
+        background: #fff;
+        border-radius: 5px;
+        width: 100%;
+        margin-bottom: 0.24rem;
+    }
+    </style>
+</head>
+<body style="margin:10px 10px 10px 10px">
+<div class="tab-box" id="tabDiv">
+    @for(item in responseInfo){
+      <span opType="${item.opType}" opTypeCn="${item.opTypeCn}" qrCodeUrl="${item.qrCodeUrl}">${item.opTypeCn}</span>
+   	@}
+</div>
+<div align="center" style="width:100%;height:40px; line-height:40px; text-align:center; border:1px solid #F00}">
+	扫描下二维码<span id="spTitle" style="color:red">代理商</span></div>
+<div class="main-con" id="qrcode"></div>
+<input type="hidden" name="oppType" value="value" />
+</body>
+<script language="javascript" type="text/javascript">
+var firstQrCodeUrl = "${responseInfo[0].qrCodeUrl}";
+function buildQrCode(firstQrCodeUrl){
+	var wd=$(window).width()-200;
+	var hg=wd;
+	$('#qrcode').html('');
+	$("#qrcode").qrcode({
+		width: 200,height: 200,
+		correctLevel:0, 
+	    //render: "table", //table方式 
+	    text: firstQrCodeUrl, //任意内容 
+	});
+}
+$(function() {
+	//tab选择
+	$(".tab-box span").click(function(){
+		$(this).addClass("active").siblings().removeClass("active");
+	});
+	//	时间切换
+	var obj = document.getElementById("tabDiv").getElementsByTagName("span");
+	for(i in obj){
+		obj[i].index = i;
+	    obj[i].onclick = function(){
+	    	for(var j=0;j< obj.length; j++){
+	    		obj[j].className = "";
+	    	}
+	    	tagOnlick(this)
+	    }
+	}	
+	tagOnlick(obj[0]);
+});
+//点击TAG时处理...
+function tagOnlick(obj){
+	obj.className="active";
+	$("#spTitle").html($(obj).attr("opTypeCn"));
+	buildQrCode($(obj).attr("qrCodeUrl"));
+}
+</script>
+</html>

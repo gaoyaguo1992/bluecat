@@ -1,0 +1,62 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="交易id" underline="true"/>
+                            <#input id="deviceNo" name="设备号" underline="true"/>
+                            <#input id="chargerId" name="充电器id" underline="true"/>
+                            <#input id="custId" name="客户编号" underline="true"/>
+                            <#input id="yfjAmount" name="预付金" underline="true"/>
+                            <#input id="tradeAmount" name="交易金额" underline="true"/>
+                            <#input id="tradeType" name="交易类型" underline="true"/>
+                            <#input id="tradeName" name="交易名称" underline="true"/>
+                            <#input id="borrowDatetime" name="借出时间" underline="true"/>
+                            <#input id="backDatetime" name="归还时间" underline="true"/>
+                            <#input id="tradeStatusName" name="交易状态名" underline="true"/>
+                            <#input id="tradeStatus" name="交易状态" underline="true"/>
+                            <#input id="xCoordinate" name="交易x" underline="true"/>
+                            <#input id="yCoordinate" name="交易y" underline="true"/>
+                            <#input id="benefitStatus" name="分润状态(0：未分润，1：已分)" underline="true"/>
+                            <#input id="benefitDatetime" name="分润时间" underline="true"/>
+                            <#input id="platformAmount" name="平台收入" underline="true"/>
+                            <#input id="agents1Amount" name="代理商收入1" underline="true"/>
+                            <#input id="agents2Amount" name="代理商收入2"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="agents3Amount" name="代理商收入3" underline="true"/>
+                            <#input id="shopkeeperAmount" name="铺货商收入" underline="true"/>
+                            <#input id="allianceBusinessAmount" name="加盟商收入" underline="true"/>
+                            <#input id="backTradeId" name="退款时对应的交易id" underline="true"/>
+                            <#input id="tradeAddress" name="交易地址" underline="true"/>
+                            <#input id="tradeZone" name="交易区" underline="true"/>
+                            <#input id="tradeCity" name="交易市" underline="true"/>
+                            <#input id="tradeProvince" name="交易省" underline="true"/>
+                            <#input id="merchantId" name="交易商户id" underline="true"/>
+                            <#input id="agents1Id" name="代理商1id" underline="true"/>
+                            <#input id="agents2Id" name="代理商2id" underline="true"/>
+                            <#input id="agents3Id" name="代理商3id" underline="true"/>
+                            <#input id="shopkeeperId" name="铺货商id" underline="true"/>
+                            <#input id="allianceBusinessId" name="加盟商id" underline="true"/>
+                            <#input id="createId" name="交易创建者" underline="true"/>
+                            <#input id="createDatetime" name="创建时间" underline="true"/>
+                            <#input id="updateDatetime" name="修改时间" underline="true"/>
+                            <#input id="settleAccountsStatus" name="结账状态" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ShareTradeInfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ShareTradeInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/shareTradeInfo/shareTradeInfo/shareTradeInfo_info.js"></script>
+@}

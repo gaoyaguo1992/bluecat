@@ -1,0 +1,316 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>商户${merchantInfo.id}收益</title>	
+   	<!-- 全局css -->
+	<link rel="shortcut icon" type="text/css" href="${ctxPath}/static/favicon.ico">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/font-awesome.css?v=4.4.0">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/chosen/chosen.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/style.css?v=4.1.0">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/_fstyle.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/iCheck/custom.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/webuploader/webuploader.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css"/>  
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/css/reset.css?v=1">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css?v=1">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/css/mobiscroll_date.css?v=1">
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css?v=1">   	
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/common/ysdayIncome.css?v=70">
+	<!-- 全局js -->
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/reset.js?v=1"></script>   
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>
+</head>
+<body>
+<script>reset();</script>
+<input id="merchantId" name="merchantId" type="hidden" value="${merchantInfo.id}"/>
+<input id="isRealTime" name="isRealTime" type="hidden" value="11"/>
+<input id="searchTime" name="searchTime" type="hidden" value="${searchTime}"/>
+<div class="timeCon">
+    <div class="time">
+        归还时间:<input class="datetime" type="text" name="startTime" id="startTime" readonly value="">
+        <span>-</span>
+        <input class="datetime" type="text" name="endTime" id="endTime" readonly value="">
+        <div class="search" id="search">查询</div>
+    </div>
+	<div class="moneyInfo">
+		<div class="name">
+    		<span style="margin-left: 20px;"><span>收益额</span><span id="profitTotalAmount"> </span></span><span>元;</span>
+			<span style="margin-left: 15px;"><span>交易数</span><span id="tradeTotalNum"></span> <span>笔;</span></span>
+			<span style="margin-left: 15px;"><span>交易额</span><span id="tradeTotalAmount"> </span><span>元</span></span>
+		</div>
+	</div>
+</div>
+<div class="main-con">
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+<script src="${ctxPath}/static/js/common/Feng.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/global.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/util.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=2" charset="gb2312"></script> 
+<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=2"></script>
+<script src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=2"></script> 
+<script type="text/javascript">
+ var path="${ctxPath}";
+ var reqUrl="${reqUrlRoot}";
+ var isParent="${isParent}";
+ var Curpage = 1;
+ $(function() {
+    Feng.addCtx("${ctxPath}");
+    Feng.sessionTimeoutRegistry();
+	$('.modal').appendTo("body");
+	//处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false};
+	$('#myModal').modal(options);
+	 
+	var timeChose=1;
+	var searchTime=$("#searchTime").val();
+	timeSelect(searchTime);
+	getYsIncome(Curpage);
+	//input的CHANGE事件
+	$(".datetime").change(function(){
+	  timeSelect(2);
+    });
+	// 点击查询
+	$("#search").click(function(){
+		$("#tradeTotalAmount").text("0");
+		$("#tradeTotalNum").text("0");
+		$("#profitTotalAmount").text("0");
+		$('.main-con').empty();
+		getYsIncome(Curpage);
+	});
+ });
+
+ /**开启屏蔽层. */
+ startShieldLayer = function() {
+ 	$('#myModal').modal("show");
+ }
+ /** 结束屏蔽层.*/
+ finishShieldLayer = function() {
+ 	$('#myModal').modal("hide");
+ }
+ //是否为空
+ function isNotEmpty(content){
+	if(content == 'null' || content == null || content =='undefined' || content == undefined || $.trim(content) == '')
+		{return false;}
+	else
+		{return true;}
+ };
+ // 获取昨天交易数据
+ function getYsIncome(page){
+	startShieldLayer();
+	var rows = 10;
+	$.JsonSRpc(reqUrl+"/wx/getMyTradeInfoData",{
+		start:(page-1)*rows,
+		rows:rows,
+		isParent:isParent,
+		merchantId:$("#merchantId").val(),
+		beginDateTime:$("#startTime").val(),
+		endDateTime :$("#endTime").val()
+	},function(data){
+		finishShieldLayer();
+		if(data.result!="success"){
+			return;
+		}else{ //成功
+			$("#more").remove();
+			if(!isNotEmpty(data.tradeCount)){
+				data.tradeCount = 0;
+			}
+			if(!isNotEmpty(data.profitAmount)){
+				data.profitAmount = 0;
+			}	
+		  $('#tradeTotalAmount').text(data.tradeAmount);
+		  $('#tradeTotalNum').text(data.tradeCount);
+		  $('#profitTotalAmount').text(data.profitAmount);
+		  var listData=data.myTradeDetailInfoBOs;
+		  if(listData.length===0){
+			  
+		  }else {
+			  var html="";
+			  $.each(listData,function(i,list) {
+				  if(list.tradeType==93){
+					  	html='<div class="list"><p class="title"><span class="blue-icon"></span>订单编号<span>'+list.tradeId+'</span>'+
+							    '<span style="color:red;" class="right"> 用户退款</span></p>'+
+							'<ul class="list-con">'+
+							  '<li>'+
+								'<span>设备编号</span>'+list.deviceId+
+							  '</li>'+
+							  '<li>'+
+							    '<span>充电器编号</span>'+list.chargerId+
+							 '</li>'+
+							 '<li>'+
+							    '<span>交易时间</span>'+list.tradeTimeFromat+
+							 '</li>'+
+							 '<li>'+
+							    '<span>归还时间</span>'+list.backTimeFromat+
+							 '</li>'+
+							 '<li>'+
+							    '<span>交易金额</span>'+list.tradeAmount+
+							 '</li>';
+							 if(list.profitAmountStr!="00"){
+								html= html+'<li>'+
+								    '<span>收益金额</span>'+list.profitAmountStr+
+								 '</li>';
+							 }
+							 html= html+'<li>'+
+							    '<span>交易名称</span>'+list.tradeName+
+							 '</li>'+							
+							 '<li>'+
+							    '<span>加盟商</span>'+list.allianceBusinessCn+"-"+list.allianceBusinessId+
+							 '</li>'+
+							 '<li>'+
+							    '<span>店铺商户</span>'+list.merchantCn+"-"+list.merchantId+
+							 '</li>'+							 
+							 '<li>'+
+							    '<span>退款原因</span>'+list.operateComment+
+							 '</li>'+
+						    '</ul>'+
+						'</div>';
+					  $('.main-con').append(html);
+				  }else{
+					  html= '<div class="list"><p class="title"><span class="blue-icon"></span>订单编号<span>'+list.tradeId+'</span>'+
+							    '<span class="right">已归还</span></p>'+
+							'<ul class="list-con">'+
+							  '<li>'+
+								'<span>设备编号</span>'+list.deviceId+
+							  '</li>'+
+							  '<li>'+
+							    '<span>充电器编号</span>'+list.chargerId+
+							 '</li>'+
+							 '<li>'+
+							    '<span>交易时间</span>'+list.tradeTimeFromat+
+							 '</li>'+
+							 '<li>'+
+							    '<span>归还时间</span>'+list.backTimeFromat+
+							 '</li>'+
+							 '<li>'+
+							    '<span>交易金额</span>'+list.tradeAmount+
+							 '</li>';
+							 if(list.profitAmountStr!="00"){
+								 html=html+'<li>'+
+								    '<span>收益金额</span>'+list.profitAmountStr+
+								 '</li>';							 
+							 }						 
+							 html=html+'<li>'+
+							    '<span>交易名称</span>'+list.tradeName+
+							 '</li>'+
+							 '<li>'+
+							    '<span>加盟商</span>'+list.allianceBusinessCn+"-"+list.allianceBusinessId+
+							 '</li>'+
+							 '<li>'+
+							    '<span>店铺商户</span>'+list.merchantCn+"-"+list.merchantId+
+							 '</li>'+
+						    '</ul>'+
+						'</div>';
+					  $('.main-con').append(html);
+				  }
+			  }) 
+			  if(listData.length==rows){
+				$(".main-con").append("<a id='more' href='javascript:void(0)' onclick='getYsIncome("+(page+1)+")'>点击获取更多</a>");
+			  }   
+		  }
+		}
+     },null,function(obj){
+  		finishShieldLayer();
+     })
+ };
+ // 获取跟多
+ // 时间段选择
+ function timeSelect(t) {
+	  var startTime='';
+	  var endTime= '';
+	  
+	  // 获取昨日时间
+	  var day1 = new Date();
+	  // T + 1
+	  let isRealTime=$('#isRealTime').val(); 
+	  if(isRealTime == '10'){
+	  	day1.setTime(day1.getTime()-24*60*60*1000);
+	  }
+	 
+	  var s1 = day1.getFullYear()+"-" + (day1.getMonth()+1) + "-" + day1.getDate();
+	  if(t=='null'||t==""||t==undefined){
+		  startTime=$("#startTime").val(s1);
+		  endTime=$("#endTime").val(s1);
+	  }else if(t===2){
+		  startTime=$("#startTime").val();
+		  endTime=$("#endTime").val();
+	  }else{
+		  startTime=$("#startTime").val(t);
+		  endTime=$("#endTime").val(t);
+	  }
+		var currYear = (new Date()).getFullYear();	
+		var opt1={};
+		opt1.date = {preset : 'date',
+				defaultValue: startTime
+		};
+		opt1.defaultparam = {
+			theme: 'android-ics light', //皮肤样式
+			display: 'modal', //显示方式 
+			mode: 'scroller', //日期选择模式
+			dateFormat: 'yy-mm-dd',
+			lang: 'zh',
+			showNow: true,
+			nowText: "今天",
+			startYear: currYear - 50, //开始年份
+			endYear: currYear + 10 //结束年份
+		};
+		var opt2={};
+		opt2.date = {preset : 'date',
+				defaultValue: endTime
+		};
+		opt2.defaultparam = {
+			theme: 'android-ics light', //皮肤样式
+			display: 'modal', //显示方式 
+			mode: 'scroller', //日期选择模式
+			dateFormat: 'yy-mm-dd',
+			lang: 'zh',
+			showNow: true,
+			nowText: "今天",
+			startYear: currYear - 50, //开始年份
+			endYear: currYear + 10 //结束年份
+		};
+		$("#startTime").mobiscroll($.extend(opt2['date'], opt1['defaultparam']));
+		$("#endTime").mobiscroll($.extend(opt2['date'], opt1['defaultparam']));
+};	
+</script>
+</body>
+</html>

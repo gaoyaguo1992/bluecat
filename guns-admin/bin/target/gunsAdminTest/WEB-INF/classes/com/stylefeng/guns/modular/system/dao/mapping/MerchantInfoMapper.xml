@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.MerchantInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.MerchantInfo">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="addr" property="addr" />
+        <result column="person_name" property="personName" />
+        <result column="tel_no" property="telNo" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="merchant_type" property="merchantType" />
+        <result column="merchant_type_cn" property="merchantTypeCn" />
+        <result column="parent_merchant_id" property="parentMerchantId" />
+        <result column="user_id" property="userId" />
+        <result column="merchant_level" property="merchantLevel" />
+        <result column="merchant_level_cn" property="merchantLevelCn" />
+        <result column="STATUS" property="status" />
+        <result column="remark" property="remark" />
+        <result column="merchant_zone" property="merchantZone" />
+        <result column="industry_category_code" property="industryCategoryCode" />
+        <result column="industry_category_cn" property="industryCategoryCn" />
+        <result column="contract_cycle" property="contractCycle" />
+        <result column="settlement_account" property="settlementAccount" />
+        <result column="his_trade_count" property="hisTradeCount" />
+        <result column="shopkeeper_type" property="shopkeeperType" />
+        <result column="shopkeeper_type_cn" property="shopkeeperTypeCn" />
+        <result column="is_online_service" property="isOnlineService" />
+        <result column="his_trade_amount" property="hisTradeAmount" />
+        <result column="invest_money" property="investMoney" />
+        <result column="settlement_cust_no" property="settlementCustNo" />
+        <result column="client_type" property="clientType" />
+        <result column="legal_representative" property="legalRepresentative" />
+        <result column="uniform_social_credit_code" property="uniformSocialCreditCode" />
+        <result column="id_number" property="idNumber" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="zone" property="zone" />
+        <result column="withdraw_scale" property="withdrawScale" />
+        <result column="trade_amount_show_flag" property="tradeAmountShowFlag" />
+        <result column="share_qr_code_path" property="shareQrCodePath" />
+        <result column="receiver" property="receiver" />
+        <result column="receiver_tel" property="receiverTel" />
+        <result column="receiver_addr" property="receiverAddr" />
+        <result column="current_round_num" property="currentRoundNum" />
+        <result column="total_round_num" property="totalRoundNum" />
+        <result column="id_name" property="idName" />
+        <result column="advance_profit_flag" property="advanceProfitFlag" />
+        <result column="tec_fee_accumulate" property="tecFeeAccumulate" />
+        <result column="merchant_sub_type" property="merchantSubType" />
+        <result column="merchant_sub_type_cn" property="merchantSubTypeCn" />
+        <result column="start_shop_time" property="startShopTime" />
+        <result column="end_shop_time" property="endShopTime" />
+        <result column="star_level" property="starLevel" />
+        <result column="week_use_scale" property="weekUseScale" />
+        <result column="per_consume" property="perConsume" />
+        <result column="store_phone_no" property="storePhoneNo" />
+        <result column="profile" property="profile" />
+        <result column="is_phone_check" property="isPhoneCheck" />
+        <result column="withdraw_way_id" property="withdrawWayId" />
+        <result column="room_count" property="roomCount" />
+        <result column="province_id" property="provinceId" />
+        <result column="city_id" property="cityId" />
+        <result column="zone_id" property="zoneId" />
+        <result column="is_old_shelf_process" property="isOldShelfProcess" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, addr, person_name, tel_no, create_time, update_time, merchant_type, merchant_type_cn, parent_merchant_id, user_id, merchant_level, merchant_level_cn, STATUS, remark, merchant_zone, industry_category_code, industry_category_cn, contract_cycle, settlement_account, his_trade_count, shopkeeper_type, shopkeeper_type_cn, is_online_service, his_trade_amount, invest_money, settlement_cust_no, client_type, legal_representative, uniform_social_credit_code, id_number, province, city, zone, withdraw_scale, trade_amount_show_flag, share_qr_code_path, receiver, receiver_tel, receiver_addr, current_round_num, total_round_num, id_name, advance_profit_flag, tec_fee_accumulate, merchant_sub_type, merchant_sub_type_cn, start_shop_time, end_shop_time, star_level, week_use_scale, per_consume, store_phone_no, profile, is_phone_check, withdraw_way_id, room_count, province_id, city_id, zone_id, is_old_shelf_process
+    </sql>
+
+</mapper>

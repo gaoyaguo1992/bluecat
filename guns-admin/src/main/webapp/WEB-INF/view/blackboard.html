@@ -1,0 +1,243 @@
+@layout("/common/_container.html"){
+<script type="text/javascript" src="${ctxPath}/static/modular/system/index/index.js"></script>
+<style rel="stylesheet" type="text/css" >
+	.rowTitleCls{
+		width:100%; 		
+	    background-color: #95E4CA;
+	    padding-left: 20px;
+		height:40px; 
+		line-height:40px;
+	}
+	.itemCls{
+	  position: relative;
+	  width: 32%;
+	  float:left;
+	}
+	.item1Cls{
+		cursor:pointer;
+		width: 32%;
+	    height: 120px;
+	    margin-left: 15px;
+	    margin-right: 0px;
+	    margin-top: 20px;
+	    margin-bottom: 10px;
+	    position: relative;
+	    border-radius: 10px;
+	    box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.3);
+	}
+	.item3Cls{
+		cursor:pointer;
+		width: 32%;
+	    height: 120px;
+	    margin-left: 15px;
+	    margin-right: 0px;
+	    margin-top: 20px;
+	    margin-bottom: 10px;
+	    position: relative;
+	    border-radius: 10px;
+	    float: left;
+	    box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.3);
+	}
+	.item2Cls{
+		width: 48%;
+	    height: 400px;
+	    margin-left: 15px;
+	    margin-right: 0px;
+	    margin-top: 20px;
+	    margin-bottom: 10px;
+	    position: relative;
+	    border-radius: 10px;
+	    float: left;
+	    box-shadow: 1px 3px 3px 1px rgba(0,0,0,0.3);
+	}
+	.itemContentCls{
+	 height:100px;
+     line-height: 100px;
+     width: 100%;
+     text-align: center;
+	  line-height:60px;
+	}
+	.itemContentCls span{
+		font-size: 20px;
+	}
+	.itemContentCls p{
+		font-size: 15px;
+   	 	color: blue;
+	}
+	#7daysNoUseMerchant{
+	    display: block;
+	    color: white;
+	    font-size: medium;
+	    margin-top: 0px;
+	}
+	#7daysNoUseMerchantCount{
+	    display: block;
+    	color: white;
+    	font-size: medium;
+	 }
+	table {
+	    width: 94%;
+	    table-layout: fixed;
+	    padding: 0px;
+	    margin-left:18px;
+	    margin-right:18px;
+	}
+	tr{		
+	    border-bottom-style: solid;
+	    border-bottom-width: 1px;
+	}
+	 
+</style>
+<div class="container-fluid" style="padding: 0 !important;">
+	<!--第一行3列 -->
+	<div class="row">
+		<div class="rowTitleCls">异常设备</div>	
+		<div  onclick="nouseByMerchantOf7DaysPage()" class="item3Cls" style="background-color: #298df8ad;">
+			<div class="itemContentCls" style="line-height: 35px;padding-top: 20px;">
+				<span id="7daysNoUseMerchant">连续七天未使用设备的商家</span> 
+				<p id="7daysNoUseMerchantCount">0家</p>
+			</div>
+		</div>
+		<div onclick="nousedChargerFewDays(7)" class="item3Cls" style="background-color: #6629f882;">
+			<div class="itemContentCls" style="line-height: 35px;padding-top: 20px;">
+				<span >连续七天未使用的充电器</span> 
+				<p id="7daysNoUseChargerCount">0个</p>
+			</div>
+		</div>
+		<div onclick="nousedChargerFewDays(30)" class="item3Cls" style="background-color: #f8a850d1;">
+			<div class="itemContentCls" style="line-height: 35px;padding-top: 20px;">
+				<span >连续三十天未使用的充电器</span> 
+				<p id="30daysNoUseChargerCount">0个</p>
+			</div>
+		</div>
+	</div>
+	<!--第二行1，3，1列 -->
+	<div class="row" style="height:400px;">	
+		<div class="rowTitleCls">运营数据 </div>	
+		<div class="itemCls" style="width:28%">
+			<div  class="item1Cls" style="width:100%; height:80px;line-height: 25px;padding-top: 10px;background-color: #6629f882" onclick="redirectTradePage()">
+				<div class="itemContentCls" style="line-height: 25px">
+					<span >借出订单数</span> 
+					<span id="ordersCompareByDay">日同比</span> 
+					<p id="historyOrders">0笔</p>
+				</div>
+			</div>
+			<div class="item1Cls" style="width:100%; height:80px;line-height: 25px;padding-top: 10px;background-color: #f8a850d1;" onclick="redirectTradePage()" >
+				<div class="itemContentCls" style="line-height: 25px">
+					<span >归还订单数</span> 
+					<span id="finishOrdersCompareByDay">日同比</span> 
+					<p id="historyFinishOrders">0笔</p> 
+				</div>
+			</div>
+			<div  class="item1Cls" style="width:100%; height:80px;line-height: 25px;padding-top: 10px;background-color: #298df8ad;" onclick="redirectTradePage()">
+				<div class="itemContentCls"  style="line-height: 25px">
+					<span >交易金额</span> 
+					<span id="totalAmountCompareByDay">日同比</span> 
+					<p id="totalAmount">0元</p> 
+				</div>
+			</div>
+		</div>
+		<div id="tradeAmount" style="padding-left:40px; padding-top:30px;width: 69%;height:350px;position: relative;float: left;"></div>
+	</div>
+	<!--第二行1，1，2列 -->
+	<div class="row">	
+		<div class="rowTitleCls">充电器使用情况 </div>	
+		<div id="deviceUsageTrend" style="width: 100%;height:300px;"></div>
+		<div class="item2Cls">
+			<div class="itemContentCls" id="usageTrendTopDiv">
+				<table>
+					<tr><td colspan="2" style="font-size: 20px;color: blue;">店铺充电器近七天使用率TOP5(%)</td><td><a href="javascript:void(0);"  onclick="moreUsageTrendTopData()">更多</a></td></tr>
+					<tr><td>1</td><td><span id="usageTrendTop1Name"></span></td><td><span id="usageTrendTop1"></span></td></tr>
+					<tr><td>2</td><td><span id="usageTrendTop2Name"></span></td><td><span id="usageTrendTop2"></span></td></tr>
+					<tr><td>3</td><td><span id="usageTrendTop3Name"></span></td><td><span id="usageTrendTop3"></span></td></tr>
+					<tr><td>4</td><td><span id="usageTrendTop4Name"></span></td><td><span id="usageTrendTop4"></span></td></tr>
+					<tr><td>5</td><td><span id="usageTrendTop5Name"></span></td><td><span id="usageTrendTop5"></span></td></tr>
+				</table>
+			</div>
+		</div>
+		<div class="item2Cls">
+			<div class="itemContentCls" id="deviceCountTopDiv">
+				<table>
+					<tr><td colspan="2" style="font-size: 20px;color: blue;">店铺充电器数量排名TOP5(个)</td><td><a href="javascript:alert(0);" onclick="moreDeviceCountTopData()">更多</a></td></tr>
+					<tr><td>1</td><td><span id="deviceCountTop1Name"></span></td><td><span id="deviceCountTop1"></span></td></tr>
+					<tr><td>2</td><td><span id="deviceCountTop2Name"></span></td><td><span id="deviceCountTop2"></span></td></tr>
+					<tr><td>3</td><td><span id="deviceCountTop3Name"></span></td><td><span id="deviceCountTop3"></span></td></tr>
+					<tr><td>4</td><td><span id="deviceCountTop4Name"></span></td><td><span id="deviceCountTop4"></span></td></tr>
+					<tr><td>5</td><td><span id="deviceCountTop5Name"></span></td><td><span id="deviceCountTop5"></span></td></tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+//基于准备好的dom，初始化echarts实例
+var tradeAmountChart = echarts.init(document.getElementById('tradeAmount'));
+var deviceUsageTrendChart = echarts.init(document.getElementById('deviceUsageTrend'));
+tradeAmountOption = {
+        title: {
+            text: '近七天交易图'
+        },
+        tooltip: {},
+        legend: {
+            data:['近七天交易金额']
+        },
+        xAxis: {
+            data: ['2019-05-11','2019-05-12','2019-05-13','2019-05-14','2019-05-15','2019-05-16','2019-05-17']
+        },
+        yAxis: {},
+        series: [{
+            name: '近七天交易金额',
+            color:'#1ab394',
+            type: 'bar',
+            data: [0, 0, 0, 0, 0, 0,0]
+        }]
+};
+deviceUsageTrendOption = {
+	    title: {
+	        text: '近七天充电器使用率'
+	    },
+	    tooltip: {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	        data:['充电器使用率']
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    toolbox: {
+	        feature: {
+	            saveAsImage: {}
+	        }
+	    },
+	    xAxis: {
+	        type: 'category',
+	        boundaryGap: false,
+	        data: ['2019-5-11','2019-5-12','2019-5-13','2019-5-14','2019-5-15','2019-5-16','2019-5-17']
+	    },
+	    yAxis: {
+	        type: 'value'
+	        ,axisLabel:{
+	            formatter:'{value} %'
+	         }
+	    },
+	    series: [
+	        {
+	        	color:'#1ab394',
+	            name:'充电器使用率',
+	            type:'line',
+	            stack: '总量',
+	            data:[0, 0, 0, 0, 0, 0, 0],
+	            smooth: true
+	        }
+	    ]
+	};
+// 使用刚指定的配置项和数据显示图表。
+deviceUsageTrendChart.setOption(deviceUsageTrendOption);
+tradeAmountChart.setOption(tradeAmountOption);
+</script>
+
+@}

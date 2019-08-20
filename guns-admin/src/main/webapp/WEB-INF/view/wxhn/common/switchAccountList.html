@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<title>切换账号</title>
+	    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+	    <link rel="stylesheet" href="${ctxPath}/static/wx/css/reset.css">
+	    <link rel="stylesheet" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css?v=1">
+	    <link rel="stylesheet" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/switchAccountList.css?v=1">
+	</head>
+	<body>
+		<script>reset();</script>
+		<div class="switchtit">商户信息
+			<span>当前选择账户</span>
+		</div>		     
+		@for(custMerchant in custMerchants){
+			<form id="selectThisAccountLoginForm${custMerchant.merchantId}" action="${ctxPath}/wx/goMerchantLogin" method = "post">
+		    	<input id="custNo" name="custNo" type="hidden" value = "${custMerchant.custNo}"/>   
+		    	<input id="merchantId" name="merchantId" type="hidden" value = "${custMerchant.merchantId}"/>   
+			</form>	
+			<div class="switchlist" onclick="selectThisAccountLogin(${custMerchant.merchantId})" id="selectThisAccountLogin${custMerchant.merchantId}">
+			${custMerchant.merchantId}(${custMerchant.merchantTypeCn}-${custMerchant.merchantName})
+			@if(custMerchant.isDefault==1){
+				<span>[默认账户]</span>
+			@}
+			@if(custMerchant.lastLoginFlag==1){
+				<i class="iconfont icon-check"></i>
+			@}
+			</div> 
+		@}
+   		<script src="${ctxPath}/static/wx/comonJs/jquery-1.8.3.min.js?v=1"></script>
+		<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+		<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+		<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+		<script src="${ctxPath}/static/wx/comonJs/register/register.js?v=1"></script>
+		<script src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script> 
+		<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/switchAccountList.js?v=1"></script>
+	</body>
+</html>

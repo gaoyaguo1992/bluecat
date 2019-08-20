@@ -1,0 +1,133 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>商户${merchantInfoModel.id}的钱包</title>	
+<script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+<!-- 全局css -->
+<link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+<link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+<link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+
+<!-- 全局js -->
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+<script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+<script src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+<script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+<script src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+<script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+<script src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+<script src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+<script src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+<script src="${ctxPath}/static/js/common/ztree-object.js"></script>
+<script src="${ctxPath}/static/js/common/Feng.js"></script>
+ 
+<link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantCoporateShopkeeperMyWallet.css?v=3">     
+</head>
+<body>
+<script>reset();</script>
+<div class="header-con">
+  <div class="center-con">
+   	<a href="${ctxPath}/wx/yesterdayIncome?merchantId=${merchantInfoModel.id}&merchantType=${merchantInfoModel.merchantType}&isRealTime=${isRealTime}&isParent=${isParent}" class="ysMoney">
+      <p class="title">今日收益(元)</p>
+      <p class="money">${merchantTodayIncomeAmount}</p>
+    </a>
+    <a href="${ctxPath}/wx/incomeDetail?merchantId=${merchantInfoModel.id}&isParent=${isParent}" class="total-money">
+      <p>累计收益${merchantAllIncomeAmount}元</p>
+    </a>
+  </div>
+  <div class="bottom-con">
+    	钱包余额(元) &nbsp;<span class="bag-money">${walletBalance }</span>
+  </div>
+</div>
+@if(isParent == null || isParent ==''|| isParent !='true'){
+ <div class="cooperation-infor">
+ 	<form id="withdrawalsForm" action="${ctxPath}/wx/merchantWithdrawApply" method = "post">
+	  <input id="merchantId" name="merchantId" value = "${merchantInfoModel.id}" class="weui_input"  type="hidden" />
+	  <input id="merchantType" name="merchantType" value ="${merchantInfoModel.merchantType}" class="weui_input"  type="hidden" />
+	  <input id="openId" name="openId" class="weui_input" type="hidden" value = "${custInfoModel.openId}"/>
+      <div class="cooperation-fill" id="withdrawals">
+          <div class="iconbox tixian"><i class="iconfont icon-tixian"></i></div>
+          提现
+          <i class="iconfont icon-more"></i><span class="withdrawalsMoney">可提现${custAccountModel.availableBalance}元</span>
+      </div>
+     </form>
+     <form id="cashRecordForm" action="${ctxPath}/wx/merchantWithdrawHistory" method = "post">
+		<input id="merchantId" name="merchantId" value = "${merchantInfoModel.id}" class="weui_input"  type="hidden" />
+		<input id="merchantType" name="merchantType" value = "${merchantInfoModel.merchantType}" class="weui_input"  type="hidden" />
+		<input id="openId" name="openId" class="weui_input" type="hidden" value = "${custInfoModel.openId}"/>
+		<div class="cooperation-fill bordernone" id="cashRecord">
+          <div class="iconbox tixianjilu"><i class="iconfont icon-tixianjilu"></i></div>
+          提现记录
+          <i class="iconfont icon-more"></i><span class="cashRecordMoney">提现中${custAccountModel.frozenBalance}元</span>
+      	</div>
+     </form>     
+ </div>
+ @}
+<div class="prompt" id="messageDialog" style="display: none;">
+    <div class="prompt-cont">
+        <div class="tanchaungimg"><img src="${ctxPath}/static/wx/img/tanchuangimg.jpg"></div>
+        <p id="result_prompt"></p>
+        <div class="promptBtn" id="msg_btn">确定</div>
+    </div>
+</div>	 
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/wx/comonJs/register/register.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script> 
+<script src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+<script src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantCoporateShopkeeperMyWallet.js?v=1"></script>
+<script language="javascript" type="text/javascript">
+	var path="${ctxPath}";
+	var reqUrl="${reqUrlRoot}";
+	$(function() {
+	    Feng.addCtx("${ctxPath}");
+	    Feng.sessionTimeoutRegistry();
+		$('.modal').appendTo("body");
+		//处理用户修改费用..
+		var options={keyboard:false,backdrop:'static',show:false};
+		$('#myModal').modal(options);
+	})
+</script>
+</body>
+</html>

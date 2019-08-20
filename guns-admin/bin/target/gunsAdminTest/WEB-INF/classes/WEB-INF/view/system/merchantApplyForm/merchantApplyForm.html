@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                             <div class="col-sm-3">
+                                <#SelectFilter id="condition" idForValue="conditionValue" styleForSelect="width:130px">
+                                	<option value="id">订单号</option>
+                                	<option value="merchantName">商户名称</option>
+                                	<option value="personName">联系人</option>
+                                	<option value="telNo">联系电话</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="MerchantApplyForm.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="MerchantApplyFormTableToolbar" role="group">
+                          @if(shiro.hasPermission("/merchantApplyForm/UPDATE")){
+                                <#button name="修改" icon="fa-edit" clickFun="MerchantApplyForm.openMerchantApplyFormDetail()" space="true"/>
+                            @} 
+                        </div>
+                        <#table id="MerchantApplyFormTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/merchantApplyForm/merchantApplyForm.js?i=1"></script>
+@}

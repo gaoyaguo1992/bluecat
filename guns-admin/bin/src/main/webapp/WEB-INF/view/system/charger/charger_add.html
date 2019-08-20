@@ -1,0 +1,56 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                       <#input id="id" name="充电器编号" 
+                       		styleForLabel="width:30%;" 
+                       		styleForInputDiv="width:70%;"
+                       		readonly="readonly" underline="false"/>
+                       <#input id="deviceId"  name="绑定设备id"
+                       		styleForLabel="width:30%;"
+                       		styleForInputDiv="width:70%;"
+                       		changeEventFun="ChargerInfoDlg.deviceTypeIdOnChange()"
+                       		underline="false"/>
+                </div>
+                <div class="col-sm-6">
+                       <#select id="chargerTypeId" name="充电器类型名"
+                       		styleForLabel="width:30%;" 
+                       		styleForInputDiv="width:70%;"
+                       		underline="false">
+                            	${selectChargerTypeOptions}
+					   </#select>
+                       <#input id="remark" name="备注" 
+                       		styleForLabel="width:30%;" 
+                       		styleForInputDiv="width:70%;"
+                       		underline="false"/>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ChargerInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ChargerInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/system/charger/charger_info.js"></script>
+<script language="javascript">
+$(function() {
+	//处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false};
+	$('#myModal').modal(options)
+});
+</script>
+@}

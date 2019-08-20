@@ -1,0 +1,71 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div id="merchantInfoFrom" class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="商户号" readonly="readonly" underline="false"/>
+                            <#input id="name" name="商户名称" underline="false"/>
+                            <#input id="addr" name="商户地址" underline="false"/>
+                            <#input id="personName" name="商户联系人" underline="false"/>
+                            <#input id="telNo" name="联系人电话" underline="false"/>
+                            <#input id="parentMerchantId" name="上级商户号"
+								changeEventFun="MerchantInfoInfoDlg.parentMerchantIdOnchange()"
+								value="${parentMerchantId}" underline="false"/>
+                            <#input id="settlementAccount" name="客户编号" value="" underline="false"/>
+                            <#select id="status" name="商户状态" underline="false">
+                            	${selectMerchantStatusOptions}
+							</#select>
+                            <#input id="remark" name="备注" underline="false"/>
+                </div>
+                <div class="col-sm-6">
+                            <#select id="merchantType" name="商户类型" underline="false"> 
+                            	${selectMerchantTypeOptions}
+							</#select>
+                            <#select id="advanceProfitFlag" name="分润方式" underline="false">
+                            	${selectProfitFlagOptions}
+							</#select>
+                            <#select id="withdrawWayId" name="提现方式" underline="false">
+                            	${selectMerWithdrawOptions}
+							</#select>
+                            <#select id="industryCategoryCode" name="商户所属行业" underline="false">
+                            	${selectIndustryCodeOptions}
+							</#select>
+                            <#select id="clientType" name="委托方类型" underline="false">
+                            	${selectClientTypeOptions}
+							</#select>
+                            <#input id="legalRepresentative" name="法定代表人" underline="false"/>
+                            <#input id="uniformSocialCreditCode" name="统一社会信用代码" underline="false"/>
+                            <#input id="idNumber" name="身份证号码"/>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MerchantInfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MerchantInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/system/merchantInfo/merchantInfo_info.js"></script>
+<script language="javascript">
+$(function() {
+	//处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false}
+	$('#myModal').modal(options)
+	//
+	DeviceInfoInfoDlg.deviceTypeIdOnChange();
+	DeviceInfoInfoDlg.feeTypeIdOnChange();
+});
+</script>
+@}

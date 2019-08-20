@@ -1,0 +1,396 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>顶级代理设置分润</title>	
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/font-awesome.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/chosen/chosen.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/style.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/_fstyle.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/iCheck/custom.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/webuploader/webuploader.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css?v=1"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/reset.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/mobiscroll_date.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/setBatchProfit.css?v=1">
+</head>	
+<body>
+    <script>reset();</script>
+     <input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfo.id}"/>
+     <input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+     <div class="main-com">     	 
+     </div>
+     <!-- 弹窗列表 -->
+     <div class="listBoxShade">
+         <div class="listBox">
+            <p class="list-num">共 <span class="listNums"></span> 个</p>
+            <ul class="list-com">
+               
+            </ul> 
+            <p class="list-button"><span class="clearAll">清除全部</span><span class="close">关闭</span></p>
+         </div> 
+     </div>
+     <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+     </div>
+     <!-- 清除全部-->
+     <div class="clear-com">
+        <div class="clearComs">
+          <p class="infotext">确定清除全部已经添加的设备吗?</p>
+          <p class="button-com"><span class="confirm">确定</span><span class="cancel">取消</span></p>
+        </div>
+     </div>
+	<p class="button"><span>提交</span></p>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>  
+    <script language="javascript" type="text/javascript">
+
+	var path="${ctxPath}";
+	var reqUrl="${reqUrlRoot}";
+	var baseUrl="${reqUrlRoot}";
+	 var custNo=$('#custNo').val(),merchantId=$('#merchantId').val(),ratioId=null;
+	 var arrInfo=[],listIndex=null;//请求的容器及点击的位置
+	 var isAllowedUpdate = true; //true允许提交更新分润比例，反之不能点提交
+	 var topAgentsRatioScale=null,firstLevelAgentsRatioScale=null,secondLevelAgentsRatioScale=null,otherTotal=null;
+	  $(function(){
+		  Feng.addCtx("${ctxPath}");
+		  Feng.sessionTimeoutRegistry();
+		  $('.modal').appendTo("body");
+		  //处理用户修改费用..
+		  var options={keyboard:false,backdrop:'static',show:false};
+		  $('#myModal').modal(options);
+			 
+		  setProfit();
+		  $('.clearAll').click(function(){
+			  $('.clear-com').css('display','block');
+		  });
+		  //清除全部确定
+		  $('.confirm').click(function(){
+			  //点击全部清除时判断arrInfo的length
+			  arrInfo[listIndex].devicesIds=[];// 清空一个组
+			 /*  arrInfo.splice(listIndex,1);// 把这个对象删除 */
+			  $('.listBoxShade').css('display','none'); 
+			  $('.listCom'+listIndex).hide();
+			  $('.clear-com').css('display','none');
+			  var arrLength=arrInfo.length;
+			  var n=0;
+			  $.each(arrInfo,function(i,obj){
+				  if(obj.devicesIds.length===0){
+					  n++;
+				  }
+			  });
+			  if(arrLength===n){
+				  window.history.go(-1);
+			  }
+			 
+		});
+		// 关闭弹窗列表
+		$('.close').click(function(){
+			  $('.listBoxShade').css('display','none');
+		});
+		//点击取消
+		$('.cancel').click(function(){
+			  $('.clear-com').css('display','none');
+		});
+		//点击查看列表后删除列表页
+		$('.list-com').on('click','li .delete-icon',function(){
+			  var i=$(this).parent().index();
+			  var nowNum=arrInfo[listIndex].devicesIds.length ;
+			  nowNum--;
+			  arrInfo[listIndex].devicesIds.splice(i,1);
+			  $('.listNums').text(nowNum);
+			  $('.yufuModelNum'+listIndex).text(nowNum);
+			  $(this).parent().remove(); 
+			  var arrLength=arrInfo[listIndex].devicesIds.length;
+			  if(arrLength===0){//listIndex位置数组为空
+				  $('.listBoxShade').css('display','none');
+				  $('.listCom'+listIndex).hide();
+			  }
+			  var m=0;
+			  var arrInfoLength=arrInfo.length;
+			  $.each(arrInfo,function(i,obj){
+				  if(obj.devicesIds.length===0){
+					  m++;
+				  }
+			  });
+			 if(arrInfoLength===m){
+				 window.history.go(-1);
+			 }
+		});
+		//发送数据
+		$('.button').click(function(){
+			if(!isAllowedUpdate){
+				tipText("顶级代理可分配分润比例不足！"); 
+				return;
+			}
+			  startShieldLayer();
+			  var dataObj={};
+			  dataObj.merId=merchantId;
+			  dataObj.custNo=custNo;
+			  var editBatchProfitScaleVOs=[];
+			  $.each(arrInfo,function(i,obj){
+				  if(obj.devicesIds.length!==0){
+					  editBatchProfitScaleVOs.push(obj); 
+				  }
+			  });
+			  //转换一下..
+			  dataObj.editBatchProfitScaleVOsJson= JSON.stringify(editBatchProfitScaleVOs);
+			  console.log(dataObj);
+			  $.ajax({
+			         type:'POST',
+			         url:reqUrl+"wx/batchEditProfitSave", 
+			         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+			         data:dataObj,
+			         dataType:'json',
+			         error:function(obj){
+			        	 finishShieldLayer();
+			         },
+			         success:function(res){
+			        	 finishShieldLayer();
+			        	 if(res.result==='success'){
+			        		  $('.load-com').hide();//加载遮罩
+			        		 let state=2;
+		    				 window.location.href=path+"/wx/setBatchSuccess?merchantId="+merchantId+'&custNo='+custNo+'&state='+state; 
+			        	 } else {
+			        		 $('.load-com').hide();//加载遮罩
+			        		 tipText(res.message);
+			        	 }
+			         }
+			  });    
+		 });
+	  })
+	  //获取设置分润接口
+	  function setProfit(){
+		  var data=sessionStorage.getItem('type1');//获取费用设置参数
+		  var dataInfo = jQuery.parseJSON(data);
+		  $.ajax({
+		         type:'POST',
+		         url:reqUrl+"wx/getDeviceProfitScaleEntry", 
+		         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+		         data:dataInfo,
+		         dataType:'json',
+		         success:function(res){
+		        	 if(res.result==='success'){
+		        		 let lists=res.responseInfo;
+		        		 arrInfo=[];
+		        		 var i=0;
+		        		 var objParam={};
+		        		 $.each(lists,function(key, values){
+		        			 var devicesIds=values;
+		        			 var aryKey=key.split("_");
+		        			 var platformRatio=aryKey[0];//平台
+		        			 var agents1Ratio=(aryKey.length<2)?"0":aryKey[1];//顶代理商
+		        			 var otherScale=100-platformRatio;
+		        			 var agents2Ratio=(aryKey.length<3)?"0":aryKey[2];//代理商1级
+		        			 var agents3Ratio=(aryKey.length<4)?"0":aryKey[3];//代理商2级
+		        			 var shopkeeperRatio=(aryKey.length<5)?"0":aryKey[4];//铺货商
+		        			 var allianceBusinessRatio=(aryKey.length<6)?"0":aryKey[5];//加盟商		
+		        			 objParam={
+		        					 devicesIds:values,
+		        					 key:key,
+		        					 platformRatio:platformRatio,
+		        					 agents1Ratio:agents1Ratio,
+		        					 agents2Ratio:agents2Ratio,
+		        					 agents3Ratio:agents3Ratio,
+		        					 shopkeeperRatio:shopkeeperRatio,
+		        					 allianceBusinessRatio:allianceBusinessRatio
+		        			 };
+		        			 arrInfo.push(objParam);
+		        			 $('.main-com').append(
+		        					 '<div class="profit-com listCom'+i+'">'+
+		        			           '<div class="title">'+
+		        			             '<p class="top-line"><span class="icon">'+
+		        			                '</span>顶级代理商 <span class="topNum'+i+'">'+agents1Ratio+'</span>%'+
+		        			                '<span class="type">共 <i class="typeList yufuModelNum'+i+'">'+devicesIds.length+'</i>个<i onclick="showList('+i+')" class="check">查看></i> </span>'+
+		        			             '</p>'+
+		        			             '<p class="bottom-line">平台分润<span>'+platformRatio+'%</span></p>'+
+		        			           '</div>'+
+		        			           '<div class="title-list"><span class="type">一级代理商</span>'+
+		        			               '<p class="input-com"> <input id="leve'+i+'" value="'+agents2Ratio+'"onkeyup="changeNumTwo('+otherScale+','+i+',0)"  type="number"></input>%</p>'+
+		        			            '</div>'+
+		        			           '<div class="title-list"><span class="type">二级代理商</span>'+
+		        			              '<p class="input-com"> <input id="leve1'+i+'" value="'+agents3Ratio+'" onkeyup="changeNumTwo('+otherScale+','+i+',1)" type="number"></input>%</p>'+
+		        			           '</div>'+
+		        			           '<div class="title-list"><span class="type">铺货商</span>'+
+		        			              '<p class="input-com"> <input id="leve2'+i+'" value="'+shopkeeperRatio+'" onkeyup="changeNumTwo('+otherScale+','+i+',2)" type="number"></input>%</p>'+
+		        			           '</div>'+
+		        			           '<div class="title-list"><span class="type">加盟商</span>'+
+		        			              '<p class="input-com"> <input id="leve3'+i+'" value="'+allianceBusinessRatio+'"  onkeyup="changeNumTwo('+otherScale+','+i+',3)" type="number"></input>%</p>'+
+		        			           '</div>'+
+		        			       '</div>'
+		        			 );
+		        			 i++;
+		        		 });
+		        	 }else{
+		        		 tipText(res.message); 
+		        	 }
+		        }
+		  })    
+	  };
+	  function changeNumTwo(otherScale,i,tagIndex){
+		  isAllowedUpdate =true;
+		  var valTop=$('#topNum'+i).text();
+		  var val=0;
+		  var obj=null;
+		  if(tagIndex==0){
+			  obj=$('#leve'+i);
+		  }else if(tagIndex==1){
+			  obj=$('#leve1'+i);
+		  }else if(tagIndex==2){
+			  obj=$('#leve2'+i);
+		  }else{
+			  obj=$('#leve3'+i);
+		  }
+		  //1. 判断数据是否正确
+		  var val0=$('#leve'+i).val();
+		  var val1=$('#leve1'+i).val();
+		  var val2=$('#leve2'+i).val();
+		  var val3=$('#leve3'+i).val();
+		  
+		  //2.之和是否正确
+		  if(!testNum(val)){
+			  obj.val('0');
+		  }
+		  if(!testNum(val0)){
+			  val0="0"
+		  }
+		  if(!testNum(val1)){
+			  val1="0"
+		  }
+		  if(!testNum(val2)){
+			  val2="0"
+		  }
+		  if(!testNum(val3)){
+			  val3="0"
+		  }
+		  var topVal=otherScale-parseFloat(val0)-parseFloat(val1)-parseFloat(val2)-parseFloat(val3);
+		  if(topVal == 0){
+			  obj.val('0');
+		  }
+		  if(topVal < 0){
+			  tipText("顶级代理可分配分润比例不足！"); 
+			  isAllowedUpdate = false;
+			  return;
+		  }
+		  //3. 重新计算顶级分润..
+		  topVal=otherScale-parseFloat(val0)-parseFloat(val1)-parseFloat(val2)-parseFloat(val3);
+		  $('.topNum'+i).text(topVal); 
+		  val0 = val0 == "0" ? "":val0;
+		  val1 = val1 == "0" ? "":val1;
+		  val2 = val2 == "0" ? "":val2;
+		  val3 = val3 == "0" ? "":val3;
+		  $('#leve'+i).val(val0);
+		  $('#leve1'+i).val(val1);
+		  $('#leve2'+i).val(val2);
+		  $('#leve3'+i).val(val3);
+		  
+		  
+		  arrInfo[i].agents1Ratio=topVal;
+		  arrInfo[i].agents2Ratio=parseFloat(val0);
+		  arrInfo[i].agents3Ratio=parseFloat(val1);
+		  arrInfo[i].shopkeeperRatio=parseFloat(val2);
+		  arrInfo[i].allianceBusinessRatio=parseFloat(val3);
+	  };
+	  //显示
+	  function showList(i){
+		  listIndex=i;
+		  console.log(arrInfo);
+		  console.log(i);
+		  var thisArr=arrInfo[i].devicesIds;
+		  $('.list-com').empty();
+	      $('.listNums').text(thisArr.length);
+		  $.each(thisArr,function(i,list){//？
+		      $('.list-com').append(
+				'<li><span>'+list+'</span> <span data-c="'+i+'" class="delete-icon">x</span> </li>'  
+				);
+		   });  
+		  $('.listBoxShade').css('display','block');
+	  };
+	  function tipText(cont){
+		    $("#result_prompt").text(cont);	    	
+		    $("#messageDialog").show();
+		    $("#msg_btn").click(function(){
+			   $("#messageDialog").hide();	
+		    });
+	  };
+	  function testNum(value){
+	    	var reg=/^([1-9]\d*|[0]{1,1})$/; //含0正整数
+	    	if(reg.test(value)){
+	    	     return true;
+	    	}else{
+	    	     return false;
+	    	}
+	  };
+	 /**
+	  * 开启屏蔽层.
+	  */
+	 startShieldLayer = function() {
+	 	$('#myModal').modal("show");
+	 }
+	 /**
+	  * 结束屏蔽层.
+	  */
+	 finishShieldLayer = function() {
+	 	$('#myModal').modal("hide");
+	 }
+	 </script>
+</body>
+</html>

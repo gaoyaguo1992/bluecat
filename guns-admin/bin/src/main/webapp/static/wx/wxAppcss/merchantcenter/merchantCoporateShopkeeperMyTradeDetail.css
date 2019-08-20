@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+.timeCon {
+        width: 100%;
+        height: 2.18rem;
+        background: #1ab394;
+    }
+    .timeCon .time{
+        height: 1.4rem;
+    }
+    .time{
+        font-size: 15px;
+        height: 1.4rem;
+        line-height: 1.4rem;
+        padding: 0 .3rem;
+    }
+    .time span{
+        margin: 0 .2%;
+    }
+    .time .time90{
+        font-size: 10px;
+        border-radius: 3px;
+        height: 0.6rem;
+        outline: none;
+        color: #1ab394;
+        width: 25%;
+    }
+    .time .datetime{
+        display: inline-block;
+        height: 0.6rem;
+        width: 25%;
+        background: #fff url(../../../img/date.png) no-repeat 95% 50%;
+        background-size: 15%;
+        font-size: 12px;
+        line-height:1;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+    }
+    .time .search{
+        display: inline-block;
+        float: right;
+        height: 0.56rem;
+        width: 0.56rem;
+        background: url(../../../img/serch.png) no-repeat;
+        background-size: 100%;
+        margin: .45rem 0 0 0;
+    }
+    .timeCon .moneyInfo {
+        height: 0.76rem;
+        line-height: 0.76rem;
+        background: #00CC99;
+        padding: 0 .32rem;
+        font-size: 13px;
+        color: #fff;
+    }
+    .moneyInfo .mark{
+        color: #fdff4c;
+    }
+    /*tab*/
+    .tab-box{
+        height: 1rem;
+        display: flex;
+        line-height: 1rem;
+        background: #fff;
+        padding: 0 .32rem;
+        font-size: 13px;
+    }
+    .tab-box span{
+        flex: 1;
+        text-align: center;
+    }
+    .active{
+    color:#1ab394;
+    border-bottom:1px solid #1ab394;
+    }
+    .main-con{
+        background: #F1F3F6;
+        font-size: 13px;
+        padding: 0.18rem 0.24rem;
+    }
+    .main-con .list{
+        background: #fff;
+        border-radius: 5px;
+        width: 100%;
+        margin-bottom: 0.24rem;
+    }
+    .list .title{
+        padding: 0 .24rem;
+        height: 0.8rem;
+        line-height: 0.8rem;
+        border-bottom:1px solid #F1F3F6 ;
+    }
+    .title .blue-icon{
+        display: inline-block;
+        height: .13rem;
+        width: .13rem;
+        background: #1ab394;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .title .right{
+        float: right;
+    }
+    .list .list-con{
+        padding: .28rem .24rem;
+
+    }
+    .list .list-con li{
+       height: 0.6rem;
+    }
+    .list .list-con li span{
+        margin-right: 1.13rem;
+    }
+    #more {
+     display: block;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .3rem;
+    color: #333;
+    text-align: center;
+    }
+    .list{
+		position: relative;
+	    padding: .3rem .3rem 0 .3rem; 
+	    line-height: .42rem;
+	    background-color: white;
+	    border-bottom: .01rem solid #ddd;
+	    overflow: hidden;
+	    margin-bottom: .2rem;
+	}
+   .gorow{
+	 display: inline-block;
+	 height:.6rem;
+	 width:.6rem;
+	 background:url("../../../img/row.png") no-repeat;
+	 background-size:100%;
+	 position: absolute;
+	 right: .3rem;
+	 top:42%;
+	}

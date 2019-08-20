@@ -1,0 +1,473 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>商户列表</title>	
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+      <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+        
+    <link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/merInfoList.css?v=2">
+</head>
+<body>
+    <script>reset();</script>
+	  <div class="search-con">
+	      <input type="search" id="merchant" value="" placeholder="输入商户ID">
+	      <input type="search" id="name" value="" placeholder="输入商户姓名">
+	      <span class="search" id="search"><i class="search-icon"></i></span>
+	   </div>
+	  <div class="tabs">
+	    <span class="active showQuery">全部</span>
+	       @if(merchantInfoModel.merchantType==11){
+                <span>代理商</span>
+           @}
+	    <span>终端商户</span>
+	  </div>
+	<input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfoModel.id}"/>
+	<input id="parentMerchantType" name="parentMerchantType" type="hidden" value = "${merchantInfoModel.id}"/>	
+	<input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+	<div class="dev-list">
+	  <div class="num"><span>商户总数：<b id="devNum">0</b></span></div>
+	  <ul class="lists">
+	    <li class="all show">
+	    </li>
+	     <li class="agent">
+	    </li>
+	     <li class="terminal">
+	    </li>
+	  </ul>
+	</div>
+	<div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+    </div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+	<script src="${ctxPath}/static/js/common/Feng.js"></script>	
+	<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js" charset="gb2312"></script> 
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js"></script>
+	
+	<script language="javascript" type="text/javascript">
+	 var path="${ctxPath}";
+	 var reqUrl="${reqUrlRoot}";
+	 var baseUrl="${reqUrlRoot}";
+	 var page1=1,page2=1,page3=1,rows=10, parentMerchantId=$('#merchantId').val();
+	 var selectTab=0;//点击tab位置
+	 /* allData=[],agentData=[],terminalData=[]; */
+	 var parentMerchantType=$('#parentMerchantType').val();
+	 var parentMerchantLevel=0;
+	 var custNo = $("#custNo").val();
+	 var merchantId = $("#merchantId").val();
+	  $(function(){
+	     Feng.addCtx("${ctxPath}");
+	     Feng.sessionTimeoutRegistry();
+		 $('.modal').appendTo("body");
+		 //处理用户修改费用..
+		 var options={keyboard:false,backdrop:'static',show:false};
+		 $('#myModal').modal(options);
+			
+		 getMerchantList1();
+		 //页面的一些交互
+		 $('.tabs').on('click','span',function(){
+			 let i=$(this).index();
+			 var spanName = $(this).text();
+			 if(spanName === "全部"){
+				 i = 0;
+			 }else if(spanName === "代理商"){
+				 i = 1;
+			 }else if(spanName === "终端商户"){
+				 i = 2;
+			 }
+			 selectTab=i;
+			 $(this).addClass('active').siblings().removeClass('active');
+			 if(i===0){
+				 $('.all').empty();
+				 page1=1;
+				 getMerchantList1(); 
+			 }else if(i===1){
+				 $('.agent').empty();
+				 page2=1;
+				 getMerchantList2();
+			 }else if(i===2){
+				 $('.terminal').empty();
+				 page3=1;
+				 getMerchantList3();
+			 }
+			 $('.lists li').eq(i).addClass('show').siblings().removeClass('show');
+		 });
+		  $('.search-icon').click(function(){
+			  var merchId=$('#merchant').val(),name=$('#name').val();
+			  if(merchId === '' && name === ''){
+				  tipText('请输入商户ID或者商户姓名查询!');
+			  }else if(merchId !== ''){
+				  var re = /^[0-9]+.?[0-9]*$/;
+				  if (!re.test(merchId)) {
+					tipText('请输入纯数字的商户ID!');
+					}
+			  }			  
+			  var dataObj={
+						parentMerchantId:parentMerchantId,
+						merchantId:merchId,
+						personName:name,
+					    rows:rows	  
+				  };
+			  selectTab==0;
+			  $('.all').empty();
+			  dataObj.page=1;
+			  getMerchantList1(dataObj);
+			  $('.showQuery').addClass('active').siblings().removeClass('active');
+			  $('.all').addClass('show').siblings().removeClass('show');
+		  });
+		 
+	  });
+	  //获取agent数据
+	  function getMerchantList2(data){
+		  startShieldLayer();
+		  let dataObj={};
+			 if(data){
+				 dataObj=data;
+			 }else{
+				 dataObj={
+						parentMerchantId:parentMerchantId,
+						merchantType:"11",
+					    page:page2,
+						rows:rows
+			     }; 
+			 }
+			 //var dataInfo=JSON.stringify(dataObj);
+			 $.ajax({
+		        	type:"POST", 
+		            url:reqUrl+"wx/queryMerchantInfoList",  
+		            data:dataObj,
+		            dataType:'json',
+		            error:function(res){
+		            	finishShieldLayer();
+		            },
+		            success: function (res) {
+		            	finishShieldLayer();
+		            	if(res.result==='success'){
+		            		$('#devNum').text(res.total);
+		            		var allData=res.rows;
+			                $(".agent .more").remove();
+			                $.each(allData,function(i,list){
+			                	  $('.agent').append(
+	                				  '<div class="devinfor">'+
+		                			      '<h2><span class="isOn">代理</span> 商户ID'+list.merchantId+'<a href="javascript:void(0);" onclick="agentGo('+list.merchantId+','+list.parentMerchantId+','+list.isBindDevice+')" class="set">编辑></a></h2>'+
+		                			      '<p><span>商户名称</span>'+list.name+'</p>'+
+		                			      '<p><span>商户类型</span>'+list.merchantLevelCn+'代理商</p>'+
+		                			      '<p><span>创建时间</span>'+list.createTime+'</p>'+      	
+		                			      '<p><span>联  系  人</span>'+list.personName+'</p>'+
+		                				  '<p class="phone"><span>联系电话</span>'+list.telNo+'</p>'+
+		                				  '<p><span>商户地址</span>'+list.addr+'</p>'+	
+		                				  '<p><span>设备数量</span>'+list.deviceCount+'</p>'+	
+		                				  '<div class="devinforbtn">'+
+			                    			  '<a class="tradeNum" href="'+reqUrl+'/wx/getMyTradeInfo?custNo='+custNo+'&merchantId='+list.merchantId+'">查看收益</a>'+
+			            					  '<a class="deviceCount" href="'+reqUrl+'/wx/getMyDevices?custNo='+custNo+"&merchantId="+list.merchantId+'&isParent='+true+'">查看设备</a>'+
+			            					  '<a class="onlineNum" href="'+reqUrl+'/wx/myWallet?custNo='+custNo+'&merchantId='+list.merchantId+'&isParent='+true+'">查看钱包</a>'+
+		    								'</div>'+														
+		                		       '</div>'  
+		                		  );
+			                });
+			                if(page2<(res.total/rows)){
+			                	console.log(222);
+			                	$(".agent").append("<a id='more' class='more' href='javascript:void(0)' onclick='getMoreMerchList2()'>点击获取更多</a>");
+			                } 
+		            	}
+		            }
+			 })      
+	  };
+	  //获取terminal数据
+	  function getMerchantList3(data){
+		  startShieldLayer();
+		  let dataObj={};
+			 if(data){
+				 dataObj=data;
+			 }else{
+				 dataObj={
+						parentMerchantId:parentMerchantId,
+						merchantType:"10",
+					    page:page3,
+						rows:rows
+			     }; 
+			 }
+			 //var dataInfo=JSON.stringify(dataObj);
+			 $.ajax({
+		        	type:"POST", 
+		            url:reqUrl+"wx/queryMerchantInfoList",        
+		            data:dataObj,
+		            dataType:'json',
+		            error:function(res){
+		            	finishShieldLayer();
+		            },
+		            success: function (res) {
+		            	finishShieldLayer();
+		            	if(res.result==='success'){
+		            		$('#devNum').text(res.total);
+		            		var allData=res.rows;
+			                  $(".terminal .more").remove();
+			                  $.each(allData,function(i,list){
+			                	  $('.terminal').append(
+		                		  '<div class="devinfor">'+
+	                			      '<h2><span class="isOff">终端</span> 商户ID'+list.merchantId+
+	                			      '<a href="'+reqUrl+'wx/editMerchantcenterTerminal?merchantId='+list.merchantId+
+	                			       '&pid='+parentMerchantId+'" class="set">编辑></a></h2>'+
+	                			      '<p><span>商户名称</span>'+list.name+'</p>'+
+	                			      '<p><span>商户类型</span>终端店铺</p>'+
+	                			      '<p><span>新建时间</span>'+list.createTime+'</p>'+      	
+	                			      '<p><span>商户姓名</span>'+list.personName+'</p>'+
+	                				  '<p class="phone"><span>联系电话</span>'+list.telNo+'</p>'+
+	                				  '<p><span>商户地址</span>'+list.addr+'</p>'+	
+	                				  '<p><span>设备数量</span>'+list.deviceCount+'</p>'+	
+	                				  '<div class="devinforbtn">'+
+		                    			  '<a class="tradeNum" href="'+reqUrl+'/wx/getMyTradeInfo?custNo='+custNo+'&merchantId='+list.merchantId+'">查看收益</a>'+
+		                    			  '<a class="terminal_deviceCount" href="'+reqUrl+'/wx/getMyDevices?custNo='+custNo+"&merchantId="+list.merchantId+'&isParent='+true+'">查看设备'+'</a>'+
+	    							  '</div>'+														
+	                		      '</div>'    
+		                		  );
+			                  });
+			                  if(page3<(res.total/rows)){
+			                		$(".terminal").append("<a id='more' class='more' href='javascript:void(0)' onclick='getMoreMerchList3()'>点击获取更多</a>");
+			                	} 
+		            	}
+		            }
+			 })      
+	  };
+	  function tipText(cont){
+		  $("#result_prompt").text(cont);	    	
+		  $("#messageDialog").show();
+		  $("#msg_btn").click(function(){
+			   $("#messageDialog").hide();	
+		  });
+	  };
+	 /*  获取数据 all数据*/
+	 function getMerchantList1(data) {
+		 startShieldLayer();
+		 var dataObj={};
+		 if(data){
+			 dataObj=data;
+		 }else{
+			 dataObj={
+					parentMerchantId:parentMerchantId,
+				    page:page1,
+					rows:rows
+		     }; 
+		 }
+		 //var dataInfo=JSON.stringify(dataObj);
+		 $.ajax({
+	        	type:"POST", 
+	            url:reqUrl+"wx/queryMerchantInfoList",      
+	            data:dataObj,
+	            dataType:'json',
+	            error:function(res){
+	            	finishShieldLayer();
+	            },
+	            success: function (res) {
+	            	finishShieldLayer();
+	            	if(res.result==='success'){
+	            	  $('#devNum').text(res.total);
+	                  var allData=res.rows;
+	                  $(".all .more").remove();
+	                  var html="";
+	                  $.each(allData,function(i,list){
+	                	  if(list.merchantType===11 ||list.merchantType===12||list.merchantType===13){// 代理商
+	                		  html='<div class="devinfor">';
+	                		  if(list.isBindDevice==1){
+	                			  html=html+'<h2><span class="isOn">代理</span> 商户ID'+list.merchantId+'</h2>'; 
+	                		  }else{
+	                			  html=html+'<h2><span class="isOn">代理</span> 商户ID'+list.merchantId+'<a href="'+reqUrl+'wx/editMerchantcenterAgent?merchantId='+list.merchantId+'&pid='+list.parentMerchantId+'" class="set">编辑></a></h2>';
+	                		  }
+                			  html=html+'<p><span>商户名称</span>'+list.name+'</p>';
+                			  html=html+'<p><span>商户类型</span>'+list.merchantLevelCn+'代理商</p>';
+                			  html=html+'<p><span>新建时间</span>'+list.createTime+'</p>';	
+                			  html=html+'<p><span>商户姓名</span>'+list.personName+'</p>';
+                			  html=html+'<p class="phone"><span>联系电话</span>'+list.telNo+'</p>';
+                			  html=html+'<p><span>商户地址</span>'+list.addr+'</p>';	
+                			  html=html+'<p><span>设备数量</span>'+list.deviceCount+'</p>'+	
+            				  '<div class="devinforbtn">'+
+                    			  '<a class="tradeNum" href="'+reqUrl+'/wx/getMyTradeInfo?custNo='+custNo+'&merchantId='+list.merchantId+'">查看收益'+'</a>'+
+            					  '<a class="deviceCount" href="'+reqUrl+'/wx/getMyDevices?custNo='+custNo+"&merchantId="+list.merchantId+'&isParent='+true+'">查看设备'+'</a>'+
+            					  '<a class="onlineNum" href="'+reqUrl+'/wx/myWallet?custNo='+custNo+'&merchantId='+list.merchantId+'&isParent='+true+'">查看钱包'+'</a>'+
+							  '</div>';							
+                			  html=html+'</div>' ;
+	                		  $('.all').append(html);
+	                	  }else if(list.merchantType===10){
+	                		  $('.all').append(
+	                				 '<div class="devinfor">'+
+	                			      '<h2><span class="isOff">终端</span> 商户ID'+list.merchantId+'<a href="'+reqUrl+'wx/editMerchantcenterTerminal?merchantId='
+	                			    		  +list.merchantId+'&leve='+list.merchantLevel+'&pid='+parentMerchantId+'&parentMerchantType='+parentMerchantType+'&parentMerchantLevel='+parentMerchantLevel+'" class="set">编辑></a></h2>'+
+	                			      '<p><span>商户名称</span>'+list.name+'</p>'+
+	                			      '<p><span>商户类型</span>终端店铺</p>'+
+	                			      '<p><span>新建时间</span>'+list.createTime+'</p>'+      	
+	                			      '<p><span>商户姓名</span>'+list.personName+'</p>'+
+	                				  '<p class="phone"><span>联系电话</span>'+list.telNo+'</p>'+
+	                				  '<p><span>商户地址</span>'+list.addr+'</p>'+	
+	                				  '<p><span>设备数量</span>'+list.deviceCount+'</p>'+	
+	                				  '<div class="devinforbtn">'+
+	                        			  '<a class="tradeNum" href="'+reqUrl+'/wx/getMyTradeInfo?custNo='+custNo+'&merchantId='+list.merchantId+'">查看收益'+'</a>'+
+	                					  '<a class="terminal_deviceCount" href="'+reqUrl+'/wx/getMyDevices?custNo='+custNo+"&merchantId="+list.merchantId+'&isParent='+true+'">查看设备</a>'+
+	    							  '</div>'+														
+	                		       '</div>'    
+	                		  );
+	                	  }else if(list.merchantType===14){
+	                		  html='<div class="devinfor">';
+	                		  if(list.isBindDevice==1){
+	                			  html=html+'<h2><span class="isOn">铺货</span> 商户ID'+list.merchantId+'</h2>'; 
+	                		  }else{
+	                			  html=html+'<h2><span class="isOn">铺货</span> 商户ID'+list.merchantId+'<a href="'+reqUrl+'wx/editMerchantcenterAgent?merchantId='+list.merchantId+'&pid='+list.parentMerchantId+'" class="set">编辑></a></h2>';
+	                		  }
+	                		  html= html+'<p><span>商户名称</span>'+list.name+'</p>';
+	                		  html= html+'<p><span>商户类型</span>'+list.merchantLevelCn+'铺货商</p>';
+	                		  html= html+'<p><span>新建时间</span>'+list.createTime+'</p>';      	
+	                		  html= html+'<p><span>商户姓名</span>'+list.personName+'</p>';
+	                		  html= html+'<p class="phone"><span>联系电话</span>'+list.telNo+'</p>';
+	                		  html= html+'<p><span>商户地址</span>'+list.addr+'</p>';	
+	                		  html= html+'<p><span>设备数量</span>'+list.deviceCount+'</p>'+	
+            				  '<div class="devinforbtn">'+
+                    			  '<a class="tradeNum" href="'+reqUrl+'/wx/getMyTradeInfo?custNo='+custNo+'&merchantId='+list.merchantId+'">查看收益'+'</a>'+
+            					  '<a class="deviceCount" href="'+reqUrl+'/wx/getMyDevices?custNo='+custNo+"&merchantId="+list.merchantId+'&isParent='+true+'">查看设备</a>'+
+            					  '<a class="onlineNum" href="'+reqUrl+'/wx/myWallet?custNo='+custNo+'&merchantId='+list.merchantId+'&isParent='+true+'">查看钱包'+'</a>'+
+							  '</div>';							
+	                		  html=html+'</div>';
+	                		  $('.all').append(html);
+	                	  }else{
+	                		  html='<div class="devinfor">';
+	                		  if(list.isBindDevice==1){
+	                			  html=html+'<h2><span class="isOn">加盟</span> 商户ID'+list.merchantId+'</h2>'; 
+	                		  }else{
+	                			  html=html+'<h2><span class="isOn">加盟</span> 商户ID'+list.merchantId+'<a href="'+reqUrl+'wx/editMerchantcenterAgent?merchantId='+list.merchantId+'&pid='+list.parentMerchantId+'" class="set">编辑></a></h2>';
+	                		  }
+	                		  html= html+'<p><span>商户名称</span>'+list.name+'</p>';
+	                		  html= html+'<p><span>商户类型</span>'+list.merchantLevelCn+'加盟商</p>';
+	                		  html= html+'<p><span>新建时间</span>'+list.createTime+'</p>';      	
+	                		  html= html+'<p><span>商户姓名</span>'+list.personName+'</p>';
+	                		  html= html+'<p class="phone"><span>联系电话</span>'+list.telNo+'</p>';
+	                		  html= html+'<p><span>商户地址</span>'+list.addr+'</p>';	
+	                		  html= html+'<p><span>设备数量</span>'+list.deviceCount+'</p>'+	
+            				  '<div class="devinforbtn">'+
+                    			  '<a class="tradeNum" href="'+reqUrl+'/wx/getMyTradeInfo?custNo='+custNo+'&merchantId='+list.merchantId+'">查看收益'+'</a>'+
+            					  '<a class="deviceCount" href="'+reqUrl+'/wx/getMyDevices?custNo='+custNo+"&merchantId="+list.merchantId+'&isParent='+true+'">查看设备</a>'+
+            					  '<a class="onlineNum" href="'+reqUrl+'/wx/myWallet?custNo='+custNo+'&merchantId='+list.merchantId+'&isParent='+true+'">查看钱包'+'</a>'+
+							  '</div>';							
+	                		  html= html+'</div>';
+	                		  $('.all').append(html);
+		                	 }
+	                  });
+	                  if(page1<(res.total/rows)){
+	                		$(".all").append("<a id='more' class='more' href='javascript:void(0)' onclick='getMoreMerchList1()'>点击获取更多</a>");
+	                	} 
+	            	}
+	            }
+		 })       
+	 };
+	 function agentGo(merchantId,parentMerchantId,isBindDevice){
+		 if(isBindDevice=='1'){//已经绑定设备
+			 tipText('此商户已绑定设备,无法编辑');
+		 }else{
+			 location.href=reqUrl+'wx/editMerchantcenterAgent?merchantId='
+					 +merchantId+'&pid='+parentMerchantId+'&parentMerchantType='+parentMerchantType;
+		 }
+		 return false;
+	 };
+	 // 加载跟多all
+	function getMoreMerchList1(){
+		 page1++;
+		 let dataObj={
+					parentMerchantId:parentMerchantId,
+				    page:page1,
+					rows:rows
+		     }; 
+		 getMerchantList1(dataObj);
+	 }; 
+	 function getMoreMerchList2(){
+		 page2++;
+		 let dataObj={
+					parentMerchantId:parentMerchantId,
+				    page:page2,
+				    merchantType:"11",
+					rows:rows
+		     }; 
+		 getMerchantList2(dataObj);
+	 }; 
+	 function getMoreMerchList3(){
+		 page3++;
+		 let dataObj={
+					parentMerchantId:parentMerchantId,
+				    page:page3,
+				    merchantType:"10",
+					rows:rows
+		     }; 
+		 getMerchantList3(dataObj);
+	 }; 
+	 /**
+	  * 开启屏蔽层.
+	  */
+	 startShieldLayer = function() {
+	 	$('#myModal').modal("show");
+	 }
+	 /**
+	  * 结束屏蔽层.
+	  */
+	 finishShieldLayer = function() {
+	 	$('#myModal').modal("hide");
+	 }
+	 </script>
+</body>
+</html>

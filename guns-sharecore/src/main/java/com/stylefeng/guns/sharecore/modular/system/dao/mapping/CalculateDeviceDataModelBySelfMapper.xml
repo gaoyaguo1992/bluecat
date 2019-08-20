@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.CalculateDeviceDataModelBySelfMapper" >
+  
+  <resultMap type="com.stylefeng.guns.sharecore.modular.system.model.CalculateBusinessDataBO" id="CalculateBusinessDataMap">
+      <result column="history_orders" property="historyOrders" jdbcType="BIGINT" />
+      <result column="history_finish_orders" property="historyFinishOrders" jdbcType="BIGINT" />
+      <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+      
+      <result column="day1UsageTrend" property="day1UsageTrend" jdbcType="DECIMAL" />
+      <result column="day2UsageTrend" property="day2UsageTrend" jdbcType="DECIMAL" />
+      <result column="day3UsageTrend" property="day3UsageTrend" jdbcType="DECIMAL" />
+      <result column="day4UsageTrend" property="day4UsageTrend" jdbcType="DECIMAL" />
+      <result column="day5UsageTrend" property="day5UsageTrend" jdbcType="DECIMAL" />
+      <result column="day6UsageTrend" property="day6UsageTrend" jdbcType="DECIMAL" />
+      <result column="day7UsageTrend" property="day7UsageTrend" jdbcType="DECIMAL" />
+      
+      <result column="before_amount_1" property="beforeAmount1" jdbcType="DECIMAL" />
+      <result column="before_amount_2" property="beforeAmount2" jdbcType="DECIMAL" />
+      <result column="before_amount_3" property="beforeAmount3" jdbcType="DECIMAL" />
+      <result column="before_amount_4" property="beforeAmount4" jdbcType="DECIMAL" />
+      <result column="before_amount_5" property="beforeAmount5" jdbcType="DECIMAL" />
+      <result column="before_amount_6" property="beforeAmount6" jdbcType="DECIMAL" />
+      <result column="before_amount_7" property="beforeAmount7" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <select id="totalDeviceTradeAmount" parameterType="java.util.HashMap" resultMap="CalculateBusinessDataMap">
+	SELECT 
+	SUM(before_amount_1) before_amount_1,SUM(before_amount_2) before_amount_2,SUM(before_amount_3) before_amount_3,
+	SUM(before_amount_4) before_amount_4,SUM(before_amount_5) before_amount_5,SUM(before_amount_6)before_amount_6,
+	SUM(before_amount_7) before_amount_7
+	FROM calculate_device_data
+	WHERE EXISTS (SELECT 1 FROM share_device_info WHERE 1=1 AND share_device_info.Id=calculate_device_data.device_id
+	<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+	</if>
+	)
+  </select>
+  
+  <select id="totalDeviceUsageTrend" parameterType="java.util.HashMap" resultMap="CalculateBusinessDataMap">
+      SELECT 
+		IFNULL(SUM(before_orders_1),0)/IFNULL(COUNT(device_id),0) day1UsageTrend,IFNULL(SUM(before_orders_2),0)/IFNULL(COUNT(device_id),0) day2UsageTrend,
+		IFNULL(SUM(before_orders_3),0)/IFNULL(COUNT(device_id),0) day3UsageTrend,IFNULL(SUM(before_orders_4),0)/IFNULL(COUNT(device_id),0) day4UsageTrend, 
+		IFNULL(SUM(before_orders_5),0)/IFNULL(COUNT(device_id),0) day5UsageTrend,IFNULL(SUM(before_orders_6),0)/IFNULL(COUNT(device_id),0) day6UsageTrend,
+		IFNULL(SUM(before_orders_7),0)/IFNULL(COUNT(device_id),0) day7UsageTrend
+	  FROM calculate_device_data
+	  WHERE EXISTS (SELECT 1 FROM share_device_info WHERE 1=1 AND device_status=10 AND share_device_info.Id=calculate_device_data.device_id 
+	  <if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+	  </if>
+	  )
+  </select>
+  
+  <select id="totalDeviceBusinessData" parameterType="java.util.HashMap" resultMap="CalculateBusinessDataMap">
+      SELECT 
+      	IFNULL(SUM(total_amount),0) total_amount ,ROUND((IFNULL(SUM(before_amount_1),0)-IFNULL(SUM(before_amount_2),0))/IFNULL(SUM(before_amount_2),0),3) totalAmountCompareByDay,
+		IFNULL(SUM(history_finish_orders),0) history_finish_orders ,ROUND((IFNULL(SUM(before_finish_orders_1),0)-IFNULL(SUM(before_finish_orders_2),0))/IFNULL(SUM(before_finish_orders_2),0),3) finishOrdersCompareByDay,
+		IFNULL(SUM(history_orders),0) history_orders,ROUND((IFNULL(SUM(before_orders_1),0)-IFNULL(SUM(before_orders_2),0))/IFNULL(SUM(before_orders_2),0),3) ordersCompareByDay
+      FROM calculate_device_data 
+	WHERE calculate_device_data.device_id in 
+	(SELECT DISTINCT device_no FROM share_trade_info WHERE 1=1 
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+		</if>
+	)
+      
+  </select>
+  
+  <select id="totalTradeAmountForToday" parameterType="java.util.HashMap" resultType="java.math.BigDecimal">
+	SELECT SUM(share_trade_info.trade_amount) tradeAmountForToday
+	FROM share_trade_info WHERE to_days(share_trade_info.borrow_datetime) = to_days(now())
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </select>
+  <select id="totalBorrowForToday" parameterType="java.util.HashMap" resultType="java.lang.Long">
+	SELECT COUNT(share_trade_info.id) borrowForToday
+	FROM share_trade_info WHERE to_days(share_trade_info.borrow_datetime) = to_days(now())
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </select>
+  <select id="totalBackForToday" parameterType="java.util.HashMap" resultType="java.lang.Long">
+	SELECT COUNT(share_trade_info.id) backForToday
+	FROM share_trade_info WHERE to_days(share_trade_info.back_datetime) = to_days(now())
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </select>
+  
+</mapper>

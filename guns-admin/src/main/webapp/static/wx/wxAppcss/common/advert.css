@@ -1,0 +1,171 @@
+@media all and (orientation : landscape) {
+    .adbox{
+    	position: relative;
+        width: 100%;
+        height: 4rem;
+    }
+    .advertad{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .zhaoshangtel{
+        z-index: 2;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+    .advertad img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    
+    .adboxtypet{
+        width: 100%;
+        height: 4rem;
+        padding: 0 4%;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .adboxtypetcont{
+        float: left;
+        width: 80%;
+    }
+    .adboxtypetcont dt{
+        float: left;
+	    width: 1.8rem;
+	    height: 1.8rem;
+        margin-right: 5%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+    .adboxtypetcont dt img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+    .adboxtypetcont dd{
+        float: left;
+        width: 60%;
+        font-size: .34rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+    .adboxtypetcont dd h3{
+        font-weight: bold;
+    }
+    .adboxtypetcont dd p,.adboxtypetcont dd h3{
+        width: 100%;
+        line-height: 26px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .adboxtypebtn{
+        float: right;
+        display: block;
+        width: 20%;
+        text-align: center;
+        border: 1px solid #2ac3f6;
+        height: 32px;
+        line-height: 32px;
+        color: #2ac3f6;
+    }    
+} 
+
+@media all and (orientation : portrait){
+    .adbox{
+    	position: relative;
+        width: 100%;
+        height: 34.7%;
+    }
+    .advertad{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .zhaoshangtel{
+        z-index: 2;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+    .advertad img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+ 
+   
+    .adboxtypet{
+        width: 100%;
+        height: 34.7%;
+        padding: 0 4%;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .adboxtypetcont{
+        float: left;
+        width: 80%;
+    }
+    .adboxtypetcont dt{
+        float: left;
+	    width: 1.8rem;
+	    height: 1.8rem;
+        margin-right: 5%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+    .adboxtypetcont dt img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+    .adboxtypetcont dd{
+        float: left;
+        width: 60%;
+        font-size: .34rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+    }
+    .adboxtypetcont dd h3{
+        font-weight: bold;
+    }
+    .adboxtypetcont dd p,.adboxtypetcont dd h3{
+        width: 100%;
+        line-height: 26px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .adboxtypebtn{
+        float: right;
+        display: block;
+        width: 20%;
+        text-align: center;
+        border: 1px solid #2ac3f6;
+        height: 32px;
+        line-height: 32px;
+        color: #2ac3f6;
+    }   
+}

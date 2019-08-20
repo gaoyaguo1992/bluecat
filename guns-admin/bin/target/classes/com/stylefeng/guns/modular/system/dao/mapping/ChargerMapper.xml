@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.ChargerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Charger">
+        <id column="id" property="id" />
+        <result column="device_id" property="deviceId" />
+        <result column="charger_type_id" property="chargerTypeId" />
+        <result column="charger_type_name" property="chargerTypeName" />
+        <result column="pwd_index" property="pwdIndex" />
+        <result column="pwds" property="pwds" />
+        <result column="use_count_times_yesterday" property="useCountTimesYesterday" />
+        <result column="total_amount_yesterday" property="totalAmountYesterday" />
+        <result column="remark" property="remark" />
+        <result column="agents1_id" property="agents1Id" />
+        <result column="agents2_id" property="agents2Id" />
+        <result column="agents3_id" property="agents3Id" />
+        <result column="pwd_mode" property="pwdMode" />
+        <result column="refactor_idx" property="refactorIdx" />
+        <result column="create_id" property="createId" />
+        <result column="create_date_time" property="createDateTime" />
+        <result column="update_date_time" property="updateDateTime" />
+        <result column="last_use_time" property="lastUseTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, device_id, charger_type_id, charger_type_name, pwd_index, pwds, use_count_times_yesterday, total_amount_yesterday, remark, agents1_id, agents2_id, agents3_id, pwd_mode, refactor_idx, create_id, create_date_time, update_date_time, last_use_time
+    </sql>
+
+</mapper>

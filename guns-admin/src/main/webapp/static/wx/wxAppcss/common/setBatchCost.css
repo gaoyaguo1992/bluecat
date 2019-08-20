@@ -1,0 +1,215 @@
+body {
+	background: #F2F2F2;
+}
+.con{
+ padding: .2rem 0;
+}
+.cash{
+margin:.2rem auto;
+}
+.showDiv{
+    display: none;
+}
+.activeBlock{
+ display: block !important;
+} 
+.cash>div{
+border-bottom: 1px solid #f2f2f2; 
+background: #fff;
+padding: 0 .3rem;
+}
+.cash>div input{
+ width: 1.25rem;
+ height: 80%;
+ outline: none;
+ border-bottom: 1px solid #f2f2f2; 
+ text-align: center;
+}
+.cash>div select{
+ 	outline: none;
+ 	border: none;
+    font-size: 12px;
+    border-bottom-color: #f3f3f3;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+.cash .title{
+  font-size: .3rem;
+  color: #484848;    
+  height: .8rem;
+  line-height: .8rem;
+}
+.cash .title .icon{
+display:inline-block;
+ height: 4px;
+ width: 4px;
+ background-color: #36a3ff;
+ border-radius:50%; 
+ margin-right: .1rem;
+ vertical-align: middle;
+}
+.cash .title .type{
+ float: right;
+ }
+ .cash .title .type i{
+  font-style: normal;
+ }
+ .cash .title .type .typeList{
+   color: #959595;
+ }
+ .cash .title .type .check{
+  color: rgba(28, 169, 59, 1);
+ }
+ .cash .yajin{
+ height: 1rem;
+ display: flex;
+ align-items: center;
+}
+ .cash .yajin .tip,.cash .jifei .tip{
+  font-size:.28rem;
+  color: #959595;
+  flex:0 0 1.25rem;
+  width: 1.25rem;
+ }
+  .cash .yajin .yajin-com{
+  flex:1;
+   color: #484848;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .cash .jifei{
+   height:2rem; 
+   font-size: .28rem;
+   display: flex;
+   padding: .3rem 0.3rem;
+  }
+   .cash .jifei .jifeiSelect{
+    flex:1;
+    color: #484848;
+    display: flex;
+    flex-direction: column;
+   }
+   .cash .jifei .jifeiSelect p{
+   text-align: right;
+   flex:1;
+   }
+  
+  .cash .top{
+   height: 1rem;
+   line-height: 1rem;
+    font-size: .28rem;
+  }
+  .cash .top .input-com{
+   float: right;
+  }
+   .button{
+     height: .9rem;
+     line-height:.9rem;
+     width: 100%;
+     padding: 0 .3rem;
+     margin-top:.8rem;
+     text-align: center;
+     font-size: .3rem;
+     color: #fff;
+     margin-bottom: .3rem;
+    }
+    .button span{
+     display: block;
+     background: #22AB39;
+     height: 100%;
+     width: 100%;
+     border-radius:3px;
+     }
+   .listBoxShade{
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}  
+.listBoxShade .listBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+    margin-top: -64px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    margin-top: -3.5rem;
+    font-size: .3rem;
+    background: #fff;
+    border-radius:3px; 
+    padding:.3rem .3rem;
+    text-align: center;
+    color: #444;
+}
+.listBoxShade .listBox .list-num{
+  font-size: .3rem;
+}
+.listBoxShade .listBox .list-com{
+  height: 4.5rem;
+  overflow-y: scroll;
+  font-size: .26rem;
+  margin: .3rem 0;
+  padding-right:.3rem; 
+}
+.listBoxShade .listBox .list-com li{
+  height: .5rem;
+  line-height: .5rem;
+  border: 1px solid #d7d7d7;
+  margin: .1rem;
+  padding-right: .3rem;
+}
+.listBoxShade .listBox .list-com li .delete-icon{
+ float: right;
+ font-size: .4rem;
+}
+.listBoxShade .listBox .list-button{
+   font-size: .28rem;
+   color: #959595;
+}
+.listBoxShade .listBox .list-button .close{
+    color: #22AB39;
+    margin-top: 10px;
+    margin-left: 1rem;
+    margin-right: 20px;
+}
+.clear-com{
+    z-index: 1500;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+.clear-com .clearComs{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height:3.3rem;
+    width:4.15rem;
+    transform: translate(-2.075rem,-1.65rem);
+    font-size: .3rem;
+    background: #fff;
+    border-radius:3px; 
+    padding:.3rem .3rem;
+    text-align: center;
+    color: #444;
+}
+.clear-com .clearComs .infotext{
+     padding: .8rem .5rem;
+}
+.clear-com .clearComs .button-com span{
+ display: inline-block;
+ width: 50%;
+ color: #22AB39;
+}
+.load-com{
+ display: none;
+}

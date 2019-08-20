@@ -1,0 +1,88 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>设备管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3"  style="width: 30%">
+                                <#SelectFilter id="condition" idForValue="conditionValue" styleForSelect="width:130px">
+                                	<option value="Id">设备id</option>
+                                	<option value="merchantId">店铺商户id</option>
+                                	<option value="agents1Id">顶级代理商id</option>
+                                	<option value="agents2Id">一级代理商id</option>
+                                	<option value="agents3Id">二级代理商id</option>
+                                	<option value="shopkeeperId">铺货商id</option>
+                                	<option value="allianceBusinessId">加盟商id</option>
+                                	<option value="deviceStatus">设备状态Id</option>
+                                	<option value="deviceTypeId">设备类型Id</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3"  style="width: 30%">
+                                <#SelectFilter id="condition1" idForValue="conditionValue1" styleForSelect="width:130px">
+                                	<option value="merchant">店铺商户名</option>
+                                	<option value="agents1">顶级代理商名称</option>
+                                	<option value="agents2">一级代理商名称</option>
+                                	<option value="agents3">二级代理商名称</option>
+                                	<option value="shopkeeper">铺货商名称</option>
+                                	<option value="allianceBusiness">加盟商名称</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3"  style="width: 30%">
+                            	<#twoInputTimeCon name="创建时间" id1="startCreateDatetime" id2="endCreateDatetime"/>
+                            </div>
+                            <div class="col-sm-3" style="width: 32%">
+                                <#twoInputTimeCon name="设备号(开始/结束)" id1="startDeviceNo" id2="endDeviceNo" />
+                            </div>
+                            <div class="col-sm-3"  style="width: 60%">
+                                <#button name="搜索" icon="fa-search" clickFun="DeviceInfo.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="DeviceInfoTableToolbar" role="group">
+                            @if(shiro.hasPermission("/deviceInfo/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="DeviceInfo.openAddDeviceInfo()"/>
+                            @}
+                            @if(shiro.hasPermission("/deviceInfo/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="DeviceInfo.openDeviceInfoDetail()" space="true"/>
+                            @}                            
+                            @if(shiro.hasPermission("/deviceInfo/deviceInfo_batch_add")){
+                           		<#button name="批量生成设备" icon="fa-adjust" clickFun="DeviceInfo.generateDevice()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/deviceInfo/deviceInfo_batch_bindmer")){
+                            	<#button name="批量绑定商户" icon="fa-pencil" clickFun="DeviceInfo.batchBindMerchant()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/deviceInfo/deviceInfo_batch_bindfee")){
+                            	<#button name="批量修改费用" icon="fa-edit" clickFun="DeviceInfo.batchBindFee()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/deviceInfo/deviceInfo_batch_bindrato")){
+                            	<#button name="批量修改分润" icon="fa-tint" clickFun="DeviceInfo.batchBindRato()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/deviceInfo/deviceInfo_batch_bindOther")){
+                            	<#button name="批量其它修改" icon="fa-pencil" clickFun="DeviceInfo.batchBindOther()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/deviceInfo/deviceInfo_batch_unbindmer")){
+                            	<#button name="批量解绑商户" icon="fa-pencil" clickFun="DeviceInfo.batchUnbind()" space="true"/>
+                            @}
+                            <#button name="报表导出" icon="fa-file" clickFun="DeviceInfo.exportExcel()"/>
+                        </div>
+                        <#table id="DeviceInfoTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/deviceInfo/deviceInfo.js?v=6"></script>
+<script language="javascript">
+    laydate.render({
+        elem: '#startCreateDatetime'
+    });
+    laydate.render({
+        elem: '#endCreateDatetime'
+    });
+</script>
+@}

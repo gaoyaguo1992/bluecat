@@ -1,0 +1,33 @@
+body{
+	/*background: #f2f3f7;*/
+}
+.switchtit{
+	padding: 0 .2rem;
+	height: .8rem;
+	line-height: .8rem;
+	background: #f2f3f7;
+	color: #b1b2b4;
+	font-size: .28rem;
+}
+.switchtit span{
+	float: right;
+	color: #444;
+}
+.switchlist{
+	padding: 0 .2rem;
+	height: 1rem;
+	line-height: 1rem;
+	color: #626262;
+	font-size: .28rem;
+	background: #fff;
+	border-bottom: #f2f3f7 1px solid;
+}
+.switchlist i{
+    float: right;
+	color: #1ab394;	
+	font-size: .32rem;
+    
+}
+.switchlist span{
+	color: #1ab394;			    
+}

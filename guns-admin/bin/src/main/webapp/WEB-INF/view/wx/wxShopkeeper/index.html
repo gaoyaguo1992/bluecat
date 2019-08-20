@@ -1,0 +1,95 @@
+@layout("/wx/merchantHeader.html"){
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantCoporateLogin.css?v=1">    
+	<div class="head">	
+		<form id="myWalletForm" class="head-boxform" action="${ctxPath}/wx/myWallet" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="merchantType" name="merchantType" value = "${merchantInfo.merchantType}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxsb" id="myWallet">
+		    	<div class="head-cont">
+					<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/mywallet.png?v=2" alt="">
+			    		<p>我的钱包（元）</p>    		
+			    		<p>${availableBalance}</p>    		
+			    	</div> 	
+		    	</div>
+	    	</div>		    
+		</form>			
+		<form id="tradesTotalForm" class="head-boxform" action="${ctxPath}/wx/getMyTradeInfo" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="merchantType" name="merchantType" value = "${merchantInfo.merchantType}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+			<input id="addr" name="addr" value = "" type="hidden" />
+	       	<div class="head-box head-boxxx" id="tradesTotal">
+		    	<div class="head-cont">
+			    	<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/myperfit.png?v=2" alt="">
+			    		<p>我的收益</p>    		
+			    		<p>&nbsp;&nbsp;</p>    	
+					</div> 	 		
+		    	</div>
+	    	</div>
+		</form>
+		<form id="myTradeFrom" class="head-boxform" action="${ctxPath}/wx/getMerchantOrderInfo" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxxx" id="myTrade">
+		    	<div class="head-cont">
+			    	<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/order.png?v=2" alt="">
+			    		<p>交易查询</p>    		
+			    		<p>&nbsp;&nbsp;</p>    	
+					</div> 	
+			   </div>
+	    	</div>		    
+		</form>
+	</div>
+	<div class="head">		
+		<form id="batchSettingFrom" class="head-boxform" action="${ctxPath}/wx/deviceBatchManage" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxsb" id="batchSetting">
+		    	<div class="head-cont">	
+					<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/batchSetting.png?v=2" alt="">
+			    		<p>批量设置</p>    		
+			    		<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>    		
+			    	</div> 	  	
+		    	</div>
+	    	</div>		    
+		</form>		
+		<form id="merchantInfoListFrom" class="head-boxform" action="${ctxPath}/wx/getMerInfoList" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxsb" id="merchantInfoList">
+		    	<div class="head-cont">
+					<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/merInfo.png?v=2" alt="">
+			    		<p>商户列表</p>    		
+			    		<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>    		
+			    	</div> 	  	
+		    	</div>
+	    	</div>		    
+		</form>
+		<form id="addmerchantInfoQRCodeForm" class="head-boxform" action="${ctxPath}/wx/addmerchantInfoQRCode" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxsb" id="addmerchantInfoQRCode">
+		    	<div class="head-cont">
+					<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/merInfoAdd.png?v=22" alt="">
+			    		<p>添加商户</p>    		
+			    		<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>    		
+			    	</div> 	  	
+		    	</div>
+	    	</div>		    
+		</form>
+	</div>
+	<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantCoporateShopkeeperLogin.js?v=55"></script>	
+@}

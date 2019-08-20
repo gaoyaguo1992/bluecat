@@ -1,0 +1,152 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<title>设备详情</title>	
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+      <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+
+    <!-- 全局js -->
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script src="${ctxPath}/static/js/common/Feng.js"></script>
+    
+    <link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantCoporateAgentsDevsDetails.css?v=0"> 
+	<style>
+	  .devinfo{
+	  border-top: .3rem solid #F2F3F7;
+	  }
+	  .devinfo .devdetail span{
+	   display: inline-block;
+	   width: 2.4rem;
+	   color: #959595
+	  }
+	  .devinfo .devdetail i{
+	   font-style: normal;
+	   color: #484848;
+	  }
+	  .bottom-com{
+	   display: flex;
+	   height: 1rem;
+	   }
+	  .bottom-com{
+	   border-top:.1rem solid #f2f2f2; 
+	  }
+	  .bottom-com a{
+	   flex:1;
+	   display: flex;
+	   align-items: center;
+	  justify-content: center;
+	  font-size: .26rem;
+	  color: #484848;
+	  border-right: 1px solid #F2F3F7;
+	  border-bottom: 1px solid #F2F3F7;
+	  }
+	  .bottom-com a span{
+	   color: #2196F3;
+	  }
+	  .state-icon{
+	   display: inline-block;
+	   height: .28rem;
+	   width: .28rem;
+	   background: url("${ctxPath}/static/wx/img/has.png") no-repeat;
+	   background-size:100%; 
+	   vertical-align: middle;
+	  }
+	</style>
+</head>
+<body>
+ 	<script>reset();</script>
+ 	<input id="deviceId" name="deviceId" type="hidden" value = "${shareDeviceInfoModel.id}"/>
+	<div class="devinfo">
+		<p class="devdetail"><span>设备编号</span><i class="deviceNum">${shareDeviceInfoModel.id}</i></p>
+		<p class="devdetail"><span>设备类型</span><i class="devType">${shareDeviceInfoModel.deviceTypeName}</i></p>
+		<p class="devdetail"><span>设备状态</span><i class="state-icon"></i><i class="status">${deviceStatusCn}</i></p>
+		<p class="devdetail"><span>充电器编号</span>  <a href="${ctxPath}/wx/getChargersListByDeviceId?deviceId=${shareDeviceInfoModel.id}"><i class="chargerIds">${deviceChargersInfo.chargers}</i></a></p>
+		<p class="devdetail"><span>充电器数</span><i class="chargerNum">${deviceChargersInfo.countChargers}</i></p>
+		<p class="devdetail"><span>收费描述</span><i class="chargingStr">${feeDes}</i></p>
+		<p class="devdetail"><span>历史交易金额</span><i class="allTrdeMoney">${devTradeGatherInfoModel == null || devTradeGatherInfoModel.hisTradeAmount == null ? 0 : devTradeGatherInfoModel.hisTradeAmount}</i></p>
+		 @if(merchantInfoModel.merchantType ==11){
+			<p class="devdetail"><span>顶级代理商</span><i class="agentsCn">${shareDeviceInfoModel.agents1Cn}</i></p>
+		 @}
+		 @if(merchantInfoModel.merchantType ==11|| merchantInfoModel.merchantType ==12){
+			<p class="devdetail"><span>一级级代理商</span><i class="firstLevelAgentsCn">${shareDeviceInfoModel.agents2Cn}</i></p>
+		 
+		 @}
+		 @if(merchantInfoModel.merchantType ==11 || merchantInfoModel.merchantType ==12|| merchantInfoModel.merchantType ==13){
+			<p class="devdetail"><span>二级级代理商</span><i class="secondLevelAgentsCn">${shareDeviceInfoModel.agents3Cn}</i></p>
+		 
+		 @}
+		 @if(merchantInfoModel.merchantType !=10 && merchantInfoModel.merchantType !=15){
+			<p class="devdetail"><span>铺货商</span><i class="secondLevelAgentsCn">${shareDeviceInfoModel.shopkeeperCn}</i></p>
+		 
+		 @}
+		 @if(merchantInfoModel.merchantType !=10){
+			<p class="devdetail"><span>加盟商</span><i class="secondLevelAgentsCn">${shareDeviceInfoModel.allianceBusinessCn}</i></p>
+		 
+		 @}
+		<p class="devdetail"><span>终端商户</span><i class="merchantName">${shareDeviceInfoModel.onlineMerchantCn}</i></p>
+		<p class="devdetail"><span>终端商户联系电话</span><i class="merchantTelNo">${onlineMerchantInfo.telNo}</i></p>
+		<p class="devdetail"><span>终端商户地址</span><i class="addr">${onlineMerchantInfo.addr}</i></p>
+	</div>
+	<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+	<script src="${ctxPath}/static/js/common/Feng.js"></script>	
+	<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js" charset="gb2312"></script> 
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js"></script>
+	<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantCoporateAgentsDevsDetails.js?v=1"></script>
+	<script language="javascript" type="text/javascript">
+		var path="${ctxPath}";
+		var reqUrl="${reqUrlRoot}";
+		$(function() {
+		    Feng.addCtx("${ctxPath}");
+		    Feng.sessionTimeoutRegistry();
+			$('.modal').appendTo("body");
+			//处理用户修改费用..
+			var options={keyboard:false,backdrop:'static',show:false};
+			$('#myModal').modal(options);
+		})
+	</script>		    
+</body>
+</html>

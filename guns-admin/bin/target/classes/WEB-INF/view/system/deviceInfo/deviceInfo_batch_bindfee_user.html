@@ -1,0 +1,255 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/css/deviceList.css?i=4" rel="stylesheet">
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <#select id="deviceTypeId" name="设备类型" underline="false" 
+                       	onChangeEvent="DeviceInfoInfoDlg.deviceTypeIdOnChange()">
+                       	${selectDeviceTypeOptions}
+					</#select>
+                </div>
+            </div>
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#deviceNoTab" valType="1" data-toggle="tab">&nbsp;&nbsp;按单个设备编号设置&nbsp;&nbsp;</a></li>
+				<li><a href="#startDeviceNoAndEndDeviceNo" valType="2" data-toggle="tab">&nbsp;按开始结束设备号设置&nbsp;</a></li>
+				<li><a href="#onLineMerchantIdSet" valType="3" data-toggle="tab">&nbsp;按终端商户设置&nbsp;</a></li>
+			</ul>
+			<input type="hidden" id="selectDeviceNoType" value="1"/>
+			<div id="myTabContent" class="tab-content" style="margin-bottom:5px;height:130px">
+				<div class="tab-pane fade in active" style="margin-top:10px;height:130px;" id="deviceNoTab">
+					   <#textareaFocusButton id="deviceNoStr" name="设备号（多个用,分隔)"
+						cols="2" rows="6" underline="false"
+						styleGroup="height:120px" 
+						idBtn="deviceNoStrQery"
+						icon="fa-search"
+						styleBtn="height:80px"
+						clickFunBtn="DeviceInfoInfoDlg.searchDevicesBysDevicesList()"
+						nameBtn="查询"/>
+				</div>
+				<div class="tab-pane fade"  style="margin-top:10px;height:130px;" id="startDeviceNoAndEndDeviceNo">
+  					<div class="form-group">
+                    	 <div class="col-sm-9" style="width:85%;padding-left:5px;padding-right:5px">
+							<#input id="startDeviceNo" name="开始的设备编号" underline="false"/>  
+                      		<#input id="endDeviceNo" name="结束的设备编号" underline="false"/>
+                    	 </div>
+                    	 <div class="col-sm-9" style="width:15%;padding-left:5px;padding-right:1px;padding-top:1px;">	    
+							<button type="button" class="btn btn-primary"			 
+								 onclick="DeviceInfoInfoDlg.searchDevicesByStartAndEnd()" 
+							     style="height:80px"
+							><i class="fa fa-search"></i>&nbsp;查询
+							</button>
+					    </div>
+                    </div>                                               
+			 </div>
+			 <div class="tab-pane fade"  style="margin-top:10px;height:130px;" id="onLineMerchantIdSet">
+                 <div class="form-group">
+                    	<div class="col-sm-9" style="width:85%;padding-left:5px;padding-right:5px;margin-top:5px">                    	 
+	                      <#inputFocus id="onlineMerchantId" hidden="onlineMerchantId_hd" 
+	                          onBlurFun="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,10)"
+	                          onFocusFun="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,10)"
+	                          name="终端商铺号" underline="false"/>
+                        </div>
+                    	<div class="col-sm-9" style="width:15%;padding-left:5px;padding-right:1px;padding-top:1px;">	
+                    	   <button type="button" class="btn btn-primary"				 
+							     onclick="DeviceInfoInfoDlg.searchDevicesByMerchantId()" 
+							     style="height:40px"
+							><i class="fa fa-search"></i>&nbsp;查询
+							</button>
+					    </div>    
+				</div>
+			</div>
+        </div>
+        <br>
+		<div style="height:50px;" class="title">
+			<span class="icon"></span>您有权设置费用的设备 <span class="type">共 <i
+				class="typeList yajinModelNum" id="devicesNum">0</i>个<i onclick="showList()"
+				class="check">查看></i>
+			</span>
+		</div>
+		<!-- 清除全部-->
+		<div class="clear-com">
+			<div class="clearComs">
+				<p class="infotext">确定清除全部已经添加的设备吗?</p>
+				<p class="button-com">
+					<span class="confirm">确定</span><span class="cancel">取消</span>
+				</p>
+			</div>
+		</div>	
+		<!-- 弹窗列表 -->
+		<div class="listBoxShade">
+			<div class="listBox">
+				<p class="list-num">
+					共 <span id="listNums" class="listNums yajinModelNum">0</span> 个
+				</p>
+				<ul id="listCom" class="list-com">
+				</ul>
+				<p class="list-button">
+					<span id="clearAll" class="clearAll">清除全部</span><span id="close" style="font-size:12px;opacity:.5;float: none;" class="close">关闭</span>
+				</p>
+			</div>
+		</div>
+		<div id="feeSetCommon" class="list-group"  style="margin-top:5px;">
+			<a  class="list-group-item active">
+				<h4 class="list-group-item-heading">
+					费用设置
+				</h4>
+			</a>
+			<a  class="list-group-item">
+				   <#select id="feeTypeId" name="费用类型" underline="false" 
+				   		styleForDiv="margin-bottom:0px"
+                          	onChangeEvent="DeviceInfoInfoDlg.feeTypeIdOnChange()">
+                          	${selectFeeTypeOptions}
+					</#select>
+			</a>
+			<a  class="list-group-item">
+				<#twoInputForFeeOnRow id1="yfjAmount" name1="预付金(元)" 
+                            id2="amountMax24hour"  name2="24小时最多收费(元)"
+                            underline="false"/>
+			</a>
+			<a  class="list-group-item" id="firstMinutes_a" style="display:none;">
+				<#twoInputForFeeOnRow id1="firstMinutes" name1="预先使用时长（分钟）" 
+                            id2="firstAmount"  name2="预先使用时长费用(元)"
+                            underline="false"/>
+			</a>
+			<a  class="list-group-item">
+				<#input id="amountPerHour" idForLabel="amountPerHour_label"
+					 name="每小时使用费用(元)" styleForLabel="width:50%;" 
+					 styleForInputDiv="width:50%;" styleForDiv="margin-bottom:0px"/>
+			</a>
+		</div>
+		<div id="feeSetByTime" style="display:none;margin-top:5px;" class="list-group">
+			<a class="list-group-item active">
+				<h4 class="list-group-item-heading">
+					费用设置
+				</h4>
+			</a>
+			<a  class="list-group-item">
+				<#feeInputByHourOnRow id1="fee1TypeId" name1="充电时长(选项1)" 
+                        id2="fee1HourAmount"  name2="充电费用(元)" 
+                        underline="false">
+                        	${selectFee1TypeOptions}
+                   </#feeInputByHourOnRow>
+			</a>
+			<a  class="list-group-item">
+				<#feeInputByHourOnRow id1="fee2TypeId" name1="充电时长(选项2)" 
+                        id2="fee2HourAmount"  name2="充电费用(元)" 
+                        underline="false">
+                        	${selectFee2TypeOptions}
+                   </#feeInputByHourOnRow>
+			</a>
+			<a  class="list-group-item">
+				<#feeInputByHourOnRow id1="fee3TypeId" name1="充电时长(选项3)" 
+                        id2="fee3HourAmount"  name2="充电费用(元)" 
+                        underline="false">
+                        	${selectFee3TypeOptions}
+                   </#feeInputByHourOnRow>
+			</a>
+		</div>
+        <div class="row btn-group-m-t">
+            <div class="col-sm-10">
+                <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DeviceInfoInfoDlg.batchBindFeeUser()"/>
+                <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DeviceInfoInfoDlg.close()"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/system/deviceInfo/deviceInfo_info.js?v=6"></script>
+<script language="javascript">
+   $(function(){
+		var options={keyboard:false,backdrop:'static',show:false}
+		$('#myModal').modal(options)
+		
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // 获取已激活的标签页的名称
+            var valType = $(e.target).attr("valType");
+            // 获取前一个激活的标签页的名称
+            $("#selectDeviceNoType").val(valType);
+	        
+            DeviceInfoInfoDlg.clearDevicesList();	  
+        });
+        DeviceInfoInfoDlg.deviceTypeIdOnChange();
+        debugger;
+        //初始化选中
+        var itemForSelect=window.parent.DeviceInfo.getAllSelectedDevices();
+        if(itemForSelect!=null&&itemForSelect!=undefined&&itemForSelect.length>0){
+        	var selectIds="";
+        	for(var i=0;i<itemForSelect.length;i++){
+        		if(i>0){
+        			selectIds=selectIds+","+itemForSelect[i].id;
+        		}else{
+        			selectIds=itemForSelect[i].id;
+        		}
+        	}
+        	if(selectIds!=""){
+        		$("#deviceNoStr").val(selectIds);
+        	}
+        }
+        // 关闭弹窗列表
+		$('.close').click(function() {
+			$('.listBoxShade').css('display', 'none');
+		});
+		//清除全部显示
+		$('.clearAll').click(function() {
+			$('.clear-com').css('display', 'block');
+		});
+		//点击查看列表后删除列表页
+		$('.list-com').on(
+			'click',
+			'li .delete-icon',
+			function() {
+				var i = $(this).parent().index();
+				devicesNum--;
+				$('.yajinModelNum').text(devicesNum);
+				$('.listNums').text(devicesNum);
+				devicesList.splice(i, 1);
+				if (devicesList.length === 0) {
+					$('.listBoxShade').css('display', 'none');
+					if (devicesList.length === 0) {
+						$('.listBoxShade').css('display', 'none');
+					}
+				}
+				$(this).parent().remove();
+		});
+		//确定
+		$('.confirm').click(
+				function() {
+				    //全部清除
+					devicesNum=0;
+					devicesList=[];
+					$('.yajinModelNum').text(devicesNum);
+					$('.listNums').text(devicesNum);
+					$('.listBoxShade').css('display', 'none');
+					$('.clear-com').css('display', 'none');
+		});
+		//取消
+		$('.cancel').click(function() {
+			$('.clear-com').css('display', 'none');
+		});
+   });
+   //设备列表...
+   var devicesList=[];
+   var devicesNum=0;
+   var isAdmin=0;
+   // 显示列表showList
+   function showList() {
+	  debugger;
+	  $('.list-com').empty();
+	  $('.listNums').text(devicesNum);
+	  $.each(devicesList,
+		 function(i, list) {
+			$('.list-com').append('<li><span>'+ list+ '</span><span data-c="1" class="delete-icon">x</span> </li>');
+	  });
+	  $('.listBoxShade').css('display', 'block');
+   };
+ </script>
+@}

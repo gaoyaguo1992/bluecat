@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.common.persistence.dao.SysSessionInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.common.persistence.model.SysSessionInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="openId" property="openid" jdbcType="VARCHAR" />
+    <result column="wxAppOpendId" property="wxappopendid" jdbcType="VARCHAR" />
+    <result column="zfb_user_id" property="zfbUserId" jdbcType="VARCHAR" />
+    <result column="jsCode" property="jscode" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="upDateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="sessionKey" property="sessionkey" jdbcType="VARCHAR" />
+    <result column="cust_no" property="custNo" jdbcType="BIGINT" />
+    <result column="session_id" property="sessionId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="sessionType" property="sessiontype" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, openId, wxAppOpendId,zfb_user_id, jsCode, createTime, upDateTime, sessionKey, cust_no, session_id,
+    status, sessionType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   /*FORCE_MASTER*/ select 
+    <include refid="Base_Column_List" />
+    from sys_session_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_session_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.SysSessionInfo" >
+    insert into sys_session_info (id, openId, wxAppOpendId,zfb_user_id,
+      jsCode, createTime, upDateTime, 
+      sessionKey, cust_no, session_id, 
+      status, sessionType)
+    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{wxappopendid,jdbcType=VARCHAR}, #{zfbUserId,jdbcType=VARCHAR},
+      #{jscode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{sessionkey,jdbcType=VARCHAR}, #{custNo,jdbcType=BIGINT}, #{sessionId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{sessiontype,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.SysSessionInfo" >
+    insert into sys_session_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openid != null" >
+        openId,
+      </if>
+      <if test="wxappopendid != null" >
+        wxAppOpendId,
+      </if>
+      <if test="zfbUserId != null" >
+        zfb_user_id,
+      </if>
+      <if test="jscode != null" >
+        jsCode,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        upDateTime,
+      </if>
+      <if test="sessionkey != null" >
+        sessionKey,
+      </if>
+      <if test="custNo != null" >
+        cust_no,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sessiontype != null" >
+        sessionType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappopendid != null" >
+        #{wxappopendid,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbUserId != null" >
+        #{zfbUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="jscode != null" >
+        #{jscode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sessionkey != null" >
+        #{sessionkey,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null" >
+        #{custNo,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="sessiontype != null" >
+        #{sessiontype,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.SysSessionInfo" >
+    update sys_session_info
+    <set >
+      <if test="openid != null" >
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappopendid != null" >
+        wxAppOpendId = #{wxappopendid,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbUserId != null" >
+        zfb_user_id = #{zfbUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="jscode != null" >
+        jsCode = #{jscode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        upDateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sessionkey != null" >
+        sessionKey = #{sessionkey,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null" >
+        cust_no = #{custNo,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null" >
+        session_id = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="sessiontype != null" >
+        sessionType = #{sessiontype,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.SysSessionInfo" >
+    update sys_session_info
+    set openId = #{openid,jdbcType=VARCHAR},
+      wxAppOpendId = #{wxappopendid,jdbcType=VARCHAR},
+      zfb_user_id = #{zfbUserId,jdbcType=VARCHAR},
+      jsCode = #{jscode,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      upDateTime = #{updatetime,jdbcType=TIMESTAMP},
+      sessionKey = #{sessionkey,jdbcType=VARCHAR},
+      cust_no = #{custNo,jdbcType=BIGINT},
+      session_id = #{sessionId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      sessionType = #{sessiontype,jdbcType=TINYINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <delete id="deleteTimeOutLogin" >
+  	<![CDATA[     	
+   	DELETE FROM sys_session_info WHERE upDateTime<DATE_ADD(NOW(),INTERVAL -2 DAY);   	
+   	DELETE FROM sys_call_log  WHERE create_time<DATE_ADD(NOW(),INTERVAL -2 DAY);
+  	]]>
+  </delete>
+</mapper>

@@ -1,0 +1,26 @@
+<link href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantCoporateHead.css?v=1" rel="stylesheet">
+<div class="head">
+    <div class="headcontbox">
+        <div class="weixin-avatar"><img src="<%=custInfo.getHeadImgUrl() %>" alt=""></div>        
+        <div class="headcont">
+            <div class="weixin-infor">           
+                 <h3><%=custInfo.getNickName() %>
+                 	<span></span>
+                 	<b><%=merchantInfo.getMerchantTypeCn()%></b>
+                 </h3>
+                 <p>商户号&nbsp;&nbsp;&nbsp;<%= merchantInfo.getId()%></p>
+                 <p class="head-mername">商户姓名&nbsp;&nbsp;&nbsp;<%=merchantInfo.getPersonName()%></p>  
+                 <p>个人中心号&nbsp;&nbsp;&nbsp;<%= merchantInfo.getId()%></p>  
+            </div>
+        </div>        
+    </div>
+</div>
+<div class="switchaccount" id="switchAccount">
+		<form id="switchAccountForm" action="${ctxPath}/wx/switchAccountList.htm" method = "post">
+	    	切换账户	 
+	    	<input id="custNo" name="custNo" type="hidden" value = "<%=custInfo.getCustNo()%>"/>  
+			<i class="iconfont icon-more"></i>	    	 
+		</form>
+</div>
+<script src="${ctxPath}/static/wx/comonJs/jquery-1.8.3.min.js?v=1"></script>
+<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantCoporateHead.js?v=1"></script>

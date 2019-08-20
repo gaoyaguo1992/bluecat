@@ -1,0 +1,448 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>解绑商户</title>	
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/font-awesome.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/chosen/chosen.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/style.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/_fstyle.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/iCheck/custom.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/webuploader/webuploader.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css?v=1"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css?v=1"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/reset.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/mobiscroll_date.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css?v=1">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/setBatchProfit.css?v=1">
+</head>	 
+<style type="text/css">
+body{
+ background: #f2f2f2;
+}
+.profit-com{
+ margin: .2rem 0;
+}
+.profit-com>div{
+ border-bottom: 1px solid #f2f2f2; 
+background: #fff;
+padding: 0 .3rem;
+}
+.title{
+ font-size: .3rem;
+  color: #484848;    
+  height: .8rem;
+  line-height: .8rem;
+}
+.title .icon{
+ display:inline-block;
+ height: 4px;
+ width: 4px;
+ background-color: #36a3ff;
+ border-radius:50%; 
+ margin-right: .1rem;
+ vertical-align: middle; 
+}
+.title .type{
+ float: right;
+ /* color: #36a3ff; */
+ }
+.title .type i{
+  font-style: normal;
+ }
+.title .typeList{
+   color: #959595;
+ }
+ .title .type .check{
+  color: #36a3ff;
+ }
+.title-list{
+ height: 1rem;
+ display: flex;
+ align-items: center;
+}
+.title-list .type{ 
+ font-size:.28rem;
+  color: #444;
+  flex:1;
+}
+.title-list .input-com{
+    flex:0 0 1rem;
+    width:1rem; 
+    color: #484848;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 1rem;
+    color: #484848;
+    font-size:.3rem;
+}
+.title-list .input-com input{
+   /* position: absolute;
+    clip: rect(0, 0, 0, 0); */
+  width: .37rem;
+ height: 80%;
+ outline: none;
+ border-bottom: 1px solid #f2f2f2; 
+}
+
+ .button{
+     position: fixed;
+     bottom: 0.3rem;
+     left: 0;
+     height: .9rem;
+     line-height:.9rem;
+     width: 100%;
+     padding: 0 .3rem;
+     text-align: center;
+     font-size: .3rem;
+     color: #fff;
+    }
+    .button span{
+     display: block;
+     background: #22AB39;
+     height: 100%;
+     width: 100%;
+     border-radius:3px;
+     }  
+ .listBoxShade{
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}  
+.listBoxShade .listBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+    margin-top: -64px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    margin-top: -3.5rem;
+    font-size: .3rem;
+    background: #fff;
+    border-radius:3px; 
+    padding:.3rem .3rem;
+    text-align: center;
+    color: #444;
+}
+.listBoxShade .listBox .list-num{
+  font-size: .3rem;
+}
+.listBoxShade .listBox .list-com{
+  height: 4.5rem;
+  overflow-y: scroll;
+  font-size: .26rem;
+  margin: .3rem 0;
+  padding-right:.3rem;
+}
+.listBoxShade .listBox .list-com li{
+  height: .5rem;
+  line-height: .5rem;
+  border: 1px solid #d7d7d7;
+  margin: .1rem;
+  padding-right: .3rem;
+}
+.listBoxShade .listBox .list-com li .delete-icon{
+  float: right;
+ font-size: .4rem;
+}
+.listBoxShade .listBox .list-button{
+   font-size: .28rem;
+   color: #959595;
+}
+.listBoxShade .listBox .list-button .close{
+ color: #22AB39;
+ margin-left: 1rem;
+}
+.clear-com{
+    z-index: 1500;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+.clear-com .clearComs{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height:3.3rem;
+    width:4.15rem;
+    transform: translate(-2.075rem,-1.65rem);
+    font-size: .3rem;
+    background: #fff;
+    border-radius:3px; 
+    padding:.3rem .3rem;
+    text-align: center;
+    color: #444;
+}
+.clear-com .clearComs .infotext{
+     padding: .8rem .5rem;
+}
+.clear-com .clearComs .button-com span{
+ display: inline-block;
+ width: 50%;
+ color: #22AB39;
+}
+.load-com{
+ display: none;
+}
+</style>	   
+</head>
+<body>
+    <script>reset();</script>
+    <input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfo.id}"/>
+    <input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+    <div class="profit-com">
+      <div class="title"><span class="icon"></span>解绑商户<span class="type">共 <i class="typeList"></i>个<i onclick="showList()" class="check">查看></i> </span></div>
+      @if(merchantInfo.merchantType != 15 && merchantInfo.merchantType != 14 && merchantInfo.merchantType != 13 && merchantInfo.merchantType != 12){
+      <div class="title-list"><label for="oneLeve" class="type">一级代理商</label>
+        <p class="input-com"> <input id='oneLeve' type="checkbox"  autocomplete="off"></p>
+      </div>
+      @}
+      @if(merchantInfo.merchantType != 15 && merchantInfo.merchantType != 14 && merchantInfo.merchantType != 13){
+      <div class="title-list"><label for="twoLeve" class="type">二级代理商</label>
+        <p class="input-com"> <input id='twoLeve' type="checkbox"  autocomplete="off"></input></p>
+      </div>
+      @}
+      @if(merchantInfo.merchantType != 15 && merchantInfo.merchantType != 14){
+      <div class="title-list"><label for="shopKeeper" class="type">铺货商</label>
+        <p class="input-com"> <input id='shopKeeper' type="checkbox"  autocomplete="off"></input></p>
+      </div>
+      @}
+      @if(merchantInfo.merchantType != 15){
+      <div class="title-list"><label for="allianceBusinessId" class="type">加盟商</label>
+        <p class="input-com"> <input id='allianceBusinessId' type="checkbox"  autocomplete="off"></input></p>
+      </div>
+      @}
+      <div class="title-list"><label for="terminalLeve" class="type">终端店铺</label>
+        <p class="input-com"> <input id='terminalLeve' type="checkbox"  autocomplete="off"></p>
+      </div>
+      
+    </div>
+	<p class="button"><span>确定解绑</span></p>
+	<!-- 弹窗列表 -->
+     <div class="listBoxShade">
+         <div class="listBox">
+            <p class="list-num">共 <span class="listNums"></span> 个</p>
+            <ul class="list-com">
+               
+            </ul> 
+            <p class="list-button"><span class="clearAll">清除全部</span><span class="close">关闭</span></p>
+         </div> 
+     </div>
+     <!-- 清除全部-->
+     <div class="clear-com">
+        <div class="clearComs">
+          <p class="infotext">确定清除全部已经添加的设备吗?</p>
+          <p class="button-com"><span class="confirm">确定</span><span class="cancel">取消</span></p>
+        </div>
+     </div>
+      <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+     </div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>  
+    <script language="javascript" type="text/javascript">
+	 var path="${ctxPath}";
+	 var reqUrl="${reqUrlRoot}";
+	 var baseUrl="${reqUrlRoot}";
+	 var custNo=$('#custNo').val(),merchantId=$('#merchantId').val();
+	 var lists=[];//设备列集合
+	  $(function(){
+		getAddList();
+		//清除全部显示
+		$('.clearAll').click(function(){
+			  $('.clear-com').css('display','block');
+		});  
+		// 点击取消
+		$('.cancel').click(function(){
+			  $('.clear-com').css('display','none');
+		});
+		//全部清除确定--
+		$('.confirm').click(function(){
+			  lists=[];
+			  $('.typeList').text(lists.length);
+			  $('.listBoxShade').css('display','none');
+		      $('.clear-com').css('display','none');
+		      window.history.go(-1);
+	    });
+		// 关闭弹窗列表
+		$('.close').click(function(){
+			  $('.listBoxShade').css('display','none');
+		});
+		//点击查看列表后删除列表页
+		$('.list-com').on('click','li .delete-icon',function(){
+			  var i=$(this).parent().index();
+			  var listLength=lists.length;//商户列表集合长度
+			  listLength--;
+			  $('.listNums').text(listLength);
+			  $('.typeList').text(listLength);
+			  lists.splice(i,1);
+			  $(this).parent().remove(); 
+			  if(listLength===0){
+				  window.history.go(-1);
+			  }
+		});
+		//点击提交
+		$('.button').click(function(){
+			let oneLeve=$('#oneLeve').prop('checked');
+        	let twoLeve=$('#twoLeve').prop('checked');
+        	let terminalLeve=$('#terminalLeve').prop('checked');
+        	let shopKeeper=$('#shopKeeper').prop('checked');
+        	let allianceBusinessId=$('#allianceBusinessId').prop('checked');
+        	
+        	let unBandingArr=[];
+        	if(oneLeve){
+        		unBandingArr.push('12');
+        	}
+        	if(twoLeve){
+        		unBandingArr.push('13');
+        	}
+        	if(terminalLeve){
+        		unBandingArr.push('10');
+        	}
+        	if(shopKeeper){
+        		unBandingArr.push('14');
+        	}
+        	if(allianceBusinessId){
+        		unBandingArr.push('15');
+        	}
+        	if(unBandingArr.length<=0){
+        		tipText("请选择要解绑的商户号!");
+        		return;
+        	}
+        	let dataObj={
+        			unBandingMerchantEnums:JSON.stringify(unBandingArr),
+        			agentsId:null,
+        			deviceIds:JSON.stringify(lists),
+        			deviceStartId:null,
+        			deviceEndId:null,
+        			merId:merchantId,
+        			custNo:custNo
+ 		   };
+        	 $('.load-com').show();//加载遮罩
+        	 $.ajax({
+     	       	type:"POST", 
+     	           url:reqUrl+"wx/batchUnBandingMerchant", 
+     	           //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+     	           data:dataObj,
+     	           dataType:'json',
+     	           success: function (res) {
+     	        	   if(res.result==='success'){
+     	        		  $('.load-com').hide();
+     	        		  let state=4;
+     	        		  window.location.href=path+"/wx/setBatchSuccess?merchantId="+merchantId+'&custNo='+custNo+'&state='+state; 
+     	        	   }else {
+     	        		  $('.load-com').hide();
+     	        		  tipText(res.message);
+     	        	   }
+     	           }
+        	 })     
+		});
+	 });    
+	  function tipText(cont){
+		    $("#result_prompt").text(cont);	    	
+		    $("#messageDialog").show();
+		    $("#msg_btn").click(function(){
+			   $("#messageDialog").hide();	
+		     });
+	  };
+	  // 获取所添加的列表
+	  function getAddList(){
+		  var dataInfo=sessionStorage.getItem('type1');//获取费用设置参数
+		  var dataInfo = jQuery.parseJSON(dataInfo);
+		  $.ajax({
+		         type:'POST',
+		         url:reqUrl+"wx/getExistDeviceIds", 
+		         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+		         data:dataInfo,
+		         dataType:'json',
+		         success:function(res){
+		        	 if(res.result==='success'){
+		        		 lists=res.responseInfo; 
+		        		 $('.typeList').text(lists.length);
+		        	 }else {
+		        		 tipText(res.message);
+		        	 }
+		         }
+		  })      
+	  };
+	  function showList(){
+		  $('.listNums').text(lists.length);
+		  $('.list-com').empty();
+		  $.each(lists,function(i,list){
+			  $('.list-com').append(
+					  '<li><span>'+list+'</span> <span  class="delete-icon">x</span> </li>'  
+			  );
+		  }); 
+		  $('.listBoxShade').css('display','block');
+	  }
+	 </script>
+</body>
+</html>

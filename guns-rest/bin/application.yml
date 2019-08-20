@@ -1,0 +1,76 @@
+# 小助手充电测试 _xzs_test_ ###
+rest:
+  auth-open: true #jwt鉴权机制是否开启(true或者false)
+  sign-open: true #签名机制是否开启(true或false)
+
+jwt:
+  header: Authorization   #http请求头所需要的字段
+  secret: mySecret        #jwt秘钥
+  expiration: 36000      #7天 单位:秒
+  auth-path: auth         #认证请求的路径
+  md5-key: randomKey      #md5加密混淆key
+  whitelist: whitelist    #白名单
+
+wechat:
+  appId: wx667aea36d8839066
+  secret: 2535a48bf4e7f8cc91886c93cd6d7d31
+  token: share1a2b3c4d0987654321
+  oauth2redirectUri: https://test.xiaobangshou.net.cn/lwcRchg/wx/index
+  aesKey: UyCAOcjsgWrjXLtfCttBfn6IMqF2Yyn3DqmcbpT5GxC
+  partnerId: 1527499921
+  partnerKey: 95433cff2395c42c407a4658467fb888
+  mchId: 1527499921 # 微信商户号
+  appMchId: 1527499921 #微信小程序对应的商户号
+  systemName: 小帮手充电商户管理平台
+  logImgFileName: xbs.png
+
+server:
+  port: 9191 # 项目端口
+
+mybatis-plus:
+  # mapper-locations: classpath:com/stylefeng/guns/rest/**/mapping/*.xml
+  typeAliasesPackage: com.stylefeng.guns.rest.common.persistence.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://132.232.234.85:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: lxyhsl!00062
+    filters: log4j,wall,mergeStat
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: C:\apache\applog\
+  file: C:\apache\applog\guns-rest.log
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245
+  url: https://test.xiaobangshou.net.cn/lwcRchg # 后台address url
+  wxapp:
+    appid: wx3947c5afd4a8e25d # 微信小程序appId
+    appsecret: 95433cff2395c42c407a4658467db969 # 微信小程序appSecret..
+    apisecret: 95433cff2395c42c407a4658467fb532 # 微信支付appSecret..
+    mchid: 1525978481 # 商户号id
+  bucket:
+    complainbucketname: 3 # ....
+  merchantId: 160423000001 # 共享助手商户号
+  isDebug: false
+
+cer:
+  keystore:
+    file: C:\apache\tomcat\cert\apiclient_cert.p12
+    password: 1525978481

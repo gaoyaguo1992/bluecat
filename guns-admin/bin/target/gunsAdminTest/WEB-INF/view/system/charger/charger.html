@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>充电器管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#SelectFilter id="condition" idForValue="conditionValue" styleForSelect="width:120px">
+                                	<option value="Id">充电器Id</option>
+                                	<option value="deviceNo">设备id</option>
+                                	<option value="chargerTypeId">充电器类型id</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Charger.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="ChargerTableToolbar" role="group">
+                            @if(shiro.hasPermission("/charger/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Charger.openAddCharger()"/>
+                            @}
+                            @if(shiro.hasPermission("/charger/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="Charger.openChargerDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/charger/charger_batch_add")){
+                            	<#button name="批量生成充电器" icon="fa-pencil" clickFun="Charger.batchGenerateCharger()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/charger/charger_batch_binddevice")){
+                            	<#button name="批量绑定设备" icon="fa-adjust" clickFun="Charger.batchBindDevice()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="ChargerTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/charger/charger.js?v=1"></script>
+@}

@@ -1,0 +1,127 @@
+# 小助手充电测试 _xzs_test_ ###
+server:
+  port: 9090
+
+guns:
+  swagger-open: true              #是否开启swagger (true/false)
+  kaptcha-open: false             #是否开启登录时验证码 (true/false)
+  # file-upload-path: d:/tmp       #文件上传目录(不配置的话为java.io.tmpdir目录)
+  spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245
+  url: https://test.xiaobangshou.net.cn/gunsAdminTest/ #  http://localhost:9090/ #  后台address url
+  wxapp:
+    appid: wx4b025f545e97bb4d # 微信小程序appId
+    appsecret: 3c6ce07cc77498018c76fede36dcd0fe # 微信小程序appSecret..
+    apisecret: 95433cff2395c42c407a4658467fb888 # 商户appSecret..
+    index: pages/index/index # 微信小程序首页
+    personalCenter: pages/usrCt/usrCt #小程序个人中心
+    url: https://open.weixin.qq.com/sns/getexpappinfo?appid=wx4b025f545e97bb4d&path=pages%2Fkp%2Fkp.html#wechat-redirect
+    mchid: 1527499921 # 商户号id
+
+  merchantId: 160423000001 # 共享助手商户号
+  isDebug: false
+  activationMode: 2 #初始化选中的设备激活方式, 1 商户扫码确认模式 2 简化模式
+  shareDeviceTypes: 10,11,20,21,30,32 #设备类型id..#
+  
+wechat:
+  appId: wx667aea36d8839066
+  secret: 2535a48bf4e7f8cc91886c93cd6d7d31
+  token: share1a2b3c4d0987654321
+  oauth2redirectUri: https://test.xiaobangshou.net.cn/gunsAdminTest/wx/index
+  aesKey: sjJL9TkvPKTQn0QyvpyRcSXXGSPSzrqPXTNvdOpIIIo
+  partnerId: 1525978481
+  partnerKey: 95433cff2395c42c407a4658467fb532
+  mchId: 1525978481 # 微信商户号 
+  appMchId: 1525978481 #微信小程序对应的商户号
+  InitMenu: true # 是否初始化菜单  true:是，false:不初始化
+  systemName: 小助手充电测试商户管理平台
+  logImgFileName: xbs.png
+
+cer:
+  keystore:
+    file: C:\apache\tomcat\cert\apiclient_cert.p12
+    password: 1525978481
+   
+spring:
+  profiles:
+    active: local
+  mvc:
+    static-path-pattern: /** #/static/**
+    view:
+      prefix: /WEB-INF/view
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.guns.modular.system.model
+
+log:
+  path: C:\apache\tomcat\logs
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: C:\apache\tomcat\applog\
+  file: C:\apache\tomcat\applog\guns-admin.log
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://132.232.234.85:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true 
+    username: root
+    password: lxyhsl!00062
+    db-name: sharedata #用来搜集数据库的所有表
+    filters: wall,mergeStat
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://132.232.234.85:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true 
+    username: root
+    password: lxyhsl!00062
+    db-name: sharedata #用来搜集数据库的所有表
+    filters: wall,mergeStat
+
+#多数据源情况的配置
+guns:
+  muti-datasource:
+    open: false
+    url: jdbc:mysql://132.232.234.85:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true 
+    username: root
+    password: lxyhsl!00062
+    dataSourceNames:
+      - dataSourceGuns
+      - dataSourceBiz
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://132.232.234.85:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true 
+    username: root
+    password: lxyhsl!00062
+    filters: wall,mergeStat
+
+---
+spring:
+  profiles: produce
+  datasource:
+     url: jdbc:mysql://132.232.234.85:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+     username: root
+     password: lxyhsl!00062
+     filters: wall,mergeStat

@@ -1,0 +1,27 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="row">
+         <div class="col-sm-3">
+             <#button style="margin-left: 15px;" name="返回首页" icon="fa-home" clickFun="NoUseByDevice.toIndex()"/>
+         </div>
+     </div>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>连续${days}天未使用的设备列表</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <#table id="nousedChargerFewDays"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/index/nousedChargerFewDays.js?v=1"></script>
+<script type="text/javascript">
+var days = "${days}";
+</script>
+@}

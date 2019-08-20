@@ -1,0 +1,74 @@
+//document.writeln("<a href=\"javascript:void(0);\" class=\"guanggao\"></a>");
+document.writeln("<div id=page style=\"min-width:1100px;\">");
+document.writeln("            <div class=\"chl-poster simple\" id=top-bar>");
+document.writeln("                    <div id=site-nav>");
+document.writeln("                    <UL class=quick-menu style=\"left:0px;\" id=\"userinfozone\">");
+document.writeln("                    </UL>");
+document.writeln("                            <UL class=quick-menu>");
+document.writeln("                              <LI class=\"enter menu-item\" id=\"user_account\"></LI>");
+document.writeln("                              <LI class=\"focuson menu-item\" id=\"insideLetter\"></LI>");
+document.writeln("                              <LI class=\"enter menu-item\">");
+
+document.writeln("                                      <div class=menu>");
+document.writeln("                                              <A class=menu-hd  target=_top rel=nofollow>手机版<B></B></A> ");
+document.writeln("                                              <div class=menu-bd>");
+document.writeln("                                                      <div class=menu-bd-panel style=\"width:165px;height:100px;border:solid 1px #EEEEEE;background:#ffffff\" >");
+document.writeln("                                                              <div>");
+document.writeln("<div style=\"float:left;\">");
+document.writeln("	<img title=\"只能通过手机浏览器下载\" alt=\"只能通过手机浏览器下载\" src=\""+baseUrl+"/image/help/appdownload.png\" style=\"width:75px;height:75px\"></img>");
+document.writeln("	<p style=\"text-align:center;\">Android客户端</p>	");
+document.writeln("</div><div style=\"float:right;\">");
+document.writeln("	<img title=\"只能通过手机浏览器下载\" alt=\"只能通过手机浏览器下载\" src=\""+baseUrl+"/image/help/iosdownload.jpg\" style=\"width:76px;height:76px\"></img>	");
+document.writeln("	<p style=\"text-align:center;\">iOS客户端</p>	");
+document.writeln("                                                              </div></div>");
+document.writeln("                                                      </div>");
+document.writeln("                                              </div>");
+document.writeln("                                      </div>");
+document.writeln("                              </LI>");
+document.writeln("                              <LI class=\"enter menu-item\">");
+
+document.writeln("                                      <div class=menu>");
+document.writeln("                                              <A class=menu-hd target=_top rel=nofollow>关注我们<B></B></A> ");
+document.writeln("                                              <div class=menu-bd style=\"border:none\">");
+document.writeln("                                                      <div class=menu-bd-panel  style=\"width:165px;height:100px;border:solid 1px #EEEEEE;background:#ffffff\">");
+document.writeln("                                                              <div>");
+document.writeln("<div style=\"float:left;\">");
+document.writeln("	<img src=\""+baseUrl+"/image/help/subscribeNo.jpg\" style=\"width:80px;height:80px\"></img>	");
+document.writeln("<p style=\"text-align:center;\">微信服务号</p>");
+document.writeln("</div><div style=\"float:right;\">");
+document.writeln("	<img src=\""+baseUrl+"/image/help/serveNo.jpg\" style=\"width:80px;height:80px\"></img>	");
+document.writeln("<p style=\"text-align:center;\">微信订阅号</p>");
+document.writeln("                                                              </div></div>");
+document.writeln("                                                      </div>");
+document.writeln("                                              </div>");
+document.writeln("                                      </div>");
+document.writeln("                              </LI>");
+
+
+//document.writeln("                              <LI class=\"favorite\" id=\"attendus\"><A href=\"javascript:void(0);\" target=_blank rel=nofollow>关注我们</A></LI>");
+document.writeln("                              <LI class=\"favorite\"><A href=\""+baseUrl+"/page/help/help.html?macid=MACID40003\" target=_blank rel=nofollow>软件下载</A></LI>");
+//document.writeln("                              <LI class=\"favorite\"><A href=\"javascript:void(0);\" target=_blank rel=nofollow>客户服务</A></LI>");
+
+document.writeln("                              <LI class=\"enter menu-item\">");
+document.writeln("                                      <div class=menu>");
+document.writeln("                                              <A class=menu-hd href=\"javascript:void(0);\" target=_top rel=nofollow>客户服务<B></B></A> ");
+document.writeln("                                              <div class=menu-bd>");
+document.writeln("                                                      <div class=menu-bd-panel>");
+document.writeln("                                                              <div>");
+document.writeln("                                                                      <A href=\""+baseUrl+"/page/userguide/userguide.html\" target=_blank rel=nofollow>用户手册</A>");
+document.writeln("                                                                      <A href=\""+baseUrl+"/page/help/help.html?macid=MACID40000\" target=_blank rel=nofollow>操作指南</A> ");
+document.writeln("                                                                      <A href=\"tencent://message/?Menu=yes&amp;uin=938009080&amp;Service=58&amp;SigT=A7F6FEA02730C988965CA2E4E0160D05E29F9EB09589138B697221502787CDB76A82606CE61A016FF8FAF632C6B2DA51EB2C6B29261B142B3BF406BEA64E36A9D60089CE3EFECA4412FA4FE18BF081CF20649864ED6F3B83EFEBABAA13341F563F9AE3EF0FA2CC4C3644340362C974AC1A3F6743846A8604&amp;SigU=30E5D5233A443AB22EA307C01DB050918517B4BFF57BCF71374026C24D2189D720EFF27D99C29FFFB2EF410F215A8C0324326173751CDA24D8C7751ED1CE6D5CA3E3DA74EE8F1A84\" target=_blank rel=nofollow>在线客服</A> ");
+document.writeln("                                                                      <A href=\""+baseUrl+"/page/aboutus/serviceEmail.html\" target=_blank rel=nofollow>客服邮箱</A> ");
+document.writeln("                                                              </div>");
+document.writeln("                                                      </div>");
+document.writeln("                                              </div>");
+document.writeln("                                      </div>");
+document.writeln("                              </LI>");
+
+document.writeln("                              <LI class=\"favorite\"><A rel=nofollow>热线400-830-1806</A></LI>");
+//document.writeln("                              <LI class=\"favorite last\"><A href=\"javascript:void(0);\" target=_blank rel=nofollow>网站导航</A></LI>");
+document.writeln("                        </UL>");
+document.writeln("                    </div>");
+document.writeln("            </div>");
+document.writeln("    </div>");
+document.writeln(" <script type='text/javascript' src='"+baseUrl+"/js/plugin/topeffec.js'></script>");

@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>用户信息管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">   
+								<#SelectFilter id="condition" idForValue="conditionValue" styleForSelect="width:120px">
+                                	<option value="custNo">客户编号</option>
+                                	<option value="nickName">客户昵称</option>
+                                	<option value="merchantId">结算商户</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="CustInfo.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="CustInfoTableToolbar" role="group">
+                           @if(shiro.hasPermission(" /custInfo/bind_cust_merchant")){
+                               <#button name="绑定商户" icon="fa-plus" clickFun="CustInfo.openCustInfoAndMerchant()"/>
+                           @}
+                        </div>
+                        <#table id="CustInfoTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/custInfo/custInfo/custInfo.js?v=1"></script>
+<script language="javascript">
+$(function () {
+    var defaultColunms = CustInfo.initColumn();
+    var table = new BSTable(CustInfo.id, "/custInfo/list", defaultColunms);
+    table.setPaginationType("client");
+    CustInfo.table = table.init();
+});
+</script>
+@}

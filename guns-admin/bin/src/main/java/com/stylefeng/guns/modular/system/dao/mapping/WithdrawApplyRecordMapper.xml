@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.WithdrawApplyRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.WithdrawApplyRecord">
+        <id column="id" property="id" />
+        <result column="apply_time" property="applyTime" />
+        <result column="apply_merchant_id" property="applyMerchantId" />
+        <result column="pre_tax_amount" property="preTaxAmount" />
+        <result column="aft_tax_amount" property="aftTaxAmount" />
+        <result column="withdraw_status" property="withdrawStatus" />
+        <result column="withdraw_status_cn" property="withdrawStatusCn" />
+        <result column="approver" property="approver" />
+        <result column="approve_time" property="approveTime" />
+        <result column="approve_status" property="approveStatus" />
+        <result column="approve_status_cn" property="approveStatusCn" />
+        <result column="approve_comment" property="approveComment" />
+        <result column="should_pay_tax" property="shouldPayTax" />
+        <result column="payer" property="payer" />
+        <result column="pay_time" property="payTime" />
+        <result column="invoice_no" property="invoiceNo" />
+        <result column="manual_deduction" property="manualDeduction" />
+        <result column="number_of_month" property="numberOfMonth" />
+        <result column="pay_way" property="payWay" />
+        <result column="is_real_time" property="isRealTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, apply_time, apply_merchant_id, pre_tax_amount, aft_tax_amount, withdraw_status, withdraw_status_cn, approver, approve_time, approve_status, approve_status_cn, approve_comment, should_pay_tax, payer, pay_time, invoice_no, manual_deduction, number_of_month, pay_way, is_real_time
+    </sql>
+
+</mapper>

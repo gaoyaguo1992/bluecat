@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="商户id" underline="true"/>
+                            <#input id="merchantName" name="商户名称" underline="true"/>
+                            <#input id="personName" name="联系人" underline="true"/>
+                            <#input id="telNo" name="联系电话" underline="true"/>
+                            <#input id="province" name="省" underline="true"/>
+                            <#input id="city" name="市" underline="true"/>
+                            <#input id="zone" name="区" underline="true"/>
+                            <#input id="agentsZone" name="代理商区" underline="true"/>
+                            <#input id="throwDevChannel" name="铺货渠道"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="applyType" name="申请类型" underline="true"/>
+                            <#input id="applyTypeCn" name="申请名" underline="true"/>
+                            <#input id="doStatus" name="处理状态" underline="true"/>
+                            <#input id="doStatusCn" name="处理状态名" underline="true"/>
+                            <#input id="custId" name="客户id" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updateTime" name="修改时间" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MerchantApplyFormInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MerchantApplyFormInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/merchantApplyForm/merchantApplyForm_info.js"></script>
+@}

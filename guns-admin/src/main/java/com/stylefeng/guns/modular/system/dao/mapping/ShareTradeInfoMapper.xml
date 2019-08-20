@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.ShareTradeInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.ShareTradeInfo">
+        <id column="id" property="id" />
+        <result column="device_no" property="deviceNo" />
+        <result column="charger_id" property="chargerId" />
+        <result column="cust_id" property="custId" />
+        <result column="yfj_amount" property="yfjAmount" />
+        <result column="trade_amount" property="tradeAmount" />
+        <result column="trade_type" property="tradeType" />
+        <result column="trade_name" property="tradeName" />
+        <result column="borrow_datetime" property="borrowDatetime" />
+        <result column="back_datetime" property="backDatetime" />
+        <result column="trade_status_name" property="tradeStatusName" />
+        <result column="trade_status" property="tradeStatus" />
+        <result column="x_coordinate" property="xCoordinate" />
+        <result column="y_coordinate" property="yCoordinate" />
+        <result column="benefit_status" property="benefitStatus" />
+        <result column="benefit_datetime" property="benefitDatetime" />
+        <result column="platform_amount" property="platformAmount" />
+        <result column="agents1_amount" property="agents1Amount" />
+        <result column="agents2_amount" property="agents2Amount" />
+        <result column="agents3_amount" property="agents3Amount" />
+        <result column="shopkeeper_amount" property="shopkeeperAmount" />
+        <result column="alliance_business_amount" property="allianceBusinessAmount" />
+        <result column="back_trade_id" property="backTradeId" />
+        <result column="trade_address" property="tradeAddress" />
+        <result column="trade_zone" property="tradeZone" />
+        <result column="trade_city" property="tradeCity" />
+        <result column="trade_province" property="tradeProvince" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="agents1_id" property="agents1Id" />
+        <result column="agents2_id" property="agents2Id" />
+        <result column="agents3_id" property="agents3Id" />
+        <result column="shopkeeper_id" property="shopkeeperId" />
+        <result column="alliance_business_id" property="allianceBusinessId" />
+        <result column="create_id" property="createId" />
+        <result column="create_datetime" property="createDatetime" />
+        <result column="update_datetime" property="updateDatetime" />
+        <result column="settle_accounts_status" property="settleAccountsStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, device_no, charger_id, cust_id, yfj_amount, trade_amount, trade_type, trade_name, borrow_datetime, back_datetime, trade_status_name, trade_status, x_coordinate, y_coordinate, benefit_status, benefit_datetime, platform_amount, agents1_amount, agents2_amount, agents3_amount, shopkeeper_amount, alliance_business_amount, back_trade_id, trade_address, trade_zone, trade_city, trade_province, merchant_id, agents1_id, agents2_id, agents3_id, shopkeeper_id, alliance_business_id, create_id, create_datetime, update_datetime, settle_accounts_status
+    </sql>
+
+</mapper>

@@ -1,0 +1,323 @@
+body{
+ background: #f2f2f2;
+}
+.profit-com{
+ margin: .2rem 0;
+}
+.profit-com>div{
+ border-bottom: 1px solid #f2f2f2; 
+background: #fff;
+padding: 0 .3rem;
+}
+.title{
+ font-size: .3rem;
+  color: #484848;    
+  height: .8rem;
+  line-height: .8rem;
+}
+.title .icon{
+ display:inline-block;
+ height: 4px;
+ width: 4px;
+ background-color: #36a3ff;
+ border-radius:50%; 
+ margin-right: .1rem;
+ vertical-align: middle; 
+}
+.title .type{
+ float: right;
+ /* color: #36a3ff; */
+ }
+.title .type i{
+  font-style: normal;
+ }
+.title .typeList{
+   color: #959595;
+ }
+ .title .type .check{
+  color: #36a3ff;
+ }
+.select-com{
+ padding: .5rem .3rem .3rem .3rem !important;
+}
+.select-com .type{
+ font-size: .28rem;
+ color: #444;
+ margin-bottom: .2rem;
+}
+.select-com .selects{
+ display: flex;
+ flex-direction:row;
+ flex-wrap:wrap;
+}
+.select-com .selects span{
+font-size:.3rem;
+color:#444;
+ height: .8rem;
+ line-height:.8rem;
+ width: 3.35rem;
+ background: #f2f2f2;
+ text-align: center;
+ border-radius: 3px;
+ margin:0 .1rem .1rem 0;
+}
+.activeImg{
+ color:#22AB39 !important;
+ background: url("../../img/merchantcenter/activeImg.png") !important;
+ background-size:100%  100% !important; 
+}
+.merchInfo{
+ display:block;
+}
+.merch-tip{
+ font-size: .28rem;
+ color: #444;
+ padding-top: .4rem;
+}
+.phone-com{
+ display: flex;
+ height: .88rem;
+ line-height: .88rem;
+ font-size: .28rem;
+ border-bottom: 1px solid #f2f2f2;
+}
+.phone-com span{
+ flex:1;
+ color: #444;
+}
+.phone-com span i,.name i{
+ font-style: normal;
+ color: #ff0000;
+ margin-right: 3px;
+ vertical-align: middle;
+}
+.phone-com input{
+ flex:1;
+  outline: none;
+  height: 90%;
+  text-align: right;
+}
+.choose-address{
+width:100%;
+}
+.choose-address .name{
+ height: .6rem;
+ line-height: .6rem;
+ font-size: .28rem;
+ color: #444;
+}
+.choose-address .distpicker{
+width:100%;
+display: flex;
+height: .88rem;
+}
+.distpicker select{
+ flex:1;
+ margin: 0 5px;
+ height: 80%;
+ border-radius: 3px;
+ outline: none;
+ width: 33%;
+ border: 1px solid #f2f2f2;
+ appearance: none;
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ background: url('../../img/select.png') right no-repeat;
+ background-size: .6rem .2rem;
+}
+ .button{
+     position: fixed;
+     bottom: 0.3rem;
+     left: 0;
+     height: .9rem;
+     line-height:.9rem;
+     width: 100%;
+     padding: 0 .3rem;
+     text-align: center;
+     font-size: .3rem;
+     color: #fff;
+    }
+    .button span{
+     display: block;
+     background: #22AB39;
+     height: 100%;
+     width: 100%;
+     border-radius:3px;
+     }  
+ .success-com{
+  position: fixed;
+  top:50%;
+  left: 50%;
+  height: 2.8rem;
+  width: 2.5rem;
+  transform: translate(-1.25rem,-1.4rem);
+  background: rgba(0,0,0,.5);
+  border-radius:5px;
+  padding-top: .6rem;
+  display: none;
+ }
+ .success-com .success-tips{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: .28rem;
+ }
+ .success-tips img{
+  height: .9rem;
+  width: 1.14rem;
+  margin-bottom: .4rem;
+ }
+ 
+ .prompt,.selectMeracant{
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+}
+.selectMeracant .selectList{
+  position: absolute;
+  top: 50%;
+  bottom:0;
+  width:100%;
+  overflow-x: scroll;
+ background: #fff;
+ font-size: .3rem;
+ text-align: center;
+}
+.Bluetitle{
+color: #22AB39;
+height: .8rem;
+ line-height: .8rem;
+ border-bottom: 1px solid #f2f2f2; 
+}
+.selectList .list li{
+ color: #959595;
+ height: .8rem;
+ line-height: .8rem;
+}
+.prompt-cont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+    margin-top: -64px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    margin-top: -3.5rem;
+    padding-bottom: .36rem;
+    font-size: .3rem;
+    background: #fff;
+    color: #333;
+}
+.promptBtn1{
+    height: .8rem;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+.promptBtn1 span{
+   display: inline-block;
+    line-height: .8rem;
+    border-radius: .5rem;
+    color: #22AB39;
+    text-align: center;
+    width: 45%;
+}
+.listBoxShade{
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}  
+.listBoxShade .listBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+    margin-top: -64px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    margin-top: -3.5rem;
+    font-size: .3rem;
+    background: #fff;
+    border-radius:3px; 
+    padding:.3rem .3rem;
+    text-align: center;
+    color: #444;
+}
+.listBoxShade .listBox .list-num{
+  font-size: .3rem;
+}
+.listBoxShade .listBox .list-com{
+  height: 4.5rem;
+  overflow-y: scroll;
+  font-size: .26rem;
+  margin: .3rem 0;
+  padding-right: .3rem;
+}
+.listBoxShade .listBox .list-com li{
+  height: .5rem;
+  line-height: .5rem;
+  border: 1px solid #d7d7d7;
+  margin: .1rem;
+  padding-right: .3rem;
+}
+.listBoxShade .listBox .list-com li .delete-icon{
+ float: right;
+ font-size: .4rem;
+}
+.listBoxShade .listBox .list-button{
+   font-size: .28rem;
+   color: #959595;
+}
+.listBoxShade .listBox .list-button .close{
+ color: #22AB39;
+ margin-left: 1rem;
+}
+.clear-com{
+    z-index: 1500;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+.clear-com .clearComs{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height:3.3rem;
+    width:4.15rem;
+    transform: translate(-2.075rem,-1.65rem);
+    font-size: .3rem;
+    background: #fff;
+    border-radius:3px; 
+    padding:.3rem .3rem;
+    text-align: center;
+    color: #444;
+}
+.clear-com .clearComs .infotext{
+     padding: .8rem .5rem;
+}
+.clear-com .clearComs .button-com span{
+ display: inline-block;
+ width: 50%;
+ color: #22AB39;
+}
+.load-com{
+ display: none;
+}

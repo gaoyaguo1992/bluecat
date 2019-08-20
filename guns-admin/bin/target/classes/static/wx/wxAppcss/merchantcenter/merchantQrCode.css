@@ -1,0 +1,15 @@
+body {
+	text-align: center;
+}
+.navbar {
+    text-align:center;
+}
+.navbar ul {
+    display:inline-block;
+}
+.navbar li {
+    float:left;
+}
+.navbar li + li {
+    margin-left:20px;
+}

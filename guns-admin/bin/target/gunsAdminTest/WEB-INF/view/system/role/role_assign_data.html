@@ -1,0 +1,47 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row btn-group-m-t">
+                <div class="col-sm-9">
+                   <#input id="merchantId" name="输入商户编号"  underline="false"/>
+                </div>
+                <div class="col-sm-3" >
+                    <#button btnCss="info" name="添加" id="ensure" icon="fa-check" clickFun="RolInfoDlg.addMerchantSubmit()"/>
+                    <#button btnCss="danger" name="删除" id="cancel" icon="fa-eraser" clickFun="RolInfoDlg.delMerchantSubmit()"/>
+                </div>
+            </div>
+              <#table id="RoleMerInfoTable"/>
+        </div>
+		<input type="hidden" id="roleId" value="${roleId}"/>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/system/role/role_info.js?v=2"></script>
+<script language="javascript">
+$(function() {
+	//处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false}
+	$('#myModal').modal(options)
+	var roleId=$("#roleId").val();
+	var param={"roleId":roleId};
+	debugger;
+    var defaultColunms = RolInfoDlg.initColumn();
+    var table = new BSTable(RolInfoDlg.id, "/role/getCustRelMerlist", defaultColunms);
+    table.setPaginationType("client");
+    table.setPagination(true);
+    table.setQueryParams(param);
+    table.setShowColumns(false);
+    table.setShowRefresh(false);
+    table.setHeight(350);
+    RolInfoDlg.table = table.init();
+});
+</script>
+@}

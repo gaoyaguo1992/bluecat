@@ -1,0 +1,110 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#deviceNoTab" valType="1" data-toggle="tab">&nbsp;&nbsp;按单个设备编号设置&nbsp;&nbsp;</a></li>
+				<li><a href="#startDeviceNoAndEndDeviceNo" valType="2" data-toggle="tab">&nbsp;按开始结束设备号设置&nbsp;</a></li>
+				<li><a href="#onLineMerchantIdSet" valType="3" data-toggle="tab">&nbsp;按终端商户设置&nbsp;</a></li>
+			</ul>
+			<input type="hidden" id="selectDeviceNoType" value="1"/>
+			<div id="myTabContent" class="tab-content" style="margin-bottom:5px;height:130px">
+				<div class="tab-pane fade in active" style="margin-top:10px;" id="deviceNoTab">
+					   <#textareaFocus id="deviceNoStr" name="设备号（多个用,分隔)"
+						 styleLabel="margin-top:40px;" cols="2" rows="6"
+						 styleGroup="height:150px" style="width:100%;" underline="false"/>
+				</div>
+				<div class="tab-pane fade"  style="margin-top:10px;" id="startDeviceNoAndEndDeviceNo">
+                      <#input id="startDeviceNo" name="开始的设备编号" underline="false"/>                            
+                      <#input id="endDeviceNo" name="结束的设备编号" underline="false"/>
+				</div>
+				<div class="tab-pane fade"  style="margin-top:10px;" id="onLineMerchantIdSet">
+                      <#inputFocus id="onlineMerchantId" hidden="onlineMerchantId_hd" 
+                          onBlurFun="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,10)"
+                          onFocusFun="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,10)"
+                          name="终端商铺号" underline="false"/>
+				</div>
+			</div>
+			<div id="bindMerchant" style="margin-top:10px;" class="list-group">
+				<a  class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						绑定商户&nbsp;&nbsp;<span id="platformRato">平台分润(100%)</span><span style="color:red">&nbsp;&nbsp;如果不输入分润设备分润比较将不修改</span>
+						<input type="hidden" id="platformRato_hd" value="100"/>
+					</h4>
+				</a>
+				<a  class="list-group-item">
+                       <#inputFocus id="agents1Rato" hidden="agents1Rato_hd" name="顶级代理商分润(%)"
+                         changeEventFun="DeviceInfoInfoDlg.merchantRatoOnChange(this,11)"
+                         underline="false"/>
+				</a>
+				<a  class="list-group-item">                       
+                       <#inputFocus id="agents2Rato" hidden="agents2Rato_hd" name="一级代理商分润(%)"
+                         changeEventFun="DeviceInfoInfoDlg.merchantRatoOnChange(this,12)"
+                         underline="false"/>
+				</a>
+				<a  class="list-group-item">                
+                       <#inputFocus id="agents3Rato" hidden="agents3Rato_hd" name="二级代理商分润(%)"  
+                         changeEventFun="DeviceInfoInfoDlg.merchantRatoOnChange(this,13)"
+                         underline="false"/>
+				</a>
+				<a  class="list-group-item">              
+                       <#inputFocus id="shopkeeperRato" hidden="shopkeeperRato_hd" name="铺货商分润(%)" 
+                         changeEventFun="DeviceInfoInfoDlg.merchantRatoOnChange(this,14)"
+                         underline="false"/>
+				</a>
+				<a  class="list-group-item">           
+                       <#inputFocus id="allianceBusinessRate" hidden="allianceBusinessRate_hd" name="加盟商分润(%)" 
+                         changeEventFun="DeviceInfoInfoDlg.merchantRatoOnChange(this,15)"
+                         underline="false"/>
+				</a>
+			</div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DeviceInfoInfoDlg.batchBindRato()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DeviceInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/system/deviceInfo/deviceInfo_info.js?v=11"></script>
+<script language="javascript">
+   var isAdmin=1;
+   $(function(){
+		var options={keyboard:false,backdrop:'static',show:false}
+		$('#myModal').modal(options)
+	   
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // 获取已激活的标签页的名称
+            var valType = $(e.target).attr("valType");
+            // 获取前一个激活的标签页的名称
+            $("#selectDeviceNoType").val(valType);
+        });
+
+        //初始化选中
+        var itemForSelect=window.parent.DeviceInfo.getAllSelectedDevices();
+        if(itemForSelect!=null&&itemForSelect!=undefined&&itemForSelect.length>0){
+        	var selectIds="";
+        	for(var i=0;i<itemForSelect.length;i++){
+        		if(i>0){
+        			selectIds=selectIds+","+itemForSelect[i].id;
+        		}else{
+        			selectIds=itemForSelect[i].id;
+        		}
+        	}
+        	if(selectIds!=""){
+        		$("#deviceNoStr").val(selectIds);
+        	}
+        }
+    });
+ </script>
+@}

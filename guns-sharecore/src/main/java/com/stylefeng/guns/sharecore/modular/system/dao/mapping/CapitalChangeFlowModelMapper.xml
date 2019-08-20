@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.CapitalChangeFlowModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.CapitalChangeFlowModel" >
+    <id column="flow_id" property="flowId" jdbcType="BIGINT" />
+    <result column="CAPITAL_CHANGE_ID" property="capitalChangeId" jdbcType="BIGINT" />
+    <result column="trade_record_id" property="tradeRecordId" jdbcType="BIGINT" />
+    <result column="CAPITAL_TYPE" property="capitalType" jdbcType="TINYINT" />
+    <result column="CUST_NO" property="custNo" jdbcType="BIGINT" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="frozen_balance" property="frozenBalance" jdbcType="DECIMAL" />
+    <result column="AVAILABLE_BALANCE" property="availableBalance" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_sumed" property="isSumed" jdbcType="TINYINT" />
+    
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    flow_id, CAPITAL_CHANGE_ID,trade_record_id, CAPITAL_TYPE, CUST_NO, ACCOUNT_ID, balance, frozen_balance, 
+    AVAILABLE_BALANCE, create_time,is_sumed
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from capital_change_flow
+    where flow_id = #{flowId,jdbcType=BIGINT}
+  </select>
+
+ 
+  <select id="selectAllUnSumedFlowByPtCustNo" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from capital_change_flow
+    where CUST_NO = #{custNo,jdbcType=BIGINT} and is_sumed = #{isSumed,jdbcType=TINYINT} 
+    order by create_time asc    
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from capital_change_flow
+    where flow_id = #{flowId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.modular.system.model.CapitalChangeFlowModel" >
+    insert into capital_change_flow (flow_id, CAPITAL_CHANGE_ID,trade_record_id, CAPITAL_TYPE, 
+      CUST_NO, ACCOUNT_ID, balance, 
+      frozen_balance, AVAILABLE_BALANCE, create_time,is_sumed
+      )
+    values (#{flowId,jdbcType=BIGINT}, #{capitalChangeId,jdbcType=BIGINT},#{tradeRecordId,jdbcType=BIGINT},
+      #{capitalType,jdbcType=TINYINT}, 
+      #{custNo,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, #{balance,jdbcType=DECIMAL}, 
+      #{frozenBalance,jdbcType=DECIMAL}, #{availableBalance,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}
+      ,#{isSumed,jdbcType=TINYINT} 
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.CapitalChangeFlowModel" >
+    insert into capital_change_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="capitalChangeId != null" >
+        CAPITAL_CHANGE_ID,
+      </if>
+       <if test="tradeRecordId != null" >
+        trade_record_id,
+      </if>
+      <if test="capitalType != null" >
+        CAPITAL_TYPE,
+      </if>
+       <if test="isSumed != null" >
+        is_sumed,
+      </if>
+      <if test="custNo != null" >
+        CUST_NO,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="frozenBalance != null" >
+        frozen_balance,
+      </if>
+      <if test="availableBalance != null" >
+        AVAILABLE_BALANCE,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        #{flowId,jdbcType=BIGINT},
+      </if>
+      <if test="capitalChangeId != null" >
+        #{capitalChangeId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeRecordId != null" >
+        #{tradeRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="capitalType != null" >
+        #{capitalType,jdbcType=TINYINT},
+      </if>
+       <if test="isSumed != null" >
+        #{isSumed,jdbcType=TINYINT},
+      </if>
+      <if test="custNo != null" >
+        #{custNo,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenBalance != null" >
+        #{frozenBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null" >
+        #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.CapitalChangeFlowModel" >
+    update capital_change_flow
+    <set >
+      <if test="capitalChangeId != null" >
+        CAPITAL_CHANGE_ID = #{capitalChangeId,jdbcType=BIGINT},
+      </if>
+      <if test="isSumed != null" >
+        is_sumed = #{isSumed,jdbcType=TINYINT},
+      </if>
+       <if test="capitalType != null" >
+        CAPITAL_TYPE = #{capitalType,jdbcType=TINYINT},
+      </if>
+      
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenBalance != null" >
+        frozen_balance = #{frozenBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null" >
+        AVAILABLE_BALANCE = #{availableBalance,jdbcType=DECIMAL},
+      </if>     
+    </set>
+    where flow_id = #{flowId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.CapitalChangeFlowModel" >
+    update capital_change_flow
+    set CAPITAL_CHANGE_ID = #{capitalChangeId,jdbcType=BIGINT},
+      CAPITAL_TYPE = #{capitalType,jdbcType=TINYINT},
+      is_sumed = #{isSumed,jdbcType=TINYINT},     
+      ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      frozen_balance = #{frozenBalance,jdbcType=DECIMAL},
+      AVAILABLE_BALANCE = #{availableBalance,jdbcType=DECIMAL}
+    where flow_id = #{flowId,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

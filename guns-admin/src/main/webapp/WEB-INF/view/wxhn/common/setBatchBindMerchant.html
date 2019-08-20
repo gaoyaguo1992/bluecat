@@ -1,0 +1,516 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>绑定商户</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/font-awesome.css?v=4.4.0"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/chosen/chosen.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/style.css?v=4.1.0"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/_fstyle.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/iCheck/custom.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/webuploader/webuploader.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/mobiscroll_date.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/setBatchBindMerchant.css?v=2">
+</head>	
+<body>
+    <script>reset();</script>
+    <input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfo.id}"/>
+     <input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+    <div class="profit-com">
+       <div class="title"><span class="icon"></span>绑定商户<span class="type">共 <i class="typeList"></i>个<i onclick="showList()" class="check">查看></i> </span></div>
+     	   @if(merchantInfo.merchantType != 15 && merchantInfo.merchantType != 14 && merchantInfo.merchantType != 13 && merchantInfo.merchantType != 12){
+	     	  <div class="title-list"><span class="type">一级代理商</span>
+		        <p class="input-com"> <input type="text" id="leve1" autocomplete="off" placeholder="请输入绑定一代理商ID" onfocus="this.placeholder=''" onblur="this.placeholder='请输入绑定二代理商ID'"></p>
+		      </div>
+	      @}
+	       @if(merchantInfo.merchantType != 15 && merchantInfo.merchantType != 14 && merchantInfo.merchantType != 13){
+		      <div class="title-list"><span class="type">二级代理商</span>
+		        <p class="input-com"> <input type="text" id="leve2" autocomplete="off" placeholder="请输入绑定二代理商ID" onfocus="this.placeholder=''" onblur="this.placeholder='请输入绑定三代理商ID'"></p>
+		      </div>
+	      @}
+	      @if(merchantInfo.merchantType != 15 && merchantInfo.merchantType != 14){
+		      <div class="title-list"><span class="type">铺货商</span>
+		        <p class="input-com"> <input type="text" id="leve4" autocomplete="off" placeholder="请输入绑定铺货商ID" onfocus="this.placeholder=''" onblur="this.placeholder='请输入绑定铺货商ID'"></p>
+		      </div>
+	      @}
+	     @if(merchantInfo.merchantType != 15){
+		      <div class="title-list"><span class="type">加盟商</span>
+		        <p class="input-com"> <input type="text" id="leve5" autocomplete="off" placeholder="请输入绑定加盟商ID" onfocus="this.placeholder=''" onblur="this.placeholder='请输入绑定加盟商ID'"></p>
+		      </div>
+	      
+	      @}
+	      <div class="title-list"><span class="type">终端店铺</span>
+	        <p class="input-com"> <input type="text" id="leve3" autocomplete="off" placeholder="请输入终端店铺ID" onfocus="this.placeholder=''" onblur="this.placeholder='请输入终端店铺ID'"></p>
+	      </div>
+    </div>
+	<p class="button" style="position:relative;"><span>提交</span></p>
+	<!-- 弹窗列表 -->
+     <div class="listBoxShade">
+         <div class="listBox">
+            <p class="list-num">共 <span class="listNums"></span> 个</p>
+            <ul class="list-com">
+               
+            </ul> 
+            <p class="list-button"><span class="clearAll">清除全部</span><span class="close">关闭</span></p>
+         </div> 
+     </div>
+     <!-- 清除全部-->
+     <div class="clear-com">
+        <div class="clearComs">
+          <p class="infotext">确定清除全部已经添加的设备吗?</p>
+          <p class="button-com"><span class="confirm">确定</span><span class="cancel">取消</span></p>
+        </div>
+     </div>   <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">确定</div>
+        </div>
+     </div>
+      <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+     </div>
+    <!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>  
+    <script language="javascript" type="text/javascript">
+	var path="${ctxPath}";
+	var reqUrl="${reqUrlRoot}";
+	var baseUrl="${reqUrlRoot}";
+	
+	 var custNo=$('#custNo').val(),merchantId=$('#merchantId').val(),merId=$('#merchantId').val();
+	 var lists=[];//设备列集合
+	 var firstLevelAgentsId=null;
+	 var firstLevelAgentsCn=null;
+	 var secondLevelAgentsId=null;
+	 var secondLevelAgentsCn=null;
+	 var shopkeeperId=null;
+	 var shopkeeperCn=null;
+	 var allianceBusinessId=null;
+	 var allianceBusinessCn=null;	 
+	 var terminalId=null;
+	 var terminalCn=null;
+	 
+	 var switchButton=true;//提交按钮 
+	 $(function(){
+	     Feng.addCtx("${ctxPath}");
+	     Feng.sessionTimeoutRegistry();
+		 $('.modal').appendTo("body");
+		 //处理用户修改费用..
+		 var options={keyboard:false,backdrop:'static',show:false};
+		 $('#myModal').modal(options);
+		 
+		 getAddList();
+		 //清除全部显示
+		 $('.clearAll').click(function(){
+			  $('.clear-com').css('display','block');
+		 });  
+		 // 点击取消
+		 $('.cancel').click(function(){
+			  $('.clear-com').css('display','none');
+		 });
+		 //全部清除确定--
+		 $('.confirm').click(function(){
+			  lists=[];
+			  $('.typeList').text(lists.length);
+			  $('.listBoxShade').css('display','none');
+		      $('.clear-com').css('display','none');
+		      window.history.go(-1);
+	      });
+		  // 关闭弹窗列表
+		  $('.close').click(function(){
+			  $('.listBoxShade').css('display','none');
+		  });
+		//点击查看列表后删除列表页
+		  $('.list-com').on('click','li .delete-icon',function(){
+			  var i=$(this).parent().index();
+			  var listLength=lists.length;//商户列表集合长度
+			  listLength--;
+			  $('.listNums').text(listLength);
+			  $('.typeList').text(listLength);
+			  lists.splice(i,1);
+			  $(this).parent().remove(); 
+			  if(listLength===0){
+				  window.history.go(-1);
+			  }
+		  });
+		  $('#leve1').keydown(function(event){ 
+			  if(event.keyCode == 8){
+				  $('#leve1').val('');
+				  firstLevelAgentsId = $('#leve1').val();
+				  switchButton=true;
+			  }
+		  });
+		  $('#leve2').keydown(function(event){ 
+			  if(event.keyCode == 8){
+				  $('#leve2').val('');
+				  secondLevelAgentsId = $('#leve2').val();
+				  switchButton=true;
+			  }
+		  });
+		  $('#leve3').keydown(function(event){ 
+			  if(event.keyCode == 8){
+				  $('#leve3').val('');
+				  terminalId = $('#leve3').val();
+				  switchButton=true;
+			  }
+		  });
+		  $('#leve4').keydown(function(event){ 
+			  if(event.keyCode == 8){
+				  $('#leve4').val('');
+				  terminalId = $('#leve4').val();
+				  switchButton=true;
+			  }
+		  });
+		  $('#leve5').keydown(function(event){ 
+			  if(event.keyCode == 8){
+				  $('#leve5').val('');
+				  terminalId = $('#leve5').val();
+				  switchButton=true;
+			  }
+		  });
+		//校验
+		$('#leve1').on('input propertychange',function(){
+			  var merchantId=$('#leve1').val();
+			  firstLevelAgentsId=merchantId;
+			  var data={
+					 merchantId:merchantId,
+					 merId:merId,
+					 merchantType:"12"
+			  };
+			  if(merchantId.length>=11){				
+				  //var dataInfo= JSON.stringify(data);
+				  $.ajax({
+			        type:"POST", 
+			        url:reqUrl+"wx/queryMerchantInfo",      
+			        data:data,
+			        dataType:'json',
+			        success: function (res) {
+			        	if(res.result==='success'){
+			        		firstLevelAgentsId=res.responseInfo.id;
+			        		firstLevelAgentsCn=res.responseInfo.name;
+			        		$('#leve1').val(firstLevelAgentsId+'('+firstLevelAgentsCn+')');
+			        	}else{
+			        		tipText(res.message);
+			        		switchButton=false;
+			        	}
+			        }
+			    }); 
+			 }
+		  });
+		 $('#leve2').on('input propertychange',function(){
+			  var merchantId=$('#leve2').val();
+			  secondLevelAgentsId=merchantId;
+			  var data={
+					 merchantId:merchantId,
+					 merId:merId,
+					 merchantType:"13"
+			  };
+			  if(merchantId.length>=11){
+				  //var dataInfo= JSON.stringify(data);
+				  $.ajax({
+				        type:"POST", 
+				        url:reqUrl+"wx/queryMerchantInfo", 
+				        //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+				        data:data,
+				        dataType:'json',
+				        success: function (res) {
+				        	if(res.result==='success'){
+				        		secondLevelAgentsId=res.responseInfo.id;
+				        		secondLevelAgentsCn=res.responseInfo.name;
+				        		$('#leve2').val(secondLevelAgentsId+'('+secondLevelAgentsCn+')');
+				        	}else{
+				        		tipText(res.message);
+				        		switchButton=false;
+				        	}
+				        }
+				  });    
+			  }
+		  });
+		  $('#leve3').on('input propertychange',function(){
+			  var merchantId=$('#leve3').val();
+			  terminalId=merchantId;
+			  var data={
+					 merchantId:merchantId,
+					 merId:merId,
+					 merchantType:"10"
+			  };
+			  if(merchantId.length>=11){
+				  //var dataInfo= JSON.stringify(data);
+				  $.ajax({
+				        type:"POST", 
+				        url:reqUrl+"wx/queryMerchantInfo", 
+				        //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+				        data:data,
+				        dataType:'json',
+				        success: function (res) {
+				        	if(res.result==='success'){
+				        		terminalId=res.responseInfo.id;
+				        		terminalCn=res.responseInfo.name;
+				        		$('#leve3').val(terminalId+'('+terminalCn+')');
+				        	}else{
+				        		tipText(res.message);
+				        		switchButton=false;
+				        	}
+				        }
+				  }); 
+			  }
+		  });
+		  $('#leve4').on('input propertychange',function(){
+			  var merchantId=$('#leve4').val();
+			  shopkeeperId=merchantId;
+			  var data={
+					 merchantId:merchantId,
+					 merId:merId,
+					 merchantType:"14"
+			  };
+			  if(merchantId.length>=11){
+				  //var dataInfo= JSON.stringify(data);
+				  $.ajax({
+				        type:"POST", 
+				        url:reqUrl+"wx/queryMerchantInfo", 
+				        //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+				        data:data,
+				        dataType:'json',
+				        success: function (res) {
+				        	if(res.result==='success'){
+				        		shopkeeperId=res.responseInfo.id;
+				        		shopkeeperCn=res.responseInfo.name;
+				        		$('#leve4').val(shopkeeperId+'('+shopkeeperCn+')');
+				        	}else{
+				        		tipText(res.message);
+				        		switchButton=false;
+				        	}
+				        }
+				  }); 
+			  }
+		  });
+		  $('#leve5').on('input propertychange',function(){
+			  var merchantId=$('#leve5').val();
+			  allianceBusinessId=merchantId;
+			  var data={
+					 merchantId:merchantId,
+					 merId:merId,
+					 merchantType:"15"
+			  };
+			  if(merchantId.length>=11){
+				  //var dataInfo= JSON.stringify(data);
+				  $.ajax({
+				        type:"POST", 
+				        url:reqUrl+"wx/queryMerchantInfo", 
+				        //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+				        data:data,
+				        dataType:'json',
+				        success: function (res) {
+				        	if(res.result==='success'){
+				        		allianceBusinessId=res.responseInfo.id;
+				        		allianceBusinessCn=res.responseInfo.name;
+				        		$('#leve5').val(allianceBusinessId+'('+allianceBusinessCn+')');
+				        	}else{
+				        		tipText(res.message);
+				        		switchButton=false;
+				        	}
+				        }
+				  }); 
+			  }
+		  });
+	   // 点击确定提交  
+	   $('.button').click(function(){
+		   debugger;
+		   var mId1=$('#leve1').val();
+		   var mId2=$('#leve2').val();
+		   var mId3=$('#leve3').val();
+		   var mId4=$('#leve4').val();
+		   var mId5=$('#leve5').val();
+		  if(mId1==='' && mId2==='' && mId3==='' && mId4==='' && mId5===''){
+			  tipText('商户编号不能为空');
+			  return;
+		  }
+		  if(firstLevelAgentsId != null && firstLevelAgentsId != ''){
+			  if(!isMerchantNumber(firstLevelAgentsId)){
+				  tipText('商户编号格式不正确');
+				  return;
+			  }
+		  }
+		  if(secondLevelAgentsId != null && secondLevelAgentsId != ''){
+			  if(!isMerchantNumber(secondLevelAgentsId)){
+				  tipText('商户编号格式不正确');
+				  return;
+			  }
+		  }
+		  if(shopkeeperId != null && shopkeeperId != ''){
+			  if(!isMerchantNumber(shopkeeperId)){
+				  tipText('商户编号格式不正确');
+				  return;
+			  }
+		  }
+		  if(secondLevelAgentsId != null && secondLevelAgentsId != ''){
+			  if(!isMerchantNumber(secondLevelAgentsId)){
+				  tipText('商户编号格式不正确');
+				  return;
+			  }
+		  }
+		  
+		  if(allianceBusinessId != null && allianceBusinessId != ''){
+			  if(!isMerchantNumber(allianceBusinessId)){
+				  tipText('商户编号格式不正确');
+				  return;
+			  }
+		  } 
+			 var listStr = JSON.stringify(lists);
+			 let dataObj={
+					    deviceIds:listStr,
+					    firstLevelAgentsId:firstLevelAgentsId,
+					    firstLevelAgentsCn:firstLevelAgentsCn,
+					    secondLevelAgentsId:secondLevelAgentsId,
+					    secondLevelAgentsCn:secondLevelAgentsCn,
+					    shopkeeperId:shopkeeperId,
+					    shopkeeperCn:shopkeeperCn,
+					    allianceBusinessId:allianceBusinessId,
+					    allianceBusinessCn:allianceBusinessCn,
+					    merchantId:terminalId,
+					    merchantCn:terminalCn,
+					    merId:merId,
+					    custNo:custNo
+				  };		   
+			   $('.load-com').show();//加载遮罩
+			   $.ajax({
+			         type:'POST',
+			         url:reqUrl+"wx/bandingMerchant", 
+			         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+			         data:dataObj,
+			         dataType:'json',
+			         success:function(res){
+			        	 if(res.result==='success'){
+			        		 $('.load-com').hide();
+			        		 let state=3;
+		    				 window.location.href=path+"/wx/setBatchSuccess?merchantId="+merId+'&custNo='+custNo+'&state='+state; 
+			        	 }else {
+			        		 $('.load-com').hide();
+			        		 tipText(res.message);
+			        	 }
+			         }
+			   });
+	     });
+	   });
+	  // 获取所添加的列表
+	  function getAddList(){
+		  debugger;
+		  var dataInfo=sessionStorage.getItem('type1');//获取费用设置参数
+		  var dataInfo = jQuery.parseJSON(dataInfo);
+		  $.ajax({
+		         type:'POST',
+		         url:reqUrl+"wx/getExistDeviceIds", 
+		         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+		         data:dataInfo,
+		         dataType:'json',
+		         success:function(res){
+		        	 if(res.result==='success'){
+		        		 lists=res.responseInfo; 
+		        		 $('.typeList').text(lists.length);
+		        	 }else {
+		        		 tipText(res.message);
+		        	 }
+		         }
+		  })      
+	  };
+	  function tipText(cont){
+		    $("#result_prompt").text(cont);	    	
+		    $("#messageDialog").show();
+		    $("#msg_btn").click(function(){
+			   $("#messageDialog").hide();	
+		     });
+	      };
+	  //商户编号检验
+	  function isMerchantNumber(val){
+		  var reg= /^[0-9]{10,14}$/;
+		  if(reg.test(val)){
+			  return true;
+		  }else{
+			  return false;
+		  }
+	  };
+	  function showList(){
+		  $('.listNums').text(lists.length);
+		  $('.list-com').empty();
+		  $.each(lists,function(i,list){
+			  $('.list-com').append(
+					  '<li><span>'+list+'</span> <span  class="delete-icon">x</span> </li>'  
+			  );
+		  }); 
+		  $('.listBoxShade').css('display','block');
+	  }
+	  /**
+	   * 开启屏蔽层.
+	   */
+	  startShieldLayer = function() {
+	  	$('#myModal').modal("show");
+	  }
+	  /**
+	   * 结束屏蔽层.
+	   */
+	  finishShieldLayer = function() {
+	  	$('#myModal').modal("hide");
+	  }
+	 </script>
+</body>
+</html>

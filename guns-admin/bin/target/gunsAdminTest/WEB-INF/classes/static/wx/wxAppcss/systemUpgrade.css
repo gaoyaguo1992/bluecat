@@ -1,0 +1,26 @@
+ .iconbox{
+     position: absolute;
+     top: 40%;
+     margin-top: -120px;
+     padding: 0 20px;
+     width: 100%;
+     font-size: 20px;
+     text-align: left;
+ }
+ .icon-xitong{
+     display: block;
+     margin-bottom: 40px;
+     font-size: 120px;
+     color: #00aafc;
+ }
+.iconbox p{
+     color:#333;
+ }
+ .time{
+     margin-top: 30px;
+    font-size: 16px; 
+ }
+ .time b{
+     color: #f00;
+     font-weight: bold;
+ }

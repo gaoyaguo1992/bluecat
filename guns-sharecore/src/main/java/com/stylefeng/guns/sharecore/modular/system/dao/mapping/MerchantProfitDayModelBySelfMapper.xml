@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.MerchantProfitDayModelBySelfMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.MerchantProfitDayModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="check_date" property="checkDate" jdbcType="DATE" />
+    <result column="check_month" property="checkMonth" jdbcType="VARCHAR" />
+    <result column="check_year" property="checkYear" jdbcType="VARCHAR" />
+    <result column="merchant_id" property="merchantId" jdbcType="BIGINT" />
+    <result column="ratio_id" property="ratioId" jdbcType="BIGINT" />
+    <result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+    <result column="merchant_type" property="merchantType" jdbcType="VARCHAR" />
+    <result column="settle_fee_type" property="settleFeeType" jdbcType="TINYINT" />
+    <result column="settle_fee_type_cn" property="settleFeeTypeCn" jdbcType="VARCHAR" />
+    <result column="settlement_count" property="settlementCount" jdbcType="INTEGER" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="done_amount" property="doneAmount" jdbcType="DECIMAL" />
+    <result column="un_amount" property="unAmount" jdbcType="DECIMAL" />
+    <result column="ratio_time" property="ratioTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="TINYINT" />
+    <result column="industry_category_cn" property="industryCategoryCn" jdbcType="VARCHAR" />
+    <result column="merchant_type_cn" property="merchantTypeCn" jdbcType="VARCHAR" />
+    <result column="charger_type" property="chargerType" jdbcType="TINYINT" />
+    <result column="batch_no" property="batchNo" jdbcType="BIGINT" />
+    <result column="is_freeze" property="isFreeze" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into merchant_profit_day (id, check_date, check_month, 
+      check_year, merchant_id, ratio_id, 
+      merchant_name, merchant_type, settle_fee_type, 
+      settle_fee_type_cn, settlement_count, total_amount, 
+      done_amount, un_amount, ratio_time, 
+      create_time, update_time, STATUS, 
+      industry_category_cn, merchant_type_cn, charger_type, 
+      batch_no, is_freeze)
+    values
+    <foreach collection ="list" item="profitModel" separator =",">    
+     (#{profitModel.id,jdbcType=BIGINT}, #{profitModel.checkDate,jdbcType=DATE}, #{profitModel.checkMonth,jdbcType=VARCHAR}, 
+      #{profitModel.checkYear,jdbcType=VARCHAR}, #{profitModel.merchantId,jdbcType=BIGINT}, #{profitModel.ratioId,jdbcType=BIGINT}, 
+      #{profitModel.merchantName,jdbcType=VARCHAR}, #{profitModel.merchantType,jdbcType=VARCHAR}, #{profitModel.settleFeeType,jdbcType=TINYINT}, 
+      #{profitModel.settleFeeTypeCn,jdbcType=VARCHAR}, #{profitModel.settlementCount,jdbcType=INTEGER}, #{profitModel.totalAmount,jdbcType=DECIMAL}, 
+      #{profitModel.doneAmount,jdbcType=DECIMAL}, #{profitModel.unAmount,jdbcType=DECIMAL}, #{profitModel.ratioTime,jdbcType=TIMESTAMP}, 
+      #{profitModel.createTime,jdbcType=TIMESTAMP}, #{profitModel.updateTime,jdbcType=TIMESTAMP}, #{profitModel.status,jdbcType=TINYINT}, 
+      #{profitModel.industryCategoryCn,jdbcType=VARCHAR}, #{profitModel.merchantTypeCn,jdbcType=VARCHAR}, #{profitModel.chargerType,jdbcType=TINYINT}, 
+      #{profitModel.batchNo,jdbcType=BIGINT}, #{profitModel.isFreeze,jdbcType=TINYINT})
+    </foreach >
+  </insert>    
+  <resultMap id="queryMerTradeCountAndAmtResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.ShareTrdTotalInfo">
+  	<result column="tradeCount" jdbcType="INTEGER" property="hisTradeCount" />
+  	<result column="tradeAmount" jdbcType="DECIMAL" property="hisTradeAmount" />
+  	<result column="unAmount" jdbcType="DECIMAL" property="frozenAmount" />
+  </resultMap>
+  <!-- 获取指定商户的收益统计信息 -->
+  <select id="getMerIncmCntAndAmtNew" 
+  	parameterType="com.stylefeng.guns.sharecore.modular.system.model.FrozenCapitaInfoBO" 
+  	resultMap="queryMerTradeCountAndAmtResultMap"  >
+    SELECT 
+	    COUNT(distinct check_date) tradeCount,
+	    SUM(total_amount) tradeAmount,
+	    SUM(un_amount) unAmount 
+    FROM merchant_profit_day
+	WHERE 1 = 1
+	<if test="merchantId != null">
+		and merchant_id =	#{merchantId,jdbcType=BIGINT}
+	</if>
+	<if test="beginDateTime != null and beginDateTime != '' ">
+		<![CDATA[ 
+			and check_date >= #{beginDateTime}
+    	]]>
+	</if>
+	<if test="endDateTime != null and endDateTime != '' ">
+		<![CDATA[ 
+			and check_date <= #{endDateTime}
+    	]]>
+	</if>
+  </select>
+  <!-- 获取指定商户的日冻结金额统计 -->
+  <select id="queryMerchantFreezeCount" 
+  	parameterType="com.stylefeng.guns.sharecore.modular.system.model.FrozenCapitaInfoBO" 
+  	resultMap="queryMerTradeCountAndAmtResultMap"  >
+    SELECT 
+     IFNULL(SUM(un_amount),0) unAmount 
+    FROM merchant_profit_day
+	WHERE is_freeze =1
+		<if test="merchantId != null">
+			and merchant_id =	#{merchantId,jdbcType=BIGINT}
+		</if>
+		<if test="beginDateTime != null and beginDateTime != '' ">
+			<![CDATA[ 
+				and check_date >= #{beginDateTime}
+	    	]]>
+		</if>
+		<if test="endDateTime != null and endDateTime != '' ">
+			<![CDATA[ 
+				and check_date <= #{endDateTime}
+	    	]]>
+		</if>
+  </select>
+  
+    <!-- 获取指定商户的月冻结金额统计 -->
+  <select id="queryMerchantMonthFreezeCount" 
+  		parameterType="com.stylefeng.guns.sharecore.modular.system.model.FrozenCapitaInfoBO" 
+  		resultType="java.math.BigDecimal"  >
+    SELECT 
+    	SUM(un_amount) unAmount 
+    FROM merchant_profit_day
+	WHERE is_freeze =1
+		<if test="merchantId != null">
+			and merchant_id =	#{merchantId,jdbcType=BIGINT}
+		</if>
+		<if test="beginDateTime != null and beginDateTime != '' ">
+			<![CDATA[ 
+				and check_date >= #{beginDateTime}
+	    	]]>
+		</if>
+		<if test="endDateTime != null and endDateTime != '' ">
+			<![CDATA[ 
+				and check_date <= #{endDateTime}
+	    	]]>
+		</if>
+  </select>
+</mapper>

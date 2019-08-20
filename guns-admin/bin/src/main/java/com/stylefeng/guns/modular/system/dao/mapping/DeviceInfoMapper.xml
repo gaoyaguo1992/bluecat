@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.DeviceInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.DeviceInfo">
+        <id column="Id" property="Id" />
+        <result column="device_type_id" property="deviceTypeId" />
+        <result column="device_type_name" property="deviceTypeName" />
+        <result column="device_status" property="deviceStatus" />
+        <result column="online_datetime" property="onlineDatetime" />
+        <result column="online_merchant_id" property="onlineMerchantId" />
+        <result column="online_address" property="onlineAddress" />
+        <result column="online_city" property="onlineCity" />
+        <result column="online_zone" property="onlineZone" />
+        <result column="online_province" property="onlineProvince" />
+        <result column="online_x_coordinate" property="onlineXCoordinate" />
+        <result column="online_y_coordinate" property="onlineYCoordinate" />
+        <result column="fee_type_id" property="feeTypeId" />
+        <result column="fee_type_name" property="feeTypeName" />
+        <result column="yfj_amount" property="yfjAmount" />
+        <result column="first_amount" property="firstAmount" />
+        <result column="first_minutes" property="firstMinutes" />
+        <result column="amount_per_hour" property="amountPerHour" />
+        <result column="amount_max_24hour" property="amountMax24hour" />
+        <result column="fee1_type_Id" property="fee1TypeId" />
+        <result column="fee1_type_name" property="fee1TypeName" />
+        <result column="fee1_hour_type" property="fee1HourType" />
+        <result column="fee1_hour_amount" property="fee1HourAmount" />
+        <result column="fee2_type_id" property="fee2TypeId" />
+        <result column="fee2_type_name" property="fee2TypeName" />
+        <result column="fee2_hour_type" property="fee2HourType" />
+        <result column="fee2_hour_amount" property="fee2HourAmount" />
+        <result column="fee3_type_id" property="fee3TypeId" />
+        <result column="fee3_type_name" property="fee3TypeName" />
+        <result column="fee3_hour_type" property="fee3HourType" />
+        <result column="fee3_hour_amount" property="fee3HourAmount" />
+        <result column="platform_rato" property="platformRato" />
+        <result column="agents1_id" property="agents1Id" />
+        <result column="agents1_cn" property="agents1Cn" />
+        <result column="agents1_rato" property="agents1Rato" />
+        <result column="agents2_id" property="agents2Id" />
+        <result column="agents2_cn" property="agents2Cn" />
+        <result column="agents2_rato" property="agents2Rato" />
+        <result column="agents3_id" property="agents3Id" />
+        <result column="agents3_rato" property="agents3Rato" />
+        <result column="agents3_cn" property="agents3Cn" />
+        <result column="shopkeeper_id" property="shopkeeperId" />
+        <result column="shopkeeper_cn" property="shopkeeperCn" />
+        <result column="shopkeeper_rato" property="shopkeeperRato" />
+        <result column="alliance_business_id" property="allianceBusinessId" />
+        <result column="alliance_business_cn" property="allianceBusinessCn" />
+        <result column="alliance_business_rate" property="allianceBusinessRate" />
+        <result column="create_id" property="createId" />
+        <result column="create_datetime" property="createDatetime" />
+        <result column="update_datetime" property="updateDatetime" />
+        <result column="SQR_url" property="sqrUrl" />
+        <result column="remark" property="remark" />
+        <result column="yfj_reback_type" property="yfjRebackType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        Id, device_type_id, device_type_name, device_status, online_datetime, online_merchant_id, online_address, online_city, online_zone, online_province, online_x_coordinate, online_y_coordinate, fee_type_id, fee_type_name, yfj_amount, first_amount, first_minutes, amount_per_hour, amount_max_24hour, fee1_type_Id, fee1_type_name, fee1_hour_type, fee1_hour_amount, fee2_type_id, fee2_type_name, fee2_hour_type, fee2_hour_amount, fee3_type_id, fee3_type_name, fee3_hour_type, fee3_hour_amount, platform_rato, agents1_id, agents1_cn, agents1_rato, agents2_id, agents2_cn, agents2_rato, agents3_id, agents3_rato, agents3_cn, shopkeeper_id, shopkeeper_cn, shopkeeper_rato, alliance_business_id, alliance_business_cn, alliance_business_rate, create_id, create_datetime, update_datetime, SQR_url, remark, yfj_reback_type
+    </sql>
+
+</mapper>

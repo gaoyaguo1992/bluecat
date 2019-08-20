@@ -1,0 +1,83 @@
+# #
+rest:
+  auth-open: true #jwt鉴权机制是否开启(true或者false)
+  sign-open: true #签名机制是否开启(true或false)
+
+jwt:
+  header: Authorization   #http请求头所需要的字段
+  secret: mySecret        #jwt秘钥
+  expiration: 36000      #7天 单位:秒
+  auth-path: auth         #认证请求的路径
+  md5-key: randomKey      #md5加密混淆key
+  whitelist: whitelist    #白名单
+  
+wechat:
+  appId: 
+  secret: 
+  token: 
+  oauth2redirectUri: 
+  aesKey: 
+  partnerId: 
+  partnerKey: 
+  mchId:  # 微信商户号 
+  appMchId:  #微信小程序对应的商户号
+  systemName: 1
+  logImgFileName: 1.png
+
+zfb:
+   appId: 1 #支付宝小程序appID
+   alipayPublicKey: FHlNt8ZoNmdBeVpoqfh/XeiRAlu2OD3hMUrEm/1uHAVATRNOjTqzKCVRGHZEwUw58IEWFQnoYZx+QGLFowPo1CALpQIDAQAB
+   zfbServerUrl:  #支付宝官方接口地址（固定）
+   refreshToken: 
+   privateKey: 
+   prepayNotifyUrl : 
+
+
+server:
+  port: 9191 # 项目端口
+
+mybatis-plus:
+  # mapper-locations: classpath:com/stylefeng/guns/rest/**/mapping/*.xml
+  typeAliasesPackage: com.stylefeng.guns.rest.common.persistence.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+
+spring:
+  datasource:
+      url: jdbc:   
+      username: root
+      password: 
+      filters: log4j,wall,mergeStat
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: /home/tomcat8/applog/
+  file: /home/tomcat8/applog/lwc.log
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245
+  url: h # 后台address url
+  wxapp:
+    appid:  # 微信小程序appId
+    appsecret:  # 微信小程序appSecret..
+    apisecret:  # 微信支付appSecret..
+    mchid:  # 商户号id
+  merchantId:  # 共享助手商户号
+  isDebug: false
+  
+cer:
+  keystore:
+    file: C:\apache\tomcat\cert\apiclient_cert.p12
+    password: 

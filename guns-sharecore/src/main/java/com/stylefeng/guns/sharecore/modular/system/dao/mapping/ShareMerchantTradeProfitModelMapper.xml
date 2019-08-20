@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.ShareMerchantTradeProfitModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModel" >
+    <id column="trade_id" property="tradeId" jdbcType="BIGINT" />
+    <id column="merchant_id" property="merchantId" jdbcType="BIGINT" />
+    <result column="trade_type" property="tradeType" jdbcType="INTEGER" />
+    <result column="trade_name" property="tradeName" jdbcType="VARCHAR" />
+    <result column="merchant_type" property="merchantType" jdbcType="INTEGER" />
+    <result column="profit_rato" property="profitRato" jdbcType="DECIMAL" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="borrow_datetime" property="borrowDatetime" jdbcType="TIMESTAMP" />
+    <result column="back_datetime" property="backDatetime" jdbcType="TIMESTAMP" />
+    <result column="terminal_merchant_id" property="terminalMerchantId" jdbcType="BIGINT" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    trade_id, merchant_id, trade_type, trade_name, merchant_type, profit_rato, total_amount, 
+    amount, borrow_datetime, back_datetime, terminal_merchant_id, create_datetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from share_merchant_trade_profit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModelKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from share_merchant_trade_profit
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModelKey" >
+    delete from share_merchant_trade_profit
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModelExample" >
+    delete from share_merchant_trade_profit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModel" >
+    insert into share_merchant_trade_profit (trade_id, merchant_id, trade_type, 
+      trade_name, merchant_type, profit_rato, 
+      total_amount, amount, borrow_datetime, 
+      back_datetime, terminal_merchant_id, create_datetime
+      )
+    values (#{tradeId,jdbcType=BIGINT}, #{merchantId,jdbcType=BIGINT}, #{tradeType,jdbcType=INTEGER}, 
+      #{tradeName,jdbcType=VARCHAR}, #{merchantType,jdbcType=INTEGER}, #{profitRato,jdbcType=DECIMAL}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{borrowDatetime,jdbcType=TIMESTAMP}, 
+      #{backDatetime,jdbcType=TIMESTAMP}, #{terminalMerchantId,jdbcType=BIGINT}, #{createDatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModel" >
+    insert into share_merchant_trade_profit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="tradeName != null" >
+        trade_name,
+      </if>
+      <if test="merchantType != null" >
+        merchant_type,
+      </if>
+      <if test="profitRato != null" >
+        profit_rato,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="borrowDatetime != null" >
+        borrow_datetime,
+      </if>
+      <if test="backDatetime != null" >
+        back_datetime,
+      </if>
+      <if test="terminalMerchantId != null" >
+        terminal_merchant_id,
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="tradeName != null" >
+        #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null" >
+        #{merchantType,jdbcType=INTEGER},
+      </if>
+      <if test="profitRato != null" >
+        #{profitRato,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowDatetime != null" >
+        #{borrowDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backDatetime != null" >
+        #{backDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalMerchantId != null" >
+        #{terminalMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="createDatetime != null" >
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModelExample" resultType="java.lang.Integer" >
+    select count(*) from share_merchant_trade_profit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update share_merchant_trade_profit
+    <set >
+      <if test="record.tradeId != null" >
+        trade_id = #{record.tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchantId != null" >
+        merchant_id = #{record.merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradeName != null" >
+        trade_name = #{record.tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantType != null" >
+        merchant_type = #{record.merchantType,jdbcType=INTEGER},
+      </if>
+      <if test="record.profitRato != null" >
+        profit_rato = #{record.profitRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalAmount != null" >
+        total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.borrowDatetime != null" >
+        borrow_datetime = #{record.borrowDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.backDatetime != null" >
+        back_datetime = #{record.backDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.terminalMerchantId != null" >
+        terminal_merchant_id = #{record.terminalMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDatetime != null" >
+        create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update share_merchant_trade_profit
+    set trade_id = #{record.tradeId,jdbcType=BIGINT},
+      merchant_id = #{record.merchantId,jdbcType=BIGINT},
+      trade_type = #{record.tradeType,jdbcType=INTEGER},
+      trade_name = #{record.tradeName,jdbcType=VARCHAR},
+      merchant_type = #{record.merchantType,jdbcType=INTEGER},
+      profit_rato = #{record.profitRato,jdbcType=DECIMAL},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      borrow_datetime = #{record.borrowDatetime,jdbcType=TIMESTAMP},
+      back_datetime = #{record.backDatetime,jdbcType=TIMESTAMP},
+      terminal_merchant_id = #{record.terminalMerchantId,jdbcType=BIGINT},
+      create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModel" >
+    update share_merchant_trade_profit
+    <set >
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="tradeName != null" >
+        trade_name = #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null" >
+        merchant_type = #{merchantType,jdbcType=INTEGER},
+      </if>
+      <if test="profitRato != null" >
+        profit_rato = #{profitRato,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowDatetime != null" >
+        borrow_datetime = #{borrowDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backDatetime != null" >
+        back_datetime = #{backDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalMerchantId != null" >
+        terminal_merchant_id = #{terminalMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareMerchantTradeProfitModel" >
+    update share_merchant_trade_profit
+    set trade_type = #{tradeType,jdbcType=INTEGER},
+      trade_name = #{tradeName,jdbcType=VARCHAR},
+      merchant_type = #{merchantType,jdbcType=INTEGER},
+      profit_rato = #{profitRato,jdbcType=DECIMAL},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      borrow_datetime = #{borrowDatetime,jdbcType=TIMESTAMP},
+      back_datetime = #{backDatetime,jdbcType=TIMESTAMP},
+      terminal_merchant_id = #{terminalMerchantId,jdbcType=BIGINT},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP}
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </update>
+</mapper>

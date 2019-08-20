@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.MerchantApplyFormMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.MerchantApplyForm">
+        <id column="id" property="id" />
+        <result column="merchant_name" property="merchantName" />
+        <result column="person_name" property="personName" />
+        <result column="tel_no" property="telNo" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="zone" property="zone" />
+        <result column="agents_zone" property="agentsZone" />
+        <result column="throw_dev_channel" property="throwDevChannel" />
+        <result column="apply_type" property="applyType" />
+        <result column="apply_type_cn" property="applyTypeCn" />
+        <result column="do_status" property="doStatus" />
+        <result column="do_status_cn" property="doStatusCn" />
+        <result column="cust_id" property="custId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, merchant_name, person_name, tel_no, province, city, zone, agents_zone, throw_dev_channel, apply_type, apply_type_cn, do_status, do_status_cn, cust_id, create_time, update_time, remark
+    </sql>
+
+</mapper>

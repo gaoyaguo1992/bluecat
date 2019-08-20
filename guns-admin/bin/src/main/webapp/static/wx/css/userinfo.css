@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+body{ background:url(../img/12123123.jpg) !important; background-size:130% !important; padding-bottom:10% !important;}
+.next{
+width: 19px;
+height: 19px;
+background-image:url(../img/next_prev.png);
+
+animation: 1.2s ease 0s normal none infinite running guideArrow;
+}
+.my-card{margin-top:5%; margin-left:10.5%;  position:absolute; width:80%; left:100%;}
+.turn{position:fixed; top:50%; width:28px; height:28px; z-index:50;}
+.turn:hover{cursor:pointer;}
+#prevPage{left:0%; display:none;}
+#nextPage{left:91%;}
+.info-list span{color:#666; padding-left:1%; width:7rem;}
+.info-list label{padding-left:0.5rem;}
+.info-list li{padding:0%;}
+
+
+label{ text-align:left !important;width:6rem !important; color:#bf1111 !important; font-weight:bold;}
+.reginfo{color:#000 !important; padding-left:0% !important; width:4rem !important;}
+.com-name{padding-left:2% !important;}
+

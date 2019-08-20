@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.CustAccountModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.common.persistence.model.CustAccountModel" >
+    <id column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="cust_no" property="custNo" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="frozen_balance" property="frozenBalance" jdbcType="DECIMAL" />
+    <result column="available_balance" property="availableBalance" jdbcType="DECIMAL" />
+   
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="amt_source" property="amtSource" jdbcType="TINYINT" />
+    <result column="account_type" property="accountType" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="data_digest" property="dataDigest" jdbcType="VARCHAR" />
+    
+    <result column="merchant_id" property="merchantId" jdbcType="BIGINT" />
+    <result column="total_round_num" property="totalRoundNum" jdbcType="INTEGER" />
+    <result column="current_round_num" property="currentRoundNum" jdbcType="INTEGER" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_id, cust_no, balance, frozen_balance, available_balance, status,
+    amt_source, account_type,create_time,update_time, data_digest
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cust_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap"  >
+    	select 
+	    <include refid="Base_Column_List" />
+	    from cust_account   
+  	</select>
+    <select id="selectByCustNoForUpdate" resultMap="BaseResultMap" >
+	   /*FORCE_MASTER*/ select 
+	    <include refid="Base_Column_List" /> 
+	    from cust_account
+	    where cust_no = #{custNo,jdbcType=BIGINT}
+	    and account_type = #{accountType,jdbcType=TINYINT} for update
+   </select>
+  
+   <select id="selectByCustNo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cust_account
+    where cust_no = #{custNo,jdbcType=BIGINT}
+    and account_type = #{accountType,jdbcType=TINYINT}
+  </select>
+  <select id="selectAccountByCustNo" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from cust_account
+    where cust_no = #{custNo,jdbcType=BIGINT} and amt_source = #{amtSource,jdbcType=TINYINT}
+    and account_type = #{accountType,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cust_account
+    where account_id = #{accountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.CustAccountModel" >
+    insert into cust_account (account_id, cust_no, balance, 
+      frozen_balance, available_balance, status, 
+      create_time, update_time, data_digest,account_type,amt_source
+      )
+    values (#{accountId,jdbcType=BIGINT}, #{custNo,jdbcType=BIGINT}, #{balance,jdbcType=DECIMAL}, 
+      #{frozenBalance,jdbcType=DECIMAL}, #{availableBalance,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{dataDigest,jdbcType=VARCHAR},
+      #{accountType,jdbcType=TINYINT}, #{amtSource,jdbcType=TINYINT}      
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.CustAccountModel" >
+    insert into cust_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="custNo != null" >
+        cust_no,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="frozenBalance != null" >
+        frozen_balance,
+      </if>
+      <if test="availableBalance != null" >
+        available_balance,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+       <if test="accountType != null" >
+        account_type,
+      </if>
+       <if test="amtSource != null" >
+        amt_source,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="dataDigest != null" >
+        data_digest,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="custNo != null" >
+        #{custNo,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenBalance != null" >
+        #{frozenBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null" >
+        #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=TINYINT},
+      </if>
+      <if test="amtSource != null" >
+        #{amtSource,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDigest != null" >
+        #{dataDigest,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.CustAccountModel" >
+    update cust_account
+    <set >    
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenBalance != null" >
+        frozen_balance = #{frozenBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="availableBalance != null" >
+        available_balance = #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=TINYINT},
+      </if>
+      <if test="amtSource != null" >
+        amt_source = #{amtSource,jdbcType=TINYINT},
+      </if>
+      
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDigest != null" >
+        data_digest = #{dataDigest,jdbcType=VARCHAR},
+      </if>
+    
+    </set>
+    where account_id = #{accountId,jdbcType=BIGINT} and cust_no = #{custNo,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.common.persistence.model.CustAccountModel" >
+    update cust_account
+    set balance = #{balance,jdbcType=DECIMAL},
+      frozen_balance = #{frozenBalance,jdbcType=DECIMAL},
+      available_balance = #{availableBalance,jdbcType=DECIMAL},      
+        status = #{status,jdbcType=TINYINT},      
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      data_digest = #{dataDigest,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=BIGINT} and cust_no = #{custNo,jdbcType=BIGINT}
+  </update>
+  <select id="selectByCustNoAndAccountType" resultMap="BaseResultMap" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from cust_account
+	    where cust_no = #{custNo,jdbcType=BIGINT} and account_type = #{accountType,jdbcType=TINYINT}
+  </select>
+</mapper>

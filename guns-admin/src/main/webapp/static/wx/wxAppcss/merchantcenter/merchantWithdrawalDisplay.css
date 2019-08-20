@@ -1,0 +1,57 @@
+@charset "utf-8";
+.record-box,.record-boxtiti{
+    padding: 16px 4%;
+    padding: .3rem 4%;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    font-weight: 500;
+    text-align: center;
+    
+}
+.record-boxtiti li{
+    font-weight: 600;
+    font-size: 14px;
+    font-size: .32rem;
+    width: 33.33%;
+    border-right:1px solid #f2f2f2;
+    color: rgba(28, 169, 59, 1)
+}
+
+.record-box ul li,.record-boxtiti li{
+    float: left;
+    text-align: center;
+    width:33.33%;
+}
+.record-box ul li.timeroot{
+    width: 33.33%;
+    font-size:13px;
+    font-size:.3rem;
+    text-align: left;
+}
+
+.money1{
+  
+    line-height: 32px;
+    font-size: 13px;    
+    line-height: .76rem;
+    font-size:.3rem;
+    color: #333;
+}
+.money1 .tax{
+	color:rgba(28, 169, 59, 1);
+}
+.timeroot a{
+    border: 1px solid #00c164 ;
+    border-radius: .1rem;
+    color: #00c164 ;
+}
+.record-time{
+    line-height: 14px;
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: .32rem;
+    margin-top: .08rem;
+    font-size:.24rem;
+    color: #999;
+    color: #999;
+}

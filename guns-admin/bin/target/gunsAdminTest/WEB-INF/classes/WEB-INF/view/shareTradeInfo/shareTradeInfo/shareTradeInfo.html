@@ -1,0 +1,88 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>交易订单管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3"  style="width: 36%">
+                                <#SelectFilter id="condition" idForValue="conditionValue" styleForSelect="width:150px">
+                                	<option value="tradeId">交易Id</option>
+                                	<option value="deviceId">设备Id</option>
+                                	<option value="chargerId">充电器Id</option>
+                                	<option value="custNo">客户Id</option>
+                                	<option value="merchanId">店铺商户Id</option>
+                                	<option value="agents1Id">顶级代理商户Id</option>
+                                	<option value="agents2Id">一级代理商户Id</option>
+                                	<option value="agents3Id">二级代理商户Id</option>
+                                	<option value="shopkeeperId">铺货商id</option>
+                                	<option value="allianceBusinessId">加盟商Id</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3"  style="width: 32%">
+                            	<#twoInputTimeCon name="归还时间" id1="backTimeStart" id2="backTimeEnd"/>
+                            </div>
+                            <div class="col-sm-3" style="width: 32%">
+                            	<#twoInputTimeCon name="租借时间" id1="borrowTimeStart" id2="borrowTimeEnd"/>
+                            </div>
+                            <div class="col-sm-3"  style="width: 36%">
+                                <#SelectFilter id="condition1" idForValue="conditionValue1" styleForSelect="width:150px">
+                                	<option value="merchant">店铺商户名</option>ss
+                                	<option value="agents1">顶级代理商名称</option>
+                                	<option value="agents2">一级代理商名称</option>
+                                	<option value="agents3">二级代理商名称</option>
+                                	<option value="shopkeeper">铺货商名称</option>
+                                	<option value="allianceBusiness">加盟商名称</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3" style="width: 32%">
+                            	<#twoInput name="设备号(开始/结束)" id1="startDeviceNo" id2="endDeviceNo" />
+                            </div>
+                            <div  class="col-sm-3" style="width:32%;">
+                                <button type="button" class="btn btn-primary" style="float: right;margin-right: 30px;" onclick="ShareTradeInfo.search()" id="search">
+								    <i class="fa fa-search"></i>&nbsp;搜索
+								</button>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="ShareTradeInfoTableToolbar" role="group">                        
+                          @if(shiro.hasPermission("/shareTradeInfo/shareTradeInfo_finishOrRefund")){
+                                <#button name="结束或订单退款" icon="fa-plus" clickFun="ShareTradeInfo.finishOrRefundOrder()"/>
+                          @} 
+                                <#button name="报表导出" icon="fa-file" clickFun="ShareTradeInfo.exportExcel()"/>
+                        </div>
+                        <#table id="ShareTradeInfoTable"/>
+                        <p>交易金额汇总：<span  id="spanTotal" style="color:red">0</span>元 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交易次数：<span  id="spTotal" style="color:red">0</span>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平台：<span  id="spTotalPlatformAgmount" style="color:red">0</span>元&nbsp;&nbsp;顶级代理：<span  id="spTotalAgents1Amount" style="color:red">0</span>元&nbsp;&nbsp;&nbsp;&nbsp;一级代理：<span  id="spTotalAgents2Amount" style="color:red">0</span>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二级代理：<span  id="spTotalAgents3Amount" style="color:red">0</span>元&nbsp;&nbsp;&nbsp;&nbsp;铺货商：<span  id="spTotalShopkeeperAmount" style="color:red">0</span>元&nbsp;&nbsp;&nbsp;&nbsp;加盟商：<span  id="spTotalAllianceBusinessAmount" style="color:red">0</span>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预付金：<span  id="spTotalYFJAmount" style="color:red">0</span>元
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/shareTradeInfo/shareTradeInfo/shareTradeInfo.js?v=4"></script>
+<script language="javascript">
+	var startData="${startDate}";
+	var endDate="${endDate}";
+    laydate.render({
+        elem: '#borrowTimeStart',
+        value: startData,
+        isInitValue: true
+    });
+    laydate.render({
+        elem: '#borrowTimeEnd',
+        value: endDate,
+        isInitValue: true
+    });
+    laydate.render({
+        elem: '#backTimeStart'
+    });
+    laydate.render({
+        elem: '#backTimeEnd'
+    });
+</script>
+
+@}

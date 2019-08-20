@@ -1,0 +1,58 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                       <#input id="deviceId"  
+                       		changeEventFun="ChargerInfoDlg.deviceTypeIdOnChange()"
+                       		name="绑定设备id" underline="false"/>
+            </div>
+            <ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#chargerNoTab" valType="1" data-toggle="tab">&nbsp;&nbsp;按单个充电器编号设置&nbsp;&nbsp;</a></li>
+				<li><a href="#startChargerNoAndEndChargerNoTab" valType="2" data-toggle="tab">&nbsp;按开始结束充电器编号设置&nbsp;</a></li>
+			</ul>
+			<input type="hidden" id="batchTypeForOperate" value="1"/>
+			<div id="myTabContent" class="tab-content" style="margin-bottom:5px;height:130px">
+				<div class="tab-pane fade in active" style="margin-top:10px;" id="chargerNoTab">
+					<#textareaFocus id="chargerNoStr" name="充电器编号（多个用,分隔)"
+						styleLabel="margin-top:40px;" cols="2" rows="6"
+						styleGroup="height:150px" style="width:100%;" underline="false"/>
+				</div>
+				<div class="tab-pane fade"  style="margin-top:10px;" id="startChargerNoAndEndChargerNoTab">
+                      <#input id="startChargerNo" name="开始的充电器编号" underline="false"/>                            
+                      <#input id="endChargerNo" name="结束的充电器编号" underline="false"/>
+				</div>
+			</div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ChargerInfoDlg.batchBindDeviceSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ChargerInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/system/charger/charger_info.js"></script>
+<script language="javascript">
+   $(function(){
+		//处理用户修改费用..
+		var options={keyboard:false,backdrop:'static',show:false};
+		$('#myModal').modal(options)
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // 获取已激活的标签页的名称
+            var valType = $(e.target).attr("valType");
+            // 获取前一个激活的标签页的名称
+            $("#batchTypeForOperate").val(valType);
+        });
+    });
+ </script>
+@}

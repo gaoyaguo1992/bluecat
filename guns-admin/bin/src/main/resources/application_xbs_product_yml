@@ -1,0 +1,135 @@
+# 小帮手生产 _xbs_product_ ###
+server:
+  port: 9090
+
+guns:
+  swagger-open: true              #是否开启swagger (true/false)
+  kaptcha-open: false             #是否开启登录时验证码 (true/false)
+  # file-upload-path: d:/tmp       #文件上传目录(不配置的话为java.io.tmpdir目录)
+  spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245
+  url: https://rchg.xiaobangshou.net.cn/gunsAdmin/ # http://localhost:9090/ #  http://localhost:9090/ #  后台address url
+  wxapp:
+    appid: wx3947c5afd4a8e25d # 微信小程序appId
+    appsecret: 95433cff2395c42c407a4658467db969 # 微信小程序appSecret..
+    apisecret: 95433cff2395c42c407a4658467fb532 # 商户appSecret..
+    index: pages/index/index # 微信小程序首页
+    personalCenter: pages/usrCt/usrCt #小程序个人中心
+    url: https://open.weixin.qq.com/sns/getexpappinfo?appid=wx3947c5afd4a8e25d&path=pages%2Fkp%2Fkp.html#wechat-redirect
+    mchid: 1525978481 # 商户号id
+  merchantId: 160423000001 # 共享助手商户号
+  isDebug: false
+  activationMode: 2 #初始化选中的设备激活方式, 1 商户扫码确认模式 2 简化模式
+  shareDeviceTypes: 32 #设备类型id..#
+  
+wechat:
+  appId: wx8216c8d1455cab9d
+  secret: 9ea0a6607311409cc631acf62fecd93c
+  token: share1a2b3c4d0987654321
+  oauth2redirectUri: https://rchg.xiaobangshou.net.cn/gunsAdmin/wx/index
+  aesKey: UyCAOcjsgWrjXLtfCttBfn6IMqF2Yyn3DqmcbpT5GxC
+  partnerId: 1525978481
+  partnerKey: 95433cff2395c42c407a4658467fb532
+  mchId: 1525978481 # 微信商户号 
+  appMchId: 1525978481 #微信小程序对应的商户号
+<<<<<<< .mine
+  lentinChargerTmpId: 1 # 公众号租借充电宝成功消息模板
+  backChargerTmpId: 2 # 公众号归还充电宝成功消息模板
+  buyMemberTmpId: 3 #公众号归购买会员成功消息模板
+  buyMemberTmpId: 3 #公众号归购买会员成功消息模板
+  WithdrawTmpId: 4 #提现的模板信息
+  InitMenu: true # 是否初始化菜单  true:是，false:不初始化
+=======
+  InitMenu: true # 是否初始化菜单  true:是，false:不初始化
+>>>>>>> .r431
+  systemName: 小帮手充电商户管理平台
+  logImgFileName: xbs.png
+
+cer:
+  keystore:
+    file: /home/tomcat8/cert/1525978481_cert/apiclient_cert.p12
+    password: 1525978481
+   
+spring:
+  profiles:
+    active: local
+  mvc:
+    static-path-pattern: /** #/static/**
+    view:
+      prefix: /WEB-INF/view
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.guns.modular.system.model
+
+log:
+  path: /home/tomcat8/logs
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: /home/tomcat8/applog/
+  file: /home/tomcat8/applog/gunsAdmin.log
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://rm-bp1jtv42yfjpcj2g2yo.mysql.rds.aliyuncs.com:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: rchg
+    password: xiaobangshou@123541
+    db-name: sharedata #用来搜集数据库的所有表
+    filters: wall,mergeStat
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://rm-bp1jtv42yfjpcj2g2yo.mysql.rds.aliyuncs.com:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: rchg
+    password: xiaobangshou@123541
+    db-name: sharedata #用来搜集数据库的所有表
+    filters: wall,mergeStat
+
+#多数据源情况的配置
+guns:
+  muti-datasource:
+    open: false
+    url: jdbc:mysql://rm-bp1jtv42yfjpcj2g2yo.mysql.rds.aliyuncs.com:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: rchg
+    password: xiaobangshou@123541
+    dataSourceNames:
+      - dataSourceGuns
+      - dataSourceBiz
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://rm-bp1jtv42yfjpcj2g2yo.mysql.rds.aliyuncs.com:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: rchg
+    password: xiaobangshou@123541
+    filters: wall,mergeStat
+
+---
+spring:
+  profiles: produce
+  datasource:
+     url: jdbc:mysql://rm-bp1jtv42yfjpcj2g2yo.mysql.rds.aliyuncs.com:3306/sharedata?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+     username: rchg
+     password: xiaobangshou@123541
+     filters: wall,mergeStat

@@ -1,0 +1,480 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>商户${merchantInfo.id}的设备</title>
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+      <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+
+    <!-- 全局js -->
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script src="${ctxPath}/static/js/common/Feng.js"></script>
+    
+    <link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+    
+	<style type="text/css">
+	  .select-con{
+	   
+	  }
+	  .select-con .tab{
+	   display: flex;
+	  }
+	  .select-con .tab .active{
+	     flex:0 0 2.77rem;
+	     height:1rem;
+	     width: 2.77rem;
+	     font-size: 0.28rem;
+	     color: #444;
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	  }
+	  .select-con .tab .tab-left{
+	    flex:1;
+	    height:1rem;
+	    line-height: 1rem;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    padding: .2rem .2rem;
+	  }
+	  .tab-left .left-com{
+	    display:flex;
+	    background: #f2f2f2;
+	    border-radius:20px;
+	    width: 100%;
+	    height: 100%;
+	    font-size: .26rem;
+	    color: #BFC0C1;
+	  }
+	  .tab-left .iconScan{
+	   flex:0 0 1rem;
+	   width: 1rem;
+	   line-height: .6rem;
+	   text-align: center;
+	  }
+	  .tab-left .iconSearch{
+	   flex:1;
+	   border-right: 1px solid #E4E5E9;
+	   line-height: .6rem;
+	   text-align: center;
+	  }
+	  
+	  .row{
+	        display: inline-block;
+	        vertical-align: middle;
+	        border :5px solid transparent;
+	        border-top-color :#ccc;
+	        margin : 5px 0 0 5px;
+	        transition : all .4s linear;
+	        transform-origin :center 2px;
+	  }
+	  .icon-scan,.search-icon{
+	   display: inline-block;
+	   height: 0.32rem;
+	   width: 0.32rem;
+	   vertical-align: text-bottom;
+	  }
+	  .icon-scan{
+	    background: url("${ctxPath}/static/wx/img/sm.png") no-repeat;
+	    background-size:100%; 
+	  }
+	  .search-icon{
+	    background: url("${ctxPath}/static/wx/img/ss.png") no-repeat;
+	    background-size:100%; 
+	    vertical-align: text-bottom;
+	    margin-right: 5px;
+	  }
+	  .seachbox{
+	   display: none;
+	  }
+	  .shade{
+		   position: absolute;
+		   top:1rem;
+		   width:100%;
+		   bottom: 0;
+		   background: rgba(0,0,0,.5);
+		   display: none;
+		   z-index:100;
+	  }
+	  .online,.grounding{
+		   background: #fff;
+		   display: none
+	  }
+	  .online .gou,.grounding .gou{
+		   display: inline-block;
+		   height: .28rem;
+		   width: .28rem;
+		   background: url("${ctxPath}/static/wx/img/gou.png") no-repeat;
+		   background-size:100%; 
+		   float: right;
+		   margin: .3rem .5rem 0 0;
+		   visibility: hidden;
+	  }
+	  .seected{
+	  	visibility: visible !important;
+	  }
+	  .blueText{
+	   		color: #36a3ff !important;
+	  }
+	 .search-con{
+	  	display: flex;
+	   height: 1rem;
+	   font-size: .28rem;
+	   padding:.15rem 0 .15rem .5rem;
+	 }
+	 .search-con form{
+		  flex:1;
+		  border-radius:10px;
+		  background: #f2f2f2;
+		  padding-left: .15rem;
+	 }
+	 #deviceId{
+		  height:0.65rem;
+		  background: #f2f2f2;
+		  outline: none;
+		  border: none;
+		  width: 90%;
+	 }
+	 #search{
+		  flex:0 0 1rem;
+		  display:flex;
+		  align-items: center;
+		  justify-content: center;
+		  width: 1rem;
+	 }
+	 .online p,.grounding p{
+		   height: .9rem;
+		   line-height: .9rem;
+		   font-size: .28rem;
+		   padding-left: .4rem;
+	 }
+	 .dev-list{
+	   background: #f2f2f2;
+	   padding: 0 .2rem 0 .2rem;
+	 }
+	 .num{
+	   font-size: .26rem;
+	   color: #959595;
+	   padding: .15rem 0 .2rem .3rem;
+	   background: #f2f2f2;s
+	  }
+	  .devinfor{
+		position: relative;
+	    padding: .3rem .3rem 0 .3rem; 
+	    line-height: .42rem;
+	    background-color: white;
+	    border-bottom: .01rem solid #ddd;
+	    overflow: hidden;
+	    margin-bottom: .2rem;
+	}
+	.devinfor .gorow{
+		 display: inline-block;
+		 height:.6rem;
+		 width:.6rem;
+		 background:url("${ctxPath}/static/wx/img/row.png") no-repeat;
+		 background-size:100%;
+		 position: absolute;
+		 right: .3rem;
+		 top:37%;
+	}
+	.devinfor h2{
+	    padding-bottom: .1rem;   
+	    font-weight: bold;
+	    font-size: .3rem;
+	    color:#484848;
+	    border-bottom: 1px solid #f2f2f2; 
+	}
+	.devinfor h2 .isOn{
+		 display: inline-block;
+		 font-size:.24rem;
+		 margin-right: .15rem;
+		 padding:0 .1rem;
+		 border-radius:3px;
+	}
+	.devinfor h2 .set{
+	 	float: right;
+	}
+	.devinfor p{   
+	    margin-bottom: .1rem;
+	    font-size: 13px; 
+	}
+	.devinfor .adress{
+	    margin-bottom: 0;
+	    color:#999;
+	}
+	.devinfor p{
+		font-size:.26rem;
+		color: #484848;
+	}
+	 .devinfor .collectType{
+	 	 display: flex;
+	 }
+	 .devinfor .collectType span{
+		  flex:0 0 1.9rem;
+		  width: 1.9rem;
+	 }
+	 .devinfor .collectType i{
+		  flex:1;
+		  font-style: normal;
+	 }
+	.devinfor .phone a{color: #36a3ff;}
+	.devinfor p span{
+	    display:inline-block;
+	    width:1.9rem;
+	    color: #959595;
+	}
+	.devinfor .devinforbtn{
+		height: 0.9rem;
+		font-size:0.26rem;
+		color: #484848;
+		border-top: 1px solid #f2f2f2;
+	}
+	.devinfor .devinforbtn{
+	 	display: flex;
+	}
+	.devinfor .devinforbtn a{
+	 	flex:1;
+	 }
+	.tradeNum{
+		 flex:1;
+		 display: flex;
+		 align-items: center;
+		  justify-content: center;
+		  border-right: 1px solid #f2f2f2;
+	}
+	.onlineNum{
+		 flex:1;
+		 display:flex;
+		 align-items: center;
+	  	justify-content: center;
+	}
+	#more{
+	    display: block;
+	    height: .5rem;
+	    line-height: .5rem;
+	    text-align: center;
+	    font-size: .28rem;
+	    }
+	    .prompt1{
+	    z-index: 1000;
+	    display: block;
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0,0,0,.5);
+	}
+	.prompt-cont1{
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    margin-left: -40%;
+	    width: 80%;
+	    margin-top: -64px;
+	    font-size: 14px;
+	    margin-top: -3.5rem;
+	    padding:.55rem .3rem .3rem .5rem;
+	    font-size: .3rem;
+	    background: #fff;
+	    color: #333;
+	    border-radius:3px; 
+	}
+	.tip-header1{
+	 font-size: .26rem;
+	 color: #959595;
+	}
+	.promt-list1 li{
+	height: .95rem;
+	line-height: .95rem;
+	font-size: .3rem;
+	color: #444;
+	}
+	.promptBtn1{
+	 text-align: center;
+	 color: #36a3ff;
+	}
+	</style>       
+</head>
+<body>
+    <script>reset();</script>
+	<div class="select-con">
+      <div class="tab">
+		<p id="selectOnline" class="active"><span class="text">选择上架状态</span> <span class="row"></span></p>
+		<div class="tab-left">
+		  <div class="left-com">
+		    <p id="selectSearch" class="iconSearch"><span class="search-icon"></span>输入设备编号</p>
+		    <p id="icon" class="iconScan"><span class="icon-scan"></span></p>
+		  </div>
+		</div>
+	  </div>
+	  <div class="seachbox">
+	    <div class="search-con">
+	    <form  action=""  onsubmit="return false;" id="search_from" >
+	      <input type="search" id="deviceId" value=""  placeholder="输入设备编号">
+	    </form>
+			<span class="search" id="search">取消</span>
+	    </div>
+	  </div>
+    </div>
+	<div class="shade">
+	 <div class="online">
+	    <p data-id=''>选择激活状态 <span class="gou seected"></span></p>
+	   <p data-id='11'>未激活 <span class="gou"></span></p>
+	   <p data-id='10'>已激活<span class="gou"></span></p>
+	   <p data-id='12'>待确认<span class="gou"></span></p>
+	 </div>
+	</div>
+	<input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfo.id}"/>
+	<input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+	<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	<input id="merchantType" name="merchantType" type="hidden" value = "${merchantInfo.merchantType}"/>
+	<div class="num"><span>设备总数：<b id="devNum"></b></span><span>;充电器总数：<b id="chargerNum"></b></span></div>	 
+	<div class="dev-list">
+	</div>
+	 <form id="devTrendForm" action="${reqUrlRoot}wx/usageTrendUI" method = "post">
+   	 	<input name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+		<input id="listDeviceId" name="deviceId" value = "" type="hidden" />		
+    </form>
+	<div class="prompt1" id="messageDialog1" style="display: none;">
+        <div class="prompt-cont1">
+          <p class="tip-header1">请选择设置项</p>
+          <ul class="promt-list1">
+        	 ${operationHtml}
+          </ul>
+          <div class="promptBtn1" id="msg_btn1">取消</div>
+        </div>
+     </div>
+       <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+     </div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+	<script src="${ctxPath}/static/js/common/Feng.js"></script>
+	
+	<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js" charset="gb2312"></script> 
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=160106"></script>  
+	<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/myDevs.js?v=15"></script>	
+	<script language="javascript" type="text/javascript">
+	var path="${ctxPath}";
+	var reqUrl="${reqUrlRoot}";
+	var merchantId="${merchantInfo.id}";
+	var isParent = "${isParent}";
+	
+	$(function() {
+	    Feng.addCtx("${ctxPath}");
+	    Feng.sessionTimeoutRegistry();
+		$('.modal').appendTo("body");
+
+		getWeixinConfig();
+		//处理用户修改费用..
+		var options={keyboard:false,backdrop:'static',show:false};
+		$('#myModal').modal(options);
+		// 扫码o
+		$('#icon').click(function(){
+		      wx.ready(()=>{
+		         wx.checkJsApi({
+		           jsApiList: ['scanQRCode'],
+		           success: function (res) {
+		           	
+		           }
+		         });
+		         wx.scanQRCode({
+		           needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+		           scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+		           success: function (res) {
+		              // 当needResult 为 1 时，扫码返回的结果
+		             getDeviceId(res.resultStr);
+		            }
+		          });
+		          
+		        });
+		});
+	})
+		
+	// 微信授权
+	function getWeixinConfig(){
+		 let url = window.location.href.split('#')[0];
+	     let urlInfo={
+	          url:url
+	        };
+	    // urlInfo=JSON.stringify(urlInfo);
+		$.ajax({
+	    	type:"POST", 
+	        url:reqUrl+"wx/getWxJsapiSignatureInfo", 
+	        //contentType:"application/json;charset=utf-8",  // 发送信息至服务器时内容编码类型。
+	        data:urlInfo,
+	        dataType:'json',
+	        success:function(res){
+	        	if(res.result==='success'){
+	        		 wx.config({
+	                     beta:true,
+	                     debug: false,
+	                     appId: res.responseInfo.appid,
+	                     timestamp: res.responseInfo.timestamp,
+	                     nonceStr: res.responseInfo.noncestr,
+	                     signature: res.responseInfo.signature,
+	                     jsApiList: ['checkJsApi', 'scanQRCode']
+	                   });
+	        	}
+	         }
+	        });
+	};
+	</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>商户编辑</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+      <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+        
+    <link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+    <link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/editMerchantcenterTerminal.css?v=11">
+</head>
+<body>
+    <script>reset();</script>
+     <input id="pid" name="pid" type="hidden" value = "${parentMerchantInfo.id}"/>
+     <input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfoModel.id}"/>
+    <div class="merchantInfo">
+      <p>商户ID <span class="merchID">${merchantInfoModel.id}</span></p>
+      <p>商户类型 <span class="merchID merchType">${merchantInfoModel.merchantTypeCn}</span></p>
+    </div>
+	<div class="list-con">
+	   <p><span>商户名</span><input type="text" id='merchName' value="${merchantInfoModel.name}" placeholder="请输入商户名称"></p>
+	   <p><span>联系电话 </span><input type="text" id='phone' value="${merchantInfoModel.telNo}" placeholder="请输入联系电话"></p>
+	   <p><span>联系人</span><input type="text" id="contactName" value="${merchantInfoModel.personName}" placeholder="请输入联系人名称"></p>	   
+	   <p><span>商户地址 </span><input type="text" id="addres" value="${merchantInfoModel.addr}" placeholder="输入商户地址"></p>
+	</div>
+	<p class="button"><span>确定</span></p>
+	<div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+     </div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+	<script src="${ctxPath}/static/js/common/Feng.js"></script>	
+	<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js" charset="gb2312"></script> 
+	<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js"></script>
+	<script language="javascript" type="text/javascript">
+	 var path="${ctxPath}";
+	 var reqUrl="${reqUrlRoot}";
+	 var baseUrl="${reqUrlRoot}";
+	  $(function(){
+			$('#addres').bind('focus',function(){
+				$('.button').css('position','static');
+				//或者$('#viewport').height($(window).height()+'px');
+			}).bind('blur',function(){
+				$('.button').css({'position':'fixed','bottom':'0.3rem'});
+				//或者$('#viewport').height('auto');
+			});
+		  $('.button').click(function(){
+			 var personName=$('#contactName').val(),telNo=$('#phone').val(),name=$('#merchName').val(),addr=$('#addres').val();
+			  if(personName===''){
+				  tipText('请输入联系人姓名');
+				  return;
+			  }
+			  if(personName.length>30){
+				  tipText('联系人不要超过30字符 ');
+				  return;
+			  }
+			  if(name===''){
+				  tipText('请输入商户姓名');
+				  return;
+			  }
+			  if(name.length>30){
+				  tipText('商户姓名不要超过30字符 ');
+				  return;
+			  }
+			  if(telNo===''){
+				  tipText('请输入联系电话');
+				  return;
+			  }
+			  if(!telPhone(telNo)){
+				  tipText('请输入正确的联系电话');
+				  return;
+			  }
+			  if(addr===''){
+				  tipText('请输入商户地址');
+				  return;
+			  }
+			  if(addr.length>30){
+				  tipText('商户地址不要超过30字符');
+				  return;
+			  }
+			  var dataObj={
+					  merchantId:$('#merchantId').val(),
+					  personName:personName,
+					  telNo:telNo,
+					  name:name,
+					  addr:addr
+			  };
+			  $.ajax({
+		        	type:"POST", 
+		            url:reqUrl+"wx/updateChildAgentsInfo",
+		            data:dataObj,
+		            dataType:'json',
+		            success: function (res) {
+		            	if(res.result==='success'){
+		            		location.href=reqUrl+'/wx/getMerInfoList?merchantId='+$('#pid').val()+'&custNo='+$('#custNo').val();
+			            }else{
+			            	tipText(res.message);
+			            }
+		          }
+			  });
+		  });
+	  });
+	  function tipText(cont){
+		    $("#result_prompt").text(cont);	    	
+		    $("#messageDialog").show();
+		    $("#msg_btn").click(function(){
+			   $("#messageDialog").hide();	
+		     });
+      };
+      function telPhone (phone) {
+	      var reg = /^(13[0-9]|14[0-9]|15[0-9]|16[2567]|17[0-8]|18[0-9]|19[189])\d{8}$/;
+	      if(!reg.test(phone)) {
+	        return false;
+	      }else{
+	        return true;
+	      }
+	   };	  
+	 </script>
+</body>
+</html>

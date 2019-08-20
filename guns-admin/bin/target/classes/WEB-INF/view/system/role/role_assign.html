@@ -1,0 +1,115 @@
+@layout("/common/_container.html"){
+
+
+<script type="text/javascript">
+    $(function () {
+        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+
+    	//1.处理用户修改费用..
+    	var options={keyboard:false,backdrop:'static',show:false}
+    	$('#myModal').modal(options)
+    	
+    	
+        
+        $("#btn_close").bind("click", function () {
+            parent.layer.close(index);
+        });
+
+        $("#btn_save").bind("click", function () {
+        	debugger;
+            var ids = Feng.zTreeCheckedNodes("zTree");
+            //开始层
+            startShieldLayer();
+            
+            var ajax = new $ax(Feng.ctxPath + "/role/setAuthority", function (data) {
+            	//结束层
+            	finishShieldLayer();
+            	
+                Feng.success("分配角色成功!");
+                window.parent.Role.table.refresh();
+                parent.layer.close(index);
+            }, function (data) {
+            	//结束
+            	finishShieldLayer();
+            	
+                Feng.error("分配角色失败!"
+                    + data.responseJSON.message + "!");
+            });
+            ajax.set("roleId", "${roleId}");
+            ajax.set("ids", ids);
+            ajax.start();
+        });
+        initZtree();
+    });
+
+    /**
+     * 开启屏蔽层.
+     */
+    function startShieldLayer() {
+    	$('#myModal').modal("show");
+    }
+    /**
+     * 结束屏蔽层.
+    */
+    function finishShieldLayer() {
+    	$('#myModal').modal("hide");
+    }
+    
+    function initZtree() {
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: { "Y": "ps", "N": "ps" }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var ztree = new $ZTree("zTree", "/menu/menuTreeListByRoleId/"
+            + "${roleId}");
+        ztree.setSettings(setting);
+        ztree.init();
+    }
+</script>
+
+
+<!-- 配置grid -->
+<div class="container" style="padding:  0px 10px !important;margin-top: -10px;text-align: center !important;">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>${roleName!}</h5>
+            </div>
+            <div class="ibox-content">
+                <ul id="zTree" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-sm btn-info" type="button" id="btn_save">
+                <i class="ace-icon fa fa-check bigger-110"></i>保存
+            </button>
+            &nbsp;
+            <button class="btn btn-sm btn-danger" type="button" id="btn_close">
+                <i class="ace-icon fa fa-close bigger-110"></i>关闭
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="0" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+@}

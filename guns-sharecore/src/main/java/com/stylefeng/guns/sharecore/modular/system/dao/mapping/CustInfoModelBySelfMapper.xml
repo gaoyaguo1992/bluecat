@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.CustInfoModelBySelfMapper" >
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.common.persistence.model.CustInfo">
+        <id column="cust_no" property="custNo" />
+        <result column="merchant_login_time" property="merchantLoginTime" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="cust_name" property="custName" />
+        <result column="open_id" property="openId" />
+        <result column="cust_type" property="custType" />
+        <result column="tel_no" property="telNo" />
+        <result column="tel_valid" property="telValid" />
+        <result column="email" property="email" />
+        <result column="addr" property="addr" />
+        <result column="post_code" property="postCode" />
+        <result column="remark" property="remark" />
+        <result column="reg_time" property="regTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="latitude" property="latitude" />
+        <result column="longitude" property="longitude" />
+        <result column="map_precision" property="mapPrecision" />
+        <result column="nick_name" property="nickName" />
+        <result column="language" property="language" />
+        <result column="city" property="city" />
+        <result column="province" property="province" />
+        <result column="country" property="country" />
+        <result column="headImgUrl" property="headImgUrl" />
+        <result column="unionId" property="unionId" />
+        <result column="wexin_remark" property="wexinRemark" />
+        <result column="groupId" property="groupId" />
+        <result column="sex" property="sex" />
+        <result column="STATUS" property="status" />
+        <result column="lent_charger_id" property="lentChargerId" />
+        <result column="yun_data_id" property="yunDataId" />
+        <result column="star_level" property="starLevel" />
+        <result column="sweet_heart_sum" property="sweetHeartSum" />
+        <result column="wxapp_open_id" property="wxappOpenId" />
+        <result column="cust_source_type" property="custSourceType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        merchant_login_time, merchant_id, cust_no, cust_name, open_id, cust_type, tel_no, tel_valid, email, addr, post_code, remark, reg_time, update_time, latitude, longitude, map_precision, nick_name, language, city, province, country, headImgUrl, unionId, wexin_remark, groupId, sex, STATUS, lent_charger_id, yun_data_id, star_level, sweet_heart_sum, wxapp_open_id, cust_source_type
+    </sql>
+  
+  <select id="selectByConditionForPage"  parameterType="java.util.HashMap"  resultMap="BaseResultMap">  
+	   SELECT 
+			<include refid="Base_Column_List" />  
+		FROM `cust_info`
+		where 1=1 and cust_type=1
+		<if test="custNo !=null">
+			and cust_no=#{custNo,jdbcType=BIGINT}
+		</if>
+		<if test="nickName !=null">
+			and nick_name like concat(concat('%', #{nickName,jdbcType=VARCHAR}),'%')
+		</if>
+		<if test="merchantId !=null">
+			and merchant_id=#{merchantId,jdbcType=BIGINT}
+		</if>
+		<if test="order != null">
+			<![CDATA[ 
+			order by ${order}
+	    	]]>
+		</if>
+		<if test="order == null">
+			order by reg_time desc
+		</if>
+		<if test="limit != null">
+			<![CDATA[ 
+			LIMIT #{offset,jdbcType=BIGINT},#{limit,jdbcType=BIGINT}
+	    	]]>
+		</if>
+  </select>
+  <select id="countByConditionForPage"  parameterType="java.util.HashMap"  resultType="java.lang.Long" >
+	   SELECT 
+		   COUNT(cust_no)
+		FROM `cust_info`
+		where 1=1
+		<if test="custNo !=null">
+			and cust_no=#{custNo,jdbcType=BIGINT}
+		</if>
+		<if test="nickName !=null">
+			and nick_name like concat(concat('%', #{nickName,jdbcType=VARCHAR}),'%')
+		</if>
+		<if test="merchantId !=null">
+			and merchant_id=#{merchantId,jdbcType=BIGINT}
+		</if>
+		and cust_type=1
+  </select>
+</mapper>

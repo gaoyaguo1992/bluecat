@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.RefundTradeRefModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.RefundTradeRefModel" >
+    <id column="refund_id" property="refundId" jdbcType="BIGINT" />
+    <id column="trade_id" property="tradeId" jdbcType="BIGINT" />
+    <result column="refund_trade_out_no" property="refundTradeOutNo" jdbcType="BIGINT" />
+    <result column="recharge_trade_out_no" property="rechargeTradeOutNo" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DECIMAL" />
+    <result column="chcr_out_trade_no" property="chcrOutTradeNo" jdbcType="BIGINT" />
+    <result column="cust_no" property="custNo" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    refund_id, trade_id,refund_trade_out_no, recharge_trade_out_no, cust_no,created_date, refund_amount
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RefundTradeRefModel" >
+    update refund_trade_ref
+    <set >
+     
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where refund_id = #{refundId,jdbcType=BIGINT}
+      and trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RefundTradeRefModel" >
+    insert into refund_trade_ref (refund_id, trade_id,refund_trade_out_no,recharge_trade_out_no,cust_no, created_date, 
+      refund_amount)
+    values (#{refundId,jdbcType=BIGINT}, #{tradeId,jdbcType=BIGINT},#{refundTradeOutNo,jdbcType=BIGINT},
+    #{rechargeTradeOutNo,jdbcType=BIGINT},#{custNo,jdbcType=BIGINT}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{refundAmount,jdbcType=DECIMAL})
+  </insert>
+   
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RefundTradeRefModel" >
+    update refund_trade_ref
+    set 
+      refund_amount = #{refundAmount,jdbcType=DECIMAL}
+    where refund_id = #{refundId,jdbcType=BIGINT}
+      and trade_id = #{tradeId,jdbcType=BIGINT}	
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RefundTradeRefModelKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from refund_trade_ref
+    where refund_id = #{refundId,jdbcType=BIGINT}
+      and trade_id = #{tradeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RefundTradeRefModelKey" >
+    delete from refund_trade_ref
+    where refund_id = #{refundId,jdbcType=BIGINT}
+      and trade_id = #{tradeId,jdbcType=BIGINT}
+  </delete>
+</mapper>

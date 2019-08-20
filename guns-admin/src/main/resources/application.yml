@@ -1,0 +1,139 @@
+
+server:
+  port: 9090
+
+guns:
+  swagger-open: true              #是否开启swagger (true/false)
+  kaptcha-open: false             #是否开启登录时验证码 (true/false)
+  # file-upload-path: d:/tmp       #文件上传目录(不配置的话为java.io.tmpdir目录)
+  spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245
+  url: http://localhost:9090/ #  后台address url
+  wxapp:
+    appid:  # 微信小程序appId
+    appsecret:  # 微信小程序appSecret..
+    apisecret:  # 商户appSecret..
+    index: pages/index/index # 微信小程序首页
+    personalCenter: pages/usrCt/usrCt #小程序个人中心
+    url: 
+    mchid:  # 商户号id
+  merchantId:  # 共享助手商户号
+  isDebug: false
+  activationMode: 2 #初始化选中的设备激活方式, 1 商户扫码确认模式 2 简化模式
+  shareDeviceTypes: 10,11,20,21,30,32 #设备类型id..#
+  isValidateBindMer: false #是否开启解绑定商户，校验设备是否已经绑定了商户的功能 开启：true , 关闭：false#
+  isShowDeviceNumForTerminal: true #是否显示设备数量
+  platformSpace: /wx/ # 平台空间
+  
+
+zfb:
+  appId:  #支付宝小程序appID
+  alipayPublicKey: 
+  zfbServerUrl:  #支付宝官方接口地址（固定）
+  refreshToken: 
+  privateKey: 
+  prepayNotifyUrl : 
+
+
+wechat:
+  appId: 
+  secret: 
+  token: 
+  oauth2redirectUri: 
+  aesKey: 
+  partnerId: 
+  partnerKey: 
+  mchId:  # 微信商户号
+  appMchId:  #微信小程序对应的商户号
+  InitMenu: true # 是否初始化菜单  true:是，false:不初始化
+  systemName: 1
+  logImgFileName: 1.png
+
+cer:
+  keystore:
+    file: C:\apache\tomcat\cert\apiclient_cert.p12
+    password: 
+
+spring:
+  profiles:
+    active: local
+  mvc:
+    static-path-pattern: /** #/static/**
+    view:
+      prefix: /WEB-INF/view
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.guns.modular.system.model
+
+log:
+  path: C:\apache\tomcat\logs
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: C:\apache\tomcat\applog\
+  file: C:\apache\tomcat\applog\guns-admin.log
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:
+    username: root
+    password: 
+    db-name:  #用来搜集数据库的所有表
+    filters: wall,mergeStat
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:
+    username: root
+    password: 
+    db-name: sharedata #用来搜集数据库的所有表
+    filters: wall,mergeStat
+
+#多数据源情况的配置
+guns:
+  muti-datasource:
+    open: false
+    url: jdbc:
+    username: root
+    password: 
+    dataSourceNames:
+      - dataSourceGuns
+      - dataSourceBiz
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:
+    username: root
+    password: 
+    filters: wall,mergeStat
+
+---
+spring:
+  profiles: produce
+  datasource:
+     url: jdbc:
+     username: root
+     password: 
+     filters: wall,mergeStat

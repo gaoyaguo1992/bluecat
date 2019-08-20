@@ -1,0 +1,372 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>申请代理</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="yes" name="apple-touch-fullscreen">
+<script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+<!-- 全局css -->
+<link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+<link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+<link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet" />
+<!-- 全局js -->
+<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+
+<link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/terminalBindDeices.css?v=2">
+<style rel="stylesheet" type="text/css" >
+ .applyAgent{
+    height :100%;
+    background :#1ab394;
+ }
+ .applyAgent .img-con{
+      height :150px;
+}
+.applyAgent .img-con img{
+     height :100%;
+     width :100%;
+}
+ .applyAgent .tips-con{
+     background :#fff;
+     padding :15px 0 0 0;
+}
+.applyAgent .tips-con .master-list{
+     display :flex;
+     margin-bottom :20px;
+}
+.applyAgent .tips-con .master-list .img-icon{
+     flex : 0 0 69px;
+     width :69px;
+     padding-right :10px;
+     text-align :right;
+     box-sizing :border-box;
+}
+.applyAgent .tips-con .master-list .img-icon img{
+     height :40px;
+     width :40px;
+}
+.applyAgent .tips-con .master-list .master-text{
+     flex :1;
+     padding-right :10px;
+}
+.applyAgent .tips-con .master-list .master-text .title{
+     font-size :18px;
+     color :#444;
+}
+.applyAgent .tips-con .master-list .master-text .text{
+     font-size :13px;
+     color :#959595;
+     margin-top :12px;
+}
+.applyAgent .tips-con .master-list .second{
+     margin-bottom:0;
+     border-bottom :10px solid #f2f2f2;
+}
+ .applyAgent .btn-con{
+     position: fixed;
+     bottom: 20px;
+     left: 0;
+     width: 100%;
+ }
+.applyAgent .btn-con .btn{
+        height :45px;
+        line-height :45px;
+        background :#36a3ff;
+        border-radius :5px;
+        color :#fff;
+        text-align :center;
+        margin :0 15px;
+}
+ .applyAgent .inputs{
+      position :fixed;
+      top:0;
+      left :0;
+      right :0;
+      bottom :0
+      background :#36a3ff;
+      padding :10px 10px;
+      z-index :50;
+      overflow-y :scroll;
+      display :flex;
+      flex-direction :column;
+ }
+.applyAgent .inputs .title{
+      height :48px;
+      line-height :48px;
+      font-size :27px;
+      color :#fff;
+      margin-left :15px;
+      flex :0 0 48px;
+}
+.applyAgent .inputs .applyInfo{
+     flex :1;
+     background :#fff;
+     border-radius :5px;
+     padding :0 15px 15px 15px;
+}
+.applyAgent .inputs .applyInfo .info-list{
+}
+.applyAgent .inputs .applyInfo .info-list li{
+}
+.applyAgent .inputs .applyInfo .info-list li .info-title{
+     font-size :15px;
+     color :#444;
+     padding :15px 0 10px 0;
+}
+.applyAgent .inputs .applyInfo .info-list li .info-title i{
+                color #ff0404;
+                font-style :normal;
+}
+.applyAgent .inputs .applyInfo .info-list li .input-con{
+	  height :45px;
+	  background :#f2f2f2;
+	  border-radius:3px;
+	  font-size :14px;
+}
+.applyAgent .inputs .applyInfo .info-list li .input-con input{
+	height:100%;
+	outline :none;
+	background :#f2f2f2;
+	width :90%;
+	padding-left :10px;
+}
+.applyAgent .inputs .applyInfo .info-list li .button-con{
+	  height :45px;
+	  line-height :45px;
+	  text-align :center;
+	  color :#fff;
+	  font-size :15px;
+	  background :#1ab394;
+	  border-radius :5px;
+	  margin-top :50px;
+}
+ .applyAgent .inputs::-webkit-scrollbar{
+      display:none;
+}
+</style>
+</head>
+<body>
+	<script>
+		reset();
+	</script>
+	<input id="custNo" name="custNo" type="hidden" value="${custInfoModel.custNo}" />
+ 	<div class="applyAgent">
+      <div class="inputs" id="divForm">
+        <div class="applyInfo">
+          <ul class="info-list">
+            <li>
+              <p class="info-title">联系人姓名<i>*</i> </p>
+              <p class="input-con"><input type="text" id="userName"  placeholder="请输入姓名"></p>
+            </li>
+            <li>
+              <p class="info-title">联系电话<i>*</i></p>
+              <p class="input-con"><input type="text" id="phone" placeholder="请输入联系电话"></p>
+            </li>
+            <li>
+              <p class="info-title">意向代理区域<i>*</i> </p>
+              <p class="input-con"><input type="text" id="area"  placeholder="请输入意向代理区域，具体到市区"></p>
+            </li>
+            <li>
+              <p class="info-title">铺货渠道<i>*</i> </p>
+              <p class="input-con"><input type="text"  id="ditch" placeholder="酒店/餐饮/休闲会所/ktv/酒吧"></p>
+              <p id="butSave" class="button-con">提交</p>
+            </li>
+          </ul>
+        </div>
+     </div>
+    </div>
+	<!--  错误提示 -->
+	<div class="prompt" id="messageDialog" style="display: none;">
+		<div class="prompt-cont">
+			<p id="result_prompt"></p>
+			<div class="promptBtn" id="msg_btn">确定</div>
+		</div>
+	</div>
+	<!--  错误提示 -->
+	<div class="prompt" id="messageDialog" style="display: none;">
+		<div class="prompt-cont">
+			<p id="result_prompt"></p>
+			<div class="promptBtn" id="msg_btn">知道了</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>
+	<script language="javascript" type="text/javascript">
+		var path = "${ctxPath}";
+		var reqUrl = "${reqUrlRoot}";
+		var baseUrl = "${reqUrlRoot}";
+		var selected = 0, deviceNumType = 0;//选择设置类型,选择编号添加类型
+		var custNo = "${custInfoModel.custNo}";
+		
+		var addDevicesNum = 0;//初始化添加设备的个数
+		$(function() {
+			Feng.addCtx("${ctxPath}");
+			Feng.sessionTimeoutRegistry();
+			$('.modal').appendTo("body");
+			//处理用户修改费用..
+			var options = {
+				keyboard : false,
+				backdrop : 'static',
+				show : false
+			};
+			$('#myModal').modal(options);
+		
+			//save
+			$("#butSave").click(function(){
+				debugger;
+				saveData();
+			})
+		});
+
+		var operationFlag=0;
+		//保存
+	    function saveData() {
+			if(operationFlag==1){
+				return;
+			}
+			startShieldLayer();
+			operationFlag=1;
+			var userName=$("#userName").val();
+	        if(!testName(userName)){
+	        	finishShieldLayer();
+				operationFlag=0;
+				alert('请输入合法姓名!');
+	          	return;
+	        }
+			var phone=$("#phone").val();
+	        if(!isvalidPhone(phone)){
+				finishShieldLayer();
+				operationFlag=0;
+				alert('请输入正确电话号码!');
+	          	return;
+	        }
+			var area=$("#area").val();
+	        if(area==''){
+	        	finishShieldLayer();
+				operationFlag=0;
+				alert('请输入代理区域!');
+	          	return;
+	        }
+			var ditch=$("#ditch").val();
+	        if(ditch==''){
+	        	finishShieldLayer();
+				operationFlag=0;
+				alert('请输入渠道!');
+	         	return;
+	        }
+	        var params={
+	          merchantName:userName,
+	          personName:userName,
+	          telNo:phone,
+	          agentsZone:area,
+	          throwDevChannel:ditch,
+	          type:1
+	        };
+	        //ajax保存..
+	    	$.ajax({
+				type : 'POST',
+				url : reqUrl + "wx/applyAgentForSave",
+				data : params,
+				dataType : 'json',
+				error : function(obj) {
+					operationFlag=0;
+					finishShieldLayer();
+				},
+				success : function(res) {
+					operationFlag=0;
+					finishShieldLayer();
+					if (res.result === 'success') {
+						debugger;					
+						alert("申请成功，我们将会按排服务联系您")
+						location.href=reqUrl+"wx/successPage?operation=1"
+					} else {
+						tipText(res.message);
+					}
+				}
+			});
+	    }
+	    //判断是否是正确的手机号
+	    function isvalidPhone(str) {
+    	  var mobile = /^1[3|4|5|7|8][0-9]\d{8}$/;
+    	  return mobile.test(str);
+    	}
+	    //是否是名称
+	    function testName(name) {
+    	  var username = /^[\u4E00-\u9FA5A-Za-z\s]+(·[\u4E00-\u9FA5A-Za-z]+)*$/;
+    	  return username.test(name);
+    	}
+	    //是否是数值
+	    function isNum(num) {
+    	  var reg =/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+    	  return reg.test(num);
+    	}
+		/**
+		 * 开启屏蔽层.
+		 */
+		startShieldLayer = function() {
+			$('#myModal').modal("show");
+		}
+		/**
+		 * 结束屏蔽层.
+		 */
+		finishShieldLayer = function() {
+			$('#myModal').modal("hide");
+		}
+	</script>
+</body>
+</html>

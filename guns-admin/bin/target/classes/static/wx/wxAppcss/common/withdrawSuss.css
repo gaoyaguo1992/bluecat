@@ -1,0 +1,53 @@
+ .withdrawCon {
+    width: 100%;
+    height: 4rem;
+    background: #fff;
+    padding-top: .8rem;
+    border-bottom: 1px solid #f2f2f2;
+}
+.withdrawCon .img-con{
+    height: 3rem;
+    height:3rem;
+    width:2.5rem;
+    margin:0 auto;
+}
+.img-con p{
+ 	text-align: center;
+}
+.img-con .img img{
+ 	height: 1.57rem;
+ 	width: 2.24rem;
+}
+ .img-con .state{
+  	font-size: .36rem;
+  	color: #444;
+  	margin: .4rem 0 .2rem 0;
+ }
+ .img-con .time{
+  	font-size: .26rem;
+  	color: #959595;
+ }
+.list-con{
+   background: #fff;
+   padding: .2rem .24rem;
+   height: 100%;
+}
+.list-con .lists{
+ 	padding: .2rem 0;
+}
+.list-con .lists li{
+   height: .66rem;
+   line-height:.66rem;
+   width: 100%;
+   padding: 0 .2rem;
+}
+.list-con .lists li .tips{
+  font-size: .28rem;
+  color: #959595;
+  float: left;
+}
+.list-con .lists li .money{
+  font-size: .28rem;
+  color: #444;
+  float:right;
+}

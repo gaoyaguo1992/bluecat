@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.ShareDeviceInfoModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+    <id column="Id" property="id" jdbcType="BIGINT" />
+    <result column="device_type_id" property="deviceTypeId" jdbcType="INTEGER" />
+    <result column="device_type_name" property="deviceTypeName" jdbcType="VARCHAR" />
+    <result column="device_status" property="deviceStatus" jdbcType="INTEGER" />
+    <result column="online_datetime" property="onlineDatetime" jdbcType="TIMESTAMP" />
+    <result column="online_merchant_cn" property="onlineMerchantCn" jdbcType="VARCHAR" />
+    <result column="online_merchant_id" property="onlineMerchantId" jdbcType="BIGINT" />
+    <result column="online_address" property="onlineAddress" jdbcType="VARCHAR" />
+    <result column="online_city" property="onlineCity" jdbcType="VARCHAR" />
+    <result column="online_zone" property="onlineZone" jdbcType="VARCHAR" />
+    <result column="online_province" property="onlineProvince" jdbcType="VARCHAR" />
+    <result column="online_x_coordinate" property="onlineXCoordinate" jdbcType="DECIMAL" />
+    <result column="online_y_coordinate" property="onlineYCoordinate" jdbcType="DECIMAL" />
+    <result column="fee_type_id" property="feeTypeId" jdbcType="INTEGER" />
+    <result column="fee_type_name" property="feeTypeName" jdbcType="VARCHAR" />
+    <result column="yfj_amount" property="yfjAmount" jdbcType="DECIMAL" />
+    <result column="first_amount" property="firstAmount" jdbcType="DECIMAL" />
+    <result column="first_minutes" property="firstMinutes" jdbcType="BIGINT" />
+    <result column="amount_per_hour" property="amountPerHour" jdbcType="DECIMAL" />
+    <result column="amount_max_24hour" property="amountMax24hour" jdbcType="DECIMAL" />
+    <result column="fee1_type_Id" property="fee1TypeId" jdbcType="INTEGER" />
+    <result column="fee1_type_name" property="fee1TypeName" jdbcType="VARCHAR" />
+    <result column="fee1_hour_type" property="fee1HourType" jdbcType="INTEGER" />
+    <result column="fee1_hour_amount" property="fee1HourAmount" jdbcType="DECIMAL" />
+    <result column="fee2_type_id" property="fee2TypeId" jdbcType="INTEGER" />
+    <result column="fee2_type_name" property="fee2TypeName" jdbcType="VARCHAR" />
+    <result column="fee2_hour_type" property="fee2HourType" jdbcType="INTEGER" />
+    <result column="fee2_hour_amount" property="fee2HourAmount" jdbcType="DECIMAL" />
+    <result column="fee3_type_id" property="fee3TypeId" jdbcType="INTEGER" />
+    <result column="fee3_type_name" property="fee3TypeName" jdbcType="VARCHAR" />
+    <result column="fee3_hour_type" property="fee3HourType" jdbcType="INTEGER" />
+    <result column="fee3_hour_amount" property="fee3HourAmount" jdbcType="DECIMAL" />
+    <result column="platform_rato" property="platformRato" jdbcType="DECIMAL" />
+    <result column="agents1_id" property="agents1Id" jdbcType="BIGINT" />
+    <result column="agents1_cn" property="agents1Cn" jdbcType="VARCHAR" />
+    <result column="agents1_rato" property="agents1Rato" jdbcType="DECIMAL" />
+    <result column="agents2_id" property="agents2Id" jdbcType="BIGINT" />
+    <result column="agents2_cn" property="agents2Cn" jdbcType="VARCHAR" />
+    <result column="agents2_rato" property="agents2Rato" jdbcType="DECIMAL" />
+    <result column="agents3_id" property="agents3Id" jdbcType="BIGINT" />
+    <result column="agents3_rato" property="agents3Rato" jdbcType="DECIMAL" />
+    <result column="agents3_cn" property="agents3Cn" jdbcType="VARCHAR" />
+    <result column="shopkeeper_id" property="shopkeeperId" jdbcType="BIGINT" />
+    <result column="shopkeeper_cn" property="shopkeeperCn" jdbcType="VARCHAR" />
+    <result column="shopkeeper_rato" property="shopkeeperRato" jdbcType="DECIMAL" />
+    <result column="alliance_business_id" property="allianceBusinessId" jdbcType="BIGINT" />
+    <result column="alliance_business_cn" property="allianceBusinessCn" jdbcType="VARCHAR" />
+    <result column="alliance_business_rate" property="allianceBusinessRate" jdbcType="DECIMAL" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="update_datetime" property="updateDatetime" jdbcType="TIMESTAMP" />
+    <result column="SQR_url" property="sqrUrl" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="yfj_reback_type" property="yfjRebackType" jdbcType="INTEGER" />
+    <result column="yfj_reback_type_name" property="yfjRebackTypeName" jdbcType="VARCHAR" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+    <result column="activation_mode" property="activationMode" jdbcType="INTEGER" />
+    <result column="password_type" property="passwordType" jdbcType="INTEGER" />
+    <result column="password_month" property="passwordMonth" jdbcType="VARCHAR" />
+    <result column="password_batch" property="passwordBatch" jdbcType="VARCHAR" />
+    <result column="password_key" property="passwordKey" jdbcType="VARCHAR" />
+    <result column="password_year" property="passwordYear" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, device_type_id, device_type_name, device_status, online_datetime, online_merchant_cn, 
+    online_merchant_id, online_address, online_city, online_zone, online_province, online_x_coordinate, 
+    online_y_coordinate, fee_type_id, fee_type_name, yfj_amount, first_amount, first_minutes, 
+    amount_per_hour, amount_max_24hour, fee1_type_Id, fee1_type_name, fee1_hour_type, 
+    fee1_hour_amount, fee2_type_id, fee2_type_name, fee2_hour_type, fee2_hour_amount, 
+    fee3_type_id, fee3_type_name, fee3_hour_type, fee3_hour_amount, platform_rato, agents1_id, 
+    agents1_cn, agents1_rato, agents2_id, agents2_cn, agents2_rato, agents3_id, agents3_rato, 
+    agents3_cn, shopkeeper_id, shopkeeper_cn, shopkeeper_rato, alliance_business_id, 
+    alliance_business_cn, alliance_business_rate, create_id, create_datetime, update_datetime, 
+    SQR_url, remark, yfj_reback_type, yfj_reback_type_name, last_used_time, activation_mode, 
+    password_type, password_month, password_batch, password_key, password_year
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from share_device_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from share_device_info
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from share_device_info
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModelExample" >
+    delete from share_device_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+    insert into share_device_info (Id, device_type_id, device_type_name, 
+      device_status, online_datetime, online_merchant_cn, 
+      online_merchant_id, online_address, online_city, 
+      online_zone, online_province, online_x_coordinate, 
+      online_y_coordinate, fee_type_id, fee_type_name, 
+      yfj_amount, first_amount, first_minutes, 
+      amount_per_hour, amount_max_24hour, fee1_type_Id, 
+      fee1_type_name, fee1_hour_type, fee1_hour_amount, 
+      fee2_type_id, fee2_type_name, fee2_hour_type, 
+      fee2_hour_amount, fee3_type_id, fee3_type_name, 
+      fee3_hour_type, fee3_hour_amount, platform_rato, 
+      agents1_id, agents1_cn, agents1_rato, 
+      agents2_id, agents2_cn, agents2_rato, 
+      agents3_id, agents3_rato, agents3_cn, 
+      shopkeeper_id, shopkeeper_cn, shopkeeper_rato, 
+      alliance_business_id, alliance_business_cn, 
+      alliance_business_rate, create_id, create_datetime, 
+      update_datetime, SQR_url, remark, 
+      yfj_reback_type, yfj_reback_type_name, last_used_time, 
+      activation_mode, password_type, password_month, 
+      password_batch, password_key, password_year
+      )
+    values (#{id,jdbcType=BIGINT}, #{deviceTypeId,jdbcType=INTEGER}, #{deviceTypeName,jdbcType=VARCHAR}, 
+      #{deviceStatus,jdbcType=INTEGER}, #{onlineDatetime,jdbcType=TIMESTAMP}, #{onlineMerchantCn,jdbcType=VARCHAR}, 
+      #{onlineMerchantId,jdbcType=BIGINT}, #{onlineAddress,jdbcType=VARCHAR}, #{onlineCity,jdbcType=VARCHAR}, 
+      #{onlineZone,jdbcType=VARCHAR}, #{onlineProvince,jdbcType=VARCHAR}, #{onlineXCoordinate,jdbcType=DECIMAL}, 
+      #{onlineYCoordinate,jdbcType=DECIMAL}, #{feeTypeId,jdbcType=INTEGER}, #{feeTypeName,jdbcType=VARCHAR}, 
+      #{yfjAmount,jdbcType=DECIMAL}, #{firstAmount,jdbcType=DECIMAL}, #{firstMinutes,jdbcType=BIGINT}, 
+      #{amountPerHour,jdbcType=DECIMAL}, #{amountMax24hour,jdbcType=DECIMAL}, #{fee1TypeId,jdbcType=INTEGER}, 
+      #{fee1TypeName,jdbcType=VARCHAR}, #{fee1HourType,jdbcType=INTEGER}, #{fee1HourAmount,jdbcType=DECIMAL}, 
+      #{fee2TypeId,jdbcType=INTEGER}, #{fee2TypeName,jdbcType=VARCHAR}, #{fee2HourType,jdbcType=INTEGER}, 
+      #{fee2HourAmount,jdbcType=DECIMAL}, #{fee3TypeId,jdbcType=INTEGER}, #{fee3TypeName,jdbcType=VARCHAR}, 
+      #{fee3HourType,jdbcType=INTEGER}, #{fee3HourAmount,jdbcType=DECIMAL}, #{platformRato,jdbcType=DECIMAL}, 
+      #{agents1Id,jdbcType=BIGINT}, #{agents1Cn,jdbcType=VARCHAR}, #{agents1Rato,jdbcType=DECIMAL}, 
+      #{agents2Id,jdbcType=BIGINT}, #{agents2Cn,jdbcType=VARCHAR}, #{agents2Rato,jdbcType=DECIMAL}, 
+      #{agents3Id,jdbcType=BIGINT}, #{agents3Rato,jdbcType=DECIMAL}, #{agents3Cn,jdbcType=VARCHAR}, 
+      #{shopkeeperId,jdbcType=BIGINT}, #{shopkeeperCn,jdbcType=VARCHAR}, #{shopkeeperRato,jdbcType=DECIMAL}, 
+      #{allianceBusinessId,jdbcType=BIGINT}, #{allianceBusinessCn,jdbcType=VARCHAR}, 
+      #{allianceBusinessRate,jdbcType=DECIMAL}, #{createId,jdbcType=BIGINT}, #{createDatetime,jdbcType=TIMESTAMP}, 
+      #{updateDatetime,jdbcType=TIMESTAMP}, #{sqrUrl,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{yfjRebackType,jdbcType=INTEGER}, #{yfjRebackTypeName,jdbcType=VARCHAR}, #{lastUsedTime,jdbcType=TIMESTAMP}, 
+      #{activationMode,jdbcType=INTEGER}, #{passwordType,jdbcType=INTEGER}, #{passwordMonth,jdbcType=VARCHAR}, 
+      #{passwordBatch,jdbcType=VARCHAR}, #{passwordKey,jdbcType=VARCHAR}, #{passwordYear,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+    insert into share_device_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="deviceTypeId != null" >
+        device_type_id,
+      </if>
+      <if test="deviceTypeName != null" >
+        device_type_name,
+      </if>
+      <if test="deviceStatus != null" >
+        device_status,
+      </if>
+      <if test="onlineDatetime != null" >
+        online_datetime,
+      </if>
+      <if test="onlineMerchantCn != null" >
+        online_merchant_cn,
+      </if>
+      <if test="onlineMerchantId != null" >
+        online_merchant_id,
+      </if>
+      <if test="onlineAddress != null" >
+        online_address,
+      </if>
+      <if test="onlineCity != null" >
+        online_city,
+      </if>
+      <if test="onlineZone != null" >
+        online_zone,
+      </if>
+      <if test="onlineProvince != null" >
+        online_province,
+      </if>
+      <if test="onlineXCoordinate != null" >
+        online_x_coordinate,
+      </if>
+      <if test="onlineYCoordinate != null" >
+        online_y_coordinate,
+      </if>
+      <if test="feeTypeId != null" >
+        fee_type_id,
+      </if>
+      <if test="feeTypeName != null" >
+        fee_type_name,
+      </if>
+      <if test="yfjAmount != null" >
+        yfj_amount,
+      </if>
+      <if test="firstAmount != null" >
+        first_amount,
+      </if>
+      <if test="firstMinutes != null" >
+        first_minutes,
+      </if>
+      <if test="amountPerHour != null" >
+        amount_per_hour,
+      </if>
+      <if test="amountMax24hour != null" >
+        amount_max_24hour,
+      </if>
+      <if test="fee1TypeId != null" >
+        fee1_type_Id,
+      </if>
+      <if test="fee1TypeName != null" >
+        fee1_type_name,
+      </if>
+      <if test="fee1HourType != null" >
+        fee1_hour_type,
+      </if>
+      <if test="fee1HourAmount != null" >
+        fee1_hour_amount,
+      </if>
+      <if test="fee2TypeId != null" >
+        fee2_type_id,
+      </if>
+      <if test="fee2TypeName != null" >
+        fee2_type_name,
+      </if>
+      <if test="fee2HourType != null" >
+        fee2_hour_type,
+      </if>
+      <if test="fee2HourAmount != null" >
+        fee2_hour_amount,
+      </if>
+      <if test="fee3TypeId != null" >
+        fee3_type_id,
+      </if>
+      <if test="fee3TypeName != null" >
+        fee3_type_name,
+      </if>
+      <if test="fee3HourType != null" >
+        fee3_hour_type,
+      </if>
+      <if test="fee3HourAmount != null" >
+        fee3_hour_amount,
+      </if>
+      <if test="platformRato != null" >
+        platform_rato,
+      </if>
+      <if test="agents1Id != null" >
+        agents1_id,
+      </if>
+      <if test="agents1Cn != null" >
+        agents1_cn,
+      </if>
+      <if test="agents1Rato != null" >
+        agents1_rato,
+      </if>
+      <if test="agents2Id != null" >
+        agents2_id,
+      </if>
+      <if test="agents2Cn != null" >
+        agents2_cn,
+      </if>
+      <if test="agents2Rato != null" >
+        agents2_rato,
+      </if>
+      <if test="agents3Id != null" >
+        agents3_id,
+      </if>
+      <if test="agents3Rato != null" >
+        agents3_rato,
+      </if>
+      <if test="agents3Cn != null" >
+        agents3_cn,
+      </if>
+      <if test="shopkeeperId != null" >
+        shopkeeper_id,
+      </if>
+      <if test="shopkeeperCn != null" >
+        shopkeeper_cn,
+      </if>
+      <if test="shopkeeperRato != null" >
+        shopkeeper_rato,
+      </if>
+      <if test="allianceBusinessId != null" >
+        alliance_business_id,
+      </if>
+      <if test="allianceBusinessCn != null" >
+        alliance_business_cn,
+      </if>
+      <if test="allianceBusinessRate != null" >
+        alliance_business_rate,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime,
+      </if>
+      <if test="updateDatetime != null" >
+        update_datetime,
+      </if>
+      <if test="sqrUrl != null" >
+        SQR_url,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="yfjRebackType != null" >
+        yfj_reback_type,
+      </if>
+      <if test="yfjRebackTypeName != null" >
+        yfj_reback_type_name,
+      </if>
+      <if test="lastUsedTime != null" >
+        last_used_time,
+      </if>
+      <if test="activationMode != null" >
+        activation_mode,
+      </if>
+      <if test="passwordType != null" >
+        password_type,
+      </if>
+      <if test="passwordMonth != null" >
+        password_month,
+      </if>
+      <if test="passwordBatch != null" >
+        password_batch,
+      </if>
+      <if test="passwordKey != null" >
+        password_key,
+      </if>
+      <if test="passwordYear != null" >
+        password_year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceTypeId != null" >
+        #{deviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceTypeName != null" >
+        #{deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceStatus != null" >
+        #{deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDatetime != null" >
+        #{onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="onlineMerchantCn != null" >
+        #{onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineMerchantId != null" >
+        #{onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="onlineAddress != null" >
+        #{onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineCity != null" >
+        #{onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineZone != null" >
+        #{onlineZone,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineProvince != null" >
+        #{onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineXCoordinate != null" >
+        #{onlineXCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineYCoordinate != null" >
+        #{onlineYCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="feeTypeId != null" >
+        #{feeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="feeTypeName != null" >
+        #{feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="yfjAmount != null" >
+        #{yfjAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstAmount != null" >
+        #{firstAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstMinutes != null" >
+        #{firstMinutes,jdbcType=BIGINT},
+      </if>
+      <if test="amountPerHour != null" >
+        #{amountPerHour,jdbcType=DECIMAL},
+      </if>
+      <if test="amountMax24hour != null" >
+        #{amountMax24hour,jdbcType=DECIMAL},
+      </if>
+      <if test="fee1TypeId != null" >
+        #{fee1TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fee1TypeName != null" >
+        #{fee1TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fee1HourType != null" >
+        #{fee1HourType,jdbcType=INTEGER},
+      </if>
+      <if test="fee1HourAmount != null" >
+        #{fee1HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee2TypeId != null" >
+        #{fee2TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fee2TypeName != null" >
+        #{fee2TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fee2HourType != null" >
+        #{fee2HourType,jdbcType=INTEGER},
+      </if>
+      <if test="fee2HourAmount != null" >
+        #{fee2HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee3TypeId != null" >
+        #{fee3TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fee3TypeName != null" >
+        #{fee3TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fee3HourType != null" >
+        #{fee3HourType,jdbcType=INTEGER},
+      </if>
+      <if test="fee3HourAmount != null" >
+        #{fee3HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="platformRato != null" >
+        #{platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents1Id != null" >
+        #{agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents1Cn != null" >
+        #{agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="agents1Rato != null" >
+        #{agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents2Id != null" >
+        #{agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents2Cn != null" >
+        #{agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="agents2Rato != null" >
+        #{agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents3Id != null" >
+        #{agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents3Rato != null" >
+        #{agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents3Cn != null" >
+        #{agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="shopkeeperId != null" >
+        #{shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="shopkeeperCn != null" >
+        #{shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="shopkeeperRato != null" >
+        #{shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="allianceBusinessId != null" >
+        #{allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="allianceBusinessCn != null" >
+        #{allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      <if test="allianceBusinessRate != null" >
+        #{allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDatetime != null" >
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqrUrl != null" >
+        #{sqrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="yfjRebackType != null" >
+        #{yfjRebackType,jdbcType=INTEGER},
+      </if>
+      <if test="yfjRebackTypeName != null" >
+        #{yfjRebackTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUsedTime != null" >
+        #{lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activationMode != null" >
+        #{activationMode,jdbcType=INTEGER},
+      </if>
+      <if test="passwordType != null" >
+        #{passwordType,jdbcType=INTEGER},
+      </if>
+      <if test="passwordMonth != null" >
+        #{passwordMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordBatch != null" >
+        #{passwordBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordKey != null" >
+        #{passwordKey,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordYear != null" >
+        #{passwordYear,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModelExample" resultType="java.lang.Integer" >
+    select count(*) from share_device_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update share_device_info
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceTypeId != null" >
+        device_type_id = #{record.deviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceTypeName != null" >
+        device_type_name = #{record.deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceStatus != null" >
+        device_status = #{record.deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineDatetime != null" >
+        online_datetime = #{record.onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlineMerchantCn != null" >
+        online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantId != null" >
+        online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.onlineAddress != null" >
+        online_address = #{record.onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineCity != null" >
+        online_city = #{record.onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineZone != null" >
+        online_zone = #{record.onlineZone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineProvince != null" >
+        online_province = #{record.onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineXCoordinate != null" >
+        online_x_coordinate = #{record.onlineXCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlineYCoordinate != null" >
+        online_y_coordinate = #{record.onlineYCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.feeTypeId != null" >
+        fee_type_id = #{record.feeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.feeTypeName != null" >
+        fee_type_name = #{record.feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yfjAmount != null" >
+        yfj_amount = #{record.yfjAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstAmount != null" >
+        first_amount = #{record.firstAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstMinutes != null" >
+        first_minutes = #{record.firstMinutes,jdbcType=BIGINT},
+      </if>
+      <if test="record.amountPerHour != null" >
+        amount_per_hour = #{record.amountPerHour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amountMax24hour != null" >
+        amount_max_24hour = #{record.amountMax24hour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee1TypeId != null" >
+        fee1_type_Id = #{record.fee1TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1TypeName != null" >
+        fee1_type_name = #{record.fee1TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee1HourType != null" >
+        fee1_hour_type = #{record.fee1HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1HourAmount != null" >
+        fee1_hour_amount = #{record.fee1HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee2TypeId != null" >
+        fee2_type_id = #{record.fee2TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2TypeName != null" >
+        fee2_type_name = #{record.fee2TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee2HourType != null" >
+        fee2_hour_type = #{record.fee2HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2HourAmount != null" >
+        fee2_hour_amount = #{record.fee2HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee3TypeId != null" >
+        fee3_type_id = #{record.fee3TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3TypeName != null" >
+        fee3_type_name = #{record.fee3TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee3HourType != null" >
+        fee3_hour_type = #{record.fee3HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3HourAmount != null" >
+        fee3_hour_amount = #{record.fee3HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.platformRato != null" >
+        platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents1Cn != null" >
+        agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Cn != null" >
+        agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Cn != null" >
+        agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperId != null" >
+        shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopkeeperCn != null" >
+        shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessId != null" >
+        alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allianceBusinessCn != null" >
+        alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createId != null" >
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDatetime != null" >
+        create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDatetime != null" >
+        update_datetime = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sqrUrl != null" >
+        SQR_url = #{record.sqrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yfjRebackType != null" >
+        yfj_reback_type = #{record.yfjRebackType,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackTypeName != null" >
+        yfj_reback_type_name = #{record.yfjRebackTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUsedTime != null" >
+        last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activationMode != null" >
+        activation_mode = #{record.activationMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.passwordType != null" >
+        password_type = #{record.passwordType,jdbcType=INTEGER},
+      </if>
+      <if test="record.passwordMonth != null" >
+        password_month = #{record.passwordMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwordBatch != null" >
+        password_batch = #{record.passwordBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwordKey != null" >
+        password_key = #{record.passwordKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwordYear != null" >
+        password_year = #{record.passwordYear,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update share_device_info
+    set Id = #{record.id,jdbcType=BIGINT},
+      device_type_id = #{record.deviceTypeId,jdbcType=INTEGER},
+      device_type_name = #{record.deviceTypeName,jdbcType=VARCHAR},
+      device_status = #{record.deviceStatus,jdbcType=INTEGER},
+      online_datetime = #{record.onlineDatetime,jdbcType=TIMESTAMP},
+      online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      online_address = #{record.onlineAddress,jdbcType=VARCHAR},
+      online_city = #{record.onlineCity,jdbcType=VARCHAR},
+      online_zone = #{record.onlineZone,jdbcType=VARCHAR},
+      online_province = #{record.onlineProvince,jdbcType=VARCHAR},
+      online_x_coordinate = #{record.onlineXCoordinate,jdbcType=DECIMAL},
+      online_y_coordinate = #{record.onlineYCoordinate,jdbcType=DECIMAL},
+      fee_type_id = #{record.feeTypeId,jdbcType=INTEGER},
+      fee_type_name = #{record.feeTypeName,jdbcType=VARCHAR},
+      yfj_amount = #{record.yfjAmount,jdbcType=DECIMAL},
+      first_amount = #{record.firstAmount,jdbcType=DECIMAL},
+      first_minutes = #{record.firstMinutes,jdbcType=BIGINT},
+      amount_per_hour = #{record.amountPerHour,jdbcType=DECIMAL},
+      amount_max_24hour = #{record.amountMax24hour,jdbcType=DECIMAL},
+      fee1_type_Id = #{record.fee1TypeId,jdbcType=INTEGER},
+      fee1_type_name = #{record.fee1TypeName,jdbcType=VARCHAR},
+      fee1_hour_type = #{record.fee1HourType,jdbcType=INTEGER},
+      fee1_hour_amount = #{record.fee1HourAmount,jdbcType=DECIMAL},
+      fee2_type_id = #{record.fee2TypeId,jdbcType=INTEGER},
+      fee2_type_name = #{record.fee2TypeName,jdbcType=VARCHAR},
+      fee2_hour_type = #{record.fee2HourType,jdbcType=INTEGER},
+      fee2_hour_amount = #{record.fee2HourAmount,jdbcType=DECIMAL},
+      fee3_type_id = #{record.fee3TypeId,jdbcType=INTEGER},
+      fee3_type_name = #{record.fee3TypeName,jdbcType=VARCHAR},
+      fee3_hour_type = #{record.fee3HourType,jdbcType=INTEGER},
+      fee3_hour_amount = #{record.fee3HourAmount,jdbcType=DECIMAL},
+      platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      update_datetime = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      SQR_url = #{record.sqrUrl,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      yfj_reback_type = #{record.yfjRebackType,jdbcType=INTEGER},
+      yfj_reback_type_name = #{record.yfjRebackTypeName,jdbcType=VARCHAR},
+      last_used_time = #{record.lastUsedTime,jdbcType=TIMESTAMP},
+      activation_mode = #{record.activationMode,jdbcType=INTEGER},
+      password_type = #{record.passwordType,jdbcType=INTEGER},
+      password_month = #{record.passwordMonth,jdbcType=VARCHAR},
+      password_batch = #{record.passwordBatch,jdbcType=VARCHAR},
+      password_key = #{record.passwordKey,jdbcType=VARCHAR},
+      password_year = #{record.passwordYear,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+    update share_device_info
+    <set >
+      <if test="deviceTypeId != null" >
+        device_type_id = #{deviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceTypeName != null" >
+        device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceStatus != null" >
+        device_status = #{deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDatetime != null" >
+        online_datetime = #{onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="onlineMerchantCn != null" >
+        online_merchant_cn = #{onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineMerchantId != null" >
+        online_merchant_id = #{onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="onlineAddress != null" >
+        online_address = #{onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineCity != null" >
+        online_city = #{onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineZone != null" >
+        online_zone = #{onlineZone,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineProvince != null" >
+        online_province = #{onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineXCoordinate != null" >
+        online_x_coordinate = #{onlineXCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineYCoordinate != null" >
+        online_y_coordinate = #{onlineYCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="feeTypeId != null" >
+        fee_type_id = #{feeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="feeTypeName != null" >
+        fee_type_name = #{feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="yfjAmount != null" >
+        yfj_amount = #{yfjAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstAmount != null" >
+        first_amount = #{firstAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstMinutes != null" >
+        first_minutes = #{firstMinutes,jdbcType=BIGINT},
+      </if>
+      <if test="amountPerHour != null" >
+        amount_per_hour = #{amountPerHour,jdbcType=DECIMAL},
+      </if>
+      <if test="amountMax24hour != null" >
+        amount_max_24hour = #{amountMax24hour,jdbcType=DECIMAL},
+      </if>
+      <if test="fee1TypeId != null" >
+        fee1_type_Id = #{fee1TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fee1TypeName != null" >
+        fee1_type_name = #{fee1TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fee1HourType != null" >
+        fee1_hour_type = #{fee1HourType,jdbcType=INTEGER},
+      </if>
+      <if test="fee1HourAmount != null" >
+        fee1_hour_amount = #{fee1HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee2TypeId != null" >
+        fee2_type_id = #{fee2TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fee2TypeName != null" >
+        fee2_type_name = #{fee2TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fee2HourType != null" >
+        fee2_hour_type = #{fee2HourType,jdbcType=INTEGER},
+      </if>
+      <if test="fee2HourAmount != null" >
+        fee2_hour_amount = #{fee2HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee3TypeId != null" >
+        fee3_type_id = #{fee3TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fee3TypeName != null" >
+        fee3_type_name = #{fee3TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fee3HourType != null" >
+        fee3_hour_type = #{fee3HourType,jdbcType=INTEGER},
+      </if>
+      <if test="fee3HourAmount != null" >
+        fee3_hour_amount = #{fee3HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="platformRato != null" >
+        platform_rato = #{platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents1Id != null" >
+        agents1_id = #{agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents1Cn != null" >
+        agents1_cn = #{agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="agents1Rato != null" >
+        agents1_rato = #{agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents2Id != null" >
+        agents2_id = #{agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents2Cn != null" >
+        agents2_cn = #{agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="agents2Rato != null" >
+        agents2_rato = #{agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents3Id != null" >
+        agents3_id = #{agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents3Rato != null" >
+        agents3_rato = #{agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="agents3Cn != null" >
+        agents3_cn = #{agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="shopkeeperId != null" >
+        shopkeeper_id = #{shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="shopkeeperCn != null" >
+        shopkeeper_cn = #{shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="shopkeeperRato != null" >
+        shopkeeper_rato = #{shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="allianceBusinessId != null" >
+        alliance_business_id = #{allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="allianceBusinessCn != null" >
+        alliance_business_cn = #{allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      <if test="allianceBusinessRate != null" >
+        alliance_business_rate = #{allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null" >
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sqrUrl != null" >
+        SQR_url = #{sqrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="yfjRebackType != null" >
+        yfj_reback_type = #{yfjRebackType,jdbcType=INTEGER},
+      </if>
+      <if test="yfjRebackTypeName != null" >
+        yfj_reback_type_name = #{yfjRebackTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUsedTime != null" >
+        last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activationMode != null" >
+        activation_mode = #{activationMode,jdbcType=INTEGER},
+      </if>
+      <if test="passwordType != null" >
+        password_type = #{passwordType,jdbcType=INTEGER},
+      </if>
+      <if test="passwordMonth != null" >
+        password_month = #{passwordMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordBatch != null" >
+        password_batch = #{passwordBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordKey != null" >
+        password_key = #{passwordKey,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordYear != null" >
+        password_year = #{passwordYear,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+    update share_device_info
+    set device_type_id = #{deviceTypeId,jdbcType=INTEGER},
+      device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
+      device_status = #{deviceStatus,jdbcType=INTEGER},
+      online_datetime = #{onlineDatetime,jdbcType=TIMESTAMP},
+      online_merchant_cn = #{onlineMerchantCn,jdbcType=VARCHAR},
+      online_merchant_id = #{onlineMerchantId,jdbcType=BIGINT},
+      online_address = #{onlineAddress,jdbcType=VARCHAR},
+      online_city = #{onlineCity,jdbcType=VARCHAR},
+      online_zone = #{onlineZone,jdbcType=VARCHAR},
+      online_province = #{onlineProvince,jdbcType=VARCHAR},
+      online_x_coordinate = #{onlineXCoordinate,jdbcType=DECIMAL},
+      online_y_coordinate = #{onlineYCoordinate,jdbcType=DECIMAL},
+      fee_type_id = #{feeTypeId,jdbcType=INTEGER},
+      fee_type_name = #{feeTypeName,jdbcType=VARCHAR},
+      yfj_amount = #{yfjAmount,jdbcType=DECIMAL},
+      first_amount = #{firstAmount,jdbcType=DECIMAL},
+      first_minutes = #{firstMinutes,jdbcType=BIGINT},
+      amount_per_hour = #{amountPerHour,jdbcType=DECIMAL},
+      amount_max_24hour = #{amountMax24hour,jdbcType=DECIMAL},
+      fee1_type_Id = #{fee1TypeId,jdbcType=INTEGER},
+      fee1_type_name = #{fee1TypeName,jdbcType=VARCHAR},
+      fee1_hour_type = #{fee1HourType,jdbcType=INTEGER},
+      fee1_hour_amount = #{fee1HourAmount,jdbcType=DECIMAL},
+      fee2_type_id = #{fee2TypeId,jdbcType=INTEGER},
+      fee2_type_name = #{fee2TypeName,jdbcType=VARCHAR},
+      fee2_hour_type = #{fee2HourType,jdbcType=INTEGER},
+      fee2_hour_amount = #{fee2HourAmount,jdbcType=DECIMAL},
+      fee3_type_id = #{fee3TypeId,jdbcType=INTEGER},
+      fee3_type_name = #{fee3TypeName,jdbcType=VARCHAR},
+      fee3_hour_type = #{fee3HourType,jdbcType=INTEGER},
+      fee3_hour_amount = #{fee3HourAmount,jdbcType=DECIMAL},
+      platform_rato = #{platformRato,jdbcType=DECIMAL},
+      agents1_id = #{agents1Id,jdbcType=BIGINT},
+      agents1_cn = #{agents1Cn,jdbcType=VARCHAR},
+      agents1_rato = #{agents1Rato,jdbcType=DECIMAL},
+      agents2_id = #{agents2Id,jdbcType=BIGINT},
+      agents2_cn = #{agents2Cn,jdbcType=VARCHAR},
+      agents2_rato = #{agents2Rato,jdbcType=DECIMAL},
+      agents3_id = #{agents3Id,jdbcType=BIGINT},
+      agents3_rato = #{agents3Rato,jdbcType=DECIMAL},
+      agents3_cn = #{agents3Cn,jdbcType=VARCHAR},
+      shopkeeper_id = #{shopkeeperId,jdbcType=BIGINT},
+      shopkeeper_cn = #{shopkeeperCn,jdbcType=VARCHAR},
+      shopkeeper_rato = #{shopkeeperRato,jdbcType=DECIMAL},
+      alliance_business_id = #{allianceBusinessId,jdbcType=BIGINT},
+      alliance_business_cn = #{allianceBusinessCn,jdbcType=VARCHAR},
+      alliance_business_rate = #{allianceBusinessRate,jdbcType=DECIMAL},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      SQR_url = #{sqrUrl,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      yfj_reback_type = #{yfjRebackType,jdbcType=INTEGER},
+      yfj_reback_type_name = #{yfjRebackTypeName,jdbcType=VARCHAR},
+      last_used_time = #{lastUsedTime,jdbcType=TIMESTAMP},
+      activation_mode = #{activationMode,jdbcType=INTEGER},
+      password_type = #{passwordType,jdbcType=INTEGER},
+      password_month = #{passwordMonth,jdbcType=VARCHAR},
+      password_batch = #{passwordBatch,jdbcType=VARCHAR},
+      password_key = #{passwordKey,jdbcType=VARCHAR},
+      password_year = #{passwordYear,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,55 @@
+body{
+	/*background: #f2f3f7;*/
+}
+.switchtit{
+	padding: 0 .2rem;
+	height: .8rem;
+	line-height: .8rem;
+	background: #f2f3f7;
+	color: #a2a3a7;
+	font-size: .28rem;
+}
+.switchlist{
+	padding: 0 .2rem;
+	height: 1rem;
+	line-height: 1rem;
+	color: #626262;
+	font-size: .28rem;
+	background: #fff;
+	border-bottom: #f2f3f7 1px solid;
+}
+.switchlist input{
+	margin-right: .2rem;
+}
+.switchlist i{
+    float: right;
+	color: #34a2ff;	
+	font-size: 0;
+    
+}
+.switchlist span{
+	color: #00a8f7;
+	font-size: 0;		    
+}
+.switchlist.active i{
+	font-size: .32rem;
+}
+.switchlist.active span{
+	font-size: .28rem;
+}
+.tip{
+	display:none;
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	margin-left: -2.2rem;
+	font-size: .2rem;
+	width: 4.4rem;
+	height: .8rem;
+	line-height: .8rem;
+	text-align: center;
+	font-size: .36rem;
+	color: #fff;
+	background: rgba(0,0,0,.3);
+	border-radius: .1rem;
+}

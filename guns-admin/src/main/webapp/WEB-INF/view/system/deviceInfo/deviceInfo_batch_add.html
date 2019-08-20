@@ -1,0 +1,262 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#select id="deviceTypeId" name="设备类型" underline="false" 
+                            	onChangeEvent="DeviceInfoInfoDlg.deviceTypeIdBatchOnChange()">
+                            	${selectDeviceTypeOptions}
+							</#select>
+                            <#inputFocus id="onlineMerchantId" hidden="onlineMerchantId_hd" 
+                             onBlurFun="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,10)"
+                             onFocusFun="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,10)"
+                             name="终端商铺号" underline="false"/>
+                </div>
+                <div class="col-sm-6">
+                            <#select id="deviceStatus" name="设备状态" underline="false">
+                            	${selectDeviceStatusOptions}
+							</#select>
+                            <#input id="remark" name="备注" underline="false"/>
+                </div>
+                <div class="form-group">
+                     <label class="col-sm-2 control-label" style="width:25%">设备激活模式</label>
+                     <div class="col-sm-8"  style="width:75%">
+                      	<select id="activationMode"  style="width:95%;margin-right:5px; height:30px;" name="activationMode">
+                            	${shareDeviceActivationModeOptions}
+                      	</select>
+                     </div>
+                </div>
+                <div class="form-group">
+                     <label class="col-sm-2 control-label" style="width:25%">设备编号模式</label>
+                     <div class="col-sm-8"  style="width:75%">
+                      	<select id="deviceNoType"  onchange="DeviceInfoInfoDlg.deviceNoType_onchange()" style="width:95%;margin-right:5px; height:30px;" name="activationMode">
+                            ${shareDeviceInfoNumberTypeOptions}
+                      	</select>
+                     </div>
+                </div>
+                <div class="form-group">
+                     <label class="col-sm-2 control-label" style="width:25%">批量生成设备数量</label>
+                     <div class="col-sm-8"  style="width:75%">
+                         <input class="form-control" id="deviceQty" style="width:95%;margin-right:5px;" type="text">
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="width:25%">其它信息批量设置</label>
+                    <div class="col-sm-8"  style="width:75%;margin-top: 5px">
+                        <input type="checkbox" id="batchSetCharger" name="batchSetCharger"  checked="true" onclick="DeviceInfoInfoDlg.batchSetChargerOnClick()"/>设置充电器&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" id="batchSetFee" name="batchSetFeeChk" onclick="DeviceInfoInfoDlg.batchSetFeeChkOnClick()"/>设置费用&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" id="batchSetMerch" name="batchSetMerch" onclick="DeviceInfoInfoDlg.batchSetMerchOnClick()"/>设置商户&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+			<div id="divForDeviceNoTypeObjects" style="display:none" class="list-group">
+				<a  class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						配置生成设备编号参数
+					</h4>
+				</a>
+				<a  class="list-group-item">
+				   <#select id="deviceNoForYear" name="编号对应年" underline="false" styleForDiv="margin-bottom:0px">
+                         	<option value="19">2019</option>
+                         	<option value="20">2020</option>
+                         	<option value="21">2021</option>
+					</#select>
+				</a>
+				<a  class="list-group-item">
+				   <#select id="deviceNoForMonth" name="编号对应月" underline="false" styleForDiv="margin-bottom:0px">
+                         	<option value="01">1</option>
+                         	<option value="02">2</option>
+                         	<option value="03">3</option>
+                         	<option value="04">4</option>
+                         	<option value="05">5</option>
+                         	<option value="06">6</option>
+                         	<option value="07">7</option>
+                         	<option value="08">8</option>
+                         	<option value="09">9</option>
+                         	<option value="10">10</option>
+                         	<option value="11">11</option>
+                         	<option value="12">12</option>
+					</#select>
+				</a>
+				<a  class="list-group-item">
+					<#input id="deviceNoForBB" idForLabel="deviceNoForBB_label"
+						 name="编号对应批次" styleForLabel="width:30%;" 
+						 styleForInputDiv="width:70%;" styleForDiv="margin-bottom:0px"/>
+				</a>
+				<a  class="list-group-item">
+					<#input id="deviceNoForKey" idForLabel="deviceNoForKey_label"
+						 name="密钥串" styleForLabel="width:30%;" 
+						 styleForInputDiv="width:70%;" styleForDiv="margin-bottom:0px"/>
+				</a>
+			</div>
+			<div id="feeBatchSetCommon" style="display:none" class="list-group">
+				<a  class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						批量设备费用设置
+					</h4>
+					<div id="chooseFeeTypeByYfj_1">
+						<label>按预付费</label><input type="radio"  name="batchFeeType_1" value="1" checked/>
+						<label>按时间</label><input type="radio"  name="batchFeeType_1" value="2" />
+					</div>
+				</a>
+				<a  class="list-group-item">
+					   <#select id="feeTypeId" name="费用类型" underline="false" 
+					   		styleForDiv="margin-bottom:0px"
+                           	onChangeEvent="DeviceInfoInfoDlg.feeTypeIdOnChange()">
+                           	${selectFeeTypeOptions}
+						</#select>
+				</a>
+				<a  class="list-group-item">
+					<#twoInputForFeeOnRow id1="yfjAmount" name1="预付金(元)" 
+                             id2="amountMax24hour"  name2="24小时最多收费(元)"
+                             underline="false"/>
+				</a>
+				<a  class="list-group-item" id="firstMinutes_a">
+					<#twoInputForFeeOnRow id1="firstMinutes" name1="预先使用时长（分钟）" 
+                             id2="firstAmount"  name2="预先使用时长费用(元)"
+                             underline="false"/>
+				</a>
+				<a  class="list-group-item">
+					<#input id="amountPerHour" idForLabel="amountPerHour_label"
+						 name="每小时使用费用(元)" styleForLabel="width:50%;" 
+						 styleForInputDiv="width:50%;" styleForDiv="margin-bottom:0px"/>
+				</a>
+			</div>
+			<div id="feeBatchSetByTime" style="display:none" class="list-group">
+				<a class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						批量设备费用设置
+					</h4>
+					<div id="chooseFeeTypeByYfj_2">
+						<label>按预付费</label><input type="radio"  name="batchFeeType_2" value="1" />
+						<label>按时间</label><input type="radio"  name="batchFeeType_2" value="2" checked/>
+					</div>
+				</a>
+				<a  class="list-group-item">
+					<#feeInputByHourOnRow id1="fee1TypeId" name1="充电时长(选项1)" 
+                         id2="fee1HourAmount"  name2="充电费用(元)" 
+                         underline="false">
+                         	${selectFee1TypeOptions}
+                    </#feeInputByHourOnRow>
+				</a>
+				<a  class="list-group-item">
+					<#feeInputByHourOnRow id1="fee2TypeId" name1="充电时长(选项2)" 
+                         id2="fee2HourAmount"  name2="充电费用(元)" 
+                         underline="false">
+                         	${selectFee2TypeOptions}
+                    </#feeInputByHourOnRow>
+				</a>
+				<a  class="list-group-item">
+					<#feeInputByHourOnRow id1="fee3TypeId" name1="充电时长(选项3)" 
+                         id2="fee3HourAmount"  name2="充电费用(元)" 
+                         underline="false">
+                         	${selectFee3TypeOptions}
+                    </#feeInputByHourOnRow>
+				</a>
+			</div>
+			<div id="bindMerchant" style="display:none" class="list-group">
+				<a  class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						批量绑定商户&nbsp;&nbsp;<span id="platformRato" style="color:red">平台分润(100%)</span>
+						<input type="hidden" id="platformRato_hd" value="100"/>
+					</h4>
+				</a>
+				<a  class="list-group-item">
+					   <#twoInputOnRow id1="agents1Id" hidden1="agents1Id_hd" name1="顶级代理商" 
+                             onBlurFun1="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,11)"
+                             onFocusFun1="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,11)"
+                             id2="agents1Rato" hidden2="agents1Rato_hd" name2="顶代理分润(%)"
+                             changeEventFun2="DeviceInfoInfoDlg.merchantRatoOnChange(this,11)"   
+                             underline="false"/>
+				</a>
+				<a  class="list-group-item">
+					   <#twoInputOnRow id1="agents2Id" hidden1="agents2Id_hd" name1="一代理商" 
+                             onBlurFun1="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,12)"
+                             onFocusFun1="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,12)"
+                             id2="agents2Rato" hidden2="agents2Rato_hd" name2="一代理分润(%)"
+                             changeEventFun2="DeviceInfoInfoDlg.merchantRatoOnChange(this,12)"
+                             underline="false"/>
+				</a>
+				<a  class="list-group-item">
+					   <#twoInputOnRow id1="agents3Id" hidden1="agents3Id_hd" name1="二代理商" 
+                             onBlurFun1="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,13)"
+                             onFocusFun1="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,13)"
+                             id2="agents3Rato" hidden2="agents3Rato_hd" name2="二代理分润(%)"
+                             changeEventFun2="DeviceInfoInfoDlg.merchantRatoOnChange(this,13)"
+                             underline="false"/>
+				</a>
+				<a  class="list-group-item">                       
+					   <#twoInputOnRow id1="shopkeeperId" hidden1="shopkeeperId_hd" name1="铺货商" 
+                             onBlurFun1="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,14)"
+                             onFocusFun1="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,14)"
+                             id2="shopkeeperRato" hidden2="shopkeeperRato_hd" name2="铺货商分润(%)"
+                             changeEventFun2="DeviceInfoInfoDlg.merchantRatoOnChange(this,14)"
+                             underline="false"/>
+				</a>
+				<a  class="list-group-item">
+					   <#twoInputOnRow id1="allianceBusinessId" hidden1="allianceBusinessId_hd" name1="加盟商" 
+                            onBlurFun1="DeviceInfoInfoDlg.onlineMerchantIdOnBlur(this,15)"
+                            onFocusFun1="DeviceInfoInfoDlg.onlineMerchantIdOnFocus(this,15)"
+                            id2="allianceBusinessRate" hidden2="allianceBusinessRate_hd" name2="加盟商分润(%)"
+                            changeEventFun2="DeviceInfoInfoDlg.merchantRatoOnChange(this,15)"
+                            underline="false"/>
+				</a>
+			</div>
+			<div id="chargerSet" style="display:none;" class="list-group">
+				<a class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						批量生成充电器设置
+					</h4>
+				</a>
+				<a  class="list-group-item">
+					<#inputFocusForGroup id="batchChargerQty" name="每个设备生成充电器数量" 
+						styleForLabel="width:50%"
+						styleForInput="width:50%"
+						value="1"
+                        underline="false">
+                    </#inputFocusForGroup>
+				</a>
+				<a  class="list-group-item">
+					<#inputFocusForGroup id="batchChargerRemark" name="生成充电器备注" 
+						styleForLabel="width:50%"
+						styleForInput="width:50%"
+                        underline="false">
+                    </#inputFocusForGroup>
+				</a>
+			</div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DeviceInfoInfoDlg.batchAddSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DeviceInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script language="javascript" type="text/javascript" src="${ctxPath}/static/modular/system/deviceInfo/deviceInfo_info.js?v=33"></script>
+<script language="javascript" type="text/javascript">
+$(function() {
+	//1.处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false}
+	$('#myModal').modal(options)
+	//2.处理设备费用..
+	DeviceInfoInfoDlg.deviceTypeIdBatchOnChange();
+	//3.处理充电器设置
+	DeviceInfoInfoDlg.batchSetChargerOnClick();
+	//4.处理商户..
+	DeviceInfoInfoDlg.batchSetMerchOnClick();
+	//5.处理选择设备模式
+	DeviceInfoInfoDlg.deviceNoType_onchange();
+});
+</script>
+@}

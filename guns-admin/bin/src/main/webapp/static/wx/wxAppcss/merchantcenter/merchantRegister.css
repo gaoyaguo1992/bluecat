@@ -1,0 +1,313 @@
+body{
+    background: #fff;
+    color: #333; 
+    font-size: 14px;
+}
+.fr{
+    float: right;
+}
+.head{
+    position: relative;
+    height: 110px;
+    height: 2.6rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;    
+}
+.head-img{
+    width: 55px;
+    height: 55px;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0 auto;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+}
+.head-img img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+.head-text{
+    line-height: .6rem;
+    color: #999;
+    text-align: center;
+    font-size: .3rem;
+}
+
+.cooperation-infor{
+    padding: .4rem 4% .01rem;
+    background: #fff;
+}
+.cooperation-infor.mart{
+    margin-top: 14px;
+    margin-top: .3rem;
+}
+.trantit {
+    font-size: 14px;
+}
+
+.cooperation-infor .cooperation-fill:last-child {
+    border-bottom: none;
+}
+.cooperation-fill{
+    position: relative;
+    margin-bottom:  .3rem;
+    font-size: 14px;
+    min-height:.8rem;
+    background: #fff;
+}
+
+.cooperation-fill lable{
+    font-size: 14px;
+        
+    display: block;
+    width: 100%;
+    vertical-align: top;
+    text-align: left;
+    overflow: hidden;
+}
+.cooperation-fill .posiwidth{
+    display: inline-block;
+    width: 6rem;   
+    vertical-align: middle;
+}
+.cooperation-fill input,.cooperation-fill select,.cooperation-fill textarea{
+    min-height:24px;
+    line-height: 24px;  
+    font-size: 14px;
+    
+    display: inline-block;
+    min-height:.8rem;
+    line-height: .8rem;
+    width: 6rem;
+    padding: 0 .2rem;
+    color: #333;
+    vertical-align: top;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    border: 1px solid #ccc;
+        appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none; 
+}
+.cooperation-fill textarea{
+    width: 5.6rem;
+}
+.cooperation-textarea{
+    min-height:26px;
+    
+
+    min-height:1rem;
+    background: #fff;
+    overflow: hidden;
+}
+.cooperation-textarea lable{    
+    width: 100%;
+    font-size: 14px;
+    
+    display: block;
+    vertical-align: top;
+    text-align: left;
+}
+.cooperation-textarea textarea{
+    min-height: 18px;
+    line-height: 16px;
+    width: 93.7%;
+    margin: 2px 0 5px;
+    font-size: 14px;
+    
+    display: block;
+    min-height: .6rem;
+    line-height: .36rem; 
+    margin: .2rem 0 .5rem;
+    padding: .1rem .2rem;
+    outline: none;
+    border: 0;
+    resize: none;
+    overflow: hidden;
+    border: #ccc 1px solid;
+        appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.cooperation-fill .lefticon{
+    display: inline-block;
+    font-size: .6rem;
+}
+.cooperation-fill .icon-more{
+    position: absolute;
+    right: 30px;
+    right: .7rem;
+    top: 6px;
+    top: .14rem;
+    font-size: 16px;
+    color: #9a9a9a;
+    vertical-align: top;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+.cooperation-fill p{
+    font-size: 14px;
+    
+    display: inline-block;
+    color: #d43536;
+}
+.cooperation-fill input.yzcode{
+    width: 100%;
+    overflow: hidden;
+}
+.relative{
+    position:relative;
+}
+.cooperation-fill .btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    width: 2rem;
+    height: .8rem;
+    line-height: .8rem;
+    padding: 0 .3rem;
+    color: #ff6666;
+    text-align: center;
+    overflow: hidden;
+    border-left: 1px solid #ccc;
+}
+.cooperation-fill .shophours{
+    display: inline-block;
+    width: 36%;
+}
+.cooperation-fill .shophoursspan{
+    display: inline-block;
+    margin: 0 5px;
+    vertical-align: middle;
+    line-height: .8rem;
+    height: .8rem;
+}
+.cooperation-fill b{
+	color: #f00;
+}
+/* �ϴ�ͼƬ */
+a,input{outline: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+#fileBtnJust,#fileBtnBack,#fileBtnTake{display: none;}
+canvas{
+	width: 100%;
+	border: 1px solid #000000;
+}
+.touch{background-color: #ddd;}
+.idphotosbox{
+    padding:.1rem 0 .3rem;
+    background: #fff;
+}
+.icon-anniu {
+    position: absolute;
+    top: .35rem;
+    float: right;
+    font-size: .2rem;
+}
+.idphotos{
+    padding: .2rem 0;
+    overflow: hidden;
+}
+.idphotos li{
+    position: relative;
+    float: left;
+    margin: 0 1.6%;
+    width: 30%;
+}
+.idphotos  li i {
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #333;
+    background: #f5f5f5;
+}
+.idphotos .photobox{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 1.6rem;
+    background: url(../../../img/personCenter/sendimg.png) no-repeat top center;
+    background-size: 80% 100%;
+}
+
+.idphotos .photobox input {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.idphotos .photobox img{
+    max-width: 100%;
+    max-height: 100%
+}
+.idphotos .phototext{
+    width: 100%;
+    line-height: .8rem;
+    text-align: center;
+}
+.submitbtn{
+    width: 92%;
+    height: 40px;
+    margin: 12px auto;
+    line-height: 40px;
+    font-size: 18px;
+
+    height: 1rem;
+    line-height: 1rem;
+    margin: .5rem auto;
+    text-align: center;
+    color: #fff;
+    border-radius: 1rem;
+    -webkit-boder-radius: 1rem;
+    background: #1ab394;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    -webkit-transition-property: background-color;
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+}
+.submitbtn:active{
+    background-color: #1ab394;
+}
+.dingweidizhi{
+    position: absolute;
+    right: .3rem;
+    top: 0;
+    height: .8rem;
+    line-height: .8rem;
+    width: .8rem;
+    text-align: center;
+    background: #fff;
+    border-top: 1px solid #ccc;
+}
+.cooperation-fill .useguize{
+    display: inline-block;
+    line-height: .4rem;
+    padding: .2rem;
+    opacity: .5;
+    font-size: .3rem;
+}

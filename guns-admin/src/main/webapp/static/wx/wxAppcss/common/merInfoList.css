@@ -1,0 +1,209 @@
+body {
+	background: #f2f2f2;
+}
+
+.search-con {
+	background: #fff;
+	display: flex;
+	height: 1rem;
+	font-size: .26rem;
+	padding: .2rem 0.3rem .1rem .3rem;
+}
+
+#merchant, #name {
+	background: #f2f2f2;
+	border-radius: 3px;
+	border: none;
+	outline: none;
+	width: 38%;
+	margin-right: .15rem;
+	padding-left: .2rem;
+}
+
+#search {
+	display: inline-block;
+    width: 50px;
+    height: 33px;
+    line-height: 33px;
+    vertical-align: middle;
+    background-color: rgba(28, 169, 59, 1);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.search-icon {
+	display: inline-block;
+	height: .7rem;
+	width: .7rem;
+	background-image: url("../../img/searchIcon.png");
+	background-size: 100%;
+}
+
+.dev-list {
+	background: #f2f2f2;
+    padding: 0;
+}
+
+.num {
+	font-size: .26rem;
+    color: #959595;
+    margin-bottom: .3rem;
+    height: 40px;
+    padding-left: 15px;
+    background-color: white;
+    padding-top: 15px;
+}
+
+.lists li {
+	display: none;
+}
+
+.devinfor {
+	position: relative;
+	padding: .3rem .3rem 0 .3rem;
+	line-height: .42rem;
+	background-color: white;
+	border-bottom: .01rem solid #ddd;
+	overflow: hidden;
+	margin-bottom: .2rem;
+}
+
+.devinfor .devinforbtn {
+	height: 0.9rem;
+	font-size: 0.26rem;
+	color: #484848;
+	border-top: 1px solid #f2f2f2;
+	display: flex;
+}
+
+.tradeNum {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: 1px solid #f2f2f2;
+	color: #1ab394;
+}
+
+.deviceCount {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: 1px solid #f2f2f2;
+	color: #1ab394;
+}
+.terminal_deviceCount {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #1ab394;
+}
+
+.onlineNum {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #1ab394;
+}
+
+.devinfor h2 {
+	padding-bottom: .1rem;
+	font-weight: bold;
+	font-size: .3rem;
+	color: #484848;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+a {
+	color: #1ab394;
+}
+
+.devinfor h2 .isOn, .devinfor h2 .isOff {
+	display: inline-block;
+	font-size: .24rem;
+	margin-right: .15rem;
+	padding: 0 .1rem;
+	border-radius: 3px;
+}
+
+.devinfor h2 .isOn {
+	color: #1ab394;
+	border: 1px solid #1ab394;
+}
+
+.devinfor h2 .isOff {
+	color: #ff8b36;
+	border: 1px solid #ff8b36;
+}
+
+.devinfor h2 .set {
+	float: right;
+}
+
+.devinfor p {
+	margin-bottom: .1rem;
+	font-size: 13px;
+}
+
+.devinfor p i {
+	color: #2196F3;
+	font-style: normal;
+}
+
+.devinfor .adress {
+	margin-bottom: 0;
+	color: #999;
+}
+
+.devinfor p {
+	font-size: .26rem;
+	color: #484848;
+}
+/* .devinfor .phone{color: #36a3ff;} */
+.devinfor p span {
+	display: inline-block;
+	width: 1.9rem;
+	color: #959595;
+}
+
+.tabs {
+	display: flex;
+	flex-direction: row;
+	border-top: 1px solid #f2f2f2;
+	background: #fff;
+}
+
+.tabs span {
+	flex: 1;
+	display: flex;
+	height: 0.88rem;
+	justify-content: center;
+	align-items: center;
+	font-size: .28rem;
+	color: #444;
+	border-right: 1px solid #f2f2f2;
+}
+
+.active {
+	color: #1ab394 !important;
+	border-bottom: 1px solid #1ab394;
+}
+
+.show {
+	display: block !important;
+}
+
+.tabs span:nth-child(3) {
+	border-right: none
+}
+
+.more {
+	display: block;
+	height: .5rem;
+	line-height: .5rem;
+	text-align: center;
+	font-size: .28rem;
+}

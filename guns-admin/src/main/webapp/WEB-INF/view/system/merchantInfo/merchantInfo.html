@@ -1,0 +1,54 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>商户管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#SelectFilter id="condition" idForValue="conditionValue" styleForSelect="width:120px">
+                                	<option value="merchantId">商户Id</option>
+                                	<option value="merchantName">商户名称</option>
+                                	<option value="personName">联系人</option>
+                                	<option value="telNo">联系电话</option>
+                                	<option value="merchantType">商户类型Id</option>
+                                	<option value="parentMerchantId">上级商户Id</option>
+                                </#SelectFilter>
+                            </div>
+                            <div class="col-sm-3">
+                                <#select id="selMerchantTypeId" name="商户类型">
+                                	<option value="0">-全部-</option>
+                                	<option value="10">终端商户</option>
+                                	<option value="11">顶级代理商</option>
+                                	<option value="12">一代级理商</option>
+                                	<option value="13">二级代理商</option>
+                                	<option value="14">铺货商</option>
+                                	<option value="15">加盟商</option>
+                                </#select>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="MerchantInfo.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="MerchantInfoTableToolbar" role="group">
+                            @if(shiro.hasPermission("/merchantInfo/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="MerchantInfo.openAddMerchantInfo()"/>
+                            @}
+                            @if(shiro.hasPermission("/merchantInfo/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="MerchantInfo.openMerchantInfoDetail()" space="true"/>
+                            @}
+                            <#button name="报表导出" icon="fa-file" clickFun="MerchantInfo.exportExcel()"/>
+                        </div>
+                        <#table id="MerchantInfoTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/merchantInfo/merchantInfo.js?v=2"></script>
+@}

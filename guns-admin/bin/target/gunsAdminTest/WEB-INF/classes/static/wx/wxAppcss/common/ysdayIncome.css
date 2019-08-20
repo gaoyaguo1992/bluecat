@@ -1,0 +1,136 @@
+.timeCon {
+       width: 100%;
+       background: #1ab394;
+ }
+ .timeCon .time{
+      height: 1.4rem;
+ }
+ .time{
+       font-size: 15px;
+       height: 1.4rem;
+       line-height: 1.4rem;
+       padding: 0 .3rem;
+ }
+ .time span{
+       color: #FFF;
+       margin: 0 .2%;
+ }
+ .time .datetime{
+  	margin: 0 .1rem 0 .1rem;
+  	padding-left: .25rem;
+    display: inline-block;
+    height: 0.6rem;
+    width: 30%;
+    color: #FFF;
+    background: #1ab394 url(../../img/date.png) no-repeat 95% 50%;
+    background-size: 10%;
+    font-size: 12px;
+	line-height:1;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border:1px #FFF solid;
+ }
+   .time .search{
+       display: inline-block;
+       float: right;
+       height: 0.56rem;
+       width: 0.56rem;
+       background: #1ab394 url(../../img/serch.png) no-repeat;
+       background-size: 100%;
+       margin: .45rem 0 0 0;
+   }
+   .moneyInfo {
+  		padding:0.1 rem;
+	   	height: 1.8rem;
+	   	background:#1ab394;
+	    overflow: hidden;
+		text-align: center;
+   }
+   
+   .moneyInfo p{
+	font-size:13px ;
+	color: #A5D3FF;
+}
+.moneyInfo .num{
+	padding-top:0.2rem;
+	color: #FBFE51;
+	padding-bottom:0.3rem;
+	
+}
+.moneyInfo .num span{
+	display: block;
+	float: left;
+	width: 33.33%;
+	font-size:19px ;
+}
+.moneyInfo .name{
+	padding-top:0.2rem;
+	height:.4rem;
+	color: #FAFAFA;
+}
+.moneyInfo .name span{
+	display: block;
+	float: left;
+	width: 33.33%;
+	font-size:13px ;
+}
+	
+   /*tab*/
+.tab-box{
+     height: 1rem;
+     display: flex;
+     line-height: 1rem;
+     background: #fff;
+     padding: 0 .32rem;
+     font-size: 13px;
+     color: #fff;
+ }
+ .moneyInfo .mark{
+     color: #fdff4c;
+ }
+ .main-con{
+     background: #F1F3F6;
+     font-size: 13px;
+     padding: 0.18rem 0.24rem;
+ }
+ .main-con .list{
+     background: #fff;
+     border-radius: 5px;
+     width: 100%;
+     margin-bottom: 0.24rem;
+ }
+ .list .title{
+     padding: 0 .24rem;
+     height: 0.8rem;
+     line-height: 0.8rem;
+     border-bottom:1px solid #F1F3F6 ;
+ }
+ .title .blue-icon{
+     display: inline-block;
+     height: .13rem;
+     width: .13rem;
+     background: #36A3FF;
+     border-radius: 50%;
+     vertical-align: middle;
+     margin-right: 10px;
+ }
+ .title .right{
+     float: right;
+ }
+ .list .list-con{
+     padding: .28rem .24rem;
+
+ }
+ .list .list-con li{
+    height: 0.6rem;
+ }
+ .list .list-con li span{
+     display: inline-block;
+     width: 2rem;
+ }
+ #more{
+	 display: block;
+	 height: .5rem;
+	 line-height: .5rem;
+	 text-align: center;
+ }

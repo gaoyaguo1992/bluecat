@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.RoleMerchantRefInfoModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModel" >
+    <id column="role_id" property="roleId" jdbcType="BIGINT" />
+    <id column="merchant_id" property="merchantId" jdbcType="BIGINT" />
+    <result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+    <result column="merchant_type" property="merchantType" jdbcType="TINYINT" />
+    <result column="merchant_type_cn" property="merchantTypeCn" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    role_id, merchant_id, merchant_name, merchant_type, merchant_type_cn, is_default, 
+    create_time, create_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from role_merchant_ref_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModelKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_merchant_ref_info
+    where role_id = #{roleId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModelKey" >
+    delete from role_merchant_ref_info
+    where role_id = #{roleId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModelExample" >
+    delete from role_merchant_ref_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModel" >
+    insert into role_merchant_ref_info (role_id, merchant_id, merchant_name, 
+      merchant_type, merchant_type_cn, is_default, 
+      create_time, create_id)
+    values (#{roleId,jdbcType=BIGINT}, #{merchantId,jdbcType=BIGINT}, #{merchantName,jdbcType=VARCHAR}, 
+      #{merchantType,jdbcType=TINYINT}, #{merchantTypeCn,jdbcType=VARCHAR}, #{isDefault,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModel" >
+    insert into role_merchant_ref_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="merchantName != null" >
+        merchant_name,
+      </if>
+      <if test="merchantType != null" >
+        merchant_type,
+      </if>
+      <if test="merchantTypeCn != null" >
+        merchant_type_cn,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantName != null" >
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null" >
+        #{merchantType,jdbcType=TINYINT},
+      </if>
+      <if test="merchantTypeCn != null" >
+        #{merchantTypeCn,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModelExample" resultType="java.lang.Integer" >
+    select count(*) from role_merchant_ref_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update role_merchant_ref_info
+    <set >
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchantId != null" >
+        merchant_id = #{record.merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchantName != null" >
+        merchant_name = #{record.merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantType != null" >
+        merchant_type = #{record.merchantType,jdbcType=TINYINT},
+      </if>
+      <if test="record.merchantTypeCn != null" >
+        merchant_type_cn = #{record.merchantTypeCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefault != null" >
+        is_default = #{record.isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createId != null" >
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update role_merchant_ref_info
+    set role_id = #{record.roleId,jdbcType=BIGINT},
+      merchant_id = #{record.merchantId,jdbcType=BIGINT},
+      merchant_name = #{record.merchantName,jdbcType=VARCHAR},
+      merchant_type = #{record.merchantType,jdbcType=TINYINT},
+      merchant_type_cn = #{record.merchantTypeCn,jdbcType=VARCHAR},
+      is_default = #{record.isDefault,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModel" >
+    update role_merchant_ref_info
+    <set >
+      <if test="merchantName != null" >
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null" >
+        merchant_type = #{merchantType,jdbcType=TINYINT},
+      </if>
+      <if test="merchantTypeCn != null" >
+        merchant_type_cn = #{merchantTypeCn,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.RoleMerchantRefInfoModel" >
+    update role_merchant_ref_info
+    set merchant_name = #{merchantName,jdbcType=VARCHAR},
+      merchant_type = #{merchantType,jdbcType=TINYINT},
+      merchant_type_cn = #{merchantTypeCn,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT}
+    where role_id = #{roleId,jdbcType=BIGINT}
+      and merchant_id = #{merchantId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,24 @@
+﻿document.writeln('<div class="all-sort-list fl">');
+document.writeln('	<div class="item bo">');
+document.writeln('		<h3><span class="ico1"></span><a href="'+ebpBaseUrl+'/page/suplinfo/listinfos.html?varietyType=ym" target="_blank">玉米</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('	<div class="item">');
+document.writeln('		<h3><span class="ico6"></span><a href="'+ebpBaseUrl+'/page/suplinfo/listinfos.html?varietyType=xm" target="_blank">小麦</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('	<div class="item">');
+document.writeln('		<h3><span class="ico2"></span><a href="'+ebpBaseUrl+'/page/suplinfo/listinfos.html?varietyType=sd" target="_blank">稻谷</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('	<div class="item">');
+document.writeln('		<h3><span class="ico3"></span><a href="'+ebpBaseUrl+'/page/suplinfo/listinfos.html?varietyType=yzyl" target="_blank">油脂油料</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('	<div class="item">');
+document.writeln('		<h3><span class="ico4"></span><a href="'+ebpBaseUrl+'/page/suplinfo/listinfos.html?varietyType=gl" target="_blank">杂粮杂豆</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('	<div class="item">');
+document.writeln('		<h3><span class="ico7"></span><a href="'+ebpBaseUrl+'/page/error/pageStayTurned.html" target="_blank">饲料产品</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('	<div class="item">');
+document.writeln('		<h3><span class="ico5"></span><a href="'+ebpBaseUrl+'/page/suplinfo/listinfos.html?varietyType=sjgcp" target="_blank">深加工产品</a><b></b></h3>');
+document.writeln('	</div>');
+document.writeln('</div>');
+

@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="applyTime" name="" value="${item.applyTime}" underline="true"/>
+                            <#input id="applyMerchantId" name="" value="${item.applyMerchantId}" underline="true"/>
+                            <#input id="preTaxAmount" name="" value="${item.preTaxAmount}" underline="true"/>
+                            <#input id="aftTaxAmount" name="" value="${item.aftTaxAmount}" underline="true"/>
+                            <#input id="withdrawStatus" name="" value="${item.withdrawStatus}" underline="true"/>
+                            <#input id="withdrawStatusCn" name="" value="${item.withdrawStatusCn}" underline="true"/>
+                            <#input id="approver" name="" value="${item.approver}" underline="true"/>
+                            <#input id="approveTime" name="" value="${item.approveTime}" underline="true"/>
+                            <#input id="approveStatus" name="" value="${item.approveStatus}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="approveStatusCn" name="" value="${item.approveStatusCn}" underline="true"/>
+                            <#input id="approveComment" name="" value="${item.approveComment}" underline="true"/>
+                            <#input id="shouldPayTax" name="" value="${item.shouldPayTax}" underline="true"/>
+                            <#input id="payer" name="" value="${item.payer}" underline="true"/>
+                            <#input id="payTime" name="" value="${item.payTime}" underline="true"/>
+                            <#input id="invoiceNo" name="发票号码" value="${item.invoiceNo}" underline="true"/>
+                            <#input id="manualDeduction" name="手动扣除金额" value="${item.manualDeduction}" underline="true"/>
+                            <#input id="numberOfMonth" name="本月第几次发起提现" value="${item.numberOfMonth}" underline="true"/>
+                            <#input id="payWay" name="付款方式 1.自动付款 0 审核付款" value="${item.payWay}" underline="true"/>
+                            <#input id="isRealTime" name="是否实时分润" value="${item.isRealTime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WithdrawApplyRecordInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WithdrawApplyRecordInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/withdrawApplyRecord/withdrawApplyRecord_info.js"></script>
+@}

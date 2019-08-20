@@ -1,0 +1,944 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>设置费用</title>
+    <meta
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+            name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+    <!-- 全局js -->
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script type="text/javascript"
+            src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+          href="${ctxPath}/static/wx/css/reset.css">
+    <link rel="stylesheet" type="text/css"
+          href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css">
+    <link rel="stylesheet" type="text/css"
+          href="${ctxPath}/static/wx/css/mobiscroll_date.css">
+    <link rel="stylesheet" type="text/css"
+          href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css">
+    <link rel="stylesheet" type="text/css"
+          href="${ctxPath}/static/wx/wxAppcss/common/setBatchCost.css?v=4">
+</head>
+
+<body>
+<script>
+		reset();
+
+
+</script>
+<input id="merchantId" name="merchantId" type="hidden"
+       value="${merchantInfoModel.id}"/>
+<input id="custNo" name="custNo" type="hidden"
+       value="${custInfoModel.custNo}"/>
+<div class="con">
+@for(feeType in feeTypeList){
+        <!--预付金模式  -->
+            <div id='yfj_${feeType}' class="cash">
+            <div class="title">
+                <span class="icon"></span>设备： <span class="type">共 <span
+                    class="deviceCount_${feeType}"></span>个<i onclick="showList(${feeType})"
+                                                           class="check">查看></i>
+                    </span>
+            </div>
+            <!--按时间段收费，不需要选择 -->
+            @if(feeType != 1){
+                <div class="title">
+                    <span class="icon"></span>费用类型：
+                        <select id="selectFeeType_${feeType}" style="float: right;">
+                            @if(feeType == 2){
+                            <option value="25" selected="selected">预付费费用模式</option>
+                            <option value="26">含有首付费用的预付金充电</option>
+                            <option value="33">按时间段充电</option>
+                            @}
+                            @if(feeType == 3){
+                            <option value="25" selected="selected">预付费费用模式</option>
+                            <option value="26">含有首付费用的预付金充电</option>
+                            @}
+                        </select>
+                </div>
+            <!--含首付预付金模式  -->
+            <div id="yfj1_${feeType}" class="showDiv">
+                <div class="yajin">
+                    <span class="tip">预付金</span>
+                    <p class="yajin-com yajinCash">
+                        <select id="feeyfj_26_${feeType}">
+                            <option value="">请选择</option>
+                            <option value="1">1元</option>
+                            <option value="2">2元</option>
+                            <option value="3">3元</option>
+                            <option value="4">4元</option>
+                            <option value="5">5元</option>
+                            <option value="6">6元</option>
+                            <option value="8">8元</option>
+                            <option value="10">10元</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="jifei">
+                    <span class="tip">计费</span>
+                    <div class="jifeiSelect yajinCost">
+                        <p>
+                            <select id="fee_26_${feeType}">
+                                <option value="">请选择</option>
+                                <option value="1_1">前1小时1元</option>
+                                <option value="1_2">前1小时2元</option>
+                                <option value="1_3">前1小时3元</option>
+                                <option value="1_5">前1小时5元</option>
+                                <option value="2_1">前2小时1元</option>
+                                <option value="2_2">前2小时2元</option>
+                                <option value="2_3">前2小时3元</option>
+                                <option value="2_5">前2小时5元</option>
+                                <option value="3_1">前3小时1元</option>
+                                <option value="3_2">前3小时2元</option>
+                                <option value="3_3">前3小时3元</option>
+                                <option value="3_5">前3小时5元</option>
+                                <option value="6_3">前6小时3元</option>
+                                <option value="6_5">前6小时5元</option>
+                                <option value="10_3">前10小时3元</option>
+                                <option value="10_5">前10小时5元</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span class="time1"></span>小时后每小时<input id="feePerHour_26_${feeType}"
+                                                                    class="yajin-yajinJifei1" type="number" max="5"
+                                                                    autocomplete="off">元
+                        </p>
+                    </div>
+                </div>
+                <div class="top">
+                    <span>每天封顶金额</span>
+                    <p class="input-com">
+                        <input id='feePer24Hour_26_${feeType}' type="number" max="10" autocomplete="off">元
+                    </p>
+                </div>
+            </div>
+            <!--预付金模式  -->
+            <div id="yfj2_${feeType}">
+                <div class="yajin">
+                    <span class="tip">预付金</span>
+                    <p class="yajin-com yufuCash">
+                        <select id="feeyfj_25_${feeType}">
+                            <option value="">请选择</option>
+                            <option value="1">1元</option>
+                            <option value="2">2元</option>
+                            <option value="3">3元</option>
+                            <option value="4">4元</option>
+                            <option value="5">5元</option>
+                            <option value="6">6元</option>
+                            <option value="8">8元</option>
+                            <option value="10">10元</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="jifei">
+                    <span class="tip">计费</span>
+                    <div class="jifeiSelect yufuCost">
+                        <p>
+                            每小时收费<input id="feePerHour_25_${feeType}" class="yufu-yajinJifei1" type="number" autocomplete="off"/>元
+                        </p>
+                    </div>
+                </div>
+                <div class="top">
+                    <span>每天封顶金额</span>
+                    <p class="input-com">
+                        <input id='feePer24Hour_25_${feeType}' type="number" max="10" autocomplete="off">元
+                    </p>
+                </div>
+            </div>
+
+            <!--按时间段  -->
+            <div id="jifei_${feeType}" class="showDiv">
+
+                <div class="jifei">
+                    <span class="tip">计费1:</span>
+                    <div class="jifeiSelect fenduanCost">
+                        <p>
+                            <select id="fee1Type_${feeType}">
+                                <option value="">请选择</option>
+                                ${selectFee1TypeOptions}
+                            </select>
+                        </p>
+                        <p>
+                            <input id="fee1TypeMoney_${feeType}" class="fenduan-yajinJifei1"
+                                   type="number">元
+                        </p>
+                    </div>
+                </div>
+                <div class="jifei">
+                    <span class="tip">计费2:</span>
+                    <div class="jifeiSelect fenduanCost">
+                        <p>
+                            <select id="fee2Type_${feeType}">
+                                <option value="">请选择</option>
+                                ${selectFee1TypeOptions}
+                            </select>
+                        </p>
+                        <p>
+                            <input id="fee2TypeMoney_${feeType}" class="fenduan-yajinJifei1"
+                                   type="number">元
+                        </p>
+                    </div>
+                </div>
+                <div class="jifei">
+                    <span class="tip">计费3:</span>
+                    <div class="jifeiSelect fenduanCost">
+                        <p>
+                            <select id="fee3Type_${feeType}">
+                                <option value="">请选择</option>
+                                ${selectFee1TypeOptions}
+                            </select>
+                        </p>
+                        <p>
+                            <input id="fee3TypeMoney_${feeType}" class="fenduan-yajinJifei1"
+                                   type="number">元
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @}
+            @if(feeType == 1){
+            <!--按时间段  -->
+            <div id="jifei_${feeType}" >
+                <input id="feeType_1" type="hidden" value="${feeType}">
+                <div class="jifei">
+                    <span class="tip">计费1:</span>
+                    <div class="jifeiSelect fenduanCost">
+                        <p>
+                            <select id="fee1Type_${feeType}">
+                                <option value="">请选择</option>
+                                ${selectFee1TypeOptions}
+                            </select>
+                        </p>
+                        <p>
+                            <input id="fee1TypeMoney_${feeType}" class="fenduan-yajinJifei1"
+                                   type="number">元
+                        </p>
+                    </div>
+                </div>
+                <div class="jifei">
+                    <span class="tip">计费2:</span>
+                    <div class="jifeiSelect fenduanCost">
+                        <p>
+                            <select id="fee2Type_${feeType}">
+                                <option value="">请选择</option>
+                                ${selectFee1TypeOptions}
+                            </select>
+                        </p>
+                        <p>
+                            <input id="fee2TypeMoney_${feeType}" class="fenduan-yajinJifei1"
+                                   type="number">元
+                        </p>
+                    </div>
+                </div>
+                <div class="jifei">
+                    <span class="tip">计费3:</span>
+                    <div class="jifeiSelect fenduanCost">
+                        <p>
+                            <select id="fee3Type_${feeType}">
+                                <option value="">请选择</option>
+                                ${selectFee1TypeOptions}
+                            </select>
+                        </p>
+                        <p>
+                            <input id="fee3TypeMoney_${feeType}" class="fenduan-yajinJifei1"
+                                   type="number">元
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @}
+        </div>
+
+@}
+
+    <p class="button">
+        <span>提交</span>
+    </p>
+    <!-- 弹窗列表 -->
+    <div class="listBoxShade">
+        <div class="listBox">
+            <p class="list-num">
+                共 <span class="listNums"></span> 个
+            </p>
+            <ul class="list-com">
+
+            </ul>
+            <p class="list-button">
+                <span class="clearAll" style="font-size: 17px;">清除全部</span><span class="close" style="opacity: 100;margin-top: 0;margin-left: 0;font-size: 17px;">关闭</span>
+            </p>
+        </div>
+    </div>
+    <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+            <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+    </div>
+    <!-- 清除全部-->
+    <div class="clear-com">
+        <div class="clearComs">
+            <p class="infotext">确定清除全部已经添加的设备吗?</p>
+            <p class="button-com">
+                <span class="confirm">确定</span><span class="cancel">取消</span>
+            </p>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>
+<script language="javascript" type="text/javascript">
+		var path = "${ctxPath}";
+		var reqUrl = "${reqUrlRoot}";
+		var baseUrl = "${reqUrlRoot}";
+		var custNo = $('#custNo').val();
+		var merchantId = $('#merchantId').val();
+        var deviceTypeMap ='${deviceTypeMap}';
+        var reg = new RegExp( '=' , "g" )
+        deviceTypeMap = deviceTypeMap.replace( reg , ':' );
+        deviceTypeMap = eval('(' + deviceTypeMap + ')');
+        var yfj = []; //预付金
+        var shijian = []; //时间
+        var both = []; //预付金+时间
+        var clickThis = null;//用于点击清除的判断
+
+        $.each(deviceTypeMap, function (key, value) {
+            if(key == 1){
+                shijian = value;
+            }else if(key == 2){
+                both = value;
+            }else{
+                yfj = value;
+            }
+        });
+        $(".deviceCount_1").html(shijian.length);
+        $(".deviceCount_2").html(both.length);
+        $(".deviceCount_3").html(yfj.length);
+
+		$(function(){
+		    //初始化选择框
+			$('#yfj').addClass('activeBlock');
+			$("#jifei").hide();
+			$("#yfj1").hide();
+			$("#yfj2").show();
+			setCost();
+			//拿到结果集，key:设备类型 value:设备号
+			//根据key，去显示
+            $("#selectFeeType").append("<option value='33'>按时间收费</option>");
+
+		});
+
+		//选择预付金费用类型
+		$("#selectFeeType_2").on("change",function(){
+    		if($("option:selected",this).val()==25){
+				$("#yfj1_2").hide();
+				$("#jifei_2").hide();
+				$("#yfj2_2").show();
+    		}else if($("option:selected",this).val()==33){
+    			$("#yfj1_2").hide();
+    			$("#yfj2_2").hide();
+    			$("#jifei_2").show();
+    		}else{
+    			$("#jifei_2").hide();
+				$("#yfj2_2").hide();
+				$("#yfj1_2").show();
+    		}
+        });
+        //选择预付金费用类型
+		$("#selectFeeType_3").on("change",function(){
+    		if($("option:selected",this).val()==25){
+				$("#yfj1_3").hide();
+				$("#jifei_3").hide();
+				$("#yfj2_3").show();
+    		}else{
+    			$("#jifei_3").hide();
+				$("#yfj2_3").hide();
+				$("#yfj1_3").show();
+    		}
+        });
+
+        var shiJianYuFuBothList = []; //33设备类型，可以时间可以预付费模式
+        var feeTypeList = []; //用于显示有几个费用类型可以修改
+
+        //获取设置费用接口
+		function setCost() {
+
+		};
+
+        //点击查看
+		function showList(n) {
+		    clickThis = n;//赋值给clickThis
+			$('.list-com').empty();
+			if (n === 1) {
+				//时间1
+				$('.listNums').text(shijian.length);
+				$.each(shijian,function(i, list) {
+									$('.list-com').append('<li><span>'+ list+ '</span> <span data-c="1" class="delete-icon">x</span> </li>');
+				});
+			} else if (n === 2) {
+				//全部2
+				$('.listNums').text(both.length);
+				$.each(both,function(i, list) {
+									$('.list-com').append('<li><span>'+ list+ '</span> <span data-c="2" class="delete-icon">x</span> </li>');
+				});
+			} else if (n === 3) {
+			    //预付金
+				$('.listNums').text(yfj.length);
+				$.each(yfj,function(i, list) {
+									$('.list-com').append('<li><span>'+ list+ '</span> <span data-c="3" class="delete-icon">x</span> </li>');
+				});
+			}
+			$('.listBoxShade').css('display', 'block');
+		};
+
+        // 关闭弹窗列表
+        $('.close').click(function() {
+            $('.listBoxShade').css('display', 'none');
+        });
+		//清除全部显示
+        $('.clearAll').click(function() {
+            $('.clear-com').css('display', 'block');
+        });
+        //确认清除全部设备
+        $('.confirm').click(function() {
+            if (clickThis === 1) {//预付金全部清除
+                shijian = [];
+                //dell(costTypes, 10, 11);
+                $('.listBoxShade').css('display', 'none');
+                $('#yfj_1').remove();
+                if (yfj.length === 0 && both.length === 0) {
+                    window.history.go(-1);// 全部清空后返回上一个页面
+                }
+            } else if (clickThis === 2) {
+                both = [];
+                //dell(costTypes, 4, 5);
+                $('.listBoxShade').css('display', 'none');
+                $('#yfj_2').remove();
+                if (yfj.length === 0 && shijian.length === 0) {
+                    window.history.go(-1);// 全部清空后返回上一个页面
+                }
+            } else if (clickThis === 3) {
+                yfj = [];
+                //dell(costTypes, 14, 15);
+                $('.listBoxShade').css('display', 'none');
+                $('#yfj_3').remove();
+                if (shijian.length === 0 && both.length === 0) {
+                    window.history.go(-1);// 全部清空后返回上一个页面
+                }
+            }
+            $('.clear-com').css('display', 'none');
+		});
+
+		//点击查看列表后删除列表页
+		$('.list-com').on('click','li .delete-icon',function() {
+            var i = $(this).parent().index();
+            var type = $(this).data('c');
+            if (type === 1) {//时间
+                shijian.splice(i, 1);
+                var countTmp = shijian.length;
+                $('.deviceCount_1').text(countTmp);
+                $('.listNums').text(countTmp);
+                if (countTmp === 0) {
+                    $('.listBoxShade').css('display', 'none');
+                    $('#yfj_1').remove();
+                    if (yfj.length === 0 && both.length === 0) {
+                        window.history.go(-1);// 全部清空后返回上一个页面
+                    }
+                }
+            } else if (type === 2) {//both
+                both.splice(i, 1);
+                var countTmp = both.length;
+                $('.deviceCount_2').text(countTmp);
+                $('.listNums').text(countTmp);
+
+                if (countTmp === 0) {
+                    $('.listBoxShade').css('display', 'none');
+                    $('#yfj_2').remove();
+                    if (yfj.length === 0 && shijian.length === 0) {
+                        window.history.go(-1);// 全部清空后返回上一个页面
+                    }
+                }
+            } else if (type === 3) {
+                //按时间
+                yfj.splice(i, 1);
+                var countTmp = yfj.length;
+                $('.deviceCount_3').text(countTmp);
+                $('.listNums').text(countTmp);
+                if (countTmp === 0) {
+                    $('.listBoxShade').css('display', 'none');
+                    $('#yfj_3').remove();
+                    if (shijian.length === 0&& both.length === 0) {
+                        window.history.go(-1);// 全部清空后返回上一个页面
+                    }
+                }
+            }
+            $(this).parent().remove();
+		});
+
+        $('.cancel').click(function() {
+            $('.clear-com').css('display', 'none');
+        });
+
+		//提醒
+		function tipText(cont) {
+			$("#result_prompt").text(cont);
+			$("#messageDialog").show();
+			$("#msg_btn").click(function() {
+				$("#messageDialog").hide();
+			});
+		};
+		function isNonnegativInteger(value) {
+			var reg = /(^[1-9][0-9]*$)|(^(0){1}$)/;
+			if (reg.test(value)) {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		function isMoney(value) {
+			// var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+			var reg = /(^[1-9][0-9]*$)|(^(0){1}$)/;
+			if (reg.test(value)) {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		/**
+		 * 开启屏蔽层.
+		 */
+		startShieldLayer = function() {
+			$('#myModal').modal("show");
+		}
+		/**
+		 * 结束屏蔽层.
+		 */
+		finishShieldLayer = function() {
+			$('#myModal').modal("hide");
+		}
+        function isMoney(value) {
+			// var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+			var reg = /(^[1-9][0-9]*$)|(^(0){1}$)/;
+			if (reg.test(value)) {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		//合法性校验
+		function validateParam(){
+		    var feeType2 = $("#selectFeeType_2").val(); //能选时间预付金费用模式，有三个选项
+            var feeType3 = $("#selectFeeType_3").val(); //能选预付金，有两个选项
+            var feeType1 = $("#feeType_1").val(); //只能时间
+
+            if(feeType2){
+                if(feeType2 == 25){
+                    var feeyfj_25_2Val = $("#feeyfj_25_2").val();
+                    var feePerHour_25_2Val = $("#feePerHour_25_2").val();
+                    var feePer24Hour_25_2Val = $("#feePer24Hour_25_2").val();
+                    if(!feeyfj_25_2Val){
+                        tipText("请选择预付金类型!");
+                        return false;
+                    }
+                    if (!isMoney(feePerHour_25_2Val)|| !isMoney(feePer24Hour_25_2Val)) {
+                        tipText('输入金额格式不正确!');
+                        return false;
+					}
+					if (Number(feePerHour_25_2Val) > Number(feeyfj_25_2Val)) {
+                        tipText("每小时收费不能多于预付金!");
+                        return false;
+					}
+					if (Number(feePer24Hour_25_2Val) > Number(feeyfj_25_2Val)) {
+                        tipText("每日封顶金额不能多于预付金!");
+                        return false;
+					}
+
+                }
+                if(feeType2 == 26){
+                    var feeyfj_26_2Val = $("#feeyfj_26_2").val();
+                    var fee_26_2Val = $("#fee_26_2").val();
+                    var feePerHour_26_2Val = $("#feePerHour_26_2").val();
+                    var feePer24Hour_26_2Val = $("#feePer24Hour_26_2").val();
+                    if(!feeyfj_26_2Val){
+                        tipText("请选择预付金类型!");
+                        return false;
+                    }
+                    if(!fee_26_2Val){
+                        tipText("请选择计费类型!");
+                        return false;
+                    }
+                    if (!isMoney(feePerHour_26_2Val)|| !isMoney(feePer24Hour_26_2Val)) {
+                        tipText('输入金额格式不正确!');
+                        return false;
+					}
+					if (Number(feePerHour_26_2Val) > Number(feeyfj_26_2Val)) {
+                        tipText("每小时收费不能多于预付金!");
+                        return false;
+					}
+					if (Number(feePer24Hour_26_2Val) > Number(feeyfj_26_2Val)) {
+                        tipText("每日封顶金额不能多于预付金!");
+                        return false;
+					}
+                }
+                if(feeType2 == 33){
+                    var fee1Type_2Val = $("#fee1Type_2").val();
+                    var fee1TypeMoney_2Val = $("#fee1TypeMoney_2").val();
+                    var fee2Type_2Val = $("#fee2Type_2").val();
+                    var fee2TypeMoney_2Val = $("#fee2TypeMoney_2").val();
+                    var fee3Type_2Val = $("#fee3Type_2").val();
+                    var fee3TypeMoney_2Val = $("#fee3TypeMoney_2").val();
+                if(!fee1Type_2Val){
+                    tipText("请输入计费1时长!");
+                    return false;
+                }
+                if(!fee2Type_2Val){
+                    tipText("请输入计费2时长!");
+                    return false;
+                }
+                if(!fee3Type_2Val){
+                    tipText("请输入计费3时长!");
+                    return false;
+                }
+                if (!isMoney(fee1TypeMoney_2Val)) {
+                    tipText("请输入计费1金额!");
+                    return false;
+				}
+				if (!isMoney(fee2TypeMoney_2Val)) {
+                    tipText("请输入计费2金额!");
+                    return false;
+				}
+				if (!isMoney(fee3TypeMoney_2Val)) {
+                    tipText("请输入计费3金额!");
+                    return false;
+				}
+                }
+            }
+            //-------------------------------------type:3
+            if(feeType3){
+                if(feeType3 == 25){
+                    var feeyfj_25_3Val = $("#feeyfj_25_3").val();
+                    var feePerHour_25_3Val = $("#feePerHour_25_3").val();
+                    var feePer24Hour_25_3Val = $("#feePer24Hour_25_3").val();
+                    if(!feeyfj_25_3Val){
+                        tipText("请选择预付金类型!");
+                        return false;
+                    }
+                    if (!isMoney(feePerHour_25_3Val)|| !isMoney(feePer24Hour_25_3Val)) {
+                        tipText('输入金额格式不正确!');
+                        return false;
+					}
+					if (Number(feePerHour_25_3Val) > Number(feeyfj_25_3Val)) {
+                        tipText("每小时收费不能多于预付金!");
+                        return false;
+					}
+					if (Number(feePer24Hour_25_3Val) > Number(feeyfj_25_3Val)) {
+                        tipText("每日封顶金额不能多于预付金!");
+                        return false;
+					}
+                }
+             if(feeType3== 26){
+                    var feeyfj_26_3Val = $("#feeyfj_26_3").val();
+                    var fee_26_3Val = $("#fee_26_3").val();
+                    var feePerHour_26_3Val = $("#feePerHour_26_3").val();
+                    var feePer24Hour_26_3Val = $("#feePer24Hour_26_3").val();
+                    if(!feeyfj_26_3Val){
+                        tipText("请选择预付金类型!");
+                        return false;
+                    }
+                    if(!fee_26_3Val){
+                        tipText("请选择计费类型!");
+                        return false;
+                    }
+                    if (!isMoney(feePerHour_26_3Val)|| !isMoney(feePer24Hour_26_3Val)) {
+                        tipText('输入金额格式不正确!');
+                        return false;
+					}
+					if (Number(feePerHour_26_3Val) > Number(feeyfj_26_3Val)) {
+                        tipText("每小时收费不能多于预付金!");
+                        return false;
+					}
+					if (Number(feePer24Hour_26_3Val) > Number(feeyfj_26_3Val)) {
+                        tipText("每日封顶金额不能多于预付金!");
+                        return false;
+					}
+
+                }
+            }
+             //-------------------------------------type:1
+            if(feeType1){
+                var fee1Type_1Val = $("#fee1Type_1").val();
+                var fee1TypeMoney_1Val = $("#fee1TypeMoney_1").val();
+                var fee2Type_1Val = $("#fee2Type_1").val();
+                var fee2TypeMoney_1Val = $("#fee2TypeMoney_1").val();
+                var fee3Type_1Val = $("#fee3Type_1").val();
+                var fee3TypeMoney_1Val = $("#fee3TypeMoney_1").val();
+
+                if(!fee1Type_1Val){
+                    tipText("请输入计费1时长!");
+                    return false;
+                }
+                if(!fee2Type_1Val){
+                    tipText("请输入计费2时长!");
+                    return false;
+                }
+                if(!fee3Type_1Val){
+                    tipText("请输入计费3时长!");
+                    return false;
+                }
+                if (!isMoney(fee1TypeMoney_1Val)) {
+                    tipText("请输入计费1金额!");
+                    return false;
+				}
+				if (!isMoney(fee2TypeMoney_1Val)) {
+                    tipText("请输入计费2金额!");
+                    return false;
+				}
+				if (!isMoney(fee3TypeMoney_1Val)) {
+                    tipText("请输入计费3金额!");
+                    return false;
+				}
+            }
+            return true;
+
+		}
+    //点击提交
+    $('.button').click(function() {
+        var costArr = [];
+        //校验参数
+        if(!validateParam()){
+            return;
+        }
+        var feeType2 = $("#selectFeeType_2").val(); //能选时间预付金费用模式，有三个选项
+        var feeType3 = $("#selectFeeType_3").val(); //能选预付金，有两个选项
+        var feeType1 = $("#feeType_1").val(); //只能时间
+        if(feeType2){
+            if(feeType2 == 25){
+                var feeyfj_25_2Val = $("#feeyfj_25_2").val();
+                var feePerHour_25_2Val = $("#feePerHour_25_2").val();
+                var feePer24Hour_25_2Val = $("#feePer24Hour_25_2").val();
+                let yfjObj = {
+                                    agentsId : null,
+                                    deviceIds : both,
+                                    feeType : "25",
+                                    yfj : feeyfj_25_2Val,
+                                    feePerHour : feePerHour_25_2Val,
+                                    feePer24Hour : feePer24Hour_25_2Val
+								};
+				costArr.push(yfjObj);
+            }
+            if(feeType2 == 26){
+                var feeyfj_26_2Val = $("#feeyfj_26_2").val();
+                var fee_26_2Val = $("#fee_26_2").val();
+                var feePerHour_26_2Val = $("#feePerHour_26_2").val();
+                var feePer24Hour_26_2Val = $("#feePer24Hour_26_2").val();
+                var firtArr = new Array(); //定义一数组
+                firtArr = fee_26_2Val.split("_"); //字符分割
+                let yfjObj = {
+										agentsId : null,
+										deviceIds : both,
+										feeType : "26",
+										yfj : feeyfj_26_2Val,
+										firstHour : firtArr[0],
+										firstMoney : firtArr[1],
+										feePerHour : feePerHour_26_2Val,
+										feePer24Hour : feePer24Hour_26_2Val
+                                };
+                 costArr.push(yfjObj);
+             }
+             if(feeType2 == 33){
+                var fee1Type_2Val = $("#fee1Type_2").val();
+                var fee1TypeMoney_2Val = $("#fee1TypeMoney_2").val();
+                var fee2Type_2Val = $("#fee2Type_2").val();
+                var fee2TypeMoney_2Val = $("#fee2TypeMoney_2").val();
+                var fee3Type_2Val = $("#fee3Type_2").val();
+                var fee3TypeMoney_2Val = $("#fee3TypeMoney_2").val();
+                let shijianObj = {
+										agentsId : null,
+										deviceIds : both,
+										feeType1 : fee1Type_2Val,
+										feeType1Money : fee1TypeMoney_2Val,
+										feeType2 : fee2Type_2Val,
+										feeType2Money : fee2TypeMoney_2Val,
+										feeType3 : fee3Type_2Val,
+										feeType3Money : fee3TypeMoney_2Val
+									}
+				costArr.push(shijianObj);
+             }
+        }
+        if(feeType3){
+            if(feeType3 == 25){
+                var feeyfj_25_3Val = $("#feeyfj_25_3").val();
+                var feePerHour_25_3Val = $("#feePerHour_25_3").val();
+                var feePer24Hour_25_3Val = $("#feePer24Hour_25_3").val();
+                let yfjObj = {
+                                    agentsId : null,
+                                    deviceIds : yfj,
+                                    feeType : "25",
+                                    yfj : feeyfj_25_3Val,
+                                    feePerHour : feePerHour_25_3Val,
+                                    feePer24Hour : feePer24Hour_25_3Val
+								};
+				costArr.push(yfjObj);
+            }
+            if(feeType3== 26){
+                var feeyfj_26_3Val = $("#feeyfj_26_3").val();
+                var fee_26_3Val = $("#fee_26_3").val();
+                var feePerHour_26_3Val = $("#feePerHour_26_3").val();
+                var feePer24Hour_26_3Val = $("#feePer24Hour_26_3").val();
+                 var firtArr = new Array(); //定义一数组
+                firtArr = fee_26_3Val.split("_"); //字符分割
+                let yfjObj = {
+										agentsId : null,
+										deviceIds : yfj,
+										feeType : "26",
+										yfj : feeyfj_26_3Val,
+										firstHour : firtArr[0],
+										firstMoney : firtArr[1],
+										feePerHour : feePerHour_26_3Val,
+										feePer24Hour : feePer24Hour_26_3Val
+                                };
+                 costArr.push(yfjObj);
+
+             }
+        }
+         if(feeType1){
+            var fee1Type_1Val = $("#fee1Type_1").val();
+            var fee1TypeMoney_1Val = $("#fee1TypeMoney_1").val();
+            var fee2Type_1Val = $("#fee2Type_1").val();
+            var fee2TypeMoney_1Val = $("#fee2TypeMoney_1").val();
+            var fee3Type_1Val = $("#fee3Type_1").val();
+            var fee3TypeMoney_1Val = $("#fee3TypeMoney_1").val();
+
+            let shijianObj = {
+										agentsId : null,
+										deviceIds : shijian,
+										feeType1 : fee1Type_1Val,
+										feeType1Money : fee1TypeMoney_1Val,
+										feeType2 : fee2Type_1Val,
+										feeType2Money : fee2TypeMoney_1Val,
+										feeType3 : fee3Type_1Val,
+										feeType3Money : fee3TypeMoney_1Val
+									}
+				costArr.push(shijianObj);
+          }
+
+          console.log("costArr:"+JSON.stringify(costArr))
+
+         //提交服务器
+        let dataObj = {};
+        dataObj.feeRuleCommand = JSON.stringify(costArr);
+        dataObj.merId = merchantId;
+        dataObj.custNo = custNo;
+
+        startShieldLayer();//加载遮罩
+        //发送请求
+        $.ajax({
+            type : 'POST',
+            url : reqUrl+ "wx/batchEditFeeRule",
+            //contentType : "application/json;charset=utf-8", //发送信息至服务器时内容编码类型。
+            data : dataObj,
+            dataType : 'json',
+            error : function(obj) {
+                finishShieldLayer();
+            },
+            success : function(res) {
+                finishShieldLayer();
+                if (res.result === 'success') {
+                    $('.load-com').hide();
+                    window.location.href = path
+                            + "/wx/setBatchSuccess?merchantId="
+                            + merchantId
+                            + '&custNo='
+                            + custNo
+                            + '&state=1';
+                } else {
+                    $('.load-com').hide();
+                    tipText(res.message);
+                }
+            }
+        });
+
+
+    });
+
+
+</script>
+</body>
+</html>

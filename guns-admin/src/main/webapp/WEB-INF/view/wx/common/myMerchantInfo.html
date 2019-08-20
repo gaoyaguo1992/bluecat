@@ -1,0 +1,193 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>商户信息</title>
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" type="text/css" href="${ctxPath}/static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/font-awesome.css?v=4.4.0"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/chosen/chosen.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/style.css?v=4.1.0"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/_fstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/iCheck/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/webuploader/webuploader.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/mobiscroll_date.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantCoporateTerminalMyInfos.css?v=1"/>
+    <!-- 全局js -->
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script src="${ctxPath}/static/js/common/Feng.js"></script>    
+	<style rel="stylesheet" type="text/css">
+	.bg{
+		background: #f5f5f5;
+    	padding-top: 12px;
+	}
+	.bar{
+	    position: relative;
+	    font-size: 14px;
+	    min-height: 1rem;
+	    background: #fff;
+	    
+	    padding-left: 15px;
+	    height: 44px;
+    	line-height: 44px;
+	    border-bottom-style: solid;
+	    border-bottom-color: #f5f5f5;
+	    border-bottom-width: 1px;
+	}
+	.bar .bar_left{
+	    float: left;
+	}
+	.bar_left b{
+	 	color: red;
+    	margin-left: 5px;
+	}
+	.bar .bar_right{
+	    float: right;
+	    text-align: right;
+	    margin-right: 15px;
+	}
+	</style>
+</head>
+<body>
+<script>reset();</script>
+<div class="bg">
+	 <div class="bar">
+	 	<div  class="bar_left">商户号<b>*</b></div>
+		<div  class="bar_right">
+		  <input id="id" name="id" type="text" readonly="readonly" style="border-width: 0;text-align: right;"  placeholder="请输入商户/店铺名称" value="${merchantInfo.id}">
+		</div>
+	 </div>	
+	 <div class="bar">
+	 	<div  class="bar_left">商户/店铺名称<b>*</b></div>
+		<div  class="bar_right">
+		 <input id="name" name="name" type="text" style="border-width: 0;text-align: right;"   placeholder="请输入商户/店铺名称" value="${merchantInfo.name}">
+		</div>
+	 </div>		 
+	 <div class="bar">
+		<div  class="bar_left">商户所属行业<b>*</b></div>
+		<div  class="bar_right">
+		 <select id="industryCategoryCode" style="border-width: 0;text-align: right;"    name="industryCategoryCode">
+		 	${selectIndustryCodeOptions}
+		 </select>
+		</div>
+	 </div>
+	 <div class="bar" >
+	 	<div  class="bar_left">商户类型</div>
+		<div  class="bar_right">
+		 <input id="merchantTypeCn" name="merchantTypeCn" style="border-width: 0;text-align: right;"  type="text"  readonly="readonly" value="${merchantInfo.merchantTypeCn}">
+		</div>
+	 </div>
+    <div class="bar" style="margin-top: 10px;">
+	 	<div  class="bar_left">联系地址<b>*</b></div>
+        <div  class="bar_right">
+        	<input id="addr" name="addr" type="text" style="border-width: 0;text-align: right;"  value="${merchantInfo.addr}" placeholder="请输入您的店铺地址">
+		</div>
+	</div>
+	<div class="bar">
+	 	<div  class="bar_left">联系人姓名<b>*</b></div>
+        <div  class="bar_right">
+	 	 	<input id="personName" name="personName" type="text" style="border-width: 0;text-align: right;" value ="${merchantInfo.personName}"  placeholder="请输入联系人姓名">
+        </div>
+	</div>
+    <input type="hidden" id="gaodeMap" value="${merchantInfo.addr}" name="gaodeMap">	
+	<div class="bar">
+	 	<div  class="bar_left">联系人电话<b>*</b></div>
+        <div  class="bar_right">
+	  		<input id="telNo" name="telNo" type="text" style="border-width: 0;text-align: right;"  value ="${merchantInfo.telNo}"  placeholder="请输入联系电话">
+	 	</div>
+	</div>
+	<div class="bar">
+	 	<div  class="bar_left">结算客户编号<b>*</b></div>
+        <div  class="bar_right">
+	  		<input id="settlementCustNo" name="settlementCustNo" style="border-width: 0;text-align: right;"  readonly="readonly" type="text" value="${merchantInfo.settlementCustNo}"  placeholder="请输入结算公众号">
+		</div>
+	</div>
+	<div class="bar">
+	 	<div  class="bar_left">备注</div>
+        <div  class="bar_right">
+	  		<input id="comment" name="comment"  class="weui_input"  style="border-width: 0;text-align: right;"   type="text" value ="${merchantInfo.remark}" placeholder="请输入备注信息(可为空)"/>
+	   </div>
+	</div>	
+</div>
+<div id="merchantCoporateBtn"  class="submitbtn">确认修改</div>
+<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+<input id="merchantType" name="merchantType" type="hidden" value = "${merchantInfo.merchantType}" />
+<input id="clientType" name="clientType" type="hidden" value = "${merchantInfo.clientType}" />
+<div class="prompt" id="messageDialog" style="display: none;">
+    <div class="prompt-cont">
+        <div class="tanchaungimg"><img src="${ctxPath}/static/wx/img/tanchuangimg.jpg"></div>
+        <p id="result_prompt"></p>
+        <div class="promptBtn" id="msg_btn">确定</div>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+<script src="${ctxPath}/static/js/common/Feng.js"></script>
+
+<script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+<script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+<script src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>	
+<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantCoporateTerminalMyInfos.js?v=3"></script>
+<script src="https://webapi.amap.com/maps?v=1.3&key=eb5f4260c53f8ad4835ec7e3de7af9df&plugin=AMap.Geocoder"></script>
+<script src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script> 
+ 
+<script language="javascript" type="text/javascript">
+var baseUrl="${rootUrl}"
+var path="${ctxPath}";
+var reqUrl="${rootUrl}";
+
+
+$(function() {
+	debugger;
+    Feng.addCtx("${ctxPath}");
+    Feng.sessionTimeoutRegistry();
+	$('.modal').appendTo("body");
+	//处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false};
+	$('#myModal').modal(options);
+})
+</script>
+</body>
+</html>

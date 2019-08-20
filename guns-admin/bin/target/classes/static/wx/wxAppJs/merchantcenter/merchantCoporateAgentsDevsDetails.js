@@ -1,0 +1,20 @@
+//使用率趋势
+$("#trade").click(function(){
+	$("#devTradeForm").submit();
+});
+//交易详情
+$("#trend").click(function(){
+	$("#devTrendForm").submit();
+});
+$("#modify").click(function(){
+	$("#modifyForm").submit();
+});
+$("#historyCharger").click(function(){
+	$("#historyChargerForm").submit();
+});
+$("#myCharger").click(function(){
+	$("#myChargerForm").submit();
+});
+$("#currentCharger").click(function(){
+	$("#currentChargerForm").submit();
+});

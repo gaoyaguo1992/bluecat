@@ -1,0 +1,297 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+	<title>设备上下架</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/font-awesome.css?v=4.4.0"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/chosen/chosen.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/style.css?v=4.1.0"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/_fstyle.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/iCheck/custom.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/webuploader/webuploader.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css"/>
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css"/>
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/css/mobiscroll_date.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/setBatchGroundingOrNot.css?v=1">
+    <style type="text/css" >
+    	.layui-layer-btn0{
+    		font-size: 13px;
+    	}
+    	.layui-layer-btn1{
+    	font-size: 13px;
+    	}
+    </style>
+</head>
+<body>
+   <script>reset();</script>
+   <input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfo.id}"/>
+   <input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+    <div class="profit-com">
+      <div class="title"><span class="icon"></span>设置上下架<span class="type">共 <i class="typeList"></i>个<i onclick="showList()" class="check">查看></i> </span></div>
+      <div class="select-com">
+        <!-- <p class="type">一级代理商</p> -->
+        <div class="selects">
+          <span data-c='1' class="activeImg">上架</span><span data-c='0'>下架</span>
+       </div>
+      </div>
+    </div>
+	<p class="button"><span>确定</span></p>
+		<!--  提交成功提示-->
+	<div class="success-com">
+	  <div class="success-tips">
+	    <img alt=""  src="../../../../img/merchantcenter/white-gou.png">
+	  <p>提交成功</p>
+	  </div>
+	</div>
+	<!-- 错误提示 -->
+	<div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn1"><span class="cancle">取消</span> <span id="msg_btn">确定</span></div>
+        </div>
+     </div>
+     <!-- 弹窗列表 -->
+     <div class="listBoxShade">
+         <div class="listBox">
+            <p class="list-num">共 <span class="listNums"></span> 个</p>
+            <ul class="list-com">
+               
+            </ul> 
+            <p class="list-button"><span class="clearAll">清除全部</span><span class="close">关闭</span></p>
+         </div> 
+     </div>
+     <!-- 清除全部-->
+     <div class="clear-com">
+        <div class="clearComs">
+          <p class="infotext">确定清除全部已经添加的设备吗?</p>
+          <p class="button-com"><span class="confirm">确定</span><span class="cancel">取消</span></p>
+        </div>
+     </div>
+    <!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>  
+    <script language="javascript" type="text/javascript">
+	 var path="${ctxPath}";
+	 var reqUrl="${reqUrlRoot}";
+	 var baseUrl="${reqUrlRoot}";
+	 var selected=1;//区分上下架 默认上架
+	 var custNo=$('#custNo').val(),merchantId=$('#merchantId').val();
+	 var lists=[];//保存列表数据id
+	  $(function(){
+	     Feng.addCtx("${ctxPath}");
+	     Feng.sessionTimeoutRegistry();
+		 $('.modal').appendTo("body");
+		 //处理用户修改费用..
+		 var options={keyboard:false,backdrop:'static',show:false};
+		 $('#myModal').modal(options);
+		 // 关闭弹窗列表
+		 $('.close').click(function(){
+			  $('.listBoxShade').css('display','none');
+		 });
+		
+		 getAddList();
+		 //全部清除确定--
+		 $('.confirm').click(function(){
+			  lists=[];
+			  $('.typeList').text(lists.length);
+			  $('.listBoxShade').css('display','none');
+		      $('.clear-com').css('display','none');
+		      window.history.go(-1);
+	     });
+		 //点击查看列表后删除列表页
+		 $('.list-com').on('click','li .delete-icon',function(){
+				  var i=$(this).parent().index();
+				  var listLength=lists.length;//商户列表集合长度
+				  listLength--;
+				  $('.listNums').text(listLength);
+				  $('.typeList').text(listLength);
+				  lists.splice(i,1);
+				  $(this).parent().remove(); 
+				  if(listLength===0){
+					  window.history.go(-1);
+				  }
+		 });
+		 //选择上下架
+		 $('.selects').on('click','span',function(){
+				  let i=$(this).index();
+				  $(this).addClass('activeImg').siblings().removeClass('activeImg');
+				  selected=$(this).data('c');
+		  });
+		  //点击下一步
+		  //点击下一步
+		  $('.button').click(function(){
+			  debugger;
+			  if(selected===1){// 去上架
+				  saveData(13);
+			  }else{// 下架
+				  Feng.confirm("确定要下架当前选中设备吗？下架后设备将不能使用!",function(){
+					  saveData(10); 
+				  })
+			  }
+		  }); 
+	  });
+	  // 获取所添加的列表
+	  function getAddList(){
+		  var dataInfo=sessionStorage.getItem('type1');//获取费用设置参数
+		  dataInfo = jQuery.parseJSON(dataInfo);
+		  $.ajax({
+		         type:'POST',
+		         url:reqUrl+"wx/getExistDeviceIds", 
+		         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+		         data:dataInfo,
+		         dataType:'json',
+		         success:function(res){
+		        	 if(res.result==='success'){
+		        		 lists=res.responseInfo; 
+		        		 $('.typeList').text(lists.length);
+		        	 }
+		         }
+		  })      
+	  };
+	  //发送数据
+	  function saveData(type){
+		  // type为上架还是下架
+		  if(lists.length<=0){
+     		 tipText(1,"选择需要设置状态的设备!");
+     		 return;
+		  }
+		  startShieldLayer();
+		  var deviceIds=JSON.stringify(lists);
+		  var dataObj={};
+		  dataObj.merId=merchantId;
+		  dataObj.custNo=custNo;
+		  dataObj.deviceIds=deviceIds
+		  dataObj.type=type;
+		  $.ajax({
+		         type:'POST',
+		         url:reqUrl+"wx/batchDeviceStatusSave", 
+		         //contentType:"application/json;charset=utf-8",  //发送信息至服务器时内容编码类型。             
+		         data:dataObj,
+		         dataType:'json',
+		         error:function(obj){
+		        	 finishShieldLayer();
+		         },
+		         success:function(res){
+		        	 finishShieldLayer();
+		        	 if(res.result==='success'){
+		        		 let state=5;
+		        		 if(type===13){//上架
+		        			 window.location.href=reqUrl+"wx/setBatchSuccess?merchantId="+merchantId+'&custNo='+custNo+'&state='+state+'&type=13';
+		        		 }else{// 下架                                           
+		        			 window.location.href=reqUrl+"wx/setBatchSuccess?merchantId="+merchantId+'&custNo='+custNo+'&state='+state+'&type=10'; 
+		        		 }
+		        	 }else{
+		        		 tipText(1,res.message);
+		        	 }
+		         }
+		         
+	      });   
+	  };
+	  function showList(){
+		  $('.listNums').text(lists.length);
+		  $('.list-com').empty();
+		  $.each(lists,function(i,list){
+			  $('.list-com').append(
+					  '<li><span>'+list+'</span> <span  class="delete-icon">x</span> </li>'  
+			  );
+		  }); 
+		  $('.listBoxShade').css('display','block');
+	  }
+	  // 电话
+	  function isvalidPhone(str) {
+			  //let mobile = /^1[3|4|5|7|8][0-9]\d{8}$/;
+			  let mobile = /^(13[0-9]|14[0-9]|15[0-9]|16[2567]|17[0-8]|18[0-9]|19[189])\d{8}$/;
+			  return mobile.test(str);
+	  };
+	  //提醒 提醒
+	  function tipText(state,cont){
+		   $("#result_prompt").text(cont);	    	
+		   $("#messageDialog").show();
+		   if(state===1){
+		    	$('.cancle').hide();
+		    	$('#msg_btn').unbind('click'); 
+		    	$("#msg_btn").click(function(){
+				    $("#messageDialog").hide();	
+			    });
+		   }else{
+		    	$('.cancle').show();
+		    	$('.cancle').unbind('click'); 
+		    	$('.cancle').click(function(){
+				    $("#messageDialog").hide();	
+			    });
+		    	$('#msg_btn').unbind('click'); 
+		    	$("#msg_btn").click(function(){
+		    		selectData.isSelect='1';
+		    		sendData(selectData,13);
+		    		$("#messageDialog").hide();
+			    });
+		  }
+	  };
+	 /**
+	  * 开启屏蔽层.
+	  */
+	 startShieldLayer = function() {
+	 	$('#myModal').modal("show");
+	 }
+	 /**
+	  * 结束屏蔽层.
+	  */
+	 finishShieldLayer = function() {
+	 	$('#myModal').modal("hide");
+	 }
+	</script>
+</body>
+</html>

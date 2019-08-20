@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                       <#inputFocus id="applyMerchantId" hidden="applyMerchantId_hd" 
+	                        onBlurFun="WithdrawApplyRecordInfoDlg.merchantIdOnBlur(this,10)"
+	                        onFocusFun="WithdrawApplyRecordInfoDlg.merchantIdOnFocus(this,10)"
+	                        name="输入商户Id" underline="false"/>
+                       <#input id="aftTaxAmount" name="提现金额" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                            <#input id="approveComment" name="提现备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="WithdrawApplyRecordInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="WithdrawApplyRecordInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/withdrawApplyRecord/withdrawApplyRecord_info.js?i=4"></script>
+@}

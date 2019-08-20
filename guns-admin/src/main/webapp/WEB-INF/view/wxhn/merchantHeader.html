@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>商户中心</title>
+<script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/css/reset.css?v=2">
+<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css?v=2">
+<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css?v=2">
+<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantCoporateHead.css?v=21">
+<style rel="stylesheet" type="text/css">
+ .switchaccount{
+    padding: .2rem .2rem;
+	height:149px;
+    line-height: 45px;
+    color: white;
+    font-size: .28rem;
+    background: linear-gradient(312deg,rgba(161,220,171,1) 0%,rgba(34,171,57,1) 100%);
+ }
+.weixin-avatar{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: right;
+    width: 70px;
+    height: 70px;
+    border: 2px solid #e2e2e2;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+    <div id="container"></div>
+ 	<script>reset();</script> 
+	<div class="switchaccount" id="switchAccount">
+		<form id="switchAccountForm" action="${ctxPath}/wx/selectMerchantList" method = "post">
+	    	 <div class="headcontbox">   
+				<div  class="headcont">
+					<div style="float: left;position: relative; color: #fff;">
+						<div class="weixin-infor">           							
+							 <p style="margin:0 0 0px; font-size:15px;font-family:PingFangSC-Medium;font-weight:500;">商户编号：${merchantInfo.id}</p> 					 
+						</div>
+						<div  class="weixin-infor">
+							 <P style="margin-bottom: 2px;"><span>${merchantInfo.merchantTypeCn}</span></p>
+						</div>
+					</div> 
+					<i class="iconfont icon-more" style="float:left"></i> 
+				</div>
+				<div class="weixin-avatar"><img src="${custInfoModel.headImgUrl}" alt=""></div> 
+			</div> 
+	    	<input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>  
+	    	<input id="merchantId" name="merchantId" type="hidden" value = "${merchantInfo.id}"/>  	    	 
+		</form>
+		<div style="height: 1px;width: 85%;border-color: rgba(255, 255, 255, 0.3);border-top-width:1px;border-top-color:rgba(255,255,255,0.3);border-top-style:solid;margin-top: 5px;margin-left: 20px;"> </div>
+		<div>
+			<div style="float: left;position: relative;padding-left:10px;width:49%">
+				<P style="margin-left: 15px;font-size:11px;font-family:PingFangSC-Medium;">客户号：(${custInfoModel.custNo})</p>
+			</div>
+			<div style="float:left;position:relative;height:25px;width: 1px; margin-top:10px; border-right-width:1px;border-right-color:rgba(245, 245, 245, 0.3);border-right-style:solid;">
+			</div>
+			<div style="float: right;position: relative;padding-left:5px;padding-right:5px;width:49%">
+				<P style="margin-right: 10px;font-size:11px;font-family:PingFangSC-Medium;">商户姓名：${merchantInfo.personName}</p>	
+			</div>
+		</div>
+	</div>
+	<div style="width:100%;height:20px;background:rgba(255,255,255,1);border-radius:8px;position: absolute;top: 135px;">&nbsp;&nbsp;</div>
+	<div style="width:100%; height:5px; background:rgba(255,255,255,1)">&nbsp;&nbsp;</div>
+	<div class="head">
+		<form id="myInfoForm" class="head-boxform" action="${ctxPath}/wx/myMerchantInfo" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="merchantType" name="merchantType" value = "${merchantInfo.merchantType}" type="hidden" />
+			<input id="tradesTotalShopKeeperType" name="tradesTotalShopKeeperType" value = "${merchantInfo.shopkeeperType}" type="hidden" />
+			<input id="merchantLevel" name="merchantLevel" value = "${merchantInfo.merchantLevel}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+			<input id="addr" name="addr" value = "" type="hidden" />
+	       	<div class="head-box head-boxxx" style="box-shadow:0px 1px 1px 0px rgba(0,0,0,0.03);" id="myInfo">
+		    	<div class="head-cont">
+			    	<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/personal.png?v=2" alt="">
+			    		<p>个人信息</p>  
+			    		<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>     		
+			    	</div>    		
+		    	</div>
+	    	</div>
+		</form>	
+	    <form id="myDevicesForm" class="head-boxform" action="${ctxPath}/wx/getMyDevices" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="merchantType" name="merchantType" value = "${merchantInfo.merchantType}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxsb"  style="box-shadow:0px 2px 2px 0px rgba(0,0,0,0.03);" id="myDevices">
+		    	<div class="head-cont">
+			    	<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/devices.png?v=1" alt="">
+			    		<p>设备信息（台）</p>   
+			    		@if(isShowDevicesNum=="true"){
+			    		<p>${devNum}</p>   
+						@} 		 		
+			    	</div>    		
+		    	</div>
+	    	</div>		    
+		</form>	
+		<form id="notUseDevicesForm" class="head-boxform" action="${ctxPath}/wx/beyondSevenDaysNotUse" method = "post">
+			<input id="merchantId" name="merchantId" value = "${merchantInfo.id}" type="hidden" />
+			<input id="custNo" name="custNo" value = "${custInfoModel.custNo}" type="hidden" />
+			<input id="merchantType" name="merchantType" value = "${merchantInfo.merchantType}" type="hidden" />
+			<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+	    	<div class="head-box head-boxsb"  style="box-shadow:0px 2px 2px 0px rgba(0,0,0,0.03);"  id="notUseDevices">
+		    	<div class="head-cont">
+			    	<div>
+			    		<img style="width:48px;height:48px;pointer-events:none;" src="${ctxPath}/static/wx/img/merInfo.png?v=1" alt="">
+			    		<p>7天内未用设备</p>    		
+			    		<p>${beyondSevenDaysNotUseChargersNum}</p>    		
+			    	</div>    		
+		    	</div>
+	    	</div>		    
+		</form>
+	</div>
+	<script src="${ctxPath}/static/wx/comonJs/jquery-1.8.3.min.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantCoporateHead.js?v=2"></script>
+	${layoutContent}
+	<div class="prompt" id="messageDialog" style="display: none;">
+	    <div class="prompt-cont">
+	        <div class="tanchaungimg"><img src="${ctxPath}/static/wx/img/tanchuangimg.jpg"></div>
+	        <p id="result_prompt">登陆成功</p>
+	        <div class="promptBtn" id="msg_btn">确定</div>
+	    </div>
+	</div>	 
+	<script src="${ctxPath}/static/wx/comonJs/jquery-1.8.3.min.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/comonJs/global.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/comonJs/util.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/comonJs/global.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/comonJs/register/register.js?v=2"></script>
+	<script src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=2"></script> 
+	<script src="${ctxPath}/static/wx/comonJs/jquery.url.js?v=2"></script>
+	<script src="https://webapi.amap.com/maps?v=1.3&key=eb5f4260c53f8ad4835ec7e3de7af9df&plugin=AMap.Geocoder"></script>
+</body>
+</html>

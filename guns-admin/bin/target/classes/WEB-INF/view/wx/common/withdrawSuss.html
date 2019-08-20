@@ -1,0 +1,119 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>提现记录</title>	
+    <!-- 全局css -->
+    <link rel="shortcut icon" type="text/css" href="${ctxPath}/static/favicon.ico">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/font-awesome.css?v=4.4.0">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/chosen/chosen.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/style.css?v=4.1.0">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/_fstyle.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/iCheck/custom.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css"/>  
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/css/reset.css?v=1">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css?v=1">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/css/mobiscroll_date.css?v=1">
+    <link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css?v=1">	    	
+	<link rel="stylesheet" type="text/css"  href="${ctxPath}/static/wx/wxAppcss/common/lineDetail.css?v=1">
+    <script type="text/javascript" src="${ctxPath}/static/wx/comonJs/reset.js?v=1"></script>   
+    <!-- 全局js -->
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>
+</head>
+<body> 
+   <script>reset();</script>
+   <input id="withdrawId" name="withdrawId" type="hidden" value="${withdrawId}"/>
+<div class="withdrawCon">
+    <div class="img-con">
+        <p class="img"><img src="${ctxPath}/static/wx/img/success@2x.jpg"></p>
+        <p class="state">提现成功</p>
+        <p class="time"></p>
+    </div>
+</div>
+<div class="list-con">
+  <ul class="lists">
+   <li>
+     <span class="tips">提现金额</span> <span id="withdrawMoney" class="money"></span> 
+   </li>
+   <!-- <li>
+     <span class="tips">税金</span> <span id="" class="money">300</span> 
+   </li>
+   <li>
+     <span class="tips">扣款金额</span> <span id="deductMoney" class="money">300</span> 
+   </li> -->
+   <li>
+     <span class="tips">税后金额</span> <span id="afterTaxMoney" style="color:#FFA200" class="money"></span> 
+   </li>
+   <li>
+     <span class="tips">提现渠道</span> <span id="withdrawWay" class="money">微信钱包</span> 
+   </li>
+   <li>
+     <span class="tips">流水编号</span> <span id="num" class="money"></span> 
+   </li>
+  </ul> 
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+ </div>
+ <script src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+ <script src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+ <script src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+ <script src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+ <script src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+ <script src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+ <script src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+ <script src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+ <script src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+ <script src="${ctxPath}/static/wx/wxAppJs/common/withdrawSuss.js?v=1"></script>
+ <script language="javascript" type="text/javascript">
+	var path="${ctxPath}";
+	var reqUrl="${reqUrlRoot}";
+	var baseUrl="${reqUrlRoot}";
+	var Curpage = 1;
+	
+	$(function() {
+	    Feng.addCtx("${ctxPath}");
+	    Feng.sessionTimeoutRegistry();
+		$('.modal').appendTo("body");
+		//处理用户修改费用..
+		var options={keyboard:false,backdrop:'static',show:false};
+		$('#myModal').modal(options);
+	})	
+</script>
+</body>
+</html>

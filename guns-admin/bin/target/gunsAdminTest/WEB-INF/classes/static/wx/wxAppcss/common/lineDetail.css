@@ -1,0 +1,63 @@
+body{
+    background: #F1F3F6;
+    color: #959595; 
+    font-size: 14px;
+  }
+ .main{
+	  height: 100%;
+	  width: 100%;
+ }
+ .main p{
+	   height: .64rem;
+	   line-height:.64rem;
+	   background: #f1f3f6;
+	   padding:0 .3rem;
+ }
+ .main .list-con{
+ 	 font-size: 13px;
+ }
+ .main .list-con ul li{
+   height: 1.4rem;
+   padding: .3rem .3rem;
+   background: #fff;
+   border-bottom: 1px solid #F1F3F6; 
+ }
+ .main .list-con ul li a{display: block; }
+ .main .list-con ul li span{
+   display: inline-block;
+ }
+ .icon-income{
+    height: .77rem;
+    line-height:.77rem;
+    text-align:center;
+    width: .85rem;
+    border-radius: 50%;
+    font-size: .32rem;
+    color: #fff;
+    background:#36a3ff;
+    vertical-align:bottom;
+ }
+ .income-info{
+    height: .77rem;
+    margin-left:.4rem; 
+ }
+ .income-info .title, .income-money .title{
+    display: inline-block;
+    margin-bottom:.2rem; 
+    font-style: normal;
+  }
+ .income-info .time, .income-money .time{
+    display: block;
+    font-style: normal;
+  }
+ .income-money{
+    height: .77rem;
+    line-height:.77rem;
+    float: right;
+  }
+ #more{
+	  display: block;
+	  height: .5rem;
+	  line-height: .5rem;
+	  text-align: center;
+  }

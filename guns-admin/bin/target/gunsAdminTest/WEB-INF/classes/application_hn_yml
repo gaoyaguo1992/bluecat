@@ -1,0 +1,143 @@
+# 海南 _hn_ #
+server:
+  port: 9090
+
+guns:
+  swagger-open: true              #是否开启swagger (true/false)
+  kaptcha-open: false             #是否开启登录时验证码 (true/false)
+  # file-upload-path: d:/tmp       #文件上传目录(不配置的话为java.io.tmpdir目录)
+  spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245 
+  url: https://share.youdian8.cn/gunsAdmin/ # http://localhost:9090/ #  http://localhost:9090/ #  后台address url
+  wxapp:
+    appid: wxd03fe59b992c8e27 # 微信小程序appId
+    appsecret: 1e523b985d07a444815b4cee138aaeaf # 微信小程序appSecret..
+    apisecret: 9efbeb48456111e9b4e97cd30ac30ed8 # 微信小程序appSecret..
+    index: pages/index/index # 微信小程序首页
+    personalCenter: pages/usrCt/usrCt #小程序个人中心
+    url: https://open.weixin.qq.com/sns/getexpappinfo?appid=wxd03fe59b992c8e27&path=pages%2Fkp%2Fkp.html#wechat-redirect
+    mchid: 1527249351 # 商户号id
+    templatelent: 1 # 小程序借入消息模板
+    templatelentOut: 2 # 小程序借出消息模板
+    templatebak: 3 # 小程序归还消息模板
+    templatecancelorder: 4 # 小程序归还消息模板 
+    templatewithdrawTemplate: 5  # 小程序提现申请消息模板
+    templatebuyMember: 6  # 小程序购买会员消息模板
+    templatebakComplete: 7 # 程序归还消息模板
+    backChargerTmpId: 8 # 归还充电器消息模板..
+    pwChargerTmpId: 9 # 您租借的充电器发送动态密码给用户的模板
+    lentinChargerTmpId: 10 #
+  bucket:
+    complainbucketname: 3 # ....
+  merchantId: 160423000001 # 共享助手商户号
+  isDebug: false
+  activationMode: 2 #初始化选中的设备激活方式, 1 商户扫码确认模式 2 简化模式
+  shareDeviceTypes: 21 #设备类型id..#
+  
+wechat:
+  appId: wxe44942d138747a07
+  secret: f24f563a6c1e1a143fe5fd3791809da5
+  token: share1a2b3c4d098
+  oauth2redirectUri: https://share.youdian8.cn/gunsAdmin/wx/index
+  aesKey: VXOXjGmTy2lHHgXDaSl87h1wDaHngzkJF2SqORA26nd
+  partnerId: 1527249351
+  partnerKey: 9efbeb48456111e9b4e97cd30ac30ed8
+  mchId: 1527249351 # 微信商户号 
+  appMchId: 1527249351 #微信小程序对应的商户号
+  lentinChargerTmpId: 1 # 公众号租借充电宝成功消息模板
+  backChargerTmpId: 2 # 公众号归还充电宝成功消息模板
+  buyMemberTmpId: 3 #公众号归购买会员成功消息模板
+  buyMemberTmpId: 3 #公众号归购买会员成功消息模板
+  WithdrawTmpId: 4 #提现的模板信息
+  InitMenu: true # 是否初始他订单 true:是，false:不初始化
+  systemName: 优电商户管理平台
+  logImgFileName: hn.png
+  
+cer:
+  keystore:
+    file: /home/tomcat8/cert/apiclient_cert.p12
+    password: 1527249351
+   
+spring:
+  profiles:
+    active: "local"
+  mvc:
+    static-path-pattern: /** #/static/**
+    view:
+      prefix: /WEB-INF/view
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.guns.modular.system.model
+
+log:
+  path: /opt/guns/logs
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: /home/tomcat8/applog/
+  file: /home/tomcat8/applog/guns-admin.log
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://rm-m5ev33rh89rmoe79g8o.mysql.rds.aliyuncs.com:3306/rchg?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai 
+    username: rch
+    password: ShareChongDian!hainan123
+    db-name: rchg #用来搜集数据库的所有表
+    filters: wall,mergeStat
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://rm-m5ev33rh89rmoe79g8o.mysql.rds.aliyuncs.com:3306/rchg?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root # rchg
+    password: lxyhsl!00062 # xiaobangshou@123541
+    db-name: sharedata #用来搜集数据库的所有表
+    filters: wall,mergeStat
+
+#多数据源情况的配置
+guns:
+  muti-datasource:
+    open: false
+    url: jdbc:mysql://rm-m5ev33rh89rmoe79g8o.mysql.rds.aliyuncs.com:3306/rchg?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai    
+    username: root # rchg
+    password: lxyhsl!00062 # xiaobangshou@123541
+    dataSourceNames:
+      - dataSourceGuns
+      - dataSourceBiz
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://rm-m5ev33rh89rmoe79g8o.mysql.rds.aliyuncs.com:3306/rchg?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root # rchg
+    password: lxyhsl!00062 # xiaobangshou@123541
+    filters: wall,mergeStat
+
+---
+spring:
+  profiles: produce
+  datasource:
+     url: jdbc:mysql://rm-m5ev33rh89rmoe79g8o.mysql.rds.aliyuncs.com:3306/rchg?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
+     username: root # rchg
+     password: lxyhsl!00062 # xiaobangshou@123541
+     filters: wall,mergeStat

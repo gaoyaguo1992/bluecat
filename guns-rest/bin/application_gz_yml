@@ -1,0 +1,74 @@
+# 赣州梁总_gz_##
+rest:
+  auth-open: true #jwt鉴权机制是否开启(true或者false)
+  sign-open: true #签名机制是否开启(true或false)
+
+jwt:
+  header: Authorization   #http请求头所需要的字段
+  secret: mySecret        #jwt秘钥
+  expiration: 36000      #7天 单位:秒
+  auth-path: auth         #认证请求的路径
+  md5-key: randomKey      #md5加密混淆key
+  whitelist: whitelist    #白名单
+  
+wechat:
+  appId: wxc09b28140fe9b7d1
+  secret: ca2d14ff0c49b5f3c791243ff4302195
+  token: sharejxgz965907b30
+  oauth2redirectUri: https://share.minizudian.com/gunsAdmin/wx/index
+  aesKey: wNz1CrQ74XR41HNx8RTy0AmDhpotwu6lDqWD8ckdQzI
+  partnerId: 1529716681
+  partnerKey: 9efbeb48456111e9b4e97cd30ac30ed0
+  mchId: 1529716681 # 微信商户号 
+  appMchId: 1529716681 #微信小程序对应的商户号
+  systemName: 迷你租电商户管理平台
+  logImgFileName: gz.png
+  
+server:
+  port: 9191 # 项目端口
+
+mybatis-plus:
+  # mapper-locations: classpath:com/stylefeng/guns/rest/**/mapping/*.xml
+  typeAliasesPackage: com.stylefeng.guns.rest.common.persistence.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+
+spring:
+  datasource:
+      url: jdbc:mysql://rm-bp1jtv42yfjpcj2g2yo.mysql.rds.aliyuncs.com:3306/sharedatagz?autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai   
+      username: rchg
+      password: xiaobangshou@123541
+      filters: log4j,wall,mergeStat
+
+logging:
+  level.root: ALL
+  level.com.stylefeng: ALL
+  path: /home/tomcat8/applog/
+  file: /home/tomcat8/applog/guns-rest.log
+
+sharehelper:
+  custNo: 8888888888 # 共享助手商户号
+  created:
+    ip: 103.44.145.245
+  url: https://rchg.minizudian.com/rchggz # 后台address url
+  wxapp:
+    appid: wxd6779feec7cb3302 # 微信小程序appId
+    appsecret: 06a52ddc4e24d9e168ca69ef14427602 # 微信小程序appSecret..
+    apisecret: 9efbeb48456111e9b4e97cd30ac30ed0 # 微信支付appSecret..
+    mchid: 1529716681 # 商户号id
+  merchantId: 160423000001 # 共享助手商户号
+  isDebug: false
+  
+cer:
+  keystore:
+    file: /home/tomcat8/cert/1529716681_cert/apiclient_cert.p12
+    password: 1529716681

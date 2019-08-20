@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.ShareChargerModelMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="charger_type_id" property="chargerTypeId" jdbcType="INTEGER" />
+    <result column="charger_type_name" property="chargerTypeName" jdbcType="VARCHAR" />
+    <result column="pwd_index" property="pwdIndex" jdbcType="BIGINT" />
+    <result column="pwds" property="pwds" jdbcType="VARCHAR" />
+    <result column="use_count_times_yesterday" property="useCountTimesYesterday" jdbcType="DECIMAL" />
+    <result column="total_amount_yesterday" property="totalAmountYesterday" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="agents1_id" property="agents1Id" jdbcType="BIGINT" />
+    <result column="agents2_id" property="agents2Id" jdbcType="BIGINT" />
+    <result column="agents3_id" property="agents3Id" jdbcType="BIGINT" />
+    <result column="pwd_mode" property="pwdMode" jdbcType="BIGINT" />
+    <result column="refactor_idx" property="refactorIdx" jdbcType="VARCHAR" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="create_date_time" property="createDateTime" jdbcType="TIMESTAMP" />
+    <result column="update_date_time" property="updateDateTime" jdbcType="TIMESTAMP" />
+    <result column="last_use_time" property="lastUseTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, device_id, charger_type_id, charger_type_name, pwd_index, pwds, use_count_times_yesterday, 
+    total_amount_yesterday, remark, agents1_id, agents2_id, agents3_id, pwd_mode, refactor_idx, 
+    create_id, create_date_time, update_date_time, last_use_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from share_charger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from share_charger
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from share_charger
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModelExample" >
+    delete from share_charger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModel" >
+    insert into share_charger (id, device_id, charger_type_id, 
+      charger_type_name, pwd_index, pwds, 
+      use_count_times_yesterday, total_amount_yesterday, 
+      remark, agents1_id, agents2_id, 
+      agents3_id, pwd_mode, refactor_idx, 
+      create_id, create_date_time, update_date_time, 
+      last_use_time)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{chargerTypeId,jdbcType=INTEGER}, 
+      #{chargerTypeName,jdbcType=VARCHAR}, #{pwdIndex,jdbcType=BIGINT}, #{pwds,jdbcType=VARCHAR}, 
+      #{useCountTimesYesterday,jdbcType=DECIMAL}, #{totalAmountYesterday,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{agents1Id,jdbcType=BIGINT}, #{agents2Id,jdbcType=BIGINT}, 
+      #{agents3Id,jdbcType=BIGINT}, #{pwdMode,jdbcType=BIGINT}, #{refactorIdx,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=BIGINT}, #{createDateTime,jdbcType=TIMESTAMP}, #{updateDateTime,jdbcType=TIMESTAMP}, 
+      #{lastUseTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModel" >
+    insert into share_charger
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="chargerTypeId != null" >
+        charger_type_id,
+      </if>
+      <if test="chargerTypeName != null" >
+        charger_type_name,
+      </if>
+      <if test="pwdIndex != null" >
+        pwd_index,
+      </if>
+      <if test="pwds != null" >
+        pwds,
+      </if>
+      <if test="useCountTimesYesterday != null" >
+        use_count_times_yesterday,
+      </if>
+      <if test="totalAmountYesterday != null" >
+        total_amount_yesterday,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="agents1Id != null" >
+        agents1_id,
+      </if>
+      <if test="agents2Id != null" >
+        agents2_id,
+      </if>
+      <if test="agents3Id != null" >
+        agents3_id,
+      </if>
+      <if test="pwdMode != null" >
+        pwd_mode,
+      </if>
+      <if test="refactorIdx != null" >
+        refactor_idx,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createDateTime != null" >
+        create_date_time,
+      </if>
+      <if test="updateDateTime != null" >
+        update_date_time,
+      </if>
+      <if test="lastUseTime != null" >
+        last_use_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="chargerTypeId != null" >
+        #{chargerTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="chargerTypeName != null" >
+        #{chargerTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdIndex != null" >
+        #{pwdIndex,jdbcType=BIGINT},
+      </if>
+      <if test="pwds != null" >
+        #{pwds,jdbcType=VARCHAR},
+      </if>
+      <if test="useCountTimesYesterday != null" >
+        #{useCountTimesYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmountYesterday != null" >
+        #{totalAmountYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="agents1Id != null" >
+        #{agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents2Id != null" >
+        #{agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents3Id != null" >
+        #{agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="pwdMode != null" >
+        #{pwdMode,jdbcType=BIGINT},
+      </if>
+      <if test="refactorIdx != null" >
+        #{refactorIdx,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDateTime != null" >
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUseTime != null" >
+        #{lastUseTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModelExample" resultType="java.lang.Integer" >
+    select count(*) from share_charger
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update share_charger
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.chargerTypeId != null" >
+        charger_type_id = #{record.chargerTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargerTypeName != null" >
+        charger_type_name = #{record.chargerTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwdIndex != null" >
+        pwd_index = #{record.pwdIndex,jdbcType=BIGINT},
+      </if>
+      <if test="record.pwds != null" >
+        pwds = #{record.pwds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useCountTimesYesterday != null" >
+        use_count_times_yesterday = #{record.useCountTimesYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalAmountYesterday != null" >
+        total_amount_yesterday = #{record.totalAmountYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pwdMode != null" >
+        pwd_mode = #{record.pwdMode,jdbcType=BIGINT},
+      </if>
+      <if test="record.refactorIdx != null" >
+        refactor_idx = #{record.refactorIdx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createId != null" >
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDateTime != null" >
+        create_date_time = #{record.createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDateTime != null" >
+        update_date_time = #{record.updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUseTime != null" >
+        last_use_time = #{record.lastUseTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update share_charger
+    set id = #{record.id,jdbcType=BIGINT},
+      device_id = #{record.deviceId,jdbcType=BIGINT},
+      charger_type_id = #{record.chargerTypeId,jdbcType=INTEGER},
+      charger_type_name = #{record.chargerTypeName,jdbcType=VARCHAR},
+      pwd_index = #{record.pwdIndex,jdbcType=BIGINT},
+      pwds = #{record.pwds,jdbcType=VARCHAR},
+      use_count_times_yesterday = #{record.useCountTimesYesterday,jdbcType=DECIMAL},
+      total_amount_yesterday = #{record.totalAmountYesterday,jdbcType=DECIMAL},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      pwd_mode = #{record.pwdMode,jdbcType=BIGINT},
+      refactor_idx = #{record.refactorIdx,jdbcType=VARCHAR},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date_time = #{record.createDateTime,jdbcType=TIMESTAMP},
+      update_date_time = #{record.updateDateTime,jdbcType=TIMESTAMP},
+      last_use_time = #{record.lastUseTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModel" >
+    update share_charger
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="chargerTypeId != null" >
+        charger_type_id = #{chargerTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="chargerTypeName != null" >
+        charger_type_name = #{chargerTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdIndex != null" >
+        pwd_index = #{pwdIndex,jdbcType=BIGINT},
+      </if>
+      <if test="pwds != null" >
+        pwds = #{pwds,jdbcType=VARCHAR},
+      </if>
+      <if test="useCountTimesYesterday != null" >
+        use_count_times_yesterday = #{useCountTimesYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmountYesterday != null" >
+        total_amount_yesterday = #{totalAmountYesterday,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="agents1Id != null" >
+        agents1_id = #{agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents2Id != null" >
+        agents2_id = #{agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="agents3Id != null" >
+        agents3_id = #{agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="pwdMode != null" >
+        pwd_mode = #{pwdMode,jdbcType=BIGINT},
+      </if>
+      <if test="refactorIdx != null" >
+        refactor_idx = #{refactorIdx,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDateTime != null" >
+        create_date_time = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDateTime != null" >
+        update_date_time = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUseTime != null" >
+        last_use_time = #{lastUseTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareChargerModel" >
+    update share_charger
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      charger_type_id = #{chargerTypeId,jdbcType=INTEGER},
+      charger_type_name = #{chargerTypeName,jdbcType=VARCHAR},
+      pwd_index = #{pwdIndex,jdbcType=BIGINT},
+      pwds = #{pwds,jdbcType=VARCHAR},
+      use_count_times_yesterday = #{useCountTimesYesterday,jdbcType=DECIMAL},
+      total_amount_yesterday = #{totalAmountYesterday,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      agents1_id = #{agents1Id,jdbcType=BIGINT},
+      agents2_id = #{agents2Id,jdbcType=BIGINT},
+      agents3_id = #{agents3Id,jdbcType=BIGINT},
+      pwd_mode = #{pwdMode,jdbcType=BIGINT},
+      refactor_idx = #{refactorIdx,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date_time = #{createDateTime,jdbcType=TIMESTAMP},
+      update_date_time = #{updateDateTime,jdbcType=TIMESTAMP},
+      last_use_time = #{lastUseTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

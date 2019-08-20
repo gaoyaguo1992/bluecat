@@ -1,0 +1,198 @@
+body{
+ 	background: #f2f2f2;
+}
+.tabs{
+ 	display :flex;
+  	flex-direction:row;
+   	border-top :1px solid #f2f2f2;
+   	background :#fff;
+}
+.tabs span{
+  flex :1;
+  display:flex;
+  height :1rem;
+  justify-content :center;
+  align-items:center;
+  font-size :.28rem;
+  color :#444;
+  border-right :1px solid #f2f2f2;
+  border-top: 1px solid #f2f2f2;
+}
+.tabs span:nth-child(2){
+   border-right :none
+}
+.active{
+ color: #36a3ff !important;
+ border-bottom :1px solid #36a3ff;
+}
+.dev-list{
+ margin: .22rem 0;
+ background: #fff;
+}
+.dev-list ul li{
+ display: none;
+}
+/* 左边 */
+.dev-list ul .batch p{
+	 display:flex;
+	 height:.88rem;
+	 line-height:.8rem;
+	 border-bottom: 1px solid #f2f2f2; 
+	 font-size: .28rem;
+	 color: #444;
+	 padding: 0 .25rem;
+}
+.dev-list ul .batch p span{
+	flex:1;
+}
+.dev-list ul .batch p span i, .import .tips span,.tip-header span{
+	 color: #f83737;
+	 vertical-align: middle;
+	 margin-right: .1rem;
+	 font-style: normal;
+}
+.dev-list ul .batch p input{
+	 flex:1;
+	 outline: none;
+	 height: 90%;
+}
+.show{
+	 display: block !important;
+}
+/* 右边  */
+.import{
+ padding:.3rem .3rem;
+}
+.import .tips{
+  font-size: .28rem;
+  color: #444;
+}
+.input-com{
+ height: .7rem;
+ display: flex;
+ margin: .2rem 0;
+}
+.input-com .add{
+ flex: 0 0 1.1rem;
+ width: 1.1rem;
+ text-align:center;
+ line-height:.7rem;
+ background: #444;
+ border-radius:10px;
+ font-size:.26rem;
+ color: #fff;
+ margin-left: .2rem;
+}
+.input-com .num-input{
+ flex:1;
+ background: #f2f2f2;
+ border-radius:4px; 
+ display: flex;
+ padding: 0 .3rem;
+}
+.input-com .num-input input{
+ flex:1;
+ outline: none;
+ background:#f2f2f2;
+ font-size: .26rem;
+ color:#959595; 
+}
+.input-com .num-input .scan{
+	 flex:0 0 1.12rem;
+	 width: 1.12rem;
+	 font-size: .28rem;
+	 color: #444;
+	 padding: .15rem 0;
+}
+.scan .scan-icon{
+	 display: inline-block;
+	 background:url("../../img/sm.png");
+	 background-size:100%;
+	 height: .34rem;
+	 width: .34rem;
+	 vertical-align: sub;
+	 margin-right: 0.08rem;
+}
+.input-com .input-list{
+	 background: #f2f2f2;
+	 border-radius:3px;
+	 padding:.3rem 0 .3rem .3rem;  
+}
+.input-list .add-num{
+	 font-size: .26rem;
+	 color: #959595;
+}
+.input-list .add-num span{color: #36a3ff;}
+.list-com{
+	 height: 2.8rem;
+	 overflow-y: scroll;
+	 padding-right: .3rem;
+	 margin-top: .12rem;
+}
+.input-list .list-com li{
+	 height: .5rem;
+	 line-height:.5rem;
+	 font-size: .26rem;
+	 color: #444;
+	 display: block;
+	 border: 1px solid #d7d7d7;
+	 margin-bottom: .1rem;
+	 padding: 0 .3rem;
+}
+.list-com li .delete-icon{
+	 color: #959595;
+	 float: right;
+	 font-size: .4rem;
+}
+.select-com{
+	 background: #fff;
+	 padding: .3rem .3rem;
+}
+.select-com .tip-header{
+	 font-size: .28rem;
+	 color: #444;
+	 margin-bottom: .3rem;
+}
+.select-com .selects{
+	 display: flex;
+	 flex-direction:row;
+	 flex-wrap:wrap;
+}
+.select-com .selects span{
+	font-size:.3rem;
+	color:#444;
+	height: .8rem;
+	line-height:.8rem;
+	width: 3.35rem;
+	background: #f2f2f2;
+	text-align: center;
+	border-radius: 3px;
+	margin:0 .1rem .1rem 0;
+}
+.activeImg{
+	 color:#22AB39 !important;
+	 background: url("../../img/merchantcenter/activeImg.png") !important;
+	 background-size:100%  100% !important; 
+}
+.button{
+     position: fixed;
+     bottom: 0.3rem;
+     left: 0;
+     height: .9rem;
+     line-height:.9rem;
+     width: 100%;
+     padding: 0 .3rem;
+     text-align: center;
+     font-size: .3rem;
+     color: #fff;
+}
+.button span{
+     display: block;
+     background: #22AB39;
+     height: 100%;
+     width: 100%;
+     border-radius:5px;
+}
+.load-com{
+ 	display: none;
+}

@@ -1,0 +1,24 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="row">
+         <div class="col-sm-3">
+             <#button style="margin-left: 15px;" name="返回首页" icon="fa-home" clickFun="UsageTrend.toIndex()"/>
+         </div>
+     </div>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>商家近七天使用率排名</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <#table id="usageTrend7DaysTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/index/deviceCount.js?v=1"></script>
+@}

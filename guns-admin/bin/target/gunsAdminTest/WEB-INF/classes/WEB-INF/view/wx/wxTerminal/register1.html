@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>注册商铺终端</title>	
+<script src="${ctxPath}/static/wx/comonJs/reset.js?i=2"></script>
+<link type="text/css" rel="stylesheet" href="${ctxPath}/static/wx/css/reset.css">
+<link type="text/css" rel="stylesheet" href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css">
+<link type="text/css" rel="stylesheet" href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css">
+<link type="text/css" rel="stylesheet" href="${ctxPath}/static/wx/wxAppcss/merchantcenter/merchantRegister.css?v=2">     
+</head>
+<body>
+<script>reset();</script>
+<div class="cooperation-infor">
+	<div class="cooperation-fill">
+		<i class="iconfont icon-shanghu lefticon"></i>
+		<input id="name" name="name" type="text" placeholder="请输入店铺名称"><b>*</b>
+	</div>
+	<div class="cooperation-fill">
+		<i class="iconfont icon-hangye lefticon"></i>
+		<select id="industryCategoryCode" name="industryCategoryCode">
+	 		<option  value="">请选择行业</option>
+	 		${industryCategoryCodeFrHtmlOptions}
+		</select><b>*</b>
+		<i class="iconfont icon-more"></i>
+	</div>
+	<div class="cooperation-fill">
+	   <input id="provinceName" name="provinceName" type="hidden" value =""  >
+	   <input id="cityName" name="cityName" type="hidden" value ="" >
+	   <input id="districtName" name="districtName" type="hidden" value ="" >
+	   <input id="latitude" name="latitude" type="hidden" value ="" >
+	   <input id="latitude" name="latitude" type="hidden" value ="" >
+	   <i class="iconfont icon-dizhi lefticon"></i>
+	   <textarea id="addr" name="addr" class="useguize">	   	
+	   	</textarea><b>*</b>
+	</div>
+	<div class="cooperation-fill">
+	  <i class="iconfont icon-geren lefticon"></i>
+	  <input id="personName" name="personName" type="text" placeholder="请输入联系人姓名"><b>*</b>
+	</div>		
+	<div class="cooperation-fill">
+	    <i class="iconfont icon-shouji lefticon"></i>
+	  <input id="telNo" name="telNo" type="text"  placeholder="请输入联系人电话"><b>*</b>
+	</div>
+	<div class="cooperation-fill">
+	    <i class="iconfont icon-shijian lefticon"></i>
+	    <select class="shophours" id="startShopHours" name="startShopHours">
+	    	<option value="" >营业时间</option>
+	    </select>
+	    <i class="iconfont icon-anniu" style="right:57%;"></i>
+	    <span class="shophoursspan">到</span>
+	    <select class="shophours" id="endShopHours" name="endShopHours">
+	    	<option  value="">打烊时间</option>
+	    </select>
+	    <i class="iconfont icon-anniu" style="right:11%;"></i>
+	</div>
+	<div class="cooperation-fill">
+	    <i class="iconfont icon-dianhua lefticon"></i>
+	  	<input id="storePhoneNo" name="storePhoneNo" type="text"placeholder="请输入店铺的电话">
+	</div>				
+</div>
+<div id="sumbitSaveBtn" class="submitbtn">确定</div>
+
+<input id="region" name="region" type="text"  type="hidden">
+<input id="provinceName" name="provinceName" type="hidden">
+<input id="cityName" name="cityName" type="hidden">
+<input id="districtName" name="districtName" type="hidden">
+<input id="deviceNo" name="deviceNo" type="hidden" />
+<input id="merchantType" name="merchantType" value="${selectedMerchantType}"  type="hidden" />
+<input id="openId" name="openId" type="hidden" value = "${custInfoModel.openId}"/>
+<input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+<div class="prompt" id="messageDialog" style="display: none;">
+    <div class="prompt-cont">
+        <div class="tanchaungimg"><img src="${ctxPath}/static/wx/img/tanchuangimg.jpg"></div>
+        <p id="result_prompt"></p>
+        <div class="promptBtn" id="msg_btn">确定</div>
+    </div>
+</div>	 
+<script src="${ctxPath}/static/wx/comonJs/jquery-1.8.3.min.js?v=160806"></script>
+<script src="${ctxPath}/static/wx/comonJs//global.js?v=160806"></script>
+<script src="${ctxPath}/static/wx/comonJs//jrrpc.js?v=160806"></script>
+<script src="${ctxPath}/static/wx/comonJs//util.js?v=160806"></script>
+<script src="${ctxPath}/static/wx/comonJs//register/register.js?v=160806"></script>
+<script src="${ctxPath}/static/wx/comonJs//jweixin-1.1.0.js?v=160106"></script>
+<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/shopHours.js?v=1"></script>
+<script src="${ctxPath}/static/wx/wxAppJs/merchantcenter/merchantRegister.js?v=3"></script>
+<script src="${ctxPath}/static/wx/comonJs/jquery.url.js?v=106"></script>
+<script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp"></script> 
+<script src="https://webapi.amap.com/maps?v=1.3&key=eb5f4260c53f8ad4835ec7e3de7af9df&plugin=AMap.Geocoder"></script>
+<script type="text/javascript">
+var path="${ctxPath}";
+var reqUrl="${reqUrlRoot}";
+var baseUrl="${reqUrlRoot}";
+$(function(){
+	 //微信授权 成功后调扫码...
+	 getWeixinConfig();
+});
+//
+function getAddr(latitudeXY){
+    var data={
+         	location:latitudeXY,
+          	key:"DCLBZ-LSM3F-DBWJF-NXDGT-JLUQO-7RBYX",
+           	get_poi:0    
+      	}
+          var url="https://apis.map.qq.com/ws/geocoder/v1/?";
+          data.output="jsonp";  
+          $.ajax({
+              type:"get",
+              dataType:'jsonp',
+              data:data,
+              jsonp:"callback",
+              jsonpCallback:"QQmap",
+              url:url,
+              success:function(json){
+            	  $("#provinceName").val(json.result.address_component.province);
+            	  $("#cityName").val(json.result.address_component.city);
+            	  $("#districtName").val(json.result.address_component.district);
+            	  $("#addr").val(json.result.address_component.province+json.result.address_component.city+json.result.formatted_addresses.recommend);
+              },
+              error : function(err){alert("服务端错误，请刷新浏览器后重试")}
+      	})
+}
+// 微信授权
+function getWeixinConfig(){
+  let url = window.location.href.split('#')[0];
+  var urlInfo={
+         url:url
+       };
+  $.ajax({
+   	   type:"POST", 
+       url:reqUrl+"wx/getWxJsapiSignatureInfo",         
+       data:urlInfo,
+       dataType:'json',
+       error:function(obj){},
+       success:function(res){
+       	if(res.result==='success'){
+       		 wx.config({
+                    beta:true,
+                    debug: false,
+                    appId: res.responseInfo.appid,
+                    timestamp: res.responseInfo.timestamp,
+                    nonceStr: res.responseInfo.noncestr,
+                    signature: res.responseInfo.signature,
+                    jsApiList: ['checkJsApi', 'scanQRCode','previewImage','getLocation','openLocation']
+                  });
+			 //得到位置信息...
+             wxGetLocation();
+       	}
+      }
+   });
+};
+//得到位置信息...
+function wxGetLocation(){
+	 wx.ready(function(){
+	 	wx.getLocation({
+	 	    type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+	 	    success: function (res) {	       
+	 	        var geocoder,citylocation,map,marker = null;
+	 	        var markersArray=[];
+	 	        var x= res.longitude;
+	 	        var y= res.latitude;
+	 	        var latitudeLongitude = y+','+x;
+	 	        longitude_x=x;
+	 	        latitude_y=y;
+	 	        $("#longitude").attr("value","");
+	            $("#longitude").attr("value",x);
+	            $("#latitude").attr("value","");
+	            $("#latitude").attr("value",y);
+	 	        getAddr(latitudeLongitude);
+	 	    }
+	 	});
+
+	 });
+}
+wx.error(function(res){
+	//alert(JSON.stringify(res));
+});
+</script>	    
+</body>
+</html>

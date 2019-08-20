@@ -1,0 +1,87 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                        <#input id="id" name="订单号" readonly="readonly" value="${item.id}" underline="false"/>
+                        <#input id="chargerId" name="充电器id" readonly="readonly" value="${item.chargerId}"  underline="false"/>
+                        <#input id="yfjAmount" name="预付金" readonly="readonly" value="${item.yfjAmount}"  underline="false"/>
+                        <#input id="borrowDatetime" name="借出时间" readonly="readonly" value="${item.borrowDatetime}"  underline="false"/>
+                </div>
+                <div class="col-sm-6">
+                 		<#input id="tradeStatusName" name="订单状态" style="color:red" value="${item.tradeStatusName}" readonly="readonly" underline="false"/>
+                 		<#input id="deviceNo" name="设备号" readonly="readonly" value="${item.deviceNo}" underline="false"/>
+                 		<#input id="tradeAmount" name="产生充电费" readonly="readonly" value="${tradeAmount}"  underline="false"/>
+                        <#input id="userTimes" name="租借时长" style="color:red" readonly="readonly" value="${useTimes}"   underline="false"/>
+                </div>
+            </div>
+            <input type="hidden" id="tradeStatus" value="${item.tradeStatus}"/>
+            <input type="hidden" id="useSeconds" value="${useSeconds}"/>
+            <input type="hidden" id="backTradeId" value="${item.backTradeId}"/>
+			<div id="refundOrder" style="display:none"  class="list-group">
+				<a class="list-group-item active">
+					<h4 class="list-group-item-heading">
+						订单退款
+					</h4>
+				</a>
+				<a  class="list-group-item">
+				   <#input id="tradeAmoutForBack" styleForDiv="margin-bottom:0px" name="退还金额" underline="false"/>
+				</a>
+				<a  class="list-group-item">
+				   <#input id="remarkForBack" styleForDiv="margin-bottom:0px" name="备注" underline="false"/>
+				</a>
+			</div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ShareTradeInfoInfoDlg.advanceRefundOrder()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ShareTradeInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			 <div class="modal-body" id="myModalContent">正在处理中....</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<script src="${ctxPath}/static/modular/shareTradeInfo/shareTradeInfo/shareTradeInfo_info.js?id=1"></script>
+<script language="javascript">
+$(function() {
+	//1.处理用户修改费用..
+	var options={keyboard:false,backdrop:'static',show:false}
+	$('#myModal').modal(options)
+	//2.处理设备费用..
+	var tradeStatus=$("#tradeStatus").val();
+	if(tradeStatus=="11"){
+		$("#finishOrder").hide();
+		$("#refundOrder").show();
+	}else{
+		$("#finishOrder").show();
+		$("#refundOrder").hide();
+	}
+	if(tradeStatus!=11){
+		window.setInterval("refreshUseTimes()",1000);
+	}
+});
+function  refreshUseTimes(){
+	var useSeconds=$("#useSeconds").val();
+    var totalSeconds=parseInt(useSeconds)+1;
+    var seconds=totalSeconds;
+    var days = parseInt(seconds/(3600*24));
+    seconds=Math.round(seconds%(3600*24));
+    var hours = parseInt(seconds/3600);
+    seconds=Math.round(seconds%3600);
+    var minutes = parseInt(seconds/60);
+    seconds = Math.round(seconds%60);
+    var txtForTime =days+"天"+ hours + " 小时 " + minutes + " 分 " + seconds+" 秒";
+    $("#useSeconds").val(totalSeconds)
+    $("#userTimes").val(txtForTime)
+  };
+</script>
+@}

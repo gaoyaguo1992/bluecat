@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.WithdrawApplyRecordModelBySelfMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.WithdrawApplyRecordModel">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="apply_merchant_id" property="applyMerchantId" jdbcType="BIGINT" />
+    <result column="pre_tax_amount" property="preTaxAmount" jdbcType="DECIMAL" />
+    <result column="aft_tax_amount" property="aftTaxAmount" jdbcType="DECIMAL" />
+    <result column="withdraw_status" property="withdrawStatus" jdbcType="TINYINT" />
+    <result column="withdraw_status_cn" property="withdrawStatusCn" jdbcType="VARCHAR" />
+    <result column="approver" property="approver" jdbcType="VARCHAR" />
+    <result column="approve_time" property="approveTime" jdbcType="TIMESTAMP" />
+    <result column="approve_status" property="approveStatus" jdbcType="TINYINT" />
+    <result column="approve_status_cn" property="approveStatusCn" jdbcType="VARCHAR" />
+    <result column="approve_comment" property="approveComment" jdbcType="VARCHAR" />
+    <result column="should_pay_tax" property="shouldPayTax" jdbcType="DECIMAL" />
+    <result column="payer" property="payer" jdbcType="VARCHAR" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="invest_money" property="investMoney" jdbcType="DECIMAL" />
+    <result column="merchant_type" property="merchantType" jdbcType="INTEGER" />
+    <result column="merchant_sub_type" property="merchantSubType" jdbcType="INTEGER" />
+    <result column="invoice_no" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="manual_deduction" property="manualDeduction" jdbcType="DECIMAL" />    
+    <result column="number_of_month" property="numberOfMonth" jdbcType="INTEGER" />
+    <result column="pay_way" property="payWay" jdbcType="INTEGER" />
+    <result column="is_real_time" property="isRealTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_time, apply_merchant_id, pre_tax_amount, aft_tax_amount, withdraw_status, withdraw_status_cn,
+    approver, approve_time, approve_status, approve_comment,should_pay_tax,payer,pay_time,manual_deduction,number_of_month
+  </sql>
+  
+  <resultMap id="selectForPageResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.WithdrawApplyRecordModel">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="apply_merchant_id" property="applyMerchantId" jdbcType="BIGINT" />
+    <result column="pre_tax_amount" property="preTaxAmount" jdbcType="DECIMAL" />
+    <result column="aft_tax_amount" property="aftTaxAmount" jdbcType="DECIMAL" />
+    <result column="withdraw_status" property="withdrawStatus" jdbcType="TINYINT" />
+    <result column="withdraw_status_cn" property="withdrawStatusCn" jdbcType="VARCHAR" />
+    <result column="approver" property="approver" jdbcType="VARCHAR" />
+    <result column="approve_time" property="approveTime" jdbcType="TIMESTAMP" />
+    <result column="approve_status" property="approveStatus" jdbcType="TINYINT" />
+    <result column="approve_status_cn" property="approveStatusCn" jdbcType="VARCHAR" />
+    <result column="approve_comment" property="approveComment" jdbcType="VARCHAR" />
+    <result column="should_pay_tax" property="shouldPayTax" jdbcType="DECIMAL" />
+    <result column="payer" property="payer" jdbcType="VARCHAR" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="invest_money" property="investMoney" jdbcType="DECIMAL" />
+    <result column="merchant_type" property="merchantType" jdbcType="INTEGER" />
+    <result column="merchant_sub_type" property="merchantSubType" jdbcType="INTEGER" />
+    <result column="invoice_no" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="manual_deduction" property="manualDeduction" jdbcType="DECIMAL" />    
+    <result column="number_of_month" property="numberOfMonth" jdbcType="INTEGER" />
+    <result column="pay_way" property="payWay" jdbcType="INTEGER" />
+    <result column="is_real_time" property="isRealTime" jdbcType="INTEGER" />
+    
+    <result column="merchantName" property="merchantName" jdbcType="VARCHAR" />    
+    <result column="personName"   property="personName"   jdbcType="VARCHAR" />
+    <result column="personTelNo"  property="personTelNo"  jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectByConditionForPage"  parameterType="java.util.HashMap"  resultMap="selectForPageResultMap">  
+	  SELECT 
+		    app.id, 
+		    app.apply_time, 
+		    app.apply_merchant_id, 
+		    app.pre_tax_amount, 
+		    app.aft_tax_amount, 
+		    app.withdraw_status, 
+		    app.withdraw_status_cn,
+		    app.approver, 
+		    app.approve_time, 
+		    app.approve_status, 
+		    app.approve_comment,
+		    app.should_pay_tax,
+		    app.payer,
+		    app.pay_time,
+		    app.manual_deduction,
+		    app.number_of_month,
+		    
+		    mer.`name` AS merchantName,
+		    mer.`person_name` AS personName,
+		    mer.`tel_no` AS personTelNo    
+		FROM `withdraw_apply_record` app
+		JOIN merchant_info mer ON app.`apply_merchant_id`=mer.`id`
+		where 1=1 
+		<if test="id !=null">
+			and app.Id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="applyMerchantId !=null">
+			and app.apply_merchant_id=#{applyMerchantId,jdbcType=BIGINT}
+		</if>
+		<if test="withdrawStatus !=null">
+			and app.withdraw_status=#{withdrawStatus,jdbcType=BIGINT}
+		</if>
+		<if test="order != null">
+			<![CDATA[ 
+			order by ${order}
+	    	]]>
+		</if>
+		<if test="limit != null">
+			<![CDATA[ 
+			LIMIT #{offset,jdbcType=BIGINT},#{limit,jdbcType=BIGINT}
+	    	]]>
+		</if>
+  </select>
+  <select id="countByConditionForPage"  parameterType="java.util.HashMap"  resultType="java.lang.Long">
+	   SELECT 
+		   COUNT(app.Id)
+		FROM `withdraw_apply_record` app
+		JOIN merchant_info mer ON app.`apply_merchant_id`=mer.`id`
+		where 1=1 
+		<if test="id !=null">
+			and app.Id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="applyMerchantId !=null">
+			and app.apply_merchant_id=#{applyMerchantId,jdbcType=BIGINT}
+		</if>
+		<if test="withdrawStatus !=null">
+			and app.withdraw_status=#{withdrawStatus,jdbcType=BIGINT}
+		</if>
+  </select>
+  <select id="getWithDrawNumsThisMonth" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+	SELECT COUNT(*) FROM withdraw_apply_record rc
+	WHERE 1=1
+	AND DATE_FORMAT(rc.apply_time,'%Y%m') = DATE_FORMAT(CURDATE( ),'%Y%m')
+	AND rc.apply_merchant_id =#{merchantId,jdbcType=BIGINT}
+  </select>
+</mapper>

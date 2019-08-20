@@ -1,0 +1,1720 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stylefeng.guns.sharecore.modular.system.dao.ShareDeviceInfoModelBySelfMapper" >
+  <resultMap id="BaseResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+    <id column="Id" property="id" jdbcType="BIGINT" />
+    <result column="device_type_id" property="deviceTypeId" jdbcType="INTEGER" />
+    <result column="device_type_name" property="deviceTypeName" jdbcType="VARCHAR" />
+    <result column="device_status" property="deviceStatus" jdbcType="INTEGER" />
+    <result column="online_datetime" property="onlineDatetime" jdbcType="TIMESTAMP" />
+    <result column="online_merchant_cn" property="onlineMerchantCn" jdbcType="VARCHAR" />
+    <result column="online_merchant_id" property="onlineMerchantId" jdbcType="BIGINT" />
+    <result column="online_address" property="onlineAddress" jdbcType="VARCHAR" />
+    <result column="online_city" property="onlineCity" jdbcType="VARCHAR" />
+    <result column="online_zone" property="onlineZone" jdbcType="VARCHAR" />
+    <result column="online_province" property="onlineProvince" jdbcType="VARCHAR" />
+    <result column="online_x_coordinate" property="onlineXCoordinate" jdbcType="DECIMAL" />
+    <result column="online_y_coordinate" property="onlineYCoordinate" jdbcType="DECIMAL" />
+    <result column="fee_type_id" property="feeTypeId" jdbcType="INTEGER" />
+    <result column="fee_type_name" property="feeTypeName" jdbcType="VARCHAR" />
+    <result column="yfj_amount" property="yfjAmount" jdbcType="DECIMAL" />
+    <result column="first_amount" property="firstAmount" jdbcType="DECIMAL" />
+    <result column="first_minutes" property="firstMinutes" jdbcType="BIGINT" />
+    <result column="amount_per_hour" property="amountPerHour" jdbcType="DECIMAL" />
+    <result column="amount_max_24hour" property="amountMax24hour" jdbcType="DECIMAL" />
+    <result column="fee1_type_Id" property="fee1TypeId" jdbcType="INTEGER" />
+    <result column="fee1_type_name" property="fee1TypeName" jdbcType="VARCHAR" />
+    <result column="fee1_hour_type" property="fee1HourType" jdbcType="INTEGER" />
+    <result column="fee1_hour_amount" property="fee1HourAmount" jdbcType="DECIMAL" />
+    <result column="fee2_type_id" property="fee2TypeId" jdbcType="INTEGER" />
+    <result column="fee2_type_name" property="fee2TypeName" jdbcType="VARCHAR" />
+    <result column="fee2_hour_type" property="fee2HourType" jdbcType="INTEGER" />
+    <result column="fee2_hour_amount" property="fee2HourAmount" jdbcType="DECIMAL" />
+    <result column="fee3_type_id" property="fee3TypeId" jdbcType="INTEGER" />
+    <result column="fee3_type_name" property="fee3TypeName" jdbcType="VARCHAR" />
+    <result column="fee3_hour_type" property="fee3HourType" jdbcType="INTEGER" />
+    <result column="fee3_hour_amount" property="fee3HourAmount" jdbcType="DECIMAL" />
+    <result column="platform_rato" property="platformRato" jdbcType="DECIMAL" />
+    <result column="agents1_id" property="agents1Id" jdbcType="BIGINT" />
+    <result column="agents1_cn" property="agents1Cn" jdbcType="VARCHAR" />
+    <result column="agents1_rato" property="agents1Rato" jdbcType="DECIMAL" />
+    <result column="agents2_id" property="agents2Id" jdbcType="BIGINT" />
+    <result column="agents2_cn" property="agents2Cn" jdbcType="VARCHAR" />
+    <result column="agents2_rato" property="agents2Rato" jdbcType="DECIMAL" />
+    <result column="agents3_id" property="agents3Id" jdbcType="BIGINT" />
+    <result column="agents3_rato" property="agents3Rato" jdbcType="DECIMAL" />
+    <result column="agents3_cn" property="agents3Cn" jdbcType="VARCHAR" />
+    <result column="shopkeeper_id" property="shopkeeperId" jdbcType="BIGINT" />
+    <result column="shopkeeper_cn" property="shopkeeperCn" jdbcType="VARCHAR" />
+    <result column="shopkeeper_rato" property="shopkeeperRato" jdbcType="DECIMAL" />
+    <result column="alliance_business_id" property="allianceBusinessId" jdbcType="BIGINT" />
+    <result column="alliance_business_cn" property="allianceBusinessCn" jdbcType="VARCHAR" />
+    <result column="alliance_business_rate" property="allianceBusinessRate" jdbcType="DECIMAL" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="update_datetime" property="updateDatetime" jdbcType="TIMESTAMP" />
+    <result column="SQR_url" property="sqrUrl" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="yfj_reback_type" property="yfjRebackType" jdbcType="INTEGER" />
+    <result column="yfj_reback_type_name" property="yfjRebackTypeName" jdbcType="VARCHAR" />
+    <result column="activation_mode" property="activationMode" jdbcType="INTEGER" />
+    <result column="last_used_time" property="lastUsedTime" jdbcType="TIMESTAMP" />
+    
+    <result column="password_type" property="passwordType" jdbcType="INTEGER" />
+    <result column="password_year" property="passwordYear" jdbcType="VARCHAR" />
+    <result column="password_month" property="passwordMonth" jdbcType="VARCHAR" />
+    <result column="password_batch" property="passwordBatch" jdbcType="VARCHAR" />
+    <result column="password_key" property="passwordKey" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.stylefeng.guns.sharecore.modular.system.model.ChargerFewDayNotUsedBO" id="ChargerFewDayNotUseMap">
+      <id column="charger_id" property="chargerId" jdbcType="BIGINT" />
+      <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+      <result column="device_status" property="deviceStatus" jdbcType="INTEGER" />
+      <result column="device_type_name" property="deviceTypeName" jdbcType="VARCHAR" />
+      <result column="online_merchant_cn" property="onlineMerchantCn" jdbcType="VARCHAR" />
+      <result column="last_use_time" property="lastUseTime" jdbcType="TIMESTAMP" />
+      <result column="online_datetime" property="onlineDateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  
+  <select id="getUsageTrendData" parameterType="java.lang.Long" resultType="com.stylefeng.guns.sharecore.modular.system.model.DeviceUsageTrendBO">
+    SELECT dttable.dates,IFNULL(dTable.cnt,0) AS count
+FROM (
+	SELECT  DATE(NOW()) AS dates FROM DUAL
+	UNION SELECT DATE_SUB(CURDATE(),INTERVAL 1 DAY)  AS dates FROM DUAL
+	UNION SELECT DATE_SUB(CURDATE(),INTERVAL 2 DAY) AS dates FROM DUAL
+	UNION SELECT DATE_SUB(CURDATE(),INTERVAL 3 DAY) AS dates FROM DUAL
+	UNION SELECT DATE_SUB(CURDATE(),INTERVAL 4 DAY) AS dates FROM DUAL
+	UNION SELECT DATE_SUB(CURDATE(),INTERVAL 5 DAY) AS dates FROM DUAL
+	UNION SELECT DATE_SUB(CURDATE(),INTERVAL 6 DAY) AS dates FROM DUAL) dttable
+LEFT JOIN(SELECT 
+		DATE_FORMAT(t.borrow_datetime,'%Y-%m-%d') AS dtime,
+		COUNT(t.id) AS cnt
+	FROM share_trade_info t 
+	WHERE t.`device_no` in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+               #{item}       
+    </foreach> 
+ 	<![CDATA[ 
+    and DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= DATE(t.`borrow_datetime`)
+	GROUP BY DATE_FORMAT(t.borrow_datetime,'%Y-%m-%d')) AS dTable ON dttable.dates=dTable.dtime
+	ORDER BY dttable.dates
+    ]]>
+</select>
+
+   <select id="queryMerchantId" resultType="java.lang.Long">
+  	SELECT ${group}
+    FROM share_device_info
+	WHERE ${group} IS NOT NULL and 
+		 ${cloumName} = #{parentMerchantId,jdbcType=BIGINT}   
+	GROUP BY ${group}
+  </select>
+  
+  <select id="getDeviceInfoByChargerId" parameterType="java.lang.Long" resultMap="BaseResultMap">  
+	   SELECT 
+		  	dev.Id, dev.device_type_id, dev.device_type_name, dev.device_status, dev.online_datetime, dev.online_merchant_id, 
+		    dev.online_address, dev.online_city, dev.online_zone, dev.online_province, dev.online_x_coordinate, dev.online_y_coordinate, 
+		    dev.fee_type_id, dev.fee_type_name, dev.yfj_amount, dev.amount_per_hour, dev.amount_max_24hour, dev.fee1_hour_type, 
+		    dev.fee1_hour_amount, dev.fee2_hour_type, dev.fee2_hour_amount, dev.fee3_hour_type, dev.fee3_hour_amount, 
+		    dev.platform_rato, dev.agents1_id, dev.agents1_cn, dev.agents1_rato, dev.agents2_id, dev.agents2_cn, dev.agents2_rato, 
+		    dev.agents3_id, dev.agents3_rato, dev.agents3_cn, dev.shopkeeper_id, dev.shopkeeper_cn, dev.shopkeeper_rato, 
+		    dev.alliance_business_id, dev.alliance_business_cn, dev.alliance_business_rate, dev.create_id, dev.create_datetime, 
+		    dev.update_datetime, dev.SQR_url, dev.remark,dev.`activation_mode`,dev.`last_used_time`,
+		    dev.password_type,dev.password_year, dev.password_month, dev.password_batch, dev.password_key
+		FROM `share_device_info` dev 
+		JOIN `share_charger` chrg ON dev.`Id`=chrg.`device_id`
+		WHERE chrg.`id`= #{chargerId}
+  </select>
+  
+ <resultMap id="selectForPageResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoBySelfModel" >
+    <id column="Id" property="id" jdbcType="BIGINT" />
+    <result column="device_type_id" property="deviceTypeId" jdbcType="INTEGER" />
+    <result column="device_type_name" property="deviceTypeName" jdbcType="VARCHAR" />
+    <result column="device_status" property="deviceStatus" jdbcType="INTEGER" />
+    <result column="online_datetime" property="onlineDatetime" jdbcType="TIMESTAMP" />
+    <result column="online_merchant_cn" property="onlineMerchantCn" jdbcType="VARCHAR" />
+    <result column="online_merchant_id" property="onlineMerchantId" jdbcType="BIGINT" />
+    <result column="online_address" property="onlineAddress" jdbcType="VARCHAR" />
+    <result column="online_city" property="onlineCity" jdbcType="VARCHAR" />
+    <result column="online_zone" property="onlineZone" jdbcType="VARCHAR" />
+    <result column="online_province" property="onlineProvince" jdbcType="VARCHAR" />
+    <result column="online_x_coordinate" property="onlineXCoordinate" jdbcType="DECIMAL" />
+    <result column="online_y_coordinate" property="onlineYCoordinate" jdbcType="DECIMAL" />
+    <result column="fee_type_id" property="feeTypeId" jdbcType="INTEGER" />
+    <result column="fee_type_name" property="feeTypeName" jdbcType="VARCHAR" />
+    <result column="yfj_amount" property="yfjAmount" jdbcType="DECIMAL" />
+    <result column="first_amount" property="firstAmount" jdbcType="DECIMAL" />
+    <result column="first_minutes" property="firstMinutes" jdbcType="BIGINT" />
+    <result column="amount_per_hour" property="amountPerHour" jdbcType="DECIMAL" />
+    <result column="amount_max_24hour" property="amountMax24hour" jdbcType="DECIMAL" />
+    <result column="fee1_type_Id" property="fee1TypeId" jdbcType="INTEGER" />
+    <result column="fee1_type_name" property="fee1TypeName" jdbcType="VARCHAR" />
+    <result column="fee1_hour_type" property="fee1HourType" jdbcType="INTEGER" />
+    <result column="fee1_hour_amount" property="fee1HourAmount" jdbcType="DECIMAL" />
+    <result column="fee2_type_id" property="fee2TypeId" jdbcType="INTEGER" />
+    <result column="fee2_type_name" property="fee2TypeName" jdbcType="VARCHAR" />
+    <result column="fee2_hour_type" property="fee2HourType" jdbcType="INTEGER" />
+    <result column="fee2_hour_amount" property="fee2HourAmount" jdbcType="DECIMAL" />
+    <result column="fee3_type_id" property="fee3TypeId" jdbcType="INTEGER" />
+    <result column="fee3_type_name" property="fee3TypeName" jdbcType="VARCHAR" />
+    <result column="fee3_hour_type" property="fee3HourType" jdbcType="INTEGER" />
+    <result column="fee3_hour_amount" property="fee3HourAmount" jdbcType="DECIMAL" />
+    <result column="platform_rato" property="platformRato" jdbcType="DECIMAL" />
+    <result column="agents1_id" property="agents1Id" jdbcType="BIGINT" />
+    <result column="agents1_cn" property="agents1Cn" jdbcType="VARCHAR" />
+    <result column="agents1_rato" property="agents1Rato" jdbcType="DECIMAL" />
+    <result column="agents2_id" property="agents2Id" jdbcType="BIGINT" />
+    <result column="agents2_cn" property="agents2Cn" jdbcType="VARCHAR" />
+    <result column="agents2_rato" property="agents2Rato" jdbcType="DECIMAL" />
+    <result column="agents3_id" property="agents3Id" jdbcType="BIGINT" />
+    <result column="agents3_rato" property="agents3Rato" jdbcType="DECIMAL" />
+    <result column="agents3_cn" property="agents3Cn" jdbcType="VARCHAR" />
+    <result column="shopkeeper_id" property="shopkeeperId" jdbcType="BIGINT" />
+    <result column="shopkeeper_cn" property="shopkeeperCn" jdbcType="VARCHAR" />
+    <result column="shopkeeper_rato" property="shopkeeperRato" jdbcType="DECIMAL" />
+    <result column="alliance_business_id" property="allianceBusinessId" jdbcType="BIGINT" />
+    <result column="alliance_business_cn" property="allianceBusinessCn" jdbcType="VARCHAR" />
+    <result column="alliance_business_rate" property="allianceBusinessRate" jdbcType="DECIMAL" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="update_datetime" property="updateDatetime" jdbcType="TIMESTAMP" />
+    <result column="SQR_url" property="sqrUrl" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="yfj_reback_type" property="yfjRebackType" jdbcType="INTEGER" />
+    <result column="yfj_reback_type_name" property="yfjRebackTypeName" jdbcType="VARCHAR" />
+    <result column="feeDescription" property="feeDescription" jdbcType="VARCHAR" />
+    
+    <result column="password_type" property="passwordType" jdbcType="INTEGER" />
+    <result column="password_year" property="passwordYear" jdbcType="VARCHAR" />
+    <result column="password_month" property="passwordMonth" jdbcType="VARCHAR" />
+    <result column="password_batch" property="passwordBatch" jdbcType="VARCHAR" />
+    <result column="password_key" property="passwordKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByConditionForPage"  parameterType="java.util.HashMap"  resultMap="selectForPageResultMap">  
+	    SELECT 
+		    Id, device_type_id, device_type_name, device_status, online_datetime, online_merchant_cn, 
+		    online_merchant_id, online_address, online_city, online_zone, online_province, online_x_coordinate, 
+		    online_y_coordinate, fee_type_id, fee_type_name, yfj_amount, first_amount, first_minutes, 
+		    amount_per_hour, amount_max_24hour, fee1_type_Id, fee1_type_name, fee1_hour_type, 
+		    fee1_hour_amount, fee2_type_id, fee2_type_name, fee2_hour_type, fee2_hour_amount, 
+		    fee3_type_id, fee3_type_name, fee3_hour_type, fee3_hour_amount, platform_rato, agents1_id, 
+		    agents1_cn, agents1_rato, agents2_id, agents2_cn, agents2_rato, agents3_id, agents3_rato, 
+		    agents3_cn, shopkeeper_id, shopkeeper_cn, shopkeeper_rato, alliance_business_id, 
+		    alliance_business_cn, alliance_business_rate, create_id, create_datetime, update_datetime, 
+		    SQR_url, remark, yfj_reback_type,yfj_reback_type_name,
+		    CASE WHEN fee_type_id = 25 THEN CONCAT('预付',yfj_amount,'元,每小时充电',amount_per_hour,'元,24小时最多收费',amount_max_24hour,'元')
+			 WHEN fee_type_id = 26 THEN CONCAT('预付',yfj_amount,'元,前',first_minutes,'分钟收费',first_amount,'元,每小时充电',amount_per_hour,'元,24小时最多收费',amount_max_24hour,'元')   
+		         ELSE 
+				CASE WHEN (fee1_type_Id>0  AND !(fee2_type_Id>0) AND !(fee3_type_Id>0)) THEN  CONCAT('充电',fee1_hour_type,'小时,收费',fee1_hour_amount,'元')
+				ELSE 
+					CASE WHEN (fee1_type_Id>0  AND (fee2_type_Id>0) AND !(fee3_type_Id>0)) THEN CONCAT('充电',fee1_hour_type,'小时,收费',fee1_hour_amount,'元；','充电',fee2_hour_type,'小时,收费',fee2_hour_amount,'元')
+					ELSE
+						CASE WHEN (fee1_type_Id>0  AND (fee2_type_Id>0) AND (fee3_type_Id>0)) THEN  CONCAT('充电',fee1_hour_type,'小时,收费',fee1_hour_amount,'元；','充电',fee2_hour_type,'小时,收费',fee2_hour_amount,'元；','充电',fee3_hour_type,'小时,收费',fee3_hour_amount,'元')
+						ELSE
+						     CONCAT('充电',fee1_hour_type,'小时,收费',fee1_hour_amount,'元')
+						END 
+					END 
+				END 
+		     END AS feeDescription,
+		     password_type, password_month, password_batch, password_key, password_year		     
+		FROM `share_device_info`
+		where 1=1 
+		<if test="id !=null">
+			and Id=#{id,jdbcType=BIGINT}
+		</if>
+	  <if test="startDeviceNo !=null">
+		  <![CDATA[
+				and id >=#{startDeviceNo,jdbcType=BIGINT}
+			]]>
+	  </if>
+	  <if test="endDeviceNo !=null">
+		  <![CDATA[
+				and id<=#{endDeviceNo,jdbcType=BIGINT}
+			]]>
+	  </if>
+	  <if test="agents1Id !=null">
+			and agents1_id=#{agents1Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents2Id !=null">
+			and agents2_id=#{agents2Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents3Id !=null">
+			and agents3_id=#{agents3Id,jdbcType=BIGINT}
+		</if>
+		<if test="shopkeeperId !=null">
+			and shopkeeper_id=#{shopkeeperId,jdbcType=BIGINT}
+		</if>
+		<if test="allianceBusinessId !=null">
+			and alliance_business_id=#{allianceBusinessId,jdbcType=BIGINT}
+		</if>
+		<if test="onlineMerchantId !=null">
+			and online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		</if>
+		<if test="merchant != null and merchant !='' " >
+	        and online_merchant_cn like CONCAT('%',#{merchant},'%')
+	    </if>
+		<if test="agents1 != null and agents1 !='' " >
+	        and agents1_cn like CONCAT('%',#{agents1},'%')
+	    </if>
+		<if test="agents2 != null and agents2 !='' " >
+	        and agents2_cn like CONCAT('%',#{agents2},'%')
+	    </if>
+		<if test="agents3 != null and agents3 !='' " >
+	        and agents3_cn like CONCAT('%',#{agents3},'%')
+	    </if>
+		<if test="shopkeeper != null and shopkeeper !='' " >
+	        and shopkeeper_cn like CONCAT('%',#{shopkeeper},'%')
+	    </if>
+		<if test="allianceBusiness != null and allianceBusiness !='' " >
+	        and alliance_business_cn like CONCAT('%',#{allianceBusiness},'%')
+	    </if>
+		<if test="deviceTypeId !=null">
+			and device_type_id=#{deviceTypeId,jdbcType=BIGINT}
+		</if>
+		<if test="deviceStatus !=null">
+			and device_status=#{deviceStatus,jdbcType=INTEGER}
+		</if>
+		<if test="start !=null">
+			<![CDATA[    	      
+		     and id >=#{start,jdbcType=BIGINT}
+			]]>
+		</if>
+		<if test="end !=null">
+			<![CDATA[    	      
+		     and id <=#{end,jdbcType=BIGINT}
+			]]>
+		</if>	
+		<if test="deviceIdList !=null">      
+		    and Id in(
+		        <foreach collection="deviceIdList" item="item" separator=",">
+		            #{item,jdbcType=BIGINT}
+		        </foreach>
+		        )
+		</if>	
+		<if test="noRight !=null">
+			<![CDATA[ 
+			 and 1<>1
+	    	]]>
+		</if>			
+		<if test="startCreateDatetime !=null">
+			<![CDATA[ 
+			and create_datetime>=#{startCreateDatetime,jdbcType=TIMESTAMP}
+		   	]]>
+		</if>
+		<if test="endCreateDatetime !=null">
+			<![CDATA[ 
+			and create_datetime<#{endCreateDatetime,jdbcType=TIMESTAMP}
+		   	]]>
+		</if>
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+		</if>		
+		<if test="order != null">
+			<![CDATA[ 
+			order by ${order}
+	    	]]>
+		</if>
+		<if test="order == null">
+			order by create_datetime desc
+		</if>
+		<if test="limit != null">
+			<![CDATA[ 
+			LIMIT #{offset,jdbcType=BIGINT},#{limit,jdbcType=BIGINT}
+	    	]]>
+		</if>
+  </select>  
+  
+ <resultMap id="deviceIdsRatioResultMap" type="com.stylefeng.guns.sharecore.modular.system.model.PlatformRatioDeviceIdsBO" >
+    <result column="deviceIds" property="deviceIds" jdbcType="VARCHAR" />
+    <result column="platform_rato" property="platformRatio" jdbcType="DECIMAL" />
+    <result column="agents1_rato" property="agents1Rato" jdbcType="DECIMAL" />
+    <result column="agents2_rato" property="agents2Rato" jdbcType="DECIMAL" />
+    <result column="agents3_rato" property="agents3Rato" jdbcType="DECIMAL" />
+    <result column="shopkeeper_rato" property="shopkeeperRato" jdbcType="DECIMAL" />
+    <result column="alliance_business_rate" property="allianceBusinessRate" jdbcType="DECIMAL" />
+    <result column="deviceCount" property="deviceCount" jdbcType="BIGINT" />
+  </resultMap>
+  <select id="selectDeviceIdsGroupbyPlatformRatio"  parameterType="java.util.HashMap"  resultMap="deviceIdsRatioResultMap">  
+		SELECT platform_rato,
+			GROUP_CONCAT(id) AS deviceIds,
+			COUNT(ID) AS deviceCount
+		FROM share_device_info 
+		where 1=1 
+		<if test="id !=null">
+			and Id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="agents1Id !=null">
+			and agents1_id=#{agents1Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents2Id !=null">
+			and agents2_id=#{agents2Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents3Id !=null">
+			and agents3_id=#{agents3Id,jdbcType=BIGINT}
+		</if>
+		<if test="shopkeeperId !=null">
+			and shopkeeper_id=#{shopkeeperId,jdbcType=BIGINT}
+		</if>
+		<if test="allianceBusinessId !=null">
+			and alliance_business_id=#{allianceBusinessId,jdbcType=BIGINT}
+		</if>
+		<if test="onlineMerchantId !=null">
+			and online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		</if>
+		<if test="merchant != null and merchant !='' " >
+	        and online_merchant_cn like CONCAT('%',#{merchant},'%')
+	    </if>
+		<if test="agents1 != null and agents1 !='' " >
+	        and agents1_cn like CONCAT('%',#{agents1},'%')
+	    </if>
+		<if test="agents2 != null and agents2 !='' " >
+	        and agents2_cn like CONCAT('%',#{agents2},'%')
+	    </if>
+		<if test="agents3 != null and agents3 !='' " >
+	        and agents3_cn like CONCAT('%',#{agents3},'%')
+	    </if>
+		<if test="shopkeeper != null and shopkeeper !='' " >
+	        and shopkeeper_cn like CONCAT('%',#{shopkeeper},'%')
+	    </if>
+		<if test="allianceBusiness != null and allianceBusiness !='' " >
+	        and alliance_business_cn like CONCAT('%',#{allianceBusiness},'%')
+	    </if>
+		<if test="deviceTypeId !=null">
+			and device_type_id=#{deviceTypeId,jdbcType=BIGINT}
+		</if>
+		<if test="deviceStatus !=null">
+			and device_status=#{deviceStatus,jdbcType=INTEGER}
+		</if>
+		<if test="start !=null">
+			<![CDATA[    	      
+		     and id >=#{start,jdbcType=BIGINT}
+			]]>
+		</if>
+		<if test="end !=null">
+			<![CDATA[    	      
+		     and id <=#{end,jdbcType=BIGINT}
+			]]>
+		</if>	
+		<if test="deviceIdList !=null">      
+		    and Id in(
+		        <foreach collection="deviceIdList" item="item" separator=",">
+		            #{item,jdbcType=BIGINT}
+		        </foreach>
+		        )
+		</if>	
+		<if test="noRight !=null">
+			<![CDATA[ 
+			 and 1<>1
+	    	]]>
+		</if>			
+		<if test="startCreateDatetime !=null">
+			<![CDATA[ 
+			and update_datetime>=#{startCreateDatetime,jdbcType=TIMESTAMP}
+		   	]]>
+		</if>
+		<if test="endCreateDatetime !=null">
+			<![CDATA[ 
+			and update_datetime<#{endCreateDatetime,jdbcType=TIMESTAMP}
+		   	]]>
+		</if>
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+		</if>
+		GROUP BY platform_rato
+  </select>
+  <select id="countBeyondDaysNotUseCharger"  parameterType="java.util.HashMap"   resultType="java.lang.Long" >      
+	SELECT COUNT(sc.id) 
+	from share_charger sc 
+	LEFT JOIN share_device_info  ON share_device_info.id = sc.device_id
+	WHERE 1=1 
+	AND ( TO_DAYS(NOW( )) - TO_DAYS(sc.last_use_time) >= #{days} OR 
+		(sc.last_use_time is null AND device_status =10 AND  TO_DAYS(NOW( )) - TO_DAYS(online_datetime) >= #{days}) )
+		<if test="agents1Id !=null">
+			and share_device_info.agents1_id=#{agents1Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents2Id !=null">
+			and share_device_info.agents2_id=#{agents2Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents3Id !=null">
+			and share_device_info.agents3_id=#{agents3Id,jdbcType=BIGINT}
+		</if>
+		<if test="shopkeeperId !=null">
+			and share_device_info.shopkeeper_id=#{shopkeeperId,jdbcType=BIGINT}
+		</if>
+		<if test="allianceBusinessId !=null">
+			and share_device_info.alliance_business_id=#{allianceBusinessId,jdbcType=BIGINT}
+		</if>
+		<if test="onlineMerchantId !=null">
+			and share_device_info.online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		</if>		
+      <if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+	  </if>
+  </select>
+  
+  <select id="nousedChargerFewDays" parameterType="java.util.HashMap" resultMap="ChargerFewDayNotUseMap">
+      SELECT sc.id charger_id,share_device_info.Id device_id,share_device_info.device_status,share_device_info.device_type_name,online_datetime,sc.last_use_time,share_device_info.online_merchant_cn
+		from share_charger sc 
+		LEFT JOIN share_device_info  ON share_device_info.id = sc.device_id
+		WHERE 1=1 
+		AND ( TO_DAYS(NOW( )) - TO_DAYS(sc.last_use_time) >= #{days} OR 
+			(sc.last_use_time is null AND device_status =10 AND  TO_DAYS(NOW( )) - TO_DAYS(online_datetime) >= #{days}))
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+	  </if>
+	  <if test="order != null">
+			<![CDATA[ 
+			order by ${order}
+	    	]]>
+		</if>
+		<if test="order == null">
+			order by sc.last_use_time asc
+		</if>
+		<if test="limit != null">
+			<![CDATA[ 
+			LIMIT #{offset,jdbcType=BIGINT},#{limit,jdbcType=BIGINT}
+	    	]]>
+		</if>
+  </select>
+  
+  <select id="countMerchantBeyondDaysNotUseCharger"  parameterType="java.util.HashMap"   resultType="java.lang.Long" >
+	SELECT COUNT(online_merchant_id) FROM (
+		SELECT DISTINCT online_merchant_id
+		from share_charger sc 
+		LEFT JOIN share_device_info  ON share_device_info.id = sc.device_id
+		WHERE 1=1 
+		AND ( TO_DAYS(NOW( )) - TO_DAYS(sc.last_use_time) >= 7 OR 
+			(sc.last_use_time is null AND device_status =10 AND  TO_DAYS(NOW( )) - TO_DAYS(online_datetime) >= 7) )
+		AND online_merchant_id IS NOT NULL 
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+	    </if>
+	) temp
+  </select>
+  
+  <select id="countByConditionForPage"  parameterType="java.util.HashMap"  resultType="java.lang.Long" >
+	   SELECT 
+		   COUNT(Id)
+		FROM `share_device_info`
+		where 1=1
+		<if test="id !=null">
+			and Id=#{id,jdbcType=BIGINT}
+		</if>
+	    <if test="startDeviceNo !=null">
+		  <![CDATA[
+				and id >=#{startDeviceNo,jdbcType=BIGINT}
+			]]>
+	    </if>
+	    <if test="endDeviceNo !=null">
+		  <![CDATA[
+				and id<=#{endDeviceNo,jdbcType=BIGINT}
+			]]>
+	    </if>
+		<if test="agents1Id !=null">
+			and agents1_id=#{agents1Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents2Id !=null">
+			and agents2_id=#{agents2Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents3Id !=null">
+			and agents3_id=#{agents3Id,jdbcType=BIGINT}
+		</if>
+		<if test="shopkeeperId !=null">
+			and shopkeeper_id=#{shopkeeperId,jdbcType=BIGINT}
+		</if>
+		<if test="allianceBusinessId !=null">
+			and alliance_business_id=#{allianceBusinessId,jdbcType=BIGINT}
+		</if>
+		<if test="onlineMerchantId !=null">
+			and online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		</if>		
+		<if test="merchant != null and merchant !='' " >
+	        and online_merchant_cn like CONCAT('%',#{merchant},'%')
+	    </if>
+		<if test="agents1 != null and agents1 !='' " >
+	        and agents1_cn like CONCAT('%',#{agents1},'%')
+	    </if>
+		<if test="agents2 != null and agents2 !='' " >
+	        and agents2_cn like CONCAT('%',#{agents2},'%')
+	    </if>
+		<if test="agents3 != null and agents3 !='' " >
+	        and agents3_cn like CONCAT('%',#{agents3},'%')
+	    </if>
+		<if test="shopkeeper != null and shopkeeper !='' " >
+	        and shopkeeper_cn like CONCAT('%',#{shopkeeper},'%')
+	    </if>
+		<if test="allianceBusiness != null and allianceBusiness !='' " >
+	        and alliance_business_cn like CONCAT('%',#{allianceBusiness},'%')
+	    </if>
+		<if test="deviceTypeId !=null">
+			and device_type_id=#{deviceTypeId,jdbcType=BIGINT}
+		</if>
+		<if test="deviceStatus !=null">
+			and device_status=#{deviceStatus,jdbcType=INTEGER}
+		</if>
+		<if test="start !=null">
+			<![CDATA[    	      
+		     and id >=#{start,jdbcType=BIGINT}
+			]]>
+		</if>
+		<if test="end !=null">
+			<![CDATA[    	      
+		     and id <=#{end,jdbcType=BIGINT}
+			]]>
+		</if>
+		<if test="deviceIdList !=null">      
+		    and Id in(
+		        <foreach collection="deviceIdList" item="item" separator=",">
+		            #{item,jdbcType=BIGINT}
+		        </foreach>
+		        )
+		</if>
+		<if test="noRight !=null">
+			<![CDATA[ 
+			 and 1<>1
+	    	]]>
+		</if>					
+		<if test="startCreateDatetime !=null">
+			<![CDATA[ 
+			and update_datetime>=#{startCreateDatetime,jdbcType=TIMESTAMP}
+		   	]]>
+		</if>
+		<if test="endCreateDatetime !=null">
+			<![CDATA[ 
+			and update_datetime<#{endCreateDatetime,jdbcType=TIMESTAMP}
+		   	]]>
+		</if>
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+		</if>
+  </select>
+  <select id="countDeviceChargersByConditionForPage"  parameterType="java.util.HashMap"  resultType="java.lang.Long" >
+		SELECT 
+			COUNT(chgr.`id`)
+		FROM share_device_info devInf 
+		JOIN share_charger chgr ON devInf.`Id`=chgr.`device_id`
+		where 1=1
+		<if test="id !=null">
+			and devInf.Id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="agents1Id !=null">
+			and devInf.agents1_id=#{agents1Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents2Id !=null">
+			and devInf.agents2_id=#{agents2Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents3Id !=null">
+			and devInf.agents3_id=#{agents3Id,jdbcType=BIGINT}
+		</if>
+		<if test="shopkeeperId !=null">
+			and devInf.shopkeeper_id=#{shopkeeperId,jdbcType=BIGINT}
+		</if>
+		<if test="allianceBusinessId !=null">
+			and devInf.alliance_business_id=#{allianceBusinessId,jdbcType=BIGINT}
+		</if>
+		<if test="onlineMerchantId !=null">
+			and devInf.online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		</if>
+		<if test="deviceTypeId !=null">
+			and devInf.device_type_id=#{deviceTypeId,jdbcType=BIGINT}
+		</if>
+		<if test="deviceStatus !=null">
+			and devInf.device_status=#{deviceStatus,jdbcType=INTEGER}
+		</if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into share_device_info (Id, device_type_id, device_type_name, 
+      device_status, online_datetime, online_merchant_cn, 
+      online_merchant_id, online_address, online_city, 
+      online_zone, online_province, online_x_coordinate, 
+      online_y_coordinate, fee_type_id, fee_type_name, 
+      yfj_amount, first_amount, first_minutes, 
+      amount_per_hour, amount_max_24hour, fee1_type_Id, 
+      fee1_type_name, fee1_hour_type, fee1_hour_amount, 
+      fee2_type_id, fee2_type_name, fee2_hour_type, 
+      fee2_hour_amount, fee3_type_id, fee3_type_name, 
+      fee3_hour_type, fee3_hour_amount, platform_rato, 
+      agents1_id, agents1_cn, agents1_rato, 
+      agents2_id, agents2_cn, agents2_rato, 
+      agents3_id, agents3_rato, agents3_cn, 
+      shopkeeper_id, shopkeeper_cn, shopkeeper_rato, 
+      alliance_business_id, alliance_business_cn, 
+      alliance_business_rate, create_id, create_datetime, 
+      update_datetime, SQR_url, remark, 
+      yfj_reback_type,yfj_reback_type_name,
+      activation_mode,
+      password_type, 
+      password_month, 
+      password_batch, 
+      password_key, 
+      password_year)
+    values 
+    <foreach collection ="list" item="deviceModel" separator =",">
+     (#{deviceModel.id,jdbcType=BIGINT}, #{deviceModel.deviceTypeId,jdbcType=INTEGER}, #{deviceModel.deviceTypeName,jdbcType=VARCHAR}, 
+      #{deviceModel.deviceStatus,jdbcType=INTEGER}, #{deviceModel.onlineDatetime,jdbcType=TIMESTAMP}, #{deviceModel.onlineMerchantCn,jdbcType=VARCHAR}, 
+      #{deviceModel.onlineMerchantId,jdbcType=BIGINT}, #{deviceModel.onlineAddress,jdbcType=VARCHAR}, #{deviceModel.onlineCity,jdbcType=VARCHAR}, 
+      #{deviceModel.onlineZone,jdbcType=VARCHAR}, #{deviceModel.onlineProvince,jdbcType=VARCHAR}, #{deviceModel.onlineXCoordinate,jdbcType=DECIMAL}, 
+      #{deviceModel.onlineYCoordinate,jdbcType=DECIMAL}, #{deviceModel.feeTypeId,jdbcType=INTEGER}, #{deviceModel.feeTypeName,jdbcType=VARCHAR}, 
+      #{deviceModel.yfjAmount,jdbcType=DECIMAL}, #{deviceModel.firstAmount,jdbcType=DECIMAL}, #{deviceModel.firstMinutes,jdbcType=BIGINT}, 
+      #{deviceModel.amountPerHour,jdbcType=DECIMAL}, #{deviceModel.amountMax24hour,jdbcType=DECIMAL}, #{deviceModel.fee1TypeId,jdbcType=INTEGER}, 
+      #{deviceModel.fee1TypeName,jdbcType=VARCHAR}, #{deviceModel.fee1HourType,jdbcType=INTEGER}, #{deviceModel.fee1HourAmount,jdbcType=DECIMAL}, 
+      #{deviceModel.fee2TypeId,jdbcType=INTEGER}, #{deviceModel.fee2TypeName,jdbcType=VARCHAR}, #{deviceModel.fee2HourType,jdbcType=INTEGER}, 
+      #{deviceModel.fee2HourAmount,jdbcType=DECIMAL}, #{deviceModel.fee3TypeId,jdbcType=INTEGER}, #{deviceModel.fee3TypeName,jdbcType=VARCHAR}, 
+      #{deviceModel.fee3HourType,jdbcType=INTEGER}, #{deviceModel.fee3HourAmount,jdbcType=DECIMAL}, #{deviceModel.platformRato,jdbcType=DECIMAL}, 
+      #{deviceModel.agents1Id,jdbcType=BIGINT}, #{deviceModel.agents1Cn,jdbcType=VARCHAR}, #{deviceModel.agents1Rato,jdbcType=DECIMAL}, 
+      #{deviceModel.agents2Id,jdbcType=BIGINT}, #{deviceModel.agents2Cn,jdbcType=VARCHAR}, #{deviceModel.agents2Rato,jdbcType=DECIMAL}, 
+      #{deviceModel.agents3Id,jdbcType=BIGINT}, #{deviceModel.agents3Rato,jdbcType=DECIMAL}, #{deviceModel.agents3Cn,jdbcType=VARCHAR}, 
+      #{deviceModel.shopkeeperId,jdbcType=BIGINT}, #{deviceModel.shopkeeperCn,jdbcType=VARCHAR}, #{deviceModel.shopkeeperRato,jdbcType=DECIMAL}, 
+      #{deviceModel.allianceBusinessId,jdbcType=BIGINT}, #{deviceModel.allianceBusinessCn,jdbcType=VARCHAR}, 
+      #{deviceModel.allianceBusinessRate,jdbcType=DECIMAL}, #{deviceModel.createId,jdbcType=BIGINT}, #{deviceModel.createDatetime,jdbcType=TIMESTAMP}, 
+      #{deviceModel.updateDatetime,jdbcType=TIMESTAMP}, #{deviceModel.sqrUrl,jdbcType=VARCHAR}, #{deviceModel.remark,jdbcType=VARCHAR}, 
+      #{deviceModel.yfjRebackType,jdbcType=INTEGER}, #{deviceModel.yfjRebackTypeName,jdbcType=VARCHAR},
+      #{deviceModel.activationMode,jdbcType=INTEGER},
+      #{deviceModel.passwordType,jdbcType=INTEGER},
+      #{deviceModel.passwordMonth,jdbcType=VARCHAR},
+      #{deviceModel.passwordBatch,jdbcType=VARCHAR},
+      #{deviceModel.passwordKey,jdbcType=VARCHAR},
+      #{deviceModel.passwordYear,jdbcType=VARCHAR})
+    </foreach >
+  </insert>
+  <update id="batchBindMerByDeviceNoList">
+    update share_device_info
+    <set >
+      <if test="record.onlineMerchantCn != null" >
+        online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantId != null" >
+        online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.platformRato != null" >
+        platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents1Cn != null" >
+        agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Cn != null" >
+        agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Cn != null" >
+        agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperId != null" >
+        shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopkeeperCn != null" >
+        shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessId != null" >
+        alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allianceBusinessCn != null" >
+        alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>        
+    WHERE Id in
+        (
+        <foreach collection="list" item="item" separator=",">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+        )	
+    <if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>        
+  </update>
+  <update id="batchUnBindMerByDeviceNoList">
+    update share_device_info
+    <set >	
+      <if test="terminal != null" >
+        online_merchant_cn = null,
+      </if>
+      <if test="terminal != null" >
+        online_merchant_id = null,
+      </if>
+      <if test="daiLiShang2 != null" >
+        agents2_id = null,
+      </if>
+      <if test="daiLiShang2 != null" >
+        agents2_cn = null,
+      </if>
+      <if test="daiLiShang3 != null" >
+        agents3_id = null,
+      </if>
+      <if test="daiLiShang3 != null" >
+        agents3_cn = null,
+      </if>
+      <if test="puHuoShang != null" >
+        shopkeeper_id = null,
+      </if>
+      <if test="puHuoShang != null" >
+        shopkeeper_cn = null,
+      </if>
+      <if test="jiaMengShang != null" >
+        alliance_business_id =null,
+      </if>
+      <if test="jiaMengShang != null" >
+        alliance_business_cn = null,
+      </if>
+      update_datetime = NOW()
+    </set>        
+    WHERE Id in
+        (
+        <foreach collection="list" item="item" separator=",">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+        )
+        <if test="filter != null">
+		<![CDATA[ 
+		  ${filter}
+	   	]]>
+		</if>
+  </update>
+  <update id="batchBindMerByStartEndDeviceNo">
+    update share_device_info
+    <set >
+      <if test="record.onlineMerchantCn != null" >
+        online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantId != null" >
+        online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.platformRato != null" >
+        platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents1Cn != null" >
+        agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Cn != null" >
+        agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Cn != null" >
+        agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperId != null" >
+        shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopkeeperCn != null" >
+        shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessId != null" >
+        alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allianceBusinessCn != null" >
+        alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>  
+    <![CDATA[    	      
+     WHERE Id >=#{start,jdbcType=BIGINT} and Id <=#{end,jdbcType=BIGINT}
+	  ]]>
+  	<if test="filter != null">
+	<![CDATA[ 
+	  ${filter}
+   	]]>
+	</if>
+  </update>
+  <update id="batchBindFeeByDeviceNoList">
+    update share_device_info
+    <set >
+      <if test="record.feeTypeId != null" >
+        fee_type_id = #{record.feeTypeId,jdbcType=INTEGER},
+      </if>
+        fee_type_name = #{record.feeTypeName,jdbcType=VARCHAR},
+      <if test="record.yfjAmount != null" >
+        yfj_amount = #{record.yfjAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstAmount != null" >
+        first_amount = #{record.firstAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstMinutes != null" >
+        first_minutes = #{record.firstMinutes,jdbcType=BIGINT},
+      </if>
+      <if test="record.amountPerHour != null" >
+        amount_per_hour = #{record.amountPerHour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amountMax24hour != null" >
+        amount_max_24hour = #{record.amountMax24hour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee1TypeId != null" >
+        fee1_type_Id = #{record.fee1TypeId,jdbcType=INTEGER},
+      </if>
+        fee1_type_name = #{record.fee1TypeName,jdbcType=VARCHAR},
+      <if test="record.fee1HourType != null" >
+        fee1_hour_type = #{record.fee1HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1HourAmount != null" >
+        fee1_hour_amount = #{record.fee1HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee2TypeId != null" >
+        fee2_type_id = #{record.fee2TypeId,jdbcType=INTEGER},
+      </if>
+        fee2_type_name = #{record.fee2TypeName,jdbcType=VARCHAR},
+      <if test="record.fee2HourType != null" >
+        fee2_hour_type = #{record.fee2HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2HourAmount != null" >
+        fee2_hour_amount = #{record.fee2HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee3TypeId != null" >
+        fee3_type_id = #{record.fee3TypeId,jdbcType=INTEGER},
+      </if>
+        fee3_type_name = #{record.fee3TypeName,jdbcType=VARCHAR},
+      <if test="record.fee3HourType != null" >
+        fee3_hour_type = #{record.fee3HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3HourAmount != null" >
+        fee3_hour_amount = #{record.fee3HourAmount,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>        
+    WHERE Id in
+        (
+        <foreach collection="list" item="item" separator=",">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+        )
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+		</if>
+  </update>
+
+
+	<update id="batchBindFeeByDeviceNoListNoValidate">
+		update share_device_info
+		<set >
+				fee_type_id = #{record.feeTypeId,jdbcType=INTEGER},
+				fee_type_name = #{record.feeTypeName,jdbcType=VARCHAR},
+				yfj_amount = #{record.yfjAmount,jdbcType=DECIMAL},
+				first_amount = #{record.firstAmount,jdbcType=DECIMAL},
+				first_minutes = #{record.firstMinutes,jdbcType=BIGINT},
+				amount_per_hour = #{record.amountPerHour,jdbcType=DECIMAL},
+				amount_max_24hour = #{record.amountMax24hour,jdbcType=DECIMAL},
+				fee1_type_Id = #{record.fee1TypeId,jdbcType=INTEGER},
+				fee1_type_name = #{record.fee1TypeName,jdbcType=VARCHAR},
+				fee1_hour_type = #{record.fee1HourType,jdbcType=INTEGER},
+				fee1_hour_amount = #{record.fee1HourAmount,jdbcType=DECIMAL},
+				fee2_type_id = #{record.fee2TypeId,jdbcType=INTEGER},
+				fee2_type_name = #{record.fee2TypeName,jdbcType=VARCHAR},
+				fee2_hour_type = #{record.fee2HourType,jdbcType=INTEGER},
+				fee2_hour_amount = #{record.fee2HourAmount,jdbcType=DECIMAL},
+				fee3_type_id = #{record.fee3TypeId,jdbcType=INTEGER},
+				fee3_type_name = #{record.fee3TypeName,jdbcType=VARCHAR},
+				fee3_hour_type = #{record.fee3HourType,jdbcType=INTEGER},
+				fee3_hour_amount = #{record.fee3HourAmount,jdbcType=DECIMAL},
+			update_datetime = NOW()
+		</set>
+		WHERE Id in
+		(
+		<foreach collection="list" item="item" separator=",">
+			#{item,jdbcType=BIGINT}
+		</foreach>
+		)
+		<if test="filter != null">
+			<![CDATA[
+			 ${filter}
+	    	]]>
+		</if>
+	</update>
+
+
+  <update id="batchBindFeeByStartEndDeviceNo">
+    update share_device_info
+    <set >
+      <if test="record.feeTypeId != null" >
+        fee_type_id = #{record.feeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.feeTypeName != null" >
+        fee_type_name = #{record.feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yfjAmount != null" >
+        yfj_amount = #{record.yfjAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstAmount != null" >
+        first_amount = #{record.firstAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstMinutes != null" >
+        first_minutes = #{record.firstMinutes,jdbcType=BIGINT},
+      </if>
+      <if test="record.amountPerHour != null" >
+        amount_per_hour = #{record.amountPerHour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amountMax24hour != null" >
+        amount_max_24hour = #{record.amountMax24hour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee1TypeId != null" >
+        fee1_type_Id = #{record.fee1TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1TypeName != null" >
+        fee1_type_name = #{record.fee1TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee1HourType != null" >
+        fee1_hour_type = #{record.fee1HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1HourAmount != null" >
+        fee1_hour_amount = #{record.fee1HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee2TypeId != null" >
+        fee2_type_id = #{record.fee2TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2TypeName != null" >
+        fee2_type_name = #{record.fee2TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee2HourType != null" >
+        fee2_hour_type = #{record.fee2HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2HourAmount != null" >
+        fee2_hour_amount = #{record.fee2HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee3TypeId != null" >
+        fee3_type_id = #{record.fee3TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3TypeName != null" >
+        fee3_type_name = #{record.fee3TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee3HourType != null" >
+        fee3_hour_type = #{record.fee3HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3HourAmount != null" >
+        fee3_hour_amount = #{record.fee3HourAmount,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>  
+    <![CDATA[    	      
+     WHERE Id >=#{start,jdbcType=BIGINT} and Id <=#{end,jdbcType=BIGINT}
+	  ]]>
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </update>
+  <update id="batchBindFeeByOnlineMerchId">
+    update share_device_info
+    <set >
+      <if test="record.feeTypeId != null" >
+        fee_type_id = #{record.feeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.feeTypeName != null" >
+        fee_type_name = #{record.feeTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yfjAmount != null" >
+        yfj_amount = #{record.yfjAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstAmount != null" >
+        first_amount = #{record.firstAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstMinutes != null" >
+        first_minutes = #{record.firstMinutes,jdbcType=BIGINT},
+      </if>
+      <if test="record.amountPerHour != null" >
+        amount_per_hour = #{record.amountPerHour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.amountMax24hour != null" >
+        amount_max_24hour = #{record.amountMax24hour,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee1TypeId != null" >
+        fee1_type_Id = #{record.fee1TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1TypeName != null" >
+        fee1_type_name = #{record.fee1TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee1HourType != null" >
+        fee1_hour_type = #{record.fee1HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee1HourAmount != null" >
+        fee1_hour_amount = #{record.fee1HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee2TypeId != null" >
+        fee2_type_id = #{record.fee2TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2TypeName != null" >
+        fee2_type_name = #{record.fee2TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee2HourType != null" >
+        fee2_hour_type = #{record.fee2HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee2HourAmount != null" >
+        fee2_hour_amount = #{record.fee2HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee3TypeId != null" >
+        fee3_type_id = #{record.fee3TypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3TypeName != null" >
+        fee3_type_name = #{record.fee3TypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee3HourType != null" >
+        fee3_hour_type = #{record.fee3HourType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee3HourAmount != null" >
+        fee3_hour_amount = #{record.fee3HourAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateDatetime != null" >
+        update_datetime = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlineAddress != null" >
+        online_address = #{record.onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineProvince != null" >
+        online_province = #{record.onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineCity != null" >
+        online_city = #{record.onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineZone != null" >
+        online_zone = #{record.onlineZone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineXCoordinate != null" >
+        online_x_coordinate = #{record.onlineXCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlineZone != null" >
+        online_y_coordinate = #{record.onlineYCoordinate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlineDatetime!= null" >
+        online_datetime = #{record.onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deviceStatus!= null" >
+        device_status = #{record.deviceStatus,jdbcType=INTEGER},
+      </if> 
+      update_datetime = NOW()     
+    </set>  
+    <![CDATA[    	      
+     WHERE online_merchant_id=#{merchId,jdbcType=BIGINT}
+	  ]]>	  
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if> 
+  </update>
+  <update id="batchModifyByDeviceNoList">
+    update share_device_info
+    <set >
+      <if test="record.deviceStatus != null" >
+        device_status = #{record.deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackType != null" >
+        yfj_reback_type = #{record.yfjRebackType,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackTypeName != null" >
+        yfj_reback_type_name = #{record.yfjRebackTypeName,jdbcType=VARCHAR},
+      </if>      
+      <if test="record.onlineMerchantCn != null" >
+        online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantId != null" >
+        online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.onlineAddress != null" >
+        online_address = #{record.onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineCity != null" >
+        online_city = #{record.onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineZone != null" >
+        online_zone = #{record.onlineZone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineDatetime != null" >
+        online_datetime = #{record.onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlineProvince != null" >
+        online_province = #{record.onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>      
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents1Cn != null" >
+        agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Cn != null" >
+        agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Cn != null" >
+        agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperId != null" >
+        shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopkeeperCn != null" >
+        shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allianceBusinessId != null" >
+        alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allianceBusinessCn != null" >
+        alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      update_datetime = NOW()    
+    </set>        
+    WHERE Id in
+        (
+        <foreach collection="list" item="item" separator=",">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+        )	  
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </update>
+  <update id="batchModifyByStartEndDeviceNo">
+    update share_device_info
+    <set >
+      <if test="record.deviceStatus != null" >
+        device_status = #{record.deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackType != null" >
+        yfj_reback_type = #{record.yfjRebackType,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackTypeName != null" >
+        yfj_reback_type_name = #{record.yfjRebackTypeName,jdbcType=VARCHAR},
+      </if>      
+      <if test="record.onlineMerchantCn != null" >
+        online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantId != null" >
+        online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.onlineAddress != null" >
+        online_address = #{record.onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineCity != null" >
+        online_city = #{record.onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineZone != null" >
+        online_zone = #{record.onlineZone,jdbcType=VARCHAR},
+      </if>
+       <if test="record.onlineDatetime != null" >
+        online_datetime = #{record.onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlineProvince != null" >
+        online_province = #{record.onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>      
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents1Cn != null" >
+        agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Cn != null" >
+        agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Cn != null" >
+        agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperId != null" >
+        shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopkeeperCn != null" >
+        shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allianceBusinessId != null" >
+        alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allianceBusinessCn != null" >
+        alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      update_datetime = NOW()    
+    </set>  
+    <![CDATA[    	      
+     WHERE Id >=#{start,jdbcType=BIGINT} and Id <=#{end,jdbcType=BIGINT}
+	  ]]>	  
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </update>
+  <update id="batchModifyByOnlineMerchId">
+    update share_device_info
+    <set >
+      <if test="record.deviceStatus != null" >
+        device_status = #{record.deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackType != null" >
+        yfj_reback_type = #{record.yfjRebackType,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfjRebackTypeName != null" >
+        yfj_reback_type_name = #{record.yfjRebackTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantCn != null" >
+        online_merchant_cn = #{record.onlineMerchantCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineMerchantId != null" >
+        online_merchant_id = #{record.onlineMerchantId,jdbcType=BIGINT},
+      </if>
+      <if test="record.onlineAddress != null" >
+        online_address = #{record.onlineAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineCity != null" >
+        online_city = #{record.onlineCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineZone != null" >
+        online_zone = #{record.onlineZone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineDatetime != null" >
+        online_datetime = #{record.onlineDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlineProvince != null" >
+        online_province = #{record.onlineProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>      
+      <if test="record.agents1Id != null" >
+        agents1_id = #{record.agents1Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents1Cn != null" >
+        agents1_cn = #{record.agents1Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents2Id != null" >
+        agents2_id = #{record.agents2Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents2Cn != null" >
+        agents2_cn = #{record.agents2Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agents3Id != null" >
+        agents3_id = #{record.agents3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.agents3Cn != null" >
+        agents3_cn = #{record.agents3Cn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopkeeperId != null" >
+        shopkeeper_id = #{record.shopkeeperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopkeeperCn != null" >
+        shopkeeper_cn = #{record.shopkeeperCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allianceBusinessId != null" >
+        alliance_business_id = #{record.allianceBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allianceBusinessCn != null" >
+        alliance_business_cn = #{record.allianceBusinessCn,jdbcType=VARCHAR},
+      </if>
+      update_datetime = NOW()    
+    </set>  
+    <![CDATA[    	      
+     WHERE online_merchant_id=#{merchId,jdbcType=BIGINT}
+	]]>
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </update>
+  <update id="batchRatioByDeviceNoList">
+    update share_device_info
+    <set >
+      <if test="record.platformRato != null" >
+        platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>        
+    WHERE Id in
+        (
+        <foreach collection="list" item="item" separator=",">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+        )
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>
+  </update>
+  <update id="batchRatioByDeviceNoListForUser">
+    update share_device_info
+    <set >
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>        
+    WHERE Id in
+      (
+        <foreach collection="list" item="item" separator=",">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+       )
+       and platform_rato = #{record.platformRato,jdbcType=DECIMAL}
+	  <if test="filter != null">
+		  <![CDATA[ 
+			${filter}
+	      ]]>
+	  </if>
+  </update>
+  <update id="batchRatioByStartEndDeviceNo">
+    update share_device_info
+    <set > 
+      <if test="record.platformRato != null" >
+        platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>  
+    <![CDATA[    	      
+     WHERE Id >=#{start,jdbcType=BIGINT} and Id <=#{end,jdbcType=BIGINT}
+	  ]]>  
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>	  
+  </update>
+  <update id="batchRatioByOnlineMerchId">
+    update share_device_info
+    <set >
+      <if test="record.platformRato != null" >
+        platform_rato = #{record.platformRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents1Rato != null" >
+        agents1_rato = #{record.agents1Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents2Rato != null" >
+        agents2_rato = #{record.agents2Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agents3Rato != null" >
+        agents3_rato = #{record.agents3Rato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shopkeeperRato != null" >
+        shopkeeper_rato = #{record.shopkeeperRato,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allianceBusinessRate != null" >
+        alliance_business_rate = #{record.allianceBusinessRate,jdbcType=DECIMAL},
+      </if>
+      update_datetime = NOW()
+    </set>  
+    <![CDATA[    	      
+     WHERE online_merchant_id=#{merchId,jdbcType=BIGINT}
+	  ]]>  
+	<if test="filter != null">
+		<![CDATA[ 
+		 ${filter}
+    	]]>
+	</if>	  
+  </update>
+  <select id="getShareDeviceInfoModelByPageFilter"  parameterType="java.util.HashMap"  resultMap="selectForPageResultMap">  
+	   SELECT 
+		    Id, device_type_id, device_type_name, device_status, online_datetime, online_merchant_cn, 
+		    online_merchant_id, online_address, online_city, online_zone, online_province, online_x_coordinate, 
+		    online_y_coordinate, fee_type_id, fee_type_name, yfj_amount, first_amount, first_minutes, 
+		    amount_per_hour, amount_max_24hour, fee1_type_Id, fee1_type_name, fee1_hour_type, 
+		    fee1_hour_amount, fee2_type_id, fee2_type_name, fee2_hour_type, fee2_hour_amount, 
+		    fee3_type_id, fee3_type_name, fee3_hour_type, fee3_hour_amount, platform_rato, agents1_id, 
+		    agents1_cn, agents1_rato, agents2_id, agents2_cn, agents2_rato, agents3_id, agents3_rato, 
+		    agents3_cn, shopkeeper_id, shopkeeper_cn, shopkeeper_rato, alliance_business_id, 
+		    alliance_business_cn, alliance_business_rate, create_id, create_datetime, update_datetime, 
+		    SQR_url, remark, yfj_reback_type,yfj_reback_type_name,
+		    password_type, password_month, password_batch, password_key, password_year
+		FROM `share_device_info`
+		where 1=1 
+		<if test="agents1Id !=null">
+			and agents1_id=#{agents1Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents2Id !=null">
+			and agents2_id=#{agents2Id,jdbcType=BIGINT}
+		</if>
+		<if test="agents3Id !=null">
+			and agents3_id=#{agents3Id,jdbcType=BIGINT}
+		</if>
+		<if test="shopkeeperId !=null">
+			and shopkeeper_id=#{shopkeeperId,jdbcType=BIGINT}
+		</if>
+		<if test="allianceBusinessId !=null">
+			and alliance_business_id=#{allianceBusinessId,jdbcType=BIGINT}
+		</if>
+		<if test="onlineMerchantId !=null">
+			and online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		</if>
+		<if test="deviceStartId !=null">
+			<![CDATA[ 
+			and id>=#{deviceStartId,jdbcType=BIGINT}
+	    	]]>
+		</if>
+		<if test="deviceEndId !=null">
+			<![CDATA[ 
+			and id<=#{deviceEndId,jdbcType=BIGINT}
+	    	]]>
+		</if>
+		<if test="deviceIds != null and deviceIds.size() > 0">
+		 and Id in
+        	(
+			 <foreach collection="deviceIds" item="item" separator=",">
+	            #{item,jdbcType=BIGINT}
+	        </foreach>
+	        )
+		</if>		
+  </select>
+  
+	<select id="getDevicesInfoByCondition" parameterType="java.lang.Long" resultMap="BaseResultMap">  
+	     SELECT 
+		  	Id, device_type_id, device_type_name, device_status, online_datetime, online_merchant_id, 
+		    online_address, online_city, online_zone, online_province, online_x_coordinate, online_y_coordinate, 
+		    fee_type_id, fee_type_name, yfj_amount, amount_per_hour, amount_max_24hour, fee1_hour_type, 
+		    fee1_hour_amount, fee2_hour_type, fee2_hour_amount, fee3_hour_type, fee3_hour_amount, 
+		    platform_rato, agents1_id, agents1_cn, agents1_rato, agents2_id, agents2_cn, agents2_rato, 
+		    agents3_id, agents3_rato, agents3_cn, shopkeeper_id, shopkeeper_cn, shopkeeper_rato, 
+		    alliance_business_id, alliance_business_cn, alliance_business_rate, create_id, create_datetime, 
+		    update_datetime, SQR_url, remark,`activation_mode`,`last_used_time`,
+		    password_type, password_month, password_batch, password_key, password_year		    
+		FROM `share_device_info`  
+		where 1=1
+		<if test="deviceIds !=null">
+		  and Id in
+        	(
+			 <foreach collection="deviceIds" item="item" separator=",">
+	            #{item,jdbcType=BIGINT}
+	        </foreach>
+	        )
+		</if>	
+		<if test="deviceStartId !=null">
+		  <![CDATA[    	      
+	       and Id >=#{deviceStartId,jdbcType=BIGINT}
+		  ]]>
+		</if>	
+		<if test="deviceEndId !=null">
+		  <![CDATA[    	      
+	       and Id <=#{deviceEndId,jdbcType=BIGINT}
+		  ]]>
+		</if>	
+		<if test="end !=null">
+		  <![CDATA[    	      
+	       and Id <=#{end,jdbcType=BIGINT}
+		  ]]>
+		</if>
+		<if test="onlineMerchantId !=null">
+	      <![CDATA[    	      
+	       and  online_merchant_id=#{onlineMerchantId,jdbcType=BIGINT}
+		  ]]>
+		</if>
+		<if test="filter != null">
+			<![CDATA[ 
+			 ${filter}
+	    	]]>
+		</if>
+		<if test="limitSql != null">
+			<![CDATA[ 
+			 ${limitSql}
+	    	]]>
+		</if>
+    </select>
+    <select id="getDevicesCountByMerchantId"   resultType="java.lang.Long" >
+	   SELECT 
+		   COUNT(Id)
+		FROM share_device_info t 
+		WHERE t.`online_merchant_id`= #{merchantId}		
+    </select>
+    <select id="getActiveDevicesCountByMerchantId"   resultType="java.lang.Long" >
+	   SELECT 
+		   COUNT(Id)
+		FROM share_device_info t 
+		WHERE t.`online_merchant_id`= #{merchantId}	and t.`device_status`=10	
+    </select>
+    <select id="getInactiveDevicesCountByMerchantId"   resultType="java.lang.Long" >
+	   SELECT 
+		   COUNT(Id)
+		FROM share_device_info t 
+		WHERE t.`online_merchant_id`= #{merchantId}	and t.`device_status`!=10	
+    </select>  
+    <select id="setGroupConcatMaxLen">
+		SET SESSION group_concat_max_len=204800
+    </select> 
+	<update id="update" parameterType="com.stylefeng.guns.sharecore.modular.system.model.ShareDeviceInfoModel" >
+	    update share_device_info
+	    set device_status = #{deviceStatus,jdbcType=INTEGER},
+	    <if test="yfjRebackType != null" >
+	      yfj_reback_type = #{yfjRebackType,jdbcType=INTEGER},
+	    </if>
+	    <if test="yfjRebackTypeName != null" >
+	      yfj_reback_type_name = #{yfjRebackTypeName,jdbcType=VARCHAR},
+	    </if>
+	    <if test="onlineDatetime != null" >
+	      online_datetime = #{onlineDatetime,jdbcType=TIMESTAMP},
+	    </if>
+	    online_merchant_cn = #{onlineMerchantCn,jdbcType=VARCHAR},
+	    online_merchant_id = #{onlineMerchantId,jdbcType=BIGINT},
+	    <if test="onlineAddress != null" >
+	      online_address = #{onlineAddress,jdbcType=TIMESTAMP},
+	    </if>
+	
+	    <if test="onlineCity != null" >
+	      online_city = #{onlineCity,jdbcType=TIMESTAMP},
+	    </if>
+	    <if test="onlineZone != null" >
+	      online_zone = #{onlineZone,jdbcType=TIMESTAMP},
+	    </if>
+	    <if test="onlineProvince != null" >
+	      online_province = #{onlineProvince,jdbcType=TIMESTAMP},
+	    </if>
+	    <if test="onlineXCoordinate != null" >
+	      online_x_coordinate = #{onlineXCoordinate,jdbcType=TIMESTAMP},
+	    </if>
+	    <if test="onlineYCoordinate != null" >
+	      online_y_coordinate = #{onlineYCoordinate,jdbcType=TIMESTAMP},
+	    </if>
+	    fee_type_id = #{feeTypeId,jdbcType=INTEGER},
+	    fee_type_name = #{feeTypeName,jdbcType=VARCHAR},
+	    yfj_amount = #{yfjAmount,jdbcType=DECIMAL},
+	    first_amount = #{firstAmount,jdbcType=DECIMAL},
+	    first_minutes = #{firstMinutes,jdbcType=BIGINT},
+	    amount_per_hour = #{amountPerHour,jdbcType=DECIMAL},
+	    amount_max_24hour = #{amountMax24hour,jdbcType=DECIMAL},
+	    fee1_type_Id = #{fee1TypeId,jdbcType=INTEGER},
+	    fee1_type_name = #{fee1TypeName,jdbcType=VARCHAR},
+	    fee1_hour_type = #{fee1HourType,jdbcType=INTEGER},
+	    fee1_hour_amount = #{fee1HourAmount,jdbcType=DECIMAL},
+	    fee2_type_id = #{fee2TypeId,jdbcType=INTEGER},
+	    fee2_type_name = #{fee2TypeName,jdbcType=VARCHAR},
+	    fee2_hour_type = #{fee2HourType,jdbcType=INTEGER},
+	    fee2_hour_amount = #{fee2HourAmount,jdbcType=DECIMAL},
+	    fee3_type_id = #{fee3TypeId,jdbcType=INTEGER},
+	    fee3_type_name = #{fee3TypeName,jdbcType=VARCHAR},
+	    fee3_hour_type = #{fee3HourType,jdbcType=INTEGER},
+	    fee3_hour_amount = #{fee3HourAmount,jdbcType=DECIMAL},
+	    platform_rato = #{platformRato,jdbcType=DECIMAL},
+	    agents1_id = #{agents1Id,jdbcType=BIGINT},
+	    agents1_cn = #{agents1Cn,jdbcType=VARCHAR},
+	    agents1_rato = #{agents1Rato,jdbcType=DECIMAL},
+	    agents2_id = #{agents2Id,jdbcType=BIGINT},
+	    agents2_cn = #{agents2Cn,jdbcType=VARCHAR},
+	    agents2_rato = #{agents2Rato,jdbcType=DECIMAL},
+	    agents3_id = #{agents3Id,jdbcType=BIGINT},
+	    agents3_rato = #{agents3Rato,jdbcType=DECIMAL},
+	    agents3_cn = #{agents3Cn,jdbcType=VARCHAR},
+	    shopkeeper_id = #{shopkeeperId,jdbcType=BIGINT},
+	    shopkeeper_cn = #{shopkeeperCn,jdbcType=VARCHAR},
+	    shopkeeper_rato = #{shopkeeperRato,jdbcType=DECIMAL},
+	    alliance_business_id = #{allianceBusinessId,jdbcType=BIGINT},
+	    alliance_business_cn = #{allianceBusinessCn,jdbcType=VARCHAR},
+	    alliance_business_rate = #{allianceBusinessRate,jdbcType=DECIMAL},
+	    <if test="updateDatetime != null" >
+	      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+	    </if>
+	    remark = #{remark,jdbcType=VARCHAR}
+	    where Id = #{id,jdbcType=BIGINT}
+	  </update>
+</mapper>

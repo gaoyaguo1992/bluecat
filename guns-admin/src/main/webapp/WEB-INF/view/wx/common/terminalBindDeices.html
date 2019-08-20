@@ -1,0 +1,876 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>终端商户绑定设备</title>	
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="yes" name="apple-touch-fullscreen">    
+<script src="${ctxPath}/static/wx/comonJs/reset.js"></script>
+<!-- 全局css -->
+<link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+<link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+<link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/bootstrap-treetable/bootstrap-treetable.css" rel="stylesheet"/>
+<!-- 全局js -->
+<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/bootstrap-treetable/bootstrap-treetable.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/chosen/chosen.jquery.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/ajax-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/bootstrap-table-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/tree-table-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/web-upload-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/ztree-object.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js"></script>    
+<link href="${ctxPath}/static/wx/css/reset.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/wxAppcss/common/BombBox.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/css/mobiscroll_date.css" rel="stylesheet">
+<link href="${ctxPath}/static/wx/iconfont/merchantcenter/iconfont.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/wx/wxAppcss/common/terminalBindDeices.css?v=1">
+<style rel="stylesheet" type="text/css" >
+   .success .withdrawCon {
+     width: 100%;
+     background: #fff;
+     padding-top: 40px;
+     border-bottom: 1px solid #f2f2f2;
+   }
+   .withdrawCon .img-con{
+     width:300px;
+     margin:0 auto;
+   }
+   .otherInfo{
+     text-align: center;
+     font-size: 14px;
+     color: #444;
+     border-bottom: 1px solid #f2f2f2;
+     margin-top: 25px;
+   }
+   .otherInfo span{
+     border-bottom: 2px solid #22AB39;
+   }
+   .img-con p{
+     text-align: center;
+   }
+   .img-con .img img{
+     height: 78px;
+     width: 100px;
+   }
+   .img-con .state{
+     font-size: 18px;
+     color: #444;
+     margin: 20px 0 10px 0;
+   }
+   .img-con .time{
+     font-size: 13px;
+     color: #959595;
+     line-height: 16px;
+   }
+   .success-com{
+     height :50px;
+     font-size: 13px;
+     line-height: 50px;
+     background: #fff;
+     border-bottom: 1px solid #f2f2f2;
+     padding: 0 15px;
+   }
+   .fail-com{
+     height :75px;
+     background: #fff;
+     font-size: 13px;
+     border-bottom: 1px solid #f2f2f2;
+     padding: 20px 15px;
+     box-sizing: border-box;
+   }
+   .success-com .device-icon{
+     display :inline-block;
+     height :20px ;
+     width :20px;
+     background :url("${reqUrlRoot}static/wx/img/device.png") no-repeat;
+     background-size :100%;
+     vertical-align :middle;
+     margin-right :10px;
+   }
+   .fail-com .address-icon{
+     display :inline-block;
+     height :20px ;
+     width :20px;
+     background :url("${reqUrlRoot}static/wx/img/address.png") no-repeat;
+     background-size :100%;
+     vertical-align :middle;
+     margin-right :10px
+   }
+   .device-address{
+     margin-left :32px;
+     font-size :13px;
+     color :#959595;
+     line-height: 16px;
+   }
+   .success-com .device-num{
+     float :right;
+     font-size :13px;
+     color :#959595;
+   }
+   .list-con{
+     background: #fff;
+     padding: 10px 12px;
+     height: 100%;
+     font-size :13px;
+   }
+   .merchant-info .merchant-icon{
+     display :inline-block;
+     height :20px;
+     width :20px;
+     background :url("${reqUrlRoot}static/wx/img/merchabt.png") no-repeat;
+     background-size :100%;
+     vertical-align :middle;
+     margin-right :10px;
+   }
+   .list-con .lists{
+     padding: 10px 0;
+   }
+   .list-con .lists li{
+	     display :flex;
+	     height: 33px;
+	     line-height:33px;
+	     padding: 0 10px;
+   }
+   .list-con .lists li .tips{
+	     flex :0 0 100px;
+	     width :100px;
+	     font-size: 14px;
+	     color: #959595;
+   }
+   .list-con .lists li .money{
+	     flex :1;
+	     font-size: 14px;
+	     padding-left :20px;
+	     color: #959595;
+   }
+   .list-con .lists li .addressInfo{
+   		line-height :16px;
+   }
+   .button{
+	   	position: relative;
+	    bottom: 5px;
+	   	height :45px;
+	   	line-height :45px;
+	   	padding :0 25px;
+	   	text-align :center;
+	   	margin-top :20px;
+	   	border :none;
+	}
+   .next-step{
+	     font-size :15px;
+	     color :#fff;
+	     background :#36a3ff;
+	     height: 100%;
+	     width: 100%;
+	     border-radius:3px;
+	     outline :none;
+	     border :none;
+	}
+	.addBindRegister{
+	}
+	.addBindRegister .header{
+	      margin-bottom : 15px;
+	}
+	.addBindRegister .header .header-set{
+        height :40px;
+        line-height :40px;
+        background :#36a3ff;
+        margin-bottom :10px;
+        font-size :15px;
+        color :#fff;
+        padding :0 15px;
+	}
+	.addBindRegister .header .info{
+        background :#fff;
+        border-bottom :1px solid #f2f2f2;
+        padding :0 15px;
+        height :45px;
+        line-height :45px;
+	}
+	.addBindRegister .header .info .info-title{
+          color :#959595;
+          font-size :13px;
+          vertical-align: middle;
+	}
+	.addBindRegister .header .info .info-detail{
+          float :right;
+          color :#959595;
+          font-size :13px;
+	}
+	.addBindRegister .input-com{
+      background: #fff;
+	}
+	.addBindRegister .input-com .p-com{
+        display :flex;
+        height :50px;
+        line-height :50px;
+        font-size :14px;
+        border-bottom :1px solid #f2f2f2;
+        padding :0 15px;
+	}
+	.addBindRegister .input-com .p-com .left-info{
+          flex :0 0 110px;
+          width :110px;
+          color :#959595;
+	}
+	.addBindRegister .input-com .p-com .left-info .icon-must{
+            color :#ff0000;
+            vertical-align: middle;
+            margin-right: 5px;
+            font-style: normal;
+	}
+	.addBindRegister .input-com .p-com input{
+          color: #444;
+          flex :1;
+          outline :none;
+          height :90%;
+	}
+	.addBindRegister .shopName{
+        font-size :14px;
+        color :#444;
+        display: flex;
+        padding: 0 15px;
+        border-bottom: 1px solid #f2f2f2;
+	}
+	.addBindRegister .shopName .name{
+         height: 100%;
+         line-height: 40px;
+         flex: 0 0 110px;
+         width: 110px;
+         color :#959595;
+	}
+	.addBindRegister .shopName .name .icon-must{
+          color :#ff0000;
+          vertical-align: middle;
+          margin-right: 5px;
+          font-style: normal;
+	}
+	.addBindRegister .shopName .input-con{
+        height :40px;
+        line-height :40px;
+        border-radius :5px;
+        padding-left :10px;
+        flex :1;
+	}
+	.addBindRegister .shopName .input-con input{
+          background :#f2f2f2;
+          outline :none;
+          height :80%;
+          width :90%;
+          padding :0 10px;
+	}
+	.addBindRegister .shopName .input-con  #trade{
+          outline :none;
+          border :none;
+          border-color:transparent;
+          background-color:transparent;
+          -webkit-appearance: none;
+          height :80%;
+          width :100%;
+	}
+	.addBindRegister .shopName .select-con{
+          position :relative;
+          flex :1;
+	}
+	.addBindRegister .shopName .select-con .row{
+         position :absolute;
+         top:13px;
+         right :17px;
+         display: inline-block;
+         vertical-align: middle;
+         border :5px solid transparent;
+         border-top-color :#898989;
+         margin : 5px 0 0 5px;
+         transition : all .4s linear;
+         transform-origin :center 2px;
+	}
+	.addBindRegister .phoneCode{
+        height :45px;
+        border-radius:3px;
+        font-size :14px;
+        margin-bottom :10px;
+        background :#fff;
+        display:flex;
+        padding: 1px 15px;
+        border: none;
+	}
+	.addBindRegister .phoneCode input{
+          flex : 1;
+          margin-right :10px;
+          height:100%;
+          outline :none;
+          background :#f2f2f2;
+          width :100%;
+          padding-left :10px;
+	}
+	.addBindRegister .phoneCode button{
+          flex:0 0 100px;
+          width :100px;
+          background :#fff;
+          font-size :12px;
+          border :1px solid #36a3ff;
+          color :#36a3ff;
+          border-radius :3px;
+          outline : none;
+	}
+	.addBindRegister .button{
+	      height :45px;
+	      line-height :45px;
+	      padding :0 25px;
+	      text-align :center;
+	}
+	.addBindRegister .button .next-step{
+	        font-size :15px;
+	        color :#fff;
+	        background :#36a3ff;
+	        height: 100%;
+	        width: 100%;
+	        border-radius:3px;
+	        outline :none;
+	        border :none;
+	}
+</style>
+</head>
+<body>
+    <script>reset();</script>
+	<input id="custNo" name="custNo" type="hidden" value = "${custInfoModel.custNo}"/>
+	<div  id="deviceBind1">
+	    <div class="profit-com">
+	          <div class="title"><span class="icon"></span>设备入驻</div>
+	     	  <div class="title-list" style="height:70px">
+	     	  	<span  style="font-size: .28rem;color: #959595;line-height: 25px;">备注：终端商户负责人微信扫任何一个充电器二维码，绑定终端商户微信，激活设备。</span>
+			 </div>
+			 <div class="title-list" style="height:70px">
+	     	  	<span id="spAddr"  style="font-size: .28rem;color: #959595;line-height: 25px;">当前扫码位置：</span>
+			 </div>
+		</div>
+		<p id="sqrBut" name="sqrBut" class="button" style="position: relative;bottom:0;"><span>扫码入驻</span></p>
+	</div>
+	<div id="deviceBind2" style="display:none" class="addBindRegister">
+      <div class="header">
+        <p class="header-set"><span class="icon"></span><span id="devicesInfoAndChargerInfo2">设备编号.--充电器编号.</span></p>
+        <p class="info"><span class="info-title">商户编号</span><span id="merchantInfoId2" class="info-detail"></span></p>
+        <p class="info"><span class="info-title">商户(店铺)联系手机号</span><span id="merchantInfoTelNo2"  class="info-detail"></span></p>
+        <p class="info"><span class="info-title">商户(店铺)省市区</span><span id="merchantInfoProvinceCityZone2" class="info-detail"></span></p>
+        <p class="info"><span class="info-title">扫码地址省市区</span><span id="sqrProvinceCityZone2" class="info-detail"></span></p>
+      </div>
+      <div class="input-com">
+        <p class="p-com"><span class="left-info"><i class="icon-must">*</i>商户(店铺)名称</span><input type="text" style="text-align: right" id="merchantName2" placeholder="请输入店铺名称"></p>
+        <p class="p-com"><span class="left-info"><i class="icon-must">*</i>联系人</span><input type="text" style="text-align: right" id="merchantPersonName2" placeholder="请输入联系人"></p>
+        <p class="p-com"><span class="left-info"><i class="icon-must">*</i>店铺详细地址</span><input style="text-align: right" id="merchantAddr2" type="text" placeholder="请输入店铺详细地址"></p>
+        <div class="shopName">
+          <p class="name"><i class="icon-must">*</i>所属行业</p>
+          <p class="input-con select-con">
+            <select name="trade" id="merchantIndustryCategoryCode2"  id="trade">
+              <option value=""> </option>
+              ${industryCategoryCodeFrHtmlOptions}
+            </select>
+          </p>
+        </div>
+        <!--只有行业为KTV和酒店时显示-->
+        <div class="roomCom" v-show="showRoom">
+          <div class="shopName" >
+            <p class="name"><i class="icon-must">*</i>房间数</p>
+            <p class="input-con"><input type="number" id="merchantRoomCount2" style="text-align: right" placeholder="请输入房间数量"></p>
+          </div>
+        </div>
+      </div>
+      <p class="button"><button id="nextStep2" class="next-step">进驻我店</button></p>
+    </div>    
+	<div id="deviceBind3" style="display:none" class="success">
+	    <div class="withdrawCon">
+	      <div class="img-con">
+	        <p class="img"><img id="imgUrl"></p>
+	        <p class="state" id="state"></p>
+	        <p class="time" id="time"></p>
+	        <p class="otherInfo"><span>其他信息</span></p>
+	      </div>
+	    </div>
+	    <div id="divDeviceNum" class="success-com">
+	      <span class="device-icon"></span>当前已绑定设备 <span id="deviceNum" class="device-num">台</span>
+	    </div>
+	    <div id="diveDeviceAddress" class="fail-com">
+	      <span class="address-icon"></span>当前扫码位置 <br>
+	      <p id="deviceAddress" class="device-address"></p>
+	    </div>
+	    <div  class="list-con">
+	      <p class="merchant-info"><span class="merchant-icon"></span>商户信息</p>
+	      <ul class="lists">
+	        <li>
+	          <span class="tips">终端商户Id</span> <span  id="terminalMerchantId" class="money"></span>
+	        </li>
+	        <li>
+	          <span class="tips">店铺联系电话</span> <span id="terminalTelNo"   class="money"></span>
+	        </li>
+	        <li style="margin-top: 5px">
+	          <span style="line-height: normal" class="tips">店铺地址省市区</span> <span id="addressInfo" class="money addressInfo"></span>
+	        </li>
+	        <li>
+	          <span class="tips">店铺名称</span> <span id="merchantName" class="money"></span>
+	        </li>
+	        <li>
+	          <span class="tips">联系人</span> <span id="merchantPersonName" class="money"></span>
+	        </li>
+	        <li style="margin-top: 5px">
+	          <span style="line-height: normal" class="tips">店铺详细地址</span> <span id="addressInfoDetails" class="money addressInfo"></span>
+	        </li>
+	      </ul>
+	    </div>
+	    <p  class="button"><button id="finishButton" value="完成" class="next-step"></button></p>
+	</div>
+    <!--  错误提示 -->
+    <div class="prompt" id="messageDialog" style="display: none;">
+        <div class="prompt-cont">
+            <p id="result_prompt"></p>
+          <div class="promptBtn" id="msg_btn">知道了</div>
+        </div>
+     </div>
+    <!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				 <div class="modal-body" style="font-size: 12px;" id="myModalContent">正在处理中....</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>	
+	<script type="text/javascript" src="${ctxPath}/static/js/plugins/layer/layer.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common/Feng.js?v=1"></script>	
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/TouchSlide.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/ebp/jquery.mobile.custom.min.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/global.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jrrpc.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/util.js?v=1"></script>
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll_date.js?v=1" charset="gb2312"></script> 
+	<script type="text/javascript" src="${ctxPath}/static/wx/comonJs/mobiscroll.js?v=1"></script>
+    <script type="text/javascript" src="${ctxPath}/static/wx/comonJs/jweixin-1.1.0.js?v=1"></script>  
+    <script language="javascript" type="text/javascript">
+	var path="${ctxPath}";
+	var reqUrl="${reqUrlRoot}";
+	var baseUrl="${reqUrlRoot}";
+	var custNo="${custInfoModel.custNo}";
+	var currentAddrss="";
+	var currentProvince="";
+	var currentCity="";
+	var currentZone="";
+	var urlForImg1="${reqUrlRoot}static/wx/img/success2x.jpg";
+	var urlForImg2="${reqUrlRoot}static/wx/img/x.png";
+	var urlForImg3="${reqUrlRoot}static/wx/img/gantan.png";
+	var longitude_x=null;
+    var latitude_y=null;
+	var isBindCustForMer=null;
+	var onlineMerchantId=null;
+	var bindMerchantInfo=null;
+	var shareDeviceInfoModel=null;
+	var devicesForActivation=null;
+	var devicesForWaitConfirm=null;
+	var chargerId=null;
+	var finishButtonOperationFlag=0;//0：完成， 1：已绑定， 2：出错。。
+	var deviceNum=0;
+	$(function(){
+	     Feng.addCtx("${ctxPath}");
+	     Feng.sessionTimeoutRegistry();
+		 $('.modal').appendTo("body");
+		 //处理用户修改费用..
+		 var options={keyboard:false,backdrop:'static',show:false};
+		 $('#myModal').modal(options);
+		 //微信授权 成功后调扫码...
+		 getWeixinConfig();
+		 //入骗第一步
+		 $('#sqrBut').click(function(){
+			 nextStep1();
+		 });
+		 //显示图片...
+		 $("#imgUrl").attr("src",urlForImg1);
+		 //入驻第二步
+		 $("#nextStep2").click(function(){
+			 nextStep2();
+		 })
+		 //入驻第三步完成finish
+		 $("#finishButton").click(function(){
+			 nextStep3();
+		 })
+	});
+	/**第一步 扫码..**/
+	function nextStep1(){
+		 wx.ready(function(){
+	         wx.checkJsApi({
+	            jsApiList: ['scanQRCode'],
+	            success: function (res) {
+	            }
+	          }); 
+	          wx.scanQRCode({
+	            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+	            scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+	            success: function (res) {
+	               // 当needResult 为 1 时，扫码返回的结果
+	               getDeviceId(res.resultStr);
+	            }
+	          });
+	     });
+	}
+	/**第二步 确认信息...**/
+	var operateNextStep=0;
+	function nextStep2(){
+		if(operateNextStep==1){
+			return;
+		}
+		operateNextStep=1;
+		startShieldLayer();
+		var merchantName= $("#merchantName2").val();//merchantName2 商户(店铺)名称
+		var merchantPersonName=$("#merchantPersonName2").val();//merchantPersonName2  联系人
+		var merchantAddr=$("#merchantAddr2").val();//merchantAddr2  店铺详细地址
+		var merchantCategoryCode=$("#merchantIndustryCategoryCode2").val();//merchantIndustryCategoryCode2 所属行业		
+		var merchantRoomCount=$("#merchantRoomCount2").val();//merchantRoomCount2 房间数
+		//省
+		if(bindMerchantInfo.province!=null&&bindMerchantInfo.province!=undefined&&bindMerchantInfo.province!=""
+			&&bindMerchantInfo.province!="0"&&bindMerchantInfo.province!=currentProvince){
+			operateNextStep=0;
+			finishShieldLayer();
+			doFinishBindDevicesError();
+			return;			
+		}
+		//市
+		if(bindMerchantInfo.city!=null&&bindMerchantInfo.city!=undefined&&bindMerchantInfo.city!=""
+			&&bindMerchantInfo.city!="0"&&bindMerchantInfo.city!=currentCity){
+			operateNextStep=0;
+			finishShieldLayer();
+			doFinishBindDevicesError();
+			return;			
+		}
+		//区
+		if(bindMerchantInfo.zone!=null&&bindMerchantInfo.zone!=undefined&&bindMerchantInfo.zone!=""
+			&&bindMerchantInfo.zone!="0"&&bindMerchantInfo.zone!=currentZone){
+			operateNextStep=0;
+			finishShieldLayer();
+			doFinishBindDevicesError();
+			return;			
+		}
+		if(merchantPersonName==null||merchantPersonName==undefined||merchantPersonName==""){
+			operateNextStep=0;
+			finishShieldLayer();
+			tipText("联系人不能为空，请输入联系人！")
+			return;	
+		}
+		if(merchantCategoryCode==null||merchantCategoryCode==undefined||merchantCategoryCode==""){
+			operateNextStep=0;
+			finishShieldLayer();
+			tipText("店铺所属行业不能为空，请选择店铺所属行业！")
+			return;	
+		}
+		var params={merchantName:merchantName,
+				merchantPersonName:merchantPersonName,
+				merchantAddr:merchantAddr,
+				merchantCategoryCode:merchantCategoryCode,
+				merchantRoomCount:merchantRoomCount,
+				onlineMerchantId:onlineMerchantId,
+				longitude_x:longitude_x,
+				latitude_y:latitude_y,
+				chargerId:chargerId,
+				deviceId:shareDeviceInfoModel.id,
+				custNo:custNo,
+				province:currentProvince,
+				city:currentCity,
+				zone:currentZone
+			};
+		$.ajax({
+			type : 'POST',
+			url : reqUrl + "wx/terminalBindForSave",
+			data : params,
+			dataType : 'json',
+			error : function(obj) {
+				operateNextStep=0;
+				finishShieldLayer();
+			},
+			success : function(res) {
+				operateNextStep=0;
+				finishShieldLayer();
+				if (res.result === 'success') {
+					debugger;					
+					var data = res.responseInfo;
+					deviceNum=data.devNum;
+					doFinishBindDevicesSuccess();
+				} else {
+					tipText(res.message);
+				}
+			}
+		}); 
+	}
+	/**第三步 结束...**/
+	function nextStep3(){
+		location.href=baseUrl+"/wx/terminalBindDevices";
+	}
+	/**处理结束绑定业务--第二步，用户确认信息...**/
+	function doBindDevicesForConfirmInfoSetp2(){
+		$("#deviceBind1").hide();
+		$("#deviceBind2").show();
+		$("#deviceBind3").hide();
+		$("#devicesInfoAndChargerInfo2").html("设备编号."+shareDeviceInfoModel.id+"--充电器编号："+chargerId);//devicesInfoAndChargerInfo2  设备编号.3333--充电器编号：
+		$("#merchantInfoId2").html(bindMerchantInfo.id);//merchantInfoId2  商户编号
+		$("#merchantInfoTelNo2").html(bindMerchantInfo.telNo);//merchantInfoTelNo2 商户(店铺)联系手机号
+		$("#merchantInfoProvinceCityZone2").html(bindMerchantInfo.province+bindMerchantInfo.city+bindMerchantInfo.zone);//merchantInfoProvinceCityZone2 商户(店铺)省市区
+		$("#sqrProvinceCityZone2").html(currentProvince+currentCity+currentZone);//sqrProvinceCityZone2 扫码地址省市区
+		$("#merchantName2").val(bindMerchantInfo.name);//merchantName2 商户(店铺)名称
+		$("#merchantPersonName2").val(bindMerchantInfo.personName);//merchantPersonName2  联系人
+		$("#merchantAddr2").val(bindMerchantInfo.addr);//merchantAddr2  店铺详细地址
+		$("#merchantIndustryCategoryCode2").val(bindMerchantInfo.industryCategoryCode);//merchantIndustryCategoryCode2 所属行业		
+		$("#merchantRoomCount2").val(bindMerchantInfo.roomCount);//merchantRoomCount2 房间数
+	}
+	/**处理结束绑定业务--当前设备已绑定了...**/
+	function doFinishBindDevicesDone(){
+		$("#deviceBind1").hide();
+		$("#deviceBind2").hide();
+		$("#deviceBind3").show();
+		$("#imgUrl").attr("src",urlForImg2); //imgUrl 显示的图片.
+		$("#state").html("该批设备已激活且已绑定终端微信，可正常使用");//state 提示状态  
+		$("#time").html("该批设备已激活且已绑定终端微信，可正常使用，无需再次绑定");//time 设备状态  
+		$("#divDeviceNum").hide();//divDeviceNum 显示绑定设备数  
+		//deviceNum 当前已绑定设备
+		$("#diveDeviceAddress").show();//diveDeviceAddress 设备地址 
+		$("#deviceAddress").html(currentProvince+currentCity+currentZone);//deviceAddress 设备位置
+		$("#terminalMerchantId").html(bindMerchantInfo.id);//terminalMerchantId  终端商户Id
+		$("#terminalTelNo").html(bindMerchantInfo.telNo);//terminalTelNo  店铺联系电话
+		$("#addressInfo").html(bindMerchantInfo.province+bindMerchantInfo.city+bindMerchantInfo.zone);//addressInfo 店铺地址省市区
+		$("#merchantName").html(bindMerchantInfo.name);//merchantName 店铺名称
+		$("#merchantPersonName").html(bindMerchantInfo.personName);//merchantPersonName 联系人
+		$("#terminalTelNo").html(bindMerchantInfo.addr);//addressInfoDetails  店铺详细地址
+		$("#finishButton").html("确定");//finishButton v-html="successShow==='1'?'完成':successShow==='2'?'扫码入驻其他设备':'确定'"
+		finishButtonOperationFlag=1;
+	}
+	/**处理结束绑定业务--失败结束绑定*/
+	function doFinishBindDevicesError(){
+		$("#deviceBind1").hide();
+		$("#deviceBind2").hide();
+		$("#deviceBind3").show();
+		$("#imgUrl").attr("src",urlForImg3); //imgUrl 显示的图片.
+		$("#state").html("入驻失败");//state 提示状态 
+		$("#time").html("当前入驻地址与设备绑定的终端商户地址不一致，不可入驻，请联系设备提供方修改设备绑定的终端信息");//time 设备状态 v-html="successShow==='1'?'该批设备可以正常租借了':successShow==='2'?'当前入驻地址与设备绑定的终端商户地址不一致，不可入驻，请联系设备提供方修改设备绑定的终端信息':'该批设备已绑定终端，无需再次绑定'" 
+		$("#divDeviceNum").hide();//divDeviceNum 显示绑定设备数  v-show="successShow==='1'" 当前已绑定设备 <span class="device-num">33333333333台
+		//deviceNum 当前已绑定设备
+		$("#diveDeviceAddress").show();//diveDeviceAddress 设备地址 v-show="successShow==='2'
+		$("#deviceAddress").html(currentProvince+currentCity+currentZone);//deviceAddress 设备位置
+		$("#terminalMerchantId").html(bindMerchantInfo.id);//terminalMerchantId  终端商户Id
+		$("#terminalTelNo").html(bindMerchantInfo.telNo);//terminalTelNo  店铺联系电话
+		$("#addressInfo").html(bindMerchantInfo.province+bindMerchantInfo.city+bindMerchantInfo.zone);//addressInfo 店铺地址省市区
+		$("#merchantName").html(bindMerchantInfo.name);//merchantName 店铺名称
+		$("#merchantPersonName").html(bindMerchantInfo.personName);//merchantPersonName 联系人
+		$("#terminalTelNo").html(bindMerchantInfo.addr);//addressInfoDetails  店铺详细地址
+		$("#finishButton").html("确定");//finishButton v-html="successShow==='1'?'完成':successShow==='2'?'扫码入驻其他设备':'确定'"
+		finishButtonOperationFlag=2;
+	}
+	/**处理结束绑定业务--成功结束绑定*/
+	function doFinishBindDevicesSuccess(){
+		$("#deviceBind1").hide();
+		$("#deviceBind2").hide();
+		$("#deviceBind3").show();
+		$("#imgUrl").attr("src",urlForImg1); //imgUrl 显示的图片.
+		$("#state").html("设备入驻成功");//state 提示状态  v-html="successShow==='1'?'设备入驻成功':successShow==='2'?'入驻失败':'该批设备已绑定终端'" ;
+		$("#time").html("该批设备已绑定终端微信，已成功激活，可以正常租借了！'");//time 设备状态 v-html="successShow==='1'?'该批设备可以正常租借了':successShow==='2'?'当前入驻地址与设备绑定的终端商户地址不一致，不可入驻，请联系设备提供方修改设备绑定的终端信息':'该批设备已绑定终端，无需再次绑定'" 
+		$("#divDeviceNum").show();//divDeviceNum 显示绑定设备数  v-show="successShow==='1'" 当前已绑定设备 <span class="device-num">33333333333台
+		$("#deviceNum").html(deviceNum+"台"); //deviceNum 当前已绑定设备
+		$("#diveDeviceAddress").show();//diveDeviceAddress 设备地址 v-show="successShow==='2'
+		$("#deviceAddress").html(currentProvince+currentCity+currentZone);//deviceAddress 设备位置
+		$("#terminalMerchantId").html(bindMerchantInfo.id);//terminalMerchantId  终端商户Id
+		$("#terminalTelNo").html(bindMerchantInfo.telNo);//terminalTelNo  店铺联系电话
+		$("#addressInfo").html(bindMerchantInfo.province+bindMerchantInfo.city+bindMerchantInfo.zone);//addressInfo 店铺地址省市区
+		$("#merchantName").html(bindMerchantInfo.name);//merchantName 店铺名称
+		$("#merchantPersonName").html(bindMerchantInfo.personName);//merchantPersonName 联系人
+		$("#terminalTelNo").html(bindMerchantInfo.addr);//addressInfoDetails  店铺详细地址
+		$("#finishButton").html("扫码入驻其他设备");//finishButton v-html="successShow==='1'?'完成':successShow==='2'?'扫码入驻其他设备':'确定'" 
+		finishButtonOperationFlag=0;
+	}
+	/*  扫码获取设备信息 */
+	function getDeviceId(data){
+		debugger;
+		let params={
+			 codeContent:data,
+			 custNo:custNo
+		 };
+		//得到
+		if(data==null||data==undefined){
+			tipText(res.message);
+			return;
+		}
+		$.ajax({
+			type : 'POST',
+			url : reqUrl + "wx/terminalBindByChargerID",
+			data : params,
+			dataType : 'json',
+			error : function(obj) {
+			},
+			success : function(res) {
+				if (res.result === 'success') {
+					debugger;					
+					var data = res.responseInfo;
+					isBindCustForMer=res.responseInfo.isBindCustForMer;
+					onlineMerchantId=res.responseInfo.onlineMerchantId;
+					bindMerchantInfo=res.responseInfo.bindMerchantInfo;
+					shareDeviceInfoModel=res.responseInfo.shareDeviceInfoModel;
+					devicesForActivation=res.responseInfo.devicesForActivation;
+					devicesForWaitConfirm=res.responseInfo.devicesForWaitConfirm;
+					chargerId=res.responseInfo.chargerId;
+					if(isBindCustForMer=="1"){
+						if(shareDeviceInfoModel!=null&&shareDeviceInfoModel.deviceStatus=="12"){
+							//表示有些要确认，所以....
+							doBindDevicesForConfirmInfoSetp2();
+						}else{
+							//表示已经确定了，无需重复绑定..
+							doFinishBindDevicesDone();
+						}
+					}else{
+						//没有绑定，需要绑定...
+						doBindDevicesForConfirmInfoSetp2();
+					}
+				} else {
+					tipText(res.message);
+				}
+			}
+		}); 
+	};
+	//得到位置信息...
+	function wxGetLocation(){
+		 wx.ready(function(){
+		 	wx.getLocation({
+		 	    type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+		 	    success: function (res) {	       
+		 	        var geocoder,citylocation,map,marker = null;
+		 	        var markersArray=[];
+		 	        var x= res.longitude;
+		 	        var y= res.latitude;
+		 	        var latitudeLongitude = y+','+x;
+		 	        longitude_x=x;
+		 	        latitude_y=y;
+		 	        $("#longitude").attr("value","");
+		            $("#longitude").attr("value",x);
+		            $("#latitude").attr("value","");
+		            $("#latitude").attr("value",y);
+		 	        getAddr(latitudeLongitude);
+		 	    }
+		 	});
+	
+		 });
+   }
+   /**得到省市区**/
+   function getAddr(latitudeXY){
+	    debugger;
+	    var data={
+	         	location:latitudeXY,
+	          	key:"DCLBZ-LSM3F-DBWJF-NXDGT-JLUQO-7RBYX",
+	           	get_poi:0    
+	      	}
+         var url="https://apis.map.qq.com/ws/geocoder/v1/?";
+         data.output="jsonp";  
+         $.ajax({
+             type:"get",
+             dataType:'jsonp',
+             data:data,
+             jsonp:"callback",
+             jsonpCallback:"QQmap",
+             url:url,
+             success:function(json){
+            	currentAddrss=json.result.address;
+            	currentProvince=json.result.address_component.province;
+            	currentCity=json.result.address_component.city;
+            	currentZone=json.result.formatted_addresses.recommend;
+           	    $("#spAddr").html("当前扫码位置："+json.result.address_component.province+json.result.address_component.city+json.result.formatted_addresses.recommend);
+             },
+             error : function(err){
+            	 alert("获到位置信息失败，请刷新浏览器后重试");
+            }
+     	})
+   } 
+   //提醒
+   function tipText(cont){
+	    $("#result_prompt").text(cont);	    	
+	    $("#messageDialog").show();
+	    $("#msg_btn").click(function(){
+		   $("#messageDialog").hide();	
+	     });
+   };
+	
+   // 微信授权
+   function getWeixinConfig(){
+	  let url = window.location.href.split('#')[0];
+	  var urlInfo={
+	         url:url
+	       };
+	  $.ajax({
+       	   type:"POST", 
+           url:reqUrl+"wx/getWxJsapiSignatureInfo",         
+           data:urlInfo,
+           dataType:'json',
+           error:function(obj){},
+           success:function(res){
+           	if(res.result==='success'){
+           		 wx.config({
+	                    beta:true,
+	                    debug: false,
+	                    appId: res.responseInfo.appid,
+	                    timestamp: res.responseInfo.timestamp,
+	                    nonceStr: res.responseInfo.noncestr,
+	                    signature: res.responseInfo.signature,
+	                    jsApiList: ['checkJsApi', 'scanQRCode','previewImage','getLocation','openLocation']
+	                  });
+				 //得到位置信息...
+	             wxGetLocation();
+           	}
+          }
+       });
+    };
+    //普通数组去重
+    function removeAttrSameElement(attr) {
+        var arrFilter = [];
+        var str="";
+        for (var i = 0; i < attr.length; i++){
+        	if (arrFilter.indexOf(attr[i]) == -1) {
+                arrFilter.push(attr[i]);
+                if(i==0){
+                	str=attr[i];
+                }else{
+                	str=str+","+attr[i];
+                }
+            }
+        }
+        return str;
+    };
+	 /**
+	  * 开启屏蔽层.
+	  */
+	 startShieldLayer = function() {
+	 	$('#myModal').modal("show");
+	 }
+	 /**
+	  * 结束屏蔽层.
+	  */
+	 finishShieldLayer = function() {
+	 	$('#myModal').modal("hide");
+	 }
+</script>
+</body>
+</html>

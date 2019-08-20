@@ -1,0 +1,177 @@
+body{
+    background: #f5f5f5;
+    color: #333; 
+    font-size: 14px;
+}
+.fr{
+    float: right;
+}
+#container {
+    z-index: 11;
+    position: relative;
+    top:50%;
+    right: 0;
+    width:100%;            
+    max-height: 100%;
+    overflow-y: auto;
+} 
+/* 111 */
+.header-con{
+	position:relative;
+	height:5rem;
+	width:100%;
+	background-size:100%;
+	border-bottom:1.03rem solid #fff;
+	background: linear-gradient(312deg,rgba(161,220,171,1) 0%,rgba(34,171,57,1) 100%);
+}
+.center-con{
+	height:2.5rem;
+	width:3.5rem;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-1.75rem,-1.25rem);
+}
+.center-con .ysMoney,.center-con .total-money{
+	display:block;
+	color:#fff;
+	text-align: center;
+}
+.ysMoney .title{
+	margin:5px 0;
+}
+.ysMoney .money{
+	font-size:0.8466rem;
+	margin:5px 0 10px 0;
+}
+.center-con .total-money{
+}
+.bottom-con{
+	position:absolute;
+	bottom:-30px;
+	left:0.24rem;
+	right:0.24rem;
+	height:1.2rem;
+	line-height:1.2rem;
+	border-radius:3px;
+	background:#fff;
+	padding:0 0.4rem;
+	box-shadow: 0 5px 3px #ececec;
+}
+.bottom-con .bag-money{
+	float:right;
+	color:#444;
+	font-size:0.36rem;
+}
+/* 1111 */
+.cooperation-infor{
+    padding: 0 4%;
+    background: #fff;
+}
+/*修改  */
+.cooperation-fill{
+    height:34px;
+    line-height: 34px;
+    height:1rem;
+    line-height: 1rem;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.cooperation-fill.bordernone{
+    border-bottom: 0;
+}
+.cooperation-fill lable{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+.cooperation-fill input{
+    height:24px;
+    line-height: 24px;
+    margin: 5px 0;
+    width: 62%;
+    display: inline-block;
+    height:.8rem;
+    line-height: .8rem;
+    margin: .1rem 0;
+    color: #333;
+    vertical-align: top;
+    border: none;
+    outline: none;
+}
+.cooperation-fill i{
+    font-size: 16px;
+    float: right;
+    display: inline-block;
+    font-size: .36rem;
+    color: #9a9a9a;
+    vertical-align: top;
+}
+.cooperation-fill p{
+    display: inline-block;
+}
+.cooperation-fill input.yzcode{
+    width: 40%;
+
+    width: 2.4rem;
+}
+.cooperation-fill .btn{
+    float: right;
+    width: 27%;
+    height: 28px;
+    line-height: 28px;
+    margin: 3px 0;
+    height: .8rem;
+    line-height: .8rem;
+    margin-top: .1rem;
+    color: #ff6666;
+    text-align: center;
+    border: #ff6666 1px solid;
+    border-radius: .1rem;
+}
+
+.cooperation-fill .iconbox {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    line-height: 21px;
+    width: .5rem;
+    height: .5rem;
+    line-height: .5rem;
+    margin-right: .2rem;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+/*修改  */
+.cooperation-fill .freezeMoney,.cooperation-fill .withdrawalsMoney,.cooperation-fill .cashRecordMoney{
+	float: right;
+	color:#959595;
+}
+.cooperation-fill .dongjie{
+	vertical-align: middle;
+}
+.cooperation-fill .iconbox .free-money{
+	display:inline-block;
+	height:.5rem;
+	width:.5rem;
+	background:url(../../../img/dongjiejine@2x.png) no-repeat;
+	background-size:100%;
+}
+/*  22*/
+.cooperation-fill .tixian {
+    background: #f4a229;
+}
+.cooperation-fill .tixianjilu {
+    background: #16eca3;
+}
+.cooperation-fill i.icon-tixian,
+.cooperation-fill i.icon-tixianjilu {
+    font-size: 16px;
+    float: none;
+    display: inline-block;
+    font-size: .34rem;
+    color: #fff;
+    vertical-align: top;
+}
